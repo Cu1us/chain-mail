@@ -961,6 +961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bowCooldown: 0.2
+  maxBowCharge: 1
   arrow: {fileID: 6992160533746738136, guid: 113247eed48ab8941874967524481367, type: 3}
   bow: {fileID: 142736620}
 --- !u!1 &2120600040

@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    [SerializeField] float arrowSpeed;
+    [SerializeField] float maxArrowSpeed;
+    public float arrowSpeed;
 
     void Start()
     {
         Invoke(nameof(SelfDestruct), 3);
+        arrowSpeed *= maxArrowSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
