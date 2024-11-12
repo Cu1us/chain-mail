@@ -8,7 +8,8 @@ public class Chain : MonoBehaviour
 {
     [Header("Status")]
     GrabStatus grabStatus;
-    Vector2 pivot;
+    Vector2 worldPivot;
+    float localPivot { set { SetPivotByDistance(value); } }
     Movement grabber
     {
         get
@@ -16,7 +17,7 @@ public class Chain : MonoBehaviour
             return grabStatus switch { GrabStatus.A => EntityA, GrabStatus.B => EntityB, _ => null };
         }
     }
-    Movement grabbee
+    Movement grabee
     {
         get
         {
@@ -30,8 +31,14 @@ public class Chain : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] float maxDistance;
-    [SerializeField] float rotationSpeed;
+    [SerializeField] float maxRotationSpeed;
+    [SerializeField] float rotationAcceleration;
+    [SerializeField] float rotationDeceleration;
+    [Header("Advanced settings")]
     [SerializeField] float heldPivotOffset;
+    [Tooltip("After the chain has reached this fraction of the max rotation speed, players cannot change the rotational direction until it has stopped")]
+    [SerializeField][Range(0, 1)] float forcePreserveMomentumThreshold;
+    [SerializeField][Min(0)] float pivotReadjustToCenterTime;
 
 
     [Header("References")]
@@ -40,6 +47,8 @@ public class Chain : MonoBehaviour
 
     Vector2 center;
     float distance;
+    float rotationalVelocity;
+    float lastChainHeldTime;
 
     void Reset()
     {
@@ -56,40 +65,79 @@ public class Chain : MonoBehaviour
 
         UpdatePivot();
 
-        if (grabStatus != GrabStatus.NONE)
-            RotateChain(grabber.rotationalInput);
+        AccelerateBasedOnInput();
+
+        RotateChain();
 
         RenderLine();
     }
 
-    void RotateChain(int direction)
+    private void AccelerateBasedOnInput()
     {
-        if (direction == 0) return;
-        float rotation = direction * rotationSpeed * Time.deltaTime;
-        grabbee.RotateAround(pivot, rotation);
-        if (heldPivotOffset != 0)
-            grabber.RotateAround(pivot, rotation);
+        if (grabStatus != GrabStatus.NONE && grabber.rotationalInput != 0)
+        {
+            float targetRotVelocity = grabber.rotationalInput * maxRotationSpeed;
+            float acceleration = rotationAcceleration * Time.deltaTime;
+            if (Mathf.Sign(rotationalVelocity) != Mathf.Sign(targetRotVelocity))
+            {
+                if (Mathf.Abs(rotationalVelocity) / maxRotationSpeed > forcePreserveMomentumThreshold)
+                    targetRotVelocity *= -1;
+                else
+                    acceleration *= 2;
+            }
+            rotationalVelocity = Mathf.MoveTowards(rotationalVelocity, targetRotVelocity, acceleration);
+        }
+        else
+        {
+            rotationalVelocity = Mathf.MoveTowards(rotationalVelocity, 0, rotationDeceleration * Time.deltaTime);
+        }
+    }
+
+    void RotateChain()
+    {
+        if (rotationalVelocity == 0) return;
+        float rotation = rotationalVelocity * Time.deltaTime;
+        if (grabStatus == GrabStatus.NONE)
+        {
+            EntityA.RotateAround(worldPivot, rotation);
+            EntityB.RotateAround(worldPivot, rotation);
+        }
+        else
+        {
+            grabee.RotateAround(worldPivot, rotation);
+            if (heldPivotOffset != 0 && worldPivot != center)
+                grabber.RotateAround(worldPivot, rotation);
+        }
     }
     void UpdatePivot()
     {
         if (!EntityA.grabbing && !EntityB.grabbing)
         {
             grabStatus = GrabStatus.NONE;
-            pivot = center;
+            float pivotAnimationProgress = Mathf.Clamp((Time.time - lastChainHeldTime) / pivotReadjustToCenterTime, 0, 1);
+            SetPivotByDistance(pivotAnimationProgress * 0.5f);
         }
         else if (EntityA.grabbing && !EntityB.grabbing)
         {
             grabStatus = GrabStatus.A;
-            pivot = Vector2.MoveTowards(EntityA, center, heldPivotOffset);
+            worldPivot = Vector2.MoveTowards(EntityA, center, heldPivotOffset);
+            lastChainHeldTime = Time.time;
         }
         else if (!EntityA.grabbing && EntityB.grabbing)
         {
             grabStatus = GrabStatus.B;
-            pivot = Vector2.MoveTowards(EntityB, center, heldPivotOffset);
+            worldPivot = Vector2.MoveTowards(EntityB, center, heldPivotOffset);
+            lastChainHeldTime = Time.time;
         }
 
         EntityA.grabbed = grabStatus == GrabStatus.B;
         EntityB.grabbed = grabStatus == GrabStatus.A;
+    }
+
+    // 0 = at entityA, 1 = at entityB, 0.5 = at center
+    void SetPivotByDistance(float distance)
+    {
+        worldPivot = Vector2.Lerp(EntityA, EntityB, distance);
     }
 
     void RenderLine()

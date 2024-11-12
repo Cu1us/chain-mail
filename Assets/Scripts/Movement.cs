@@ -6,8 +6,6 @@ public class Movement : MonoBehaviour // TODO: IKnockable interface
 {
     public Vector2 position { get { return transform.position; } set { transform.position = value; } }
 
-    public Mode mode = Mode.ACTIVE;
-
     public bool grabbing = false;
     public bool grabbed = false;
     public int rotationalInput;
@@ -57,11 +55,6 @@ public class Movement : MonoBehaviour // TODO: IKnockable interface
         position += moveVector * movementSpeed * Time.deltaTime;
     }
 
-    public enum Mode
-    {
-        ACTIVE, // normal behavior
-        GRABBED // inactive
-    }
     public static implicit operator Vector2(Movement m) => m.position;
     public static implicit operator Vector3(Movement m) => m.position;
 }
