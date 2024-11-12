@@ -11,6 +11,15 @@ public class Arrow : MonoBehaviour
         Invoke(nameof(SelfDestruct), 3);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision != null && collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
+    }
+
     void Update()
     {
         transform.Translate(Vector3.up * arrowSpeed * Time.deltaTime);
