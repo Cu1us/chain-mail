@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerBow : MonoBehaviour
 {
     [SerializeField] float bowCooldown;
     [SerializeField] float maxBowCharge;
