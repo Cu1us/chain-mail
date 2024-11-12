@@ -20,7 +20,7 @@ public class Chain : MonoBehaviour
     {
         get
         {
-            return grabStatus switch { GrabStatus.A => EntityA, GrabStatus.B => EntityB, _ => null };
+            return grabStatus switch { GrabStatus.A => EntityB, GrabStatus.B => EntityA, _ => null };
         }
     }
 
@@ -31,6 +31,7 @@ public class Chain : MonoBehaviour
     [Header("Settings")]
     [SerializeField] float maxDistance;
     [SerializeField] float rotationSpeed;
+    [SerializeField] float heldPivotOffset;
 
 
     [Header("References")]
@@ -63,8 +64,11 @@ public class Chain : MonoBehaviour
 
     void RotateChain(int direction)
     {
-        float rotation = direction * rotationSpeed;
-
+        if (direction == 0) return;
+        float rotation = direction * rotationSpeed * Time.deltaTime;
+        grabbee.RotateAround(pivot, rotation);
+        if (heldPivotOffset != 0)
+            grabber.RotateAround(pivot, rotation);
     }
     void UpdatePivot()
     {
@@ -76,13 +80,16 @@ public class Chain : MonoBehaviour
         else if (EntityA.grabbing && !EntityB.grabbing)
         {
             grabStatus = GrabStatus.A;
-            pivot = EntityA;
+            pivot = Vector2.MoveTowards(EntityA, center, heldPivotOffset);
         }
         else if (!EntityA.grabbing && EntityB.grabbing)
         {
             grabStatus = GrabStatus.B;
-            pivot = EntityB;
+            pivot = Vector2.MoveTowards(EntityB, center, heldPivotOffset);
         }
+
+        EntityA.grabbed = grabStatus == GrabStatus.B;
+        EntityB.grabbed = grabStatus == GrabStatus.A;
     }
 
     void RenderLine()

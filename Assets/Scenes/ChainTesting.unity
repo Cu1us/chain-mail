@@ -155,7 +155,8 @@ MonoBehaviour:
   EntityA: {fileID: 1417044947}
   EntityB: {fileID: 1774032660}
   maxDistance: 5
-  rotationSpeed: 0
+  rotationSpeed: 270
+  heldPivotOffset: 0.5
   lineRenderer: {fileID: 995705712}
 --- !u!120 &995705712
 LineRenderer:
@@ -323,18 +324,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f88d233be4917898ead81edca1b8231c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 0, y: 0}
   mode: 0
   grabbing: 0
+  grabbed: 0
   rotationalInput: 0
   movementSpeed: 3
   up: 119
   left: 97
   down: 115
   right: 100
-  grab: 0
-  rotateClockwise: 0
-  rotateCounterclockwise: 0
+  grab: 304
+  rotateCounterclockwise: 101
+  rotateClockwise: 113
 --- !u!212 &1417044948
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -432,18 +433,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f88d233be4917898ead81edca1b8231c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 2, y: 0}
   mode: 0
   grabbing: 0
+  grabbed: 0
   rotationalInput: 0
   movementSpeed: 3
   up: 105
   left: 106
   down: 107
   right: 108
-  grab: 0
-  rotateClockwise: 0
-  rotateCounterclockwise: 0
+  grab: 32
+  rotateCounterclockwise: 111
+  rotateClockwise: 117
 --- !u!212 &1774032661
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class Movement : MonoBehaviour // TODO: IKnockable interface
 {
-    [Header("Status")]
-    public Vector2 position;
+    public Vector2 position { get { return transform.position; } set { transform.position = value; } }
 
     public Mode mode = Mode.ACTIVE;
 
     public bool grabbing = false;
+    public bool grabbed = false;
     public int rotationalInput;
 
     [Header("Settings")]
@@ -21,8 +21,8 @@ public class Movement : MonoBehaviour
     [SerializeField] KeyCode down;
     [SerializeField] KeyCode right;
     [SerializeField] KeyCode grab;
-    [SerializeField] KeyCode rotateClockwise;
     [SerializeField] KeyCode rotateCounterclockwise;
+    [SerializeField] KeyCode rotateClockwise;
 
 
 
@@ -32,26 +32,34 @@ public class Movement : MonoBehaviour
     }
     public void RotateAround(Vector2 pivot, float angle)
     {
-        //transform.Rotate(Vector3.forward, pivot, angle);
+        Vector2 direction = position - pivot;
+        direction = Quaternion.Euler(0, 0, angle) * direction;
+        position = pivot + direction;
     }
 
     void Update()
+    {
+        if (!grabbing && !grabbed)
+            Move();
+        transform.position = position;
+
+        grabbing = Input.GetKey(grab);
+        rotationalInput = Input.GetKey(rotateClockwise) ? 1 : Input.GetKey(rotateCounterclockwise) ? -1 : 0;
+    }
+
+    void Move()
     {
         Vector2 moveVector = new(
             Input.GetKey(right) ? 1 : Input.GetKey(left) ? -1 : 0,
             Input.GetKey(up) ? 1 : Input.GetKey(down) ? -1 : 0
         );
-        rotationalInput = Input.GetKey(rotateClockwise) ? 1 : Input.GetKey(rotateCounterclockwise) ? -1 : 0;
         position += moveVector * movementSpeed * Time.deltaTime;
-        transform.position = position;
-
-        grabbing = Input.GetKey(grab);
     }
 
     public enum Mode
     {
         ACTIVE, // normal behavior
-        KINEMATIC // inactive
+        GRABBED // inactive
     }
     public static implicit operator Vector2(Movement m) => m.position;
     public static implicit operator Vector3(Movement m) => m.position;
