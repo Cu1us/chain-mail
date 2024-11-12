@@ -20,9 +20,9 @@ public class Movement : MonoBehaviour // TODO: IKnockable interface
     [SerializeField] KeyCode left;
     [SerializeField] KeyCode down;
     [SerializeField] KeyCode right;
-    [SerializeField] KeyCode grab;
-    [SerializeField] KeyCode rotateCounterclockwise;
+    //[SerializeField] KeyCode grab;
     [SerializeField] KeyCode rotateClockwise;
+    [SerializeField] KeyCode rotateCounterclockwise;
 
 
 
@@ -43,8 +43,9 @@ public class Movement : MonoBehaviour // TODO: IKnockable interface
             Move();
         transform.position = position;
 
-        grabbing = Input.GetKey(grab);
+        //grabbing = Input.GetKey(grab);
         rotationalInput = Input.GetKey(rotateClockwise) ? 1 : Input.GetKey(rotateCounterclockwise) ? -1 : 0;
+        grabbing = rotationalInput != 0;
     }
 
     void Move()
