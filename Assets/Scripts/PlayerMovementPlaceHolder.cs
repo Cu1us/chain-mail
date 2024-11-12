@@ -9,9 +9,11 @@ public class PlayerMovementPlaceHolder : MonoBehaviour
     [SerializeField] float rotationSpeed;
     Rigidbody2D rb;
 
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Application.targetFrameRate = 120;
     }
 
     void Update()
@@ -27,29 +29,14 @@ public class PlayerMovementPlaceHolder : MonoBehaviour
         {
             MovePlayer(vertical, horizontal);
         }
-
-        if (Input.GetKey(KeyCode.E))
-        {
-            RotatePlayer(-1);
-        }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            RotatePlayer(1);
-        }
     }
 
     void MovePlayer(float vertical, float horizontal)
     {
         Vector2 direction = new Vector2(horizontal, vertical);
 
-        direction = direction.normalized * speed * Time.deltaTime;
+        direction = direction.normalized;
 
-        rb.MovePosition((Vector2)rb.transform.position + direction);
-    }
-
-    void RotatePlayer(float clokcwise)
-    {
-        float currentRotation = rb.rotation;
-        rb.MoveRotation(currentRotation + clokcwise * rotationSpeed * Time.deltaTime);
+        rb.MovePosition((Vector2)rb.transform.position + direction * speed * Time.deltaTime);
     }
 }
