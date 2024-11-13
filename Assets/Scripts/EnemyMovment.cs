@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Rendering.Universal;
 using UnityEngine;
 
 public class EnemyMovment : MonoBehaviour
@@ -8,12 +9,13 @@ public class EnemyMovment : MonoBehaviour
 
 
     [SerializeField] Transform playerTransform;
+    SpriteRenderer spriteRenderer;
     float movmentSpeed = 5;
 
 
     void Start()
     {
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -22,17 +24,22 @@ public class EnemyMovment : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, movmentSpeed*Time.deltaTime);
     }
 
-    IEnumerator Stumble()
+    public void Stumble()
     {
         movmentSpeed = 0;
-        yield return new WaitForSeconds(3f);
+        spriteRenderer.color = Color.cyan;
+        Invoke("StandUp", 2f);
+    }
+
+    void StandUp()
+    {
         movmentSpeed = 5;
-        
+        spriteRenderer.color = Color.white;
     }
 
     void OnTriggerEnter2D()
     {
-        StartCoroutine(Stumble());
+        Stumble();
     }
 
 }
