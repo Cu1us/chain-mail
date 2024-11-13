@@ -159,6 +159,7 @@ MonoBehaviour:
   maxRotationSpeed: 270
   rotationAcceleration: 200
   rotationDeceleration: 500
+  swapPlacesForce: 15
   heldPivotOffset: 0.5
   forcePreserveMomentumThreshold: 0.25
   pivotReadjustToCenterTime: 0.25
@@ -371,10 +372,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f88d233be4917898ead81edca1b8231c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0}
   grabbing: 0
   grabbed: 0
   rotationalInput: 0
   movementSpeed: 3
+  swapPlacesInputWindow: 0.5
+  velocityDeceleration: 2
   up: 119
   left: 97
   down: 115
@@ -478,10 +482,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f88d233be4917898ead81edca1b8231c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0}
   grabbing: 0
   grabbed: 0
   rotationalInput: 0
   movementSpeed: 3
+  swapPlacesInputWindow: 0.5
+  velocityDeceleration: 2
   up: 105
   left: 106
   down: 107

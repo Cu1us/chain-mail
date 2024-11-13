@@ -35,6 +35,8 @@ public class Chain : MonoBehaviour
     [SerializeField] float maxRotationSpeed;
     [SerializeField] float rotationAcceleration;
     [SerializeField] float rotationDeceleration;
+    [SerializeField] float swapPlacesForce;
+
     [Header("Advanced settings")]
     [SerializeField] float heldPivotOffset;
     [Tooltip("After the chain has reached this fraction of the max rotation speed, players cannot change the rotational direction until it has stopped")]
@@ -58,6 +60,19 @@ public class Chain : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         chainCollider = GetComponent<EdgeCollider2D>();
         lineRenderer.positionCount = 2;
+    }
+
+    void Start()
+    {
+        EntityA.onTrySwapPlaces += SwapPlaces;
+        EntityB.onTrySwapPlaces += SwapPlaces;
+
+    }
+
+    void SwapPlaces()
+    {
+        EntityA.Launch((EntityB.position - EntityA.position).normalized * swapPlacesForce);
+        EntityB.Launch((EntityA.position - EntityB.position).normalized * swapPlacesForce);
     }
 
     void Update()
@@ -163,6 +178,16 @@ public class Chain : MonoBehaviour
             float stretchedDistance = (distance - maxDistance) / 2;
             EntityA.MoveTowards(center, stretchedDistance);
             EntityB.MoveTowards(center, stretchedDistance);
+
+            ConstrainVelocity(EntityA);
+            ConstrainVelocity(EntityB);
+
+            void ConstrainVelocity(Movement entity)
+            {
+                Vector2 direction = (center - entity).normalized;
+                float dot = Vector2.Dot(entity.velocity, direction);
+                entity.velocity -= direction * dot;
+            }
         }
     }
 
