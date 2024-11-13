@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
+[RequireComponent(typeof(EdgeCollider2D))]
 public class Chain : MonoBehaviour
 {
     [Header("Status")]
@@ -43,6 +44,8 @@ public class Chain : MonoBehaviour
 
     [Header("References")]
     [SerializeField] LineRenderer lineRenderer;
+    [SerializeField] EdgeCollider2D chainCollider;
+
 
 
     Vector2 center;
@@ -53,6 +56,7 @@ public class Chain : MonoBehaviour
     void Reset()
     {
         lineRenderer = GetComponent<LineRenderer>();
+        chainCollider = GetComponent<EdgeCollider2D>();
         lineRenderer.positionCount = 2;
     }
 
@@ -70,6 +74,13 @@ public class Chain : MonoBehaviour
         RotateChain();
 
         RenderLine();
+
+        PositionHitbox();
+    }
+
+    void PositionHitbox()
+    {
+        chainCollider.SetPoints(new List<Vector2> { EntityA, EntityB });
     }
 
     private void AccelerateBasedOnInput()
@@ -152,6 +163,14 @@ public class Chain : MonoBehaviour
             float stretchedDistance = (distance - maxDistance) / 2;
             EntityA.MoveTowards(center, stretchedDistance);
             EntityB.MoveTowards(center, stretchedDistance);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent(out EnemyMovment enemy))
+        {
+            enemy.Stumble();
         }
     }
 
