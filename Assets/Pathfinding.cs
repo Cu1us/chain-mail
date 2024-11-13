@@ -7,9 +7,13 @@ public class Pathfinding : MonoBehaviour
 {   
     NavMeshAgent agent;
     [SerializeField] Transform player;
+    Rigidbody2D rb;
+    
 
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -20,4 +24,5 @@ public class Pathfinding : MonoBehaviour
     {
         agent.SetDestination(player.position);
     }
+
 }
