@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class EnemyMovment : MonoBehaviour
 {
-    // Start is called before the first frame update
-
 
     [SerializeField] Transform playerTransform;
     SpriteRenderer spriteRenderer;
@@ -18,12 +16,16 @@ public class EnemyMovment : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, movmentSpeed*Time.deltaTime);
     }
 
+    void OnTriggerEnter2D()
+    {
+        Stumble();
+    }
+    
     public void Stumble()
     {
         movmentSpeed = 0;
@@ -37,9 +39,6 @@ public class EnemyMovment : MonoBehaviour
         spriteRenderer.color = Color.white;
     }
 
-    void OnTriggerEnter2D()
-    {
-        Stumble();
-    }
+
 
 }
