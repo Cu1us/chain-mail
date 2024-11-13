@@ -7,15 +7,16 @@ using UnityEngine.UIElements;
 
 public class PlayerSword : MonoBehaviour
 {
-    public Animator animator;
-    public Transform parent;
-    public GameObject colliderPivot;
-    public GameObject sword;
+    [SerializeField] Animator animator;
+
+    [SerializeField] Transform parent;
+    [SerializeField] GameObject colliderPivot;
+    [SerializeField] GameObject sword;
 
     GameObject closestEnemie;
-    float closestDistance = 500;
+    float closestDistance = Mathf.Infinity;
 
-    List<Collider2D> enemiesInTrigger = new List<Collider2D>();
+    List<Collider2D> enemiesInsideTrigger = new List<Collider2D>();
     List<GameObject> enemies = new List<GameObject>();
 
     void Start()
@@ -23,11 +24,18 @@ public class PlayerSword : MonoBehaviour
         enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
     }
 
+    void Update()
+    {
+        HandleSword();
+        RotateToEnemy();
+        ClosestEnemy();
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy") && !enemiesInTrigger.Contains(collision))
+        if (collision.CompareTag("Enemy") && !enemiesInsideTrigger.Contains(collision))
         {
-            enemiesInTrigger.Add(collision);
+            enemiesInsideTrigger.Add(collision);
         }
     }
 
@@ -35,34 +43,32 @@ public class PlayerSword : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            enemiesInTrigger.Remove(collision);
+            enemiesInsideTrigger.Remove(collision);
         }
     }
 
-    void Update()
+    void HandleSword()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             animator.SetBool("SwordAnimation", true);
 
-            for (int i = 0; i < enemiesInTrigger.Count; i++)
+            for (int i = enemiesInsideTrigger.Count - 1; i >= 0; i--)
             {
-                Destroy(enemiesInTrigger[i].gameObject);
-                enemiesInTrigger.Clear();
+                Destroy(enemiesInsideTrigger[i].gameObject);
             }
+
+            enemiesInsideTrigger.Clear();
         }
         else
         {
             animator.SetBool("SwordAnimation", false);
         }
-
-        RotateToEnemy();
-        ClosestEnemy();
     }
 
     void RotateToEnemy()
     {
-        if (closestDistance <= 3f && closestEnemie != null)
+        if (closestDistance <= 5f && closestEnemie != null)
         {
             Vector2 direction = (Vector2)closestEnemie.transform.position - (Vector2)colliderPivot.transform.position;
 
@@ -81,8 +87,7 @@ public class PlayerSword : MonoBehaviour
         {
             if (enemy != null)
             {
-                Vector2 distance = enemy.transform.position - transform.position;
-                float enemyDistance = Vector2.SqrMagnitude(distance);
+                float enemyDistance = Vector2.Distance(enemy.transform.position, transform.position);
 
                 if (enemyDistance < closestDistance)
                 {
