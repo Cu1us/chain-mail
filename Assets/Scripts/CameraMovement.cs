@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField] Chain chainToFollow;
+    [SerializeField] Chain_Demo chainToFollow;
     [SerializeField][Min(0)] float chainFollowStrength;
     [SerializeField] float cameraSizeByChainVelocity;
 
@@ -16,7 +16,7 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         if (!chainToFollow)
-            chainToFollow = FindFirstObjectByType<Chain>();
+            chainToFollow = FindFirstObjectByType<Chain_Demo>();
         cameraToMove = Camera.main;
         cameraSize = cameraToMove.orthographicSize;
     }
