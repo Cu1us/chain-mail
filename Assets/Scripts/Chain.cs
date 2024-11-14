@@ -71,6 +71,7 @@ public class Chain : MonoBehaviour
 
     void SwapPlaces()
     {
+        if (EntityA.velocity.sqrMagnitude > 1 || EntityB.velocity.sqrMagnitude > 1) return;
         EntityA.Launch((EntityB.position - EntityA.position).normalized * swapPlacesForce);
         EntityB.Launch((EntityA.position - EntityB.position).normalized * swapPlacesForce);
     }

@@ -378,7 +378,7 @@ MonoBehaviour:
   rotationalInput: 0
   movementSpeed: 3
   swapPlacesInputWindow: 0.5
-  velocityDeceleration: 2
+  velocityDeceleration: 30
   up: 119
   left: 97
   down: 115
@@ -488,7 +488,7 @@ MonoBehaviour:
   rotationalInput: 0
   movementSpeed: 3
   swapPlacesInputWindow: 0.5
-  velocityDeceleration: 2
+  velocityDeceleration: 30
   up: 105
   left: 106
   down: 107
