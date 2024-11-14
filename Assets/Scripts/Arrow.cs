@@ -12,6 +12,10 @@ public class Arrow : MonoBehaviour
         Invoke(nameof(SelfDestruct), 3);
         arrowSpeed *= maxArrowSpeed;
     }
+    void Update()
+    {
+        transform.Translate(Vector3.up * arrowSpeed * Time.deltaTime);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -20,11 +24,6 @@ public class Arrow : MonoBehaviour
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }
-    }
-
-    void Update()
-    {
-        transform.Translate(Vector3.up * arrowSpeed * Time.deltaTime);
     }
 
     void SelfDestruct()

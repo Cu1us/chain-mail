@@ -4,11 +4,11 @@ public class PlayerBow : MonoBehaviour
 {
     [SerializeField] float bowCooldown;
     [SerializeField] float maxBowCharge;
-    public GameObject arrow;
-    public GameObject bow;
+    [SerializeField] GameObject bow;
+    [SerializeField] GameObject arrow;
 
     Vector2 mousePos;
-    Vector2 direction;
+    Vector2 arrowDirection;
 
     float targetAngle;
     float chargeTimer;
@@ -23,23 +23,28 @@ public class PlayerBow : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            if (chargeTimer < maxBowCharge)
-            {
-                chargeTimer += Time.deltaTime;
-            }
-            else
-            {
-                bow.GetComponent<SpriteRenderer>().color = Color.red;
-            }
-
-            if (chargeTimer > maxBowCharge / 3 && chargeTimer < maxBowCharge)
-            {
-                bow.GetComponent<SpriteRenderer>().color = Color.green;
-            }
+            BowCharge();
         }
         if (Input.GetMouseButtonUp(0))
         {
             ShootArrow();
+        }
+    }
+
+    void BowCharge()
+    {
+        if (chargeTimer < maxBowCharge)
+        {
+            chargeTimer += Time.deltaTime;
+        }
+        else
+        {
+            bow.GetComponent<SpriteRenderer>().color = Color.red;
+        }
+
+        if (chargeTimer > maxBowCharge / 3 && chargeTimer < maxBowCharge)
+        {
+            bow.GetComponent<SpriteRenderer>().color = Color.green;
         }
     }
 
@@ -59,13 +64,14 @@ public class PlayerBow : MonoBehaviour
             chargeTimer = 0;
         }
     }
+
     void RotateBow()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        direction = mousePos - (Vector2)bow.transform.position;
+        arrowDirection = mousePos - (Vector2)bow.transform.position;
 
-        targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        targetAngle = Mathf.Atan2(arrowDirection.y, arrowDirection.x) * Mathf.Rad2Deg;
     }
 
     void InstantiateArrow()
