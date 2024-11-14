@@ -14,6 +14,7 @@ public class EnemyMovment : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        playerTransform = GameObject.Find("Player1").transform;
     }
 
     void Update()
