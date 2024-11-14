@@ -43,6 +43,7 @@ public class Chain : MonoBehaviour
     [Tooltip("After the chain has reached this fraction of the max rotation speed, players cannot change the rotational direction until it has stopped")]
     [SerializeField][Range(0, 1)] float forcePreserveMomentumThreshold;
     [SerializeField][Min(0)] float pivotReadjustToCenterTime;
+    [SerializeField] AnimationCurve pivotReadjustToCenterCurve;
 
 
     [Header("References")]
@@ -53,7 +54,7 @@ public class Chain : MonoBehaviour
 
     Vector2 center;
     float distance;
-    float rotationalVelocity;
+    public float rotationalVelocity { get; protected set; }
     float lastChainHeldTime;
 
     void Reset()
@@ -144,7 +145,9 @@ public class Chain : MonoBehaviour
         {
             grabStatus = GrabStatus.NONE;
             float pivotAnimationProgress = Mathf.Clamp((Time.time - lastChainHeldTime) / pivotReadjustToCenterTime, 0, 1);
-            SetPivotByDistance(pivotAnimationProgress * 0.5f);
+            pivotAnimationProgress = pivotReadjustToCenterCurve.Evaluate(pivotAnimationProgress);
+            float pivotOffsetByLength = heldPivotOffset / distance;
+            SetPivotByDistance(pivotOffsetByLength + pivotAnimationProgress * (0.5f - pivotOffsetByLength));
         }
         else if (EntityA.grabbing && !EntityB.grabbing)
         {

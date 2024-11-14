@@ -103,7 +103,7 @@ MonoBehaviour:
   rotationalInput: 0
   movementSpeed: 3
   swapPlacesInputWindow: 0.5
-  velocityDeceleration: 30
+  velocityDeceleration: 20
   up: 105
   left: 106
   down: 107
@@ -137,7 +137,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2646170419653074950}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -262,6 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c1ef45d7af0206fb302a384f304268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldPivot: {x: 0, y: 0}
   EntityA: {fileID: 9165841370414044309}
   EntityB: {fileID: 1237819789559947796}
   maxDistance: 5
@@ -272,6 +273,30 @@ MonoBehaviour:
   heldPivotOffset: 0.5
   forcePreserveMomentumThreshold: 0.25
   pivotReadjustToCenterTime: 0.25
+  pivotReadjustToCenterCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   lineRenderer: {fileID: 9000633548737376845}
   chainCollider: {fileID: 1597949468460277761}
 --- !u!68 &1597949468460277761
@@ -418,7 +443,7 @@ MonoBehaviour:
   rotationalInput: 0
   movementSpeed: 3
   swapPlacesInputWindow: 0.5
-  velocityDeceleration: 30
+  velocityDeceleration: 20
   up: 119
   left: 97
   down: 115
