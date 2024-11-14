@@ -15,7 +15,8 @@ public class EnemySpawner : MonoBehaviour
 
         if (spawnInterval > 3)
         {
-            Instantiate(enemyPrefab);
+            Vector2 randomPos = new Vector2(Random.Range(-6, 6), Random.Range(-6, 6));
+            Instantiate(enemyPrefab, randomPos, Quaternion.identity);
             spawnInterval = 0;
         }
     }
