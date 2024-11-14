@@ -7,6 +7,8 @@ public class Pathfinding : MonoBehaviour
     NavMeshAgent agent;
     [SerializeField] Transform player1;
     [SerializeField] Transform player2;
+    Transform targetTransform;
+    Transform targetTransform2;
     SpriteRenderer spriteRenderer;
 
     [Header("Speeds")]
@@ -28,7 +30,7 @@ public class Pathfinding : MonoBehaviour
 
     [Header("Distance")]
     [SerializeField] float minDistanceToPlayer; //triggers the enemy to move out of range
-    Transform targetTransform;
+    
 
 
     Vector2 target;
@@ -52,7 +54,7 @@ public class Pathfinding : MonoBehaviour
         player1 = GameObject.Find("Player1").transform;
         player2 = GameObject.Find("Player2").transform;
 
-
+        state = EnemyState.FLEE;
 
     }
 
@@ -138,10 +140,12 @@ public class Pathfinding : MonoBehaviour
         if (distPlayer1 < distPlayer2)
         {
             targetTransform = player1;
+            targetTransform2 = player2;
         }
         else
         {
             targetTransform = player2;
+            targetTransform2 = player1;
         }
 
     }
@@ -185,7 +189,7 @@ public class Pathfinding : MonoBehaviour
 
     void Flee()
     {
-       // target = 
+        target = targetTransform2.position;
     }
 
     void Flip()
