@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DanielTest : MonoBehaviour
 {
+     public bool playerInAttackRange;
+     int playersInattackRange = 0;
   
     void Start()
     {
@@ -15,11 +17,26 @@ public class DanielTest : MonoBehaviour
         
     }
 
-   void OnTriggerEnter2D(Collider2D other)
+   void OnTriggerEnter2D()
    {
   
-        other.transform.position =new Vector2 (transform.position.x+2f, transform.position.y+2f);
+       // other.transform.position =new Vector2 (transform.position.x+2f, transform.position.y+2f);
+         
+          playersInattackRange ++;
+          playerInAttackRange = true; 
+          Debug.Log(playersInattackRange);
+          GetComponentInParent<Pathfinding>().targetInRange = true;
+   }
 
-
+   void OnTriggerExit2D()
+   {
+    playersInattackRange --;
+    if (playersInattackRange == 0)
+    {
+      playerInAttackRange = false;
+      GetComponentInParent<Pathfinding>().targetInRange = false;
+    }
+     
+     Debug.Log(playersInattackRange);
    }
 }
