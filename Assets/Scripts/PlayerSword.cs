@@ -17,11 +17,13 @@ public class PlayerSword : MonoBehaviour
 
     void Start()
     {
-        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+        
     }
 
     void Update()
     {
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+
         HandleSword();
         RotateToEnemy();
         ClosestEnemy();
