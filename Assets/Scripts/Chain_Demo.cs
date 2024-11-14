@@ -5,7 +5,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
 [RequireComponent(typeof(EdgeCollider2D))]
-public class Chain : MonoBehaviour
+public class Chain_Demo : MonoBehaviour
 {
     [Header("Status")]
     GrabStatus grabStatus;
