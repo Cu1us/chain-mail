@@ -9,7 +9,8 @@ public class Chain : MonoBehaviour
 {
     [Header("Status")]
     GrabStatus grabStatus;
-    Vector2 worldPivot;
+    public Vector2 worldPivot;
+    public Vector2 worldCenter { get; protected set; }
     float localPivot { set { SetPivotByDistance(value); } }
     Movement grabber
     {
@@ -80,6 +81,7 @@ public class Chain : MonoBehaviour
     {
         distance = Vector2.Distance(EntityA.position, EntityB.position);
         center = (EntityA.position + EntityB.position) / 2;
+        worldCenter = center;
 
         ApplyConstraint();
 
