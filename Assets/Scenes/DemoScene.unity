@@ -676,6 +676,7 @@ GameObject:
   - component: {fileID: 1904371180}
   - component: {fileID: 1904371179}
   - component: {fileID: 1904371178}
+  - component: {fileID: 1904371182}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -801,6 +802,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1904371182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904371177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d90e736df607cb0a0467957a86a7f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chainToFollow: {fileID: 2009920933}
+  chainFollowStrength: 3
+  cameraSizeByChainVelocity: 0.0025
 --- !u!1 &1916288047
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,6 +967,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2009920933 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3198775060258626410, guid: 95ab411edf78c68a183629ea751737a7, type: 3}
+  m_PrefabInstance: {fileID: 1125724441}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17c1ef45d7af0206fb302a384f304268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2111301232
 GameObject:
   m_ObjectHideFlags: 0
