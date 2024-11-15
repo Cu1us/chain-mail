@@ -2,14 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sword : MonoBehaviour
+public class Sword : MonoBehaviour, IWeapon
 {
     List<Collider2D> enemiesInsideTrigger = new List<Collider2D>();
-    List<GameObject> enemies = new List<GameObject>();
 
     void Update()
     {
-        Attack(); // Should be called from another script
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            FlipCollider(true);
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            FlipCollider(false);
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Attack();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -28,16 +38,25 @@ public class Sword : MonoBehaviour
         }
     }
 
-    void Attack()
+    public void Attack()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        for (int i = enemiesInsideTrigger.Count - 1; i >= 0; i--)
         {
-            for (int i = enemiesInsideTrigger.Count - 1; i >= 0; i--)
-            {
-                Destroy(enemiesInsideTrigger[i].gameObject);
-            }
+            Destroy(enemiesInsideTrigger[i].gameObject);
+        }
 
-            enemiesInsideTrigger.Clear();
+        enemiesInsideTrigger.Clear();
+    }
+
+    void FlipCollider(bool colliderRight)
+    {
+        if (colliderRight)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 180);
         }
     }
 }
