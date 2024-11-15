@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour, IWeapon
 {
+    [SerializeField] Animator animator;
+    [SerializeField] Transform swordSpritePivot;
+
     List<Collider2D> enemiesInsideTrigger = new List<Collider2D>();
 
     void Update()
@@ -40,6 +43,8 @@ public class Sword : MonoBehaviour, IWeapon
 
     public void Attack()
     {
+        animator.SetTrigger("PlayAttack");
+
         for (int i = enemiesInsideTrigger.Count - 1; i >= 0; i--)
         {
             Destroy(enemiesInsideTrigger[i].gameObject);
@@ -53,10 +58,12 @@ public class Sword : MonoBehaviour, IWeapon
         if (colliderRight)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
+            swordSpritePivot.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else
         {
             transform.rotation = Quaternion.Euler(0, 0, 180);
+            swordSpritePivot.transform.rotation = Quaternion.Euler(0, 0, 180);
         }
     }
 }
