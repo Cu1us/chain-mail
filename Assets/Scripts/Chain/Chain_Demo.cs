@@ -8,7 +8,7 @@ using UnityEngine;
 public class Chain_Demo : MonoBehaviour
 {
     [Header("Status")]
-    GrabStatus grabStatus;
+    public GrabStatus grabStatus;
     public Vector2 worldPivot;
     public Vector2 worldCenter { get; protected set; }
     float localPivot { set { SetPivotByDistance(value); } }

@@ -8,7 +8,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SwordAttack1
-  m_Speed: 0.1
+  m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -4964811993469000297}
@@ -190,7 +190,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SwordAttack2
-  m_Speed: 0.1
+  m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -5352904947892813077}
