@@ -234,7 +234,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &117112427
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -358,7 +358,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1188871261
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -689,7 +689,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1222326811
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -984,7 +984,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1645061251
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1194,8 +1194,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackForce: 5
-  swordCollider: {fileID: 1975017690}
-  swordRotateCollider: {fileID: 1975017688}
+  knockbackRotatingForce: 2
+  swordCollider: {fileID: 1975017688}
+  swordRotateCollider: {fileID: 1975017690}
   player1: {fileID: 1771064899}
   player2: {fileID: 2058660136}
   swordPivot: {fileID: 233151131}
