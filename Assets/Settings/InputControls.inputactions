@@ -9,7 +9,7 @@
                     "name": "Movement",
                     "type": "Value",
                     "id": "49d87f50-f78f-4641-8980-c838b2aca4a4",
-                    "expectedControlType": "Stick",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -31,6 +31,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Aim",
+                    "type": "Value",
+                    "id": "3ef04789-ac16-4f80-b7f9-886f55b3e18f",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "AimScreenCoords",
+                    "type": "Value",
+                    "id": "04f85100-7295-4c57-90fb-66b5890ea906",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -229,6 +247,28 @@
                     "processors": "",
                     "groups": "Ranged",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1400e348-4601-4d71-95e0-590307f9dfce",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Ranged",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "63b0977f-5d51-4e3c-9402-b35a243f78f3",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Ranged",
+                    "action": "AimScreenCoords",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -694,6 +694,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3de68a44b5db69c36b1a8bba4c8a8e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementInput: {x: 0, y: 0}
+  aimDirection: {x: 0, y: 0}
+  chainRotationalInput: 0
+  DebugRays: 1
 --- !u!4 &7979855088520251971
 Transform:
   m_ObjectHideFlags: 0
@@ -787,6 +791,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3de68a44b5db69c36b1a8bba4c8a8e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementInput: {x: 0, y: 0}
+  aimDirection: {x: 0, y: 0}
+  chainRotationalInput: 0
+  DebugRays: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
