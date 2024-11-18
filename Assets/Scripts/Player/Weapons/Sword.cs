@@ -21,6 +21,7 @@ public class Sword : MonoBehaviour, IWeapon
     [SerializeField] Animator animator;
 
     List<Collider2D> enemiesInsideTrigger = new List<Collider2D>();
+    Dictionary<GameObject, float> enemies = new Dictionary<GameObject, float>();
 
     bool ChainRotating;
 
@@ -62,6 +63,7 @@ public class Sword : MonoBehaviour, IWeapon
         }
         else
         {
+            enemies.Clear();
             ChainRotating = false;
             swordCollider.enabled = true;
             swordRotateCollider.enabled = false;
@@ -83,13 +85,19 @@ public class Sword : MonoBehaviour, IWeapon
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy") && !enemiesInsideTrigger.Contains(collision))
+        if (collision.CompareTag("Enemy"))
         {
             enemiesInsideTrigger.Add(collision);
-        }
-        if (ChainRotating)
-        {
-            Attack();
+
+            if (ChainRotating)
+            {
+                float currentTime = Time.time;
+                if (!enemies.ContainsKey(collision.gameObject) || currentTime - enemies[collision.gameObject] > 0.5f)
+                {
+                    Attack();
+                    enemies[collision.gameObject] = currentTime;
+                }
+            }
         }
     }
 
@@ -110,27 +118,28 @@ public class Sword : MonoBehaviour, IWeapon
 
     void AddKnockback()
     {
-        for (int i = enemiesInsideTrigger.Count - 1; i >= 0; i--)
+        if (!ChainRotating)
         {
-            if (!ChainRotating)
+            for (int i = enemiesInsideTrigger.Count - 1; i >= 0; i--)
             {
                 Vector2 forceDirection = enemiesInsideTrigger[i].transform.position - transform.position;
                 forceDirection.Normalize();
                 enemiesInsideTrigger[i].GetComponent<Rigidbody2D>().AddForce(forceDirection * knockbackForce, ForceMode2D.Impulse);
             }
-            if (ChainRotating)
+        }
+        else
+        {
+            foreach (var enemy in enemiesInsideTrigger)
             {
                 Vector2 perpendicular = Vector2.Perpendicular(player1.position - player2.position);
+                perpendicular *= Mathf.Sign(chain.rotationalVelocity);
 
-                Vector2 enemyDirection = enemiesInsideTrigger[i].transform.position - transform.position;
+                Vector2 enemyDirection = player1.position - player2.position;
 
-                Vector2 forceDirection = perpendicular + enemyDirection; //TODO: Adjust force direction  //TODO: Adding knockback to multiple enemies cause increase in knockback
-
-                forceDirection *= Mathf.Sign(chain.rotationalVelocity);
-
+                Vector2 forceDirection = perpendicular + enemyDirection;
                 forceDirection.Normalize();
 
-                enemiesInsideTrigger[i].GetComponent<Rigidbody2D>().AddForce(forceDirection * knockbackForce * knockbackRotatingForce, ForceMode2D.Impulse);
+                enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * knockbackForce * knockbackRotatingForce, ForceMode2D.Impulse);
             }
         }
     }
