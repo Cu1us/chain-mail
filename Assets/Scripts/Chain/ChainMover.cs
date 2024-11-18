@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ChainMover : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void OnMovement(InputValue value)
     {
-        
+        Vector2 movement = value.Get<Vector2>();
+        transform.position += (Vector3)movement * Time.deltaTime;
     }
-
-    // Update is called once per frame
-    void Update()
+    void OnChainRotation(InputValue value)
     {
-        
+        Debug.Log(name + " Rotating chain! " + value);
+    }
+    void OnAttack(InputValue value)
+    {
+        Debug.Log(name + " Attacking! " + value);
     }
 }
