@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour, IWeapon
 {
-    [Header("Force Settings")]
+    [Header("Settings")]
     [SerializeField] float knockbackForce;
     [SerializeField] float knockbackRotatingForce;
 
@@ -88,7 +88,7 @@ public class Sword : MonoBehaviour, IWeapon
         }
         else
         {
-            if (isChainRotating)
+            if (isChainRotating) // Corrects the angle of the collider after chainrotation
             {
                 if (player1.transform.position.x > player2.transform.position.x)
                 {
