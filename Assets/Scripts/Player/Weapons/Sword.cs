@@ -21,8 +21,9 @@ public class Sword : MonoBehaviour, IWeapon
     [SerializeField] Animator animator;
 
     List<Collider2D> enemiesInsideTrigger = new List<Collider2D>();
+    Dictionary<GameObject, float> enemies = new Dictionary<GameObject, float>();
 
-    bool ChainRotating;
+    bool isChainRotating;
 
     void Start()
     {
@@ -31,65 +32,36 @@ public class Sword : MonoBehaviour, IWeapon
 
     void Update()
     {
-        ChainRotation();
+        ChainRotating();
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            FlipColliderDirection(true);
+            ChangeColliderAngle(0);
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            FlipColliderDirection(false);
+            ChangeColliderAngle(180);
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Attack();
         }
     }
-
-    void ChainRotation()
-    {
-        if (chain.grabStatus == Chain_Demo.GrabStatus.B)
-        {
-            ChainRotating = true;
-            swordCollider.enabled = false;
-            swordRotateCollider.enabled = true;
-
-            Vector2 ChainDirection = player1.transform.position - player2.transform.position;
-            ChainDirection.Normalize();
-            float angleDegrees = (Mathf.Atan2(ChainDirection.y, ChainDirection.x) * Mathf.Rad2Deg);
-            swordPivot.transform.rotation = Quaternion.Euler(0, 0, angleDegrees);
-        }
-        else
-        {
-            ChainRotating = false;
-            swordCollider.enabled = true;
-            swordRotateCollider.enabled = false;
-        }
-    }
-
-    void FlipColliderDirection(bool colliderRight) // TODO: The swordcollider is not in the right angle after the player have been rotated
-    {
-        if (colliderRight)
-        {
-            swordPivot.transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-        else
-        {
-            swordPivot.transform.rotation = Quaternion.Euler(0, 0, 180);
-        }
-    }
-
-
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy") && !enemiesInsideTrigger.Contains(collision))
+        if (collision.CompareTag("Enemy"))
         {
             enemiesInsideTrigger.Add(collision);
-        }
-        if (ChainRotating)
-        {
-            Attack();
+
+            if (isChainRotating)
+            {
+                float currentTime = Time.time;
+                if (!enemies.ContainsKey(collision.gameObject) || currentTime - enemies[collision.gameObject] > 0.5f)
+                {
+                    Attack();
+                    enemies[collision.gameObject] = currentTime;
+                }
+            }
         }
     }
 
@@ -101,6 +73,45 @@ public class Sword : MonoBehaviour, IWeapon
         }
     }
 
+    void ChainRotating()
+    {
+        if (chain.grabStatus == Chain_Demo.GrabStatus.B)
+        {
+            isChainRotating = true;
+            swordCollider.enabled = false;
+            swordRotateCollider.enabled = true;
+
+            Vector2 ChainDirection = player1.transform.position - player2.transform.position;
+            ChainDirection.Normalize();
+            float angleDegrees = (Mathf.Atan2(ChainDirection.y, ChainDirection.x) * Mathf.Rad2Deg);
+            ChangeColliderAngle(angleDegrees);
+        }
+        else
+        {
+            if (isChainRotating)
+            {
+                if (player1.transform.position.x > player2.transform.position.x)
+                {
+                    ChangeColliderAngle(0);
+                }
+                else
+                {
+                    ChangeColliderAngle(180);
+                }
+            }
+            enemies.Clear();
+            isChainRotating = false;
+
+            swordCollider.enabled = true;
+            swordRotateCollider.enabled = false;
+        }
+    }
+
+    void ChangeColliderAngle(float angle)
+    {
+        swordPivot.transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+
     public void Attack()
     {
         animator.SetTrigger("PlayAttack");
@@ -110,27 +121,28 @@ public class Sword : MonoBehaviour, IWeapon
 
     void AddKnockback()
     {
-        for (int i = enemiesInsideTrigger.Count - 1; i >= 0; i--)
+        if (!isChainRotating)
         {
-            if (!ChainRotating)
+            for (int i = enemiesInsideTrigger.Count - 1; i >= 0; i--)
             {
                 Vector2 forceDirection = enemiesInsideTrigger[i].transform.position - transform.position;
                 forceDirection.Normalize();
                 enemiesInsideTrigger[i].GetComponent<Rigidbody2D>().AddForce(forceDirection * knockbackForce, ForceMode2D.Impulse);
             }
-            if (ChainRotating)
+        }
+        else
+        {
+            foreach (var enemy in enemiesInsideTrigger)
             {
                 Vector2 perpendicular = Vector2.Perpendicular(player1.position - player2.position);
+                perpendicular *= Mathf.Sign(chain.rotationalVelocity);
 
-                Vector2 enemyDirection = enemiesInsideTrigger[i].transform.position - transform.position;
+                Vector2 enemyDirection = player1.position - player2.position;
 
-                Vector2 forceDirection = perpendicular + enemyDirection; //TODO: Adjust force direction  //TODO: Adding knockback to multiple enemies cause increase in knockback
-
-                forceDirection *= Mathf.Sign(chain.rotationalVelocity);
-
+                Vector2 forceDirection = perpendicular + enemyDirection;
                 forceDirection.Normalize();
 
-                enemiesInsideTrigger[i].GetComponent<Rigidbody2D>().AddForce(forceDirection * knockbackForce * knockbackRotatingForce, ForceMode2D.Impulse);
+                enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * knockbackForce * knockbackRotatingForce, ForceMode2D.Impulse);
             }
         }
     }
