@@ -1,11 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBow : MonoBehaviour
+public class Bow : MonoBehaviour, IWeapon
 {
+    [Header("Settings")]
     [SerializeField] float bowCooldown;
     [SerializeField] float maxBowCharge;
-    [SerializeField] GameObject bow;
-    [SerializeField] GameObject arrow;
+
+    [Header("References")]
+    [SerializeField] GameObject arrowPrefab;
 
     Vector2 mousePos;
     Vector2 arrowDirection;
@@ -14,12 +18,7 @@ public class PlayerBow : MonoBehaviour
     float chargeTimer;
     float bowCharge;
 
-    void Update()
-    {
-        PlayerInput();
-    }
-
-    void PlayerInput()
+    public void Update()
     {
         if (Input.GetMouseButton(0))
         {
@@ -27,7 +26,24 @@ public class PlayerBow : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
-            ShootArrow();
+            Attack();
+        }
+    }
+
+    public void Attack()
+    {
+        if (chargeTimer > maxBowCharge / 3)
+        {
+            bowCharge = (chargeTimer / maxBowCharge);
+            chargeTimer = 0;
+            GetComponent<SpriteRenderer>().color = Color.gray;
+
+            RotateArrow();
+            InstantiateArrow();
+        }
+        else
+        {
+            chargeTimer = 0;
         }
     }
 
@@ -48,36 +64,18 @@ public class PlayerBow : MonoBehaviour
         }
     }
 
-    void ShootArrow()
-    {
-        if (chargeTimer > maxBowCharge / 3)
-        {
-            bowCharge = (chargeTimer / maxBowCharge);
-            chargeTimer = 0;
-            GetComponent<SpriteRenderer>().color = Color.gray;
-
-            RotateBow();
-            InstantiateArrow();
-        }
-        else
-        {
-            chargeTimer = 0;
-        }
-    }
-
-    void RotateBow()
+    void RotateArrow()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        arrowDirection = mousePos - (Vector2)bow.transform.position;
+        arrowDirection = mousePos - (Vector2)transform.position;
 
         targetAngle = Mathf.Atan2(arrowDirection.y, arrowDirection.x) * Mathf.Rad2Deg;
     }
 
     void InstantiateArrow()
     {
-        GameObject newArrow = Instantiate(arrow, bow.transform.position, Quaternion.Euler(0, 0, targetAngle - 90));
+        GameObject newArrow = Instantiate(arrowPrefab, transform.position, Quaternion.Euler(0, 0, targetAngle - 90));
         newArrow.GetComponent<Arrow>().arrowSpeed = bowCharge;
     }
 }
-
