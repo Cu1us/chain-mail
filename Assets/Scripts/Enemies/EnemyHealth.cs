@@ -33,7 +33,7 @@ public class EnemyHealth : MonoBehaviour
     void Death()
     {
         spriteRenderer.color = Color.red;
-        GetComponent<Pathfinding>().enabled = false;
+        pathfinding.enabled = false;
         Invoke(nameof(Destroy), 3f);
     }
 }

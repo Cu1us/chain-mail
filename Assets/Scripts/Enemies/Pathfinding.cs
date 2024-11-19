@@ -5,11 +5,12 @@ public class Pathfinding : MonoBehaviour
 {
     [Header("References")]
     NavMeshAgent agent;
-    [SerializeField] Transform player1;
-    [SerializeField] Transform player2;
+    Transform player1;
+    Transform player2;
     Transform targetTransform;
     Transform targetTransform2;
     SpriteRenderer spriteRenderer;
+    Rigidbody2D rb;
 
 
     [Header("Speeds")]
@@ -46,7 +47,7 @@ public class Pathfinding : MonoBehaviour
     public bool playerDetected = true;
     public bool attackState;
     [SerializeField] bool isSpearMan = true;
-
+    
 
 
     [Header("Timer")]
@@ -61,6 +62,7 @@ public class Pathfinding : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
 
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
@@ -75,6 +77,11 @@ public class Pathfinding : MonoBehaviour
     {
         stumbleTimer += Time.deltaTime;
         stateTimer -= Time.deltaTime;   //använd senare. just nu sett state för att testa olika states.
+        if (rb.velocity.sqrMagnitude < 0.1 && agent.updatePosition == false)
+        {
+            AgentUpdate();
+        }
+       
         if (stateTimer <= 0)
         {
             RandomState();
@@ -115,10 +122,11 @@ public class Pathfinding : MonoBehaviour
         }
 
         MinimumDistance();
-
+        
          agent.SetDestination(target);
-       // agent.nextPosition
+       
         Flip();
+        
     }
 
 
@@ -354,7 +362,7 @@ public class Pathfinding : MonoBehaviour
         }
     }
 
-    public void Stumble()
+    public void Stumble(float timer = 2)
     {
         if (stumbleCooldownTime < stumbleTimer)
         {
@@ -376,11 +384,12 @@ public class Pathfinding : MonoBehaviour
     public void CancelAgentUpdate()
     {
         agent.updatePosition = false;
-        Invoke(nameof(AgentUpdate), 1f);
+        
     }
 
     void AgentUpdate()
     {
+        agent.nextPosition = transform.position;
         agent.updatePosition = true;
     }
 
