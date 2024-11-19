@@ -125,7 +125,11 @@ public class Sword : MonoBehaviour, IWeapon
         {
             for (int i = enemiesInsideTrigger.Count - 1; i >= 0; i--)
             {
-                enemiesInsideTrigger[i].GetComponent<Pathfinding>().CancelAgentUpdate();
+                if (enemiesInsideTrigger[i].TryGetComponent<Pathfinding>(out Pathfinding pathfinding))
+                {
+                    pathfinding.CancelAgentUpdate();
+                }
+
                 Vector2 forceDirection = enemiesInsideTrigger[i].transform.position - transform.position;
                 forceDirection.Normalize();
                 enemiesInsideTrigger[i].GetComponent<Rigidbody2D>().AddForce(forceDirection * knockbackForce, ForceMode2D.Impulse);
@@ -135,12 +139,14 @@ public class Sword : MonoBehaviour, IWeapon
         {
             foreach (var enemy in enemiesInsideTrigger)
             {
-                enemy.GetComponent<Pathfinding>().CancelAgentUpdate();
+                if (enemy.TryGetComponent<Pathfinding>(out Pathfinding pathfinding))
+                {
+                    pathfinding.CancelAgentUpdate();
+                }
+
                 Vector2 perpendicular = Vector2.Perpendicular(player1.position - player2.position);
                 perpendicular *= Mathf.Sign(chain.rotationalVelocity);
-
                 Vector2 enemyDirection = player1.position - player2.position;
-
                 Vector2 forceDirection = perpendicular + enemyDirection;
                 forceDirection.Normalize();
 

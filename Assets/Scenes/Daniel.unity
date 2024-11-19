@@ -691,6 +691,8 @@ GameObject:
   - component: {fileID: 946894857}
   - component: {fileID: 946894859}
   - component: {fileID: 946894858}
+  - component: {fileID: 946894862}
+  - component: {fileID: 946894861}
   m_Layer: 6
   m_Name: NavEnemy
   m_TagString: Enemy
@@ -710,12 +712,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7339bcd6f9d8814ab22d035ca8eba54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 0}
-  player2: {fileID: 0}
   chargeMovementSpeed: 5
   walkMovementSpeed: 1
   normalMovementSpeed: 2
-  flankExtraDistance: 1
+  flankExtraDistance: 3
   minDistanceToPlayer: 2
   playerDetected: 1
   attackState: 0
@@ -752,7 +752,7 @@ Transform:
   m_GameObject: {fileID: 946894853}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.28, y: 3.72, z: -0.019010372}
+  m_LocalPosition: {x: 1.72, y: 1.45, z: -0.019010372}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -886,6 +886,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 100
+--- !u!114 &946894861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946894853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff9c210e39fb6e849a8aea90f35ceb72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &946894862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946894853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8c4fef7b2793674586f965f25a59658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayerInRange: 0
 --- !u!4 &1033227330 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6584092502910406461, guid: 95ab411edf78c68a183629ea751737a7, type: 3}
@@ -988,7 +1013,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8956cd1f4d04d8e40815eee96a9da460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bowCooldown: 0.5
   maxBowCharge: 2
   arrowPrefab: {fileID: 3212147436262587161, guid: c5db3965d5b4f084bb6c54cb878a269b, type: 3}
 --- !u!1 &1389484760
@@ -1140,6 +1164,7 @@ GameObject:
   - component: {fileID: 1505570510}
   - component: {fileID: 1505570509}
   - component: {fileID: 1505570512}
+  - component: {fileID: 1505570513}
   m_Layer: 0
   m_Name: Placeholder Stumble Trapp
   m_TagString: Untagged
@@ -1237,7 +1262,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505570508}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1259,7 +1284,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1275,6 +1300,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1505570513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505570508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce62c9737ea84b4e9c328d4b5836fec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1791645520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1356,6 +1393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c4fef7b2793674586f965f25a59658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerInRange: 0
 --- !u!50 &1791645525
 Rigidbody2D:
   serializedVersion: 4

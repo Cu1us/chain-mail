@@ -2,26 +2,25 @@ using UnityEngine;
 
 public class EnemyAttackTrigger : MonoBehaviour
 {
-    void Start()
-    {
 
-        
-    }
+    public bool isPlayerInRange = false;
+    int playersInRange = 0;
 
-    // Update is called once per frame
-    void Update()
-    {
-         
-    }
 
-     void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        Attack();  
+        playersInRange++;
+        isPlayerInRange = true;
 
     }
 
-    void Attack()
+    void OnTriggerExit2D()
     {
-        Debug.Log("Attacking");
+        playersInRange--;
+        if (playersInRange == 0)
+        {
+            isPlayerInRange = true;
+        }
     }
+
 }
