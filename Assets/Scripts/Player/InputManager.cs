@@ -24,7 +24,7 @@ public class InputManager : MonoBehaviour
 
     static void OnDeviceChanged(InputDevice device, InputDeviceChange change)
     {
-        Debug.Log($"Device {change}: {device.name}");
+        Debug.Log($"Device {change}: {device.name}, which is class {device.description.deviceClass}");
         switch (change)
         {
             case InputDeviceChange.Added:
