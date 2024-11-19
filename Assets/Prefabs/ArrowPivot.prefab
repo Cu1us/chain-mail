@@ -129,7 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2915edc934df4b4c93308d3ab9b3ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowLifetime: 5
-  maxArrowSpeed: 25
+  arrowLifetime: 4
+  maxArrowSpeed: 15
+  knockbackForce: 5
   arrow: {fileID: 2669688133422587893}
   arrowSpeed: 0

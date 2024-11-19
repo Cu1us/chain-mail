@@ -7,12 +7,12 @@ public class Arrow : MonoBehaviour
     [Header("Settings")]
     [SerializeField] float arrowLifetime;
     [SerializeField] float maxArrowSpeed;
+    [SerializeField] float knockbackForce;
     [SerializeField] Transform arrow;
 
     [Header("References")]
     public float arrowSpeed;
 
-    bool move = true;
     float arrowTimer;
 
     void Start()
@@ -39,8 +39,17 @@ public class Arrow : MonoBehaviour
         {
             transform.position = hit.point;
             transform.SetParent(hit.transform);
+            hit.collider.GetComponent<Pathfinding>().CancelAgentUpdate();
+            AddKnockback(hit.collider.gameObject);
             this.enabled = false;
         }
+    }
+
+    void AddKnockback(GameObject enemy)
+    {
+        Vector2 forceDirection = enemy.transform.position - transform.position;
+        forceDirection.Normalize();
+        enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * knockbackForce, ForceMode2D.Impulse);
     }
 
     void SelfDestruct()

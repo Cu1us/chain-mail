@@ -5,7 +5,6 @@ using UnityEngine;
 public class Bow : MonoBehaviour, IWeapon
 {
     [Header("Settings")]
-    [SerializeField] float bowCooldown;
     [SerializeField] float maxBowCharge;
 
     [Header("References")]
