@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bow : MonoBehaviour, IWeapon
+public class Bow : Weapon
 {
     [Header("Settings")]
     [SerializeField] float maxBowCharge;
@@ -29,7 +29,7 @@ public class Bow : MonoBehaviour, IWeapon
             AttackRelease();
         }
     }
-    public void AttackPress()
+    public override void AttackPress()
     {
         if (chargeTimer < maxBowCharge)
         {
@@ -46,7 +46,7 @@ public class Bow : MonoBehaviour, IWeapon
         }
     }
 
-    public void AttackRelease()
+    public override void AttackRelease()
     {
         if (chargeTimer > maxBowCharge * lowestAllowedBowCharge)
         {

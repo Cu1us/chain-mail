@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class Sword : MonoBehaviour, IWeapon
+public class Sword : Weapon
 {
     [Header("Settings")]
     [SerializeField] float knockbackForce;
@@ -113,7 +113,7 @@ public class Sword : MonoBehaviour, IWeapon
         swordPivot.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-    public void AttackPress()
+    public override void AttackPress()
     {
         animator.SetTrigger("PlayAttack");
         AddKnockback();
@@ -161,7 +161,7 @@ public class Sword : MonoBehaviour, IWeapon
         //Destroy(enemiesInsideTrigger[i].gameObject);
     }
 
-    public void AttackRelease()
+    public override void AttackRelease()
     {
 
     }

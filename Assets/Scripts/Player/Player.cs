@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerInputData))]
 public class Player : MonoBehaviour
 {
-    [SerializeField] IWeapon weapon;
+    [SerializeField] Weapon weapon;
     PlayerInputData playerInputData;
 
     private void Start()

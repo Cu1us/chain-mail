@@ -1410,10 +1410,16 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5392005014660624005, guid: 95ab411edf78c68a183629ea751737a7, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1771064904}
+    - targetCorrespondingSourceObject: {fileID: 5392005014660624005, guid: 95ab411edf78c68a183629ea751737a7, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1771064903}
     - targetCorrespondingSourceObject: {fileID: 5392005014660624005, guid: 95ab411edf78c68a183629ea751737a7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1771064902}
+    - targetCorrespondingSourceObject: {fileID: 1399076570388808932, guid: 95ab411edf78c68a183629ea751737a7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2058660141}
     - targetCorrespondingSourceObject: {fileID: 1399076570388808932, guid: 95ab411edf78c68a183629ea751737a7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2058660139}
@@ -1472,6 +1478,19 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerMovement
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1771064904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210292098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61b04833549a5074e81be3382541c785, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 1975017689}
 --- !u!1 &1930350244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1786,6 +1805,19 @@ MonoBehaviour:
   aimDirection: {x: 0, y: 0}
   chainRotationalInput: 0
   DebugRays: 0
+--- !u!114 &2058660141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91513453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61b04833549a5074e81be3382541c785, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 1930350246}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
