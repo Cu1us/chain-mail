@@ -14,12 +14,12 @@ public class EnemyAttackTrigger : MonoBehaviour
 
     }
 
-    void OnTriggerExit2D()
+    void OnTriggerExit2D(Collider2D other) 
     {
         playersInRange--;
         if (playersInRange == 0)
         {
-            isPlayerInRange = true;
+            isPlayerInRange = false;
         }
     }
 
