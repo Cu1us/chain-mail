@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Arrow : MonoBehaviour
 {
@@ -11,13 +13,15 @@ public class Arrow : MonoBehaviour
     [SerializeField] Transform arrow;
 
     [Header("References")]
-    public float arrowSpeed;
+    public float bowChargePercentage;
 
+    float arrowSpeed;
     float arrowTimer;
 
     void Start()
     {
-        arrowSpeed *= maxArrowSpeed;
+        arrowSpeed = bowChargePercentage * maxArrowSpeed;
+        knockbackForce *= bowChargePercentage;
     }
     void Update()
     {
@@ -39,7 +43,12 @@ public class Arrow : MonoBehaviour
         {
             transform.position = hit.point;
             transform.SetParent(hit.transform);
-            hit.collider.GetComponent<Pathfinding>().CancelAgentUpdate();
+
+            if (hit.collider.TryGetComponent<Pathfinding>(out Pathfinding pathfinding))
+            {
+                pathfinding.CancelAgentUpdate();
+            }
+
             AddKnockback(hit.collider.gameObject);
             this.enabled = false;
         }
@@ -47,9 +56,8 @@ public class Arrow : MonoBehaviour
 
     void AddKnockback(GameObject enemy)
     {
-        Vector2 forceDirection = enemy.transform.position - transform.position;
-        forceDirection.Normalize();
-        enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * knockbackForce, ForceMode2D.Impulse);
+        
+        enemy.GetComponent<Rigidbody2D>().AddForce(transform.up * knockbackForce, ForceMode2D.Impulse);
     }
 
     void SelfDestruct()

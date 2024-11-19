@@ -6,6 +6,7 @@ public class Bow : MonoBehaviour, IWeapon
 {
     [Header("Settings")]
     [SerializeField] float maxBowCharge;
+    [SerializeField] float lowestAllowedBowCharge;
 
     [Header("References")]
     [SerializeField] GameObject arrowPrefab;
@@ -28,24 +29,6 @@ public class Bow : MonoBehaviour, IWeapon
             Attack();
         }
     }
-
-    public void Attack()
-    {
-        if (chargeTimer > maxBowCharge / 3)
-        {
-            bowCharge = (chargeTimer / maxBowCharge);
-            chargeTimer = 0;
-            GetComponent<SpriteRenderer>().color = Color.gray;
-
-            RotateArrow();
-            InstantiateArrow();
-        }
-        else
-        {
-            chargeTimer = 0;
-        }
-    }
-
     void BowCharge()
     {
         if (chargeTimer < maxBowCharge)
@@ -57,9 +40,26 @@ public class Bow : MonoBehaviour, IWeapon
             GetComponent<SpriteRenderer>().color = Color.red;
         }
 
-        if (chargeTimer > maxBowCharge / 3 && chargeTimer < maxBowCharge)
+        if (chargeTimer > maxBowCharge * lowestAllowedBowCharge && chargeTimer < maxBowCharge)
         {
             GetComponent<SpriteRenderer>().color = Color.green;
+        }
+    }
+
+    public void Attack()
+    {
+        if (chargeTimer > maxBowCharge * lowestAllowedBowCharge)
+        {
+            bowCharge = (chargeTimer / maxBowCharge);
+            chargeTimer = 0;
+            GetComponent<SpriteRenderer>().color = Color.gray;
+
+            RotateArrow();
+            InstantiateArrow();
+        }
+        else
+        {
+            chargeTimer = 0;
         }
     }
 
@@ -75,6 +75,6 @@ public class Bow : MonoBehaviour, IWeapon
     void InstantiateArrow()
     {
         GameObject newArrow = Instantiate(arrowPrefab, transform.position, Quaternion.Euler(0, 0, targetAngle - 90));
-        newArrow.GetComponent<Arrow>().arrowSpeed = bowCharge;
+        newArrow.GetComponent<Arrow>().bowChargePercentage = bowCharge;
     }
 }
