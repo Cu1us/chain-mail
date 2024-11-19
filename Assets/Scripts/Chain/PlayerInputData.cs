@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PlayerInput))]
 public class PlayerInputData : MonoBehaviour
 {
     [ReadOnlyInspector] public Vector2 movementInput;
     [ReadOnlyInspector] public Vector2 aimDirection;
     [ReadOnlyInspector] public float chainRotationalInput;
-    public Action onAttack;
+    public Action onAttackPress;
+    public Action onAttackRelease;
+
 
     [SerializeField] bool DebugRays;
 
@@ -44,6 +47,14 @@ public class PlayerInputData : MonoBehaviour
     }
     void OnAttack(InputValue value)
     {
-        onAttack?.Invoke();
+        bool held = Mathf.RoundToInt(value.Get<float>()) != 0;
+        if (held)
+        {
+            onAttackPress?.Invoke();
+        }
+        else
+        {
+            onAttackRelease?.Invoke();
+        }
     }
 }
