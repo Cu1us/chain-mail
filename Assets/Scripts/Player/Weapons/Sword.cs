@@ -33,7 +33,7 @@ public class Sword : MonoBehaviour, IWeapon
     void Update()
     {
         ChainRotating();
-
+        
         if (Input.GetKeyDown(KeyCode.D))
         {
             ChangeColliderAngle(0);
@@ -42,10 +42,11 @@ public class Sword : MonoBehaviour, IWeapon
         {
             ChangeColliderAngle(180);
         }
+        /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Attack();
-        }
+            AttackPress();
+        }*/
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -58,7 +59,7 @@ public class Sword : MonoBehaviour, IWeapon
                 float currentTime = Time.time;
                 if (!enemies.ContainsKey(collision.gameObject) || currentTime - enemies[collision.gameObject] > 0.5f)
                 {
-                    Attack();
+                    AttackPress();
                     enemies[collision.gameObject] = currentTime;
                 }
             }
@@ -112,7 +113,7 @@ public class Sword : MonoBehaviour, IWeapon
         swordPivot.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-    public void Attack()
+    public void AttackPress()
     {
         animator.SetTrigger("PlayAttack");
         AddKnockback();
@@ -158,5 +159,10 @@ public class Sword : MonoBehaviour, IWeapon
     void AddDamage()
     {
         //Destroy(enemiesInsideTrigger[i].gameObject);
+    }
+
+    public void AttackRelease()
+    {
+
     }
 }

@@ -9,7 +9,7 @@ public class Bow : MonoBehaviour, IWeapon
     [SerializeField] float lowestAllowedBowCharge;
 
     [Header("References")]
-    [SerializeField] GameObject arrowPrefab;
+    [SerializeField] Arrow arrowPrefab;
 
     Vector2 mousePos;
     Vector2 arrowDirection;
@@ -22,14 +22,14 @@ public class Bow : MonoBehaviour, IWeapon
     {
         if (Input.GetMouseButton(0))
         {
-            BowCharge();
+            AttackPress();
         }
         if (Input.GetMouseButtonUp(0))
         {
-            Attack();
+            AttackRelease();
         }
     }
-    void BowCharge()
+    public void AttackPress()
     {
         if (chargeTimer < maxBowCharge)
         {
@@ -46,7 +46,7 @@ public class Bow : MonoBehaviour, IWeapon
         }
     }
 
-    public void Attack()
+    public void AttackRelease()
     {
         if (chargeTimer > maxBowCharge * lowestAllowedBowCharge)
         {
@@ -74,7 +74,7 @@ public class Bow : MonoBehaviour, IWeapon
 
     void InstantiateArrow()
     {
-        GameObject newArrow = Instantiate(arrowPrefab, transform.position, Quaternion.Euler(0, 0, targetAngle - 90));
-        newArrow.GetComponent<Arrow>().bowChargePercentage = bowCharge;
+        Arrow newArrow = Instantiate(arrowPrefab, transform.position, Quaternion.Euler(0, 0, targetAngle - 90));
+        newArrow.bowChargePercentage = bowCharge;
     }
 }
