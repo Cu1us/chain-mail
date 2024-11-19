@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 public class InputManager : MonoBehaviour
 {
@@ -79,7 +80,7 @@ public class InputManager : MonoBehaviour
                 meleeDevices.Add(device);
                 rangedDevices.Add(device);
             }
-            else if (deviceClass == "Gamepad")
+            else if (IsGamepad(device))
             {
                 if (!rangedHasGamepad)
                 {
@@ -125,5 +126,14 @@ public class InputManager : MonoBehaviour
         {
             Debug.Log("Ranged device assigned: " + device.description.deviceClass);
         }
+    }
+
+    static bool IsGamepad(this InputDevice device)
+    {
+        if (device.description.deviceClass.ToLower() == "gamepad")
+            return true;
+        if (device.name.ToLower().Contains("gamepad"))
+            return true;
+        return false;
     }
 }
