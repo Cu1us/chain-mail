@@ -1183,7 +1183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bowCooldown: 0.5
-  maxBowCharge: 2
+  maxBowCharge: 0.5
   arrowPrefab: {fileID: 3212147436262587161, guid: c5db3965d5b4f084bb6c54cb878a269b, type: 3}
 --- !u!212 &1930350247
 SpriteRenderer:
