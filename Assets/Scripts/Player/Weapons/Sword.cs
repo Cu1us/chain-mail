@@ -135,7 +135,7 @@ public class Sword : MonoBehaviour, IWeapon
         {
             foreach (var enemy in enemiesInsideTrigger)
             {
-                enemiesInsideTrigger[i].GetComponent<Pathfinding>().CancelAgentUpdate();
+                enemy.GetComponent<Pathfinding>().CancelAgentUpdate();
                 Vector2 perpendicular = Vector2.Perpendicular(player1.position - player2.position);
                 perpendicular *= Mathf.Sign(chain.rotationalVelocity);
 
