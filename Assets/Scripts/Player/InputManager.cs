@@ -128,7 +128,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    static bool IsGamepad(this InputDevice device)
+    static bool IsGamepad(InputDevice device)
     {
         if (device.description.deviceClass.ToLower() == "gamepad")
             return true;
