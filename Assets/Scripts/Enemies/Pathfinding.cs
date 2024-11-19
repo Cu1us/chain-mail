@@ -46,7 +46,7 @@ public class Pathfinding : MonoBehaviour
     public bool playerDetected = true;
     public bool attackState;
     [SerializeField] bool isSpearMan = true;
-    
+
 
 
     [Header("Timer")]
@@ -68,6 +68,7 @@ public class Pathfinding : MonoBehaviour
 
         player1 = GameObject.Find("Player1").transform;
         player2 = GameObject.Find("Player2").transform;
+
     }
 
     void Update()
@@ -80,7 +81,7 @@ public class Pathfinding : MonoBehaviour
         }
         ComparePlayerDistance();
 
-        if (Input.GetKeyDown(KeyCode.Space)) //debug funktion for switching state
+        if (Input.GetKeyDown(KeyCode.Tab)) //debug funktion for switching state
         {
             RandomState();
         }
@@ -115,7 +116,8 @@ public class Pathfinding : MonoBehaviour
 
         MinimumDistance();
 
-        agent.SetDestination(target);
+         agent.SetDestination(target);
+       // agent.nextPosition
         Flip();
     }
 
@@ -131,19 +133,19 @@ public class Pathfinding : MonoBehaviour
             {
                 state = EnemyState.APPROACH;
             }
-            else if (random >2 && random <=4)
+            else if (random > 2 && random <= 4)
             {
                 state = EnemyState.SIDESTRIFE;
             }
-            else if (random > 4 && random <=6)
+            else if (random > 4 && random <= 6)
             {
                 state = EnemyState.FLANK;
             }
-            else if(random > 6 && random <= 8 )
+            else if (random > 6 && random <= 8)
             {
                 state = EnemyState.ATTACK;
             }
-            else if(random >8 && random <= 10 && isSpearMan)
+            else if (random > 8 && random <= 10 && isSpearMan)
             {
                 state = EnemyState.CHARGE;
             }
@@ -369,6 +371,17 @@ public class Pathfinding : MonoBehaviour
         spriteRenderer.color = Color.white;
         agent.speed = 3.5f;
         stumbleTimer = 0;
+    }
+
+    public void CancelAgentUpdate()
+    {
+        agent.updatePosition = false;
+        Invoke(nameof(AgentUpdate), 1f);
+    }
+
+    void AgentUpdate()
+    {
+        agent.updatePosition = true;
     }
 
 
