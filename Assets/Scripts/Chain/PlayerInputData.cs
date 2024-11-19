@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputData : MonoBehaviour
 {
-    public Vector2 movementInput;
-    public Vector2 aimDirection;
-    public float chainRotationalInput;
+    [ReadOnlyInspector] public Vector2 movementInput;
+    [ReadOnlyInspector] public Vector2 aimDirection;
+    [ReadOnlyInspector] public float chainRotationalInput;
     public Action onAttack;
 
     [SerializeField] bool DebugRays;
