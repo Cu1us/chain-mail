@@ -26,7 +26,7 @@ public class Pathfinding : MonoBehaviour
 
     public enum EnemyState
     {
-        ATTACK, CHARGE, IDLE, APPROACH, FLEE, SIDESTRIFE, FLANK
+        ATTACK, CHARGE, IDLE, APPROACH, FLEE, SIDESTRIFE, FLANK, STUCK
 
     }
     EnemyState state;
@@ -77,7 +77,7 @@ public class Pathfinding : MonoBehaviour
     {
         stumbleTimer += Time.deltaTime;
         stateTimer -= Time.deltaTime;   //använd senare. just nu sett state för att testa olika states.
-        if (rb.velocity.sqrMagnitude < 0.1 && agent.updatePosition == false)
+        if (rb.velocity.sqrMagnitude < 0.1 && agent.updatePosition == false && state != EnemyState.STUCK)
         {
             AgentUpdate();
         }
@@ -366,18 +366,20 @@ public class Pathfinding : MonoBehaviour
     {
         if (stumbleCooldownTime < stumbleTimer)
         {
+            state = EnemyState.STUCK;
             attackState = false;
             agent.speed = 0f;
             spriteRenderer.color = Color.cyan;
-            Invoke(nameof(Stand), 2);
+            Invoke(nameof(Stand), timer);
         }
         //play animation
+        stateTimer = timer;
     }
 
     void Stand()
     {
         spriteRenderer.color = Color.white;
-        agent.speed = 3.5f;
+        RandomState();
         stumbleTimer = 0;
     }
 
