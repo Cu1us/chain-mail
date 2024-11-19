@@ -13,7 +13,7 @@ public class Arrow : MonoBehaviour
     [SerializeField] Transform arrow;
 
     [Header("References")]
-    public float bowChargePercentage;
+    [HideInInspector]public float bowChargePercentage;
 
     float arrowSpeed;
     float arrowTimer;
@@ -56,7 +56,6 @@ public class Arrow : MonoBehaviour
 
     void AddKnockback(GameObject enemy)
     {
-        
         enemy.GetComponent<Rigidbody2D>().AddForce(transform.up * knockbackForce, ForceMode2D.Impulse);
     }
 
