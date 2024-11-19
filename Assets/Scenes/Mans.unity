@@ -414,6 +414,7 @@ GameObject:
   - component: {fileID: 8647847234195175621}
   - component: {fileID: 5262995293102290739}
   - component: {fileID: 2579516128816997759}
+  - component: {fileID: 8647847234195175622}
   m_Layer: 0
   m_Name: Chain
   m_TagString: Untagged
@@ -730,6 +731,20 @@ Transform:
   - {fileID: 3587266885616486648}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8647847234195175622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249840335720228216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9fb7636938e98a929d895276a902001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 5262995293102290739}
+  edgeCollider: {fileID: 2579516128816997759}
 --- !u!1 &9166365854922107899
 GameObject:
   m_ObjectHideFlags: 0
