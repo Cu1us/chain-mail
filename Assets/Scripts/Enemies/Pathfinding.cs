@@ -12,17 +12,48 @@ public class Pathfinding : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
 
+    [SerializeField] float minDistanceToPlayer;
 
-    [Header("Speeds")]
-
+    [Header("TempAttack")]
+    [SerializeField] float attackMovementSpeed;
+    [SerializeField] float attackMinDistance;
+    [SerializeField] float attackStopDist;
+    [Header("TempApproach")]
+    [SerializeField] float approackMovmementSpeed;
+    [SerializeField] float approachMinDistance;
+    [SerializeField] float approachStopDist;
+    [Header("TempSideStrife")]
+    [SerializeField] float SideStrifeMovementSpeed;
+    [SerializeField] float SideStrifeMinDistance;
+    [SerializeField] float SideStrifeStopDist;
+    [Header("TempCharge")]
     [SerializeField] float chargeMovementSpeed;
-    [SerializeField] float walkMovementSpeed;
-    [SerializeField] float normalMovementSpeed;
+    [SerializeField] float chargeMinDistance;
+    [SerializeField] float chargeStopDist;
+    [Header("TempFlee")]
+    [SerializeField] float fleeMovementSpeed;
+    [SerializeField] float fleeMinDisntace;
+    [SerializeField] float fleeStopDist;
+    [Header("TempIdle")]
+    [SerializeField] float idleMovementSpeed;
+    [SerializeField] float idleMinDistance;
+    [SerializeField] float idleStopDist;
+    [Header("TempFlank")]
+    [SerializeField] float flankMovementSpeed;
+    [SerializeField] float flankMinDistance;
+    [SerializeField] float flankExtraDistance;
+    [SerializeField] float flankStopDist;
 
-    [Header("Stopping Distance")]
-    float stoppingDistanceOutsideAttackRange = 3;
+    // [Header("Speeds")]
 
-    [SerializeField] float flankExtraDistance = 1;
+    // [SerializeField] float chargeMovementSpeed;
+    //[SerializeField] float walkMovementSpeed;
+    // [SerializeField] float normalMovementSpeed;
+
+    // [Header("Stopping Distance")]
+    //float stoppingDistanceOutsideAttackRange = 3;
+
+    // [SerializeField] float flankExtraDistance = 1;
 
     public enum EnemyState
     {
@@ -38,7 +69,7 @@ public class Pathfinding : MonoBehaviour
     StrifeDir strifeDir;
 
     [Header("Distance")]
-    [SerializeField] float minDistanceToPlayer; //triggers the enemy to move out of range
+    //[SerializeField] float minDistanceToPlayer; //triggers the enemy to move out of range
 
 
 
@@ -47,7 +78,7 @@ public class Pathfinding : MonoBehaviour
     public bool playerDetected = true;
     public bool attackState;
     [SerializeField] bool isSpearMan = true;
-    
+
 
 
     [Header("Timer")]
@@ -76,12 +107,13 @@ public class Pathfinding : MonoBehaviour
     void Update()
     {
         stumbleTimer += Time.deltaTime;
-        stateTimer -= Time.deltaTime;   //använd senare. just nu sett state för att testa olika states.
+        // stateTimer -= Time.deltaTime;   //använd senare. just nu sett state för att testa olika states.
+        stateTimer = 1; // Ta bort denna
         if (rb.velocity.sqrMagnitude < 0.1 && agent.updatePosition == false && state != EnemyState.STUCK)
         {
             AgentUpdate();
         }
-       
+
         if (stateTimer <= 0)
         {
             RandomState();
@@ -122,11 +154,11 @@ public class Pathfinding : MonoBehaviour
         }
 
         MinimumDistance();
-        
-         agent.SetDestination(target);
-       
+
+        agent.SetDestination(target);
+
         Flip();
-        
+
     }
 
 
@@ -175,21 +207,20 @@ public class Pathfinding : MonoBehaviour
     {
         stateTimer = 5;
         state = _state;
-        Debug.Log(state);
         switch (state)
         {
             case EnemyState.ATTACK:
                 attackState = true;
-                agent.speed = chargeMovementSpeed;
-                minDistanceToPlayer = 0;
-                agent.stoppingDistance = 1.5f;
+                agent.speed = attackMovementSpeed;
+                minDistanceToPlayer = attackMinDistance;
+                agent.stoppingDistance = attackStopDist;
                 break;
 
 
             case EnemyState.CHARGE:
                 attackState = false;
-                minDistanceToPlayer = 0;
-                agent.stoppingDistance = 0;
+                minDistanceToPlayer = chargeMinDistance;
+                agent.stoppingDistance = chargeStopDist;
                 agent.speed = chargeMovementSpeed;
                 Charge();
                 break;
@@ -197,25 +228,25 @@ public class Pathfinding : MonoBehaviour
 
             case EnemyState.IDLE:
                 attackState = true;
-                minDistanceToPlayer = 0;
-                agent.stoppingDistance = 0;
-                agent.speed = walkMovementSpeed;
+                minDistanceToPlayer = idleMinDistance;
+                agent.stoppingDistance = idleStopDist;
+                agent.speed = idleMovementSpeed;
                 break;
 
 
             case EnemyState.APPROACH:
                 attackState = true;
-                minDistanceToPlayer = 2;
-                agent.stoppingDistance = stoppingDistanceOutsideAttackRange;
-                agent.speed = normalMovementSpeed;
+                minDistanceToPlayer = approachMinDistance;
+                agent.stoppingDistance = approachStopDist;//stoppingDistanceOutsideAttackRange;
+                agent.speed = approackMovmementSpeed;
                 break;
 
 
             case EnemyState.FLEE:
                 attackState = false;
-                agent.stoppingDistance = 0;
-                agent.speed = normalMovementSpeed;
-                minDistanceToPlayer = 0;
+                agent.stoppingDistance = fleeStopDist;
+                agent.speed = fleeMovementSpeed;
+                minDistanceToPlayer = fleeMinDisntace;
                 Flee();
                 break;
 
@@ -230,17 +261,17 @@ public class Pathfinding : MonoBehaviour
                 {
                     strifeDir = StrifeDir.RIGHT;
                 }
-                agent.speed = walkMovementSpeed;
-                agent.stoppingDistance = 0;
-                minDistanceToPlayer = 0;
+                agent.speed = SideStrifeMovementSpeed;
+                agent.stoppingDistance = SideStrifeStopDist;
+                minDistanceToPlayer = SideStrifeMinDistance;
                 break;
 
 
             case EnemyState.FLANK:
                 attackState = true;
-                minDistanceToPlayer = 2;
-                agent.stoppingDistance = 0;
-                agent.speed = normalMovementSpeed;
+                minDistanceToPlayer = flankMinDistance;
+                agent.stoppingDistance = flankStopDist;
+                agent.speed = flankStopDist;
 
                 break;
         }
@@ -386,7 +417,7 @@ public class Pathfinding : MonoBehaviour
     public void CancelAgentUpdate()
     {
         agent.updatePosition = false;
-        
+
     }
 
     void AgentUpdate()

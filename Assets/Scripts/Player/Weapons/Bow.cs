@@ -18,36 +18,42 @@ public class Bow : Weapon
     float chargeTimer;
     float bowCharge;
 
-    public void Update()
+    bool Attackpress = false;
+
+    void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
-            AttackPress();
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            AttackRelease();
-        }
+        ChargeBow();
     }
+
     public override void AttackPress()
     {
-        if (chargeTimer < maxBowCharge)
-        {
-            chargeTimer += Time.deltaTime;
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().color = Color.red;
-        }
+        Attackpress = true;
+    }
 
-        if (chargeTimer > maxBowCharge * lowestAllowedBowCharge && chargeTimer < maxBowCharge)
+    void ChargeBow()
+    {
+        if (Attackpress)
         {
-            GetComponent<SpriteRenderer>().color = Color.green;
+            if (chargeTimer < maxBowCharge)
+            {
+                chargeTimer += Time.deltaTime;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().color = Color.red;
+            }
+
+            if (chargeTimer > maxBowCharge * lowestAllowedBowCharge && chargeTimer < maxBowCharge)
+            {
+                GetComponent<SpriteRenderer>().color = Color.green;
+            }
         }
     }
 
     public override void AttackRelease()
     {
+        Attackpress = false;
+
         if (chargeTimer > maxBowCharge * lowestAllowedBowCharge)
         {
             bowCharge = (chargeTimer / maxBowCharge);
