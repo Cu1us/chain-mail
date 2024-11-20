@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
-
 {
+    [SerializeField] EnemySwordAttack weapon;
     Pathfinding state;
     EnemyAttackTrigger trigger;
-    // Gameobject weapon;
     float attackTimer;
     void Start()
     {
@@ -24,7 +23,7 @@ public class EnemyAttack : MonoBehaviour
             attackTimer += Time.deltaTime;
             if(attackTimer > 0.5)
             {
-                //weapon.ATTACK();
+                weapon.Attack();
                 attackTimer = 0;
             }
         }
