@@ -20,7 +20,7 @@
                     "id": "8e74a5c8-01a5-49a8-9473-00e170a5eb96",
                     "expectedControlType": "Axis",
                     "processors": "",
-                    "interactions": "Tap",
+                    "interactions": "",
                     "initialStateCheck": true
                 },
                 {
@@ -49,6 +49,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ChainSwap1",
+                    "type": "Button",
+                    "id": "7f5a5358-2209-4af0-ace0-3d1e7344dc78",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChainSwap2",
+                    "type": "Button",
+                    "id": "b86fec9a-c101-48ce-bd85-2392f3384e42",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -346,6 +364,72 @@
                     "processors": "",
                     "groups": "Ranged",
                     "action": "AimScreenCoords",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ef03bd5d-b760-4580-9cfa-8b497b7e8d19",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Melee;Ranged",
+                    "action": "ChainSwap1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b87e7e55-ad0f-46ba-a5f6-69ff11bc66c2",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Melee",
+                    "action": "ChainSwap1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea8146b9-b2c3-45ac-9ff5-eeb6c56ca939",
+                    "path": "<Keyboard>/u",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Ranged",
+                    "action": "ChainSwap1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d2392127-b579-4031-bfe7-f3be31458694",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Melee;Ranged",
+                    "action": "ChainSwap2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2db20402-6ce9-48d5-ae43-4db3790955a8",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Melee",
+                    "action": "ChainSwap2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2022c400-d268-46e6-99ae-856fd0a21373",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Ranged",
+                    "action": "ChainSwap2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

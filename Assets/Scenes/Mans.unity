@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 523159521}
   - component: {fileID: 523159520}
   - component: {fileID: 523159523}
+  - component: {fileID: 523159524}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -259,6 +260,21 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &523159524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523159519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d90e736df607cb0a0467957a86a7f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chainToFollow: {fileID: 7228491522720290408}
+  chainFollowStrength: 3
+  cameraSizeByChainVelocity: 0.0025
 --- !u!1 &1968260224
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +497,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3456003179340165353, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: movementSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3456003179340165353, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: velocityDeceleration
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565201630926505757, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: swapPlacesButtonWindow
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5769951615074734439, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -525,11 +553,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chain and Players
       objectReference: {fileID: 0}
+    - target: {fileID: 7142328240666042984, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: swapPlacesButtonWindow
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739225830394850822, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: movementSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739225830394850822, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: velocityDeceleration
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+--- !u!114 &7228491522720290408 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1931979293959075955, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+  m_PrefabInstance: {fileID: 7228491522720290407}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9fb7636938e98a929d895276a902001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9166365854922107900 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 149371687736191209, guid: 93e03e6044fd53f04b2595785512a233, type: 3}

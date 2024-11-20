@@ -14,6 +14,10 @@ public class PlayerInputData : MonoBehaviour
     public Action onAttackRelease;
     public Action onChainSwap;
 
+    [SerializeField] float swapPlacesButtonWindow;
+
+    float lastSwap1Press = float.NegativeInfinity;
+    float lastSwap2Press = float.NegativeInfinity;
 
 
     [SerializeField] bool DebugRays;
@@ -59,5 +63,28 @@ public class PlayerInputData : MonoBehaviour
         {
             onAttackRelease?.Invoke();
         }
+    }
+
+    void OnChainSwap1()
+    {
+        lastSwap1Press = Time.time;
+        if (Time.time - lastSwap2Press < swapPlacesButtonWindow)
+        {
+            SwapPlaces();
+        }
+    }
+    void OnChainSwap2()
+    {
+        lastSwap2Press = Time.time;
+        if (Time.time - lastSwap1Press < swapPlacesButtonWindow)
+        {
+            SwapPlaces();
+        }
+    }
+    void SwapPlaces()
+    {
+        lastSwap1Press = float.NegativeInfinity;
+        lastSwap2Press = float.NegativeInfinity;
+        onChainSwap?.Invoke();
     }
 }
