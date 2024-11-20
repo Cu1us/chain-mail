@@ -277,7 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowLifetime: 4
   maxArrowSpeed: 20
-  maxKnockbackForce: 5
+  maxKnockbackForce: 8
   arrow: {fileID: 2669688133422587893}
   trailRenderer: {fileID: 415978992183402838}
   bowChargePercentage: 0

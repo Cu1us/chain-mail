@@ -40,7 +40,7 @@ public class Arrow : MonoBehaviour
 
     void CheckCollision()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.up, arrowSpeed * Time.deltaTime);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.up, arrowSpeed * Time.deltaTime, LayerMask.GetMask("Enemy"));
 
         if (hit.collider != null && hit.collider.CompareTag("Enemy"))
         {
