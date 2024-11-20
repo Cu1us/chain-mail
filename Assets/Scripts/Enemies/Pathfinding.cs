@@ -7,8 +7,8 @@ public class Pathfinding : MonoBehaviour
     NavMeshAgent agent;
     Transform player1;
     Transform player2;
-    Transform targetTransform;
-    Transform targetTransform2;
+    public Transform targetTransform;
+    public Transform targetTransform2;
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
 
@@ -271,7 +271,7 @@ public class Pathfinding : MonoBehaviour
                 attackState = true;
                 minDistanceToPlayer = flankMinDistance;
                 agent.stoppingDistance = flankStopDist;
-                agent.speed = flankStopDist;
+                agent.speed = flankMovementSpeed;
 
                 break;
         }
@@ -317,6 +317,10 @@ public class Pathfinding : MonoBehaviour
     void Approach()
     {
         target = targetTransform.position;
+        // if ( )
+        // {
+        //     StateChange(EnemyState.SIDESTRIFE);
+        // }
     }
     void SideStrife()
     {
@@ -342,12 +346,12 @@ public class Pathfinding : MonoBehaviour
     void Flank()
     {
         Vector2 perpendicular = Vector2.Perpendicular(targetTransform.position - targetTransform2.position);
-
+        perpendicular.Normalize();
         float midPointX = (player1.position.x + player2.position.x) * 0.5f;
         float midPointY = (player1.position.y + player2.position.y) * 0.5f;
 
-        Vector2 point1 = new Vector2(midPointX - perpendicular.x + flankExtraDistance, midPointY - perpendicular.y + flankExtraDistance);
-        Vector2 point2 = new Vector2(midPointX + perpendicular.x + flankExtraDistance, midPointY + perpendicular.y + flankExtraDistance);
+        Vector2 point1 = new Vector2(midPointX - perpendicular.x * flankExtraDistance, midPointY - perpendicular.y * flankExtraDistance);
+        Vector2 point2 = new Vector2(midPointX + perpendicular.x * flankExtraDistance, midPointY + perpendicular.y * flankExtraDistance);
 
         float distPoint1 = Vector2.Distance(transform.position, point1);
         float distPoint2 = Vector2.Distance(transform.position, point2);
