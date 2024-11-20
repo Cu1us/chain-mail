@@ -20,7 +20,7 @@
                     "id": "8e74a5c8-01a5-49a8-9473-00e170a5eb96",
                     "expectedControlType": "Axis",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "initialStateCheck": true
                 },
                 {

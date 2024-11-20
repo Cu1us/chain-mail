@@ -68,7 +68,6 @@ public class Chain_Demo : MonoBehaviour
     {
         EntityA.onTrySwapPlaces += SwapPlaces;
         EntityB.onTrySwapPlaces += SwapPlaces;
-
     }
 
     void SwapPlaces()

@@ -12,6 +12,8 @@ public class PlayerInputData : MonoBehaviour
     [ReadOnlyInspector] public float chainRotationalInput;
     public Action onAttackPress;
     public Action onAttackRelease;
+    public Action onChainSwap;
+
 
 
     [SerializeField] bool DebugRays;
@@ -43,6 +45,7 @@ public class PlayerInputData : MonoBehaviour
     void OnChainRotation(InputValue value)
     {
         chainRotationalInput = value.Get<float>();
+        Debug.Log("Rotating: value: " + chainRotationalInput);
         if (DebugRays) Debug.DrawRay(transform.position, movementInput, Color.gray, 1f);
     }
     void OnAttack(InputValue value)

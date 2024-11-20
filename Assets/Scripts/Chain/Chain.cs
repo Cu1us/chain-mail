@@ -10,15 +10,30 @@ public class Chain : MonoBehaviour
 
     [Header("Status")]
     [ReadOnlyInspector] public GrabStatus grabStatus;
+    [ReadOnlyInspector] public float rotationalVelocity;
 
 
     [Header("Settings")]
+    [SerializeField] float maxDistance;
+    [SerializeField] float maxRotationSpeed;
+    [SerializeField] float rotationAcceleration;
+    [SerializeField] float rotationDeceleration;
+    [SerializeField] float swapPlacesForce;
 
+    [Header("Advanced settings")]
+    [SerializeField] float heldPivotOffset;
+    [Tooltip("After the chain has reached this fraction of the max rotation speed, players cannot change the rotational direction until it has stopped")]
+    [SerializeField][Range(0, 1)] float forcePreserveMomentumThreshold;
+    [SerializeField][Min(0)] float pivotReadjustToCenterTime;
+    [SerializeField] AnimationCurve pivotReadjustToCenterCurve;
 
 
     [Header("Players")]
     public PlayerMovement PlayerA;
     public PlayerMovement PlayerB;
+    public PlayerInputData PlayerAInput;
+    public PlayerInputData PlayerBInput;
+
 
     [Header("References")]
     [ReadOnlyInspector][SerializeField] LineRenderer lineRenderer;
@@ -26,20 +41,157 @@ public class Chain : MonoBehaviour
 
     // Properties
     public Vector2 Pivot { get { return Vector2.Lerp(PlayerA.position, PlayerB.position, localPivot); } }
-    public PlayerMovement Grabber { get { return grabStatus switch { GrabStatus.A => PlayerB, GrabStatus.B => PlayerA, _ => null }; } }
+    public Vector2 Center { get { return (PlayerA.position + PlayerB.position) / 2; } }
+    public PlayerMovement Grabber { get { return grabStatus switch { GrabStatus.A => PlayerA, GrabStatus.B => PlayerB, _ => null }; } }
     public PlayerMovement Grabee { get { return grabStatus switch { GrabStatus.A => PlayerB, GrabStatus.B => PlayerA, _ => null }; } }
+    public PlayerInputData GrabberInput { get { return grabStatus switch { GrabStatus.A => PlayerAInput, GrabStatus.B => PlayerBInput, _ => null }; } }
+    public PlayerInputData GrabeeInput { get { return grabStatus switch { GrabStatus.A => PlayerBInput, GrabStatus.B => PlayerAInput, _ => null }; } }
 
     // Local variables
     float localPivot;
-
+    float currentChainLength;
+    float lastChainHeldTime;
 
 
     void Reset()
     {
         lineRenderer = GetComponent<LineRenderer>();
         edgeCollider = GetComponent<EdgeCollider2D>();
+        lineRenderer.positionCount = 2;
+    }
+    void Start()
+    {
+        PlayerAInput.onChainSwap += SwapPlaces;
+        PlayerBInput.onChainSwap += SwapPlaces;
+    }
+    public void SwapPlaces()
+    {
+
     }
 
+    void Update()
+    {
+        currentChainLength = Vector2.Distance(PlayerA.position, PlayerB.position);
+
+        ApplyConstraint();
+
+        UpdatePivot();
+
+        AccelerateBasedOnInput();
+
+        RotateChain();
+
+        Render();
+
+        PositionHitbox();
+    }
+
+    void ApplyConstraint()
+    {
+        if (currentChainLength > maxDistance)
+        {
+            float stretchedDistance = (currentChainLength - maxDistance) / 2;
+            Vector2 center = Center;
+            PlayerA.MoveTowards(center, stretchedDistance);
+            PlayerB.MoveTowards(center, stretchedDistance);
+
+            ConstrainVelocity(PlayerA);
+            ConstrainVelocity(PlayerB);
+
+            void ConstrainVelocity(PlayerMovement player)
+            {
+                Vector2 direction = (center - player.position).normalized;
+                float dot = Vector2.Dot(player.velocity, direction);
+                player.velocity -= direction * dot;
+            }
+        }
+    }
+
+    void AccelerateBasedOnInput()
+    {
+        if (grabStatus != GrabStatus.NONE && GrabberInput.chainRotationalInput != 0)
+        {
+            float targetRotVelocity = GrabberInput.chainRotationalInput * maxRotationSpeed;
+            float acceleration = rotationAcceleration * Time.deltaTime;
+
+            if (Mathf.Sign(rotationalVelocity) != Mathf.Sign(targetRotVelocity))
+            {
+                if (Mathf.Abs(rotationalVelocity) / maxRotationSpeed > forcePreserveMomentumThreshold)
+                    targetRotVelocity *= -1;
+                else
+                    acceleration *= 2;
+            }
+            rotationalVelocity = Mathf.MoveTowards(rotationalVelocity, targetRotVelocity, acceleration);
+        }
+        else
+        {
+            rotationalVelocity = Mathf.MoveTowards(rotationalVelocity, 0, rotationDeceleration * Time.deltaTime);
+        }
+    }
+
+    void RotateChain()
+    {
+        if (rotationalVelocity == 0) return;
+        float rotation = rotationalVelocity * Time.deltaTime;
+        if (grabStatus == GrabStatus.NONE)
+        {
+            PlayerA.RotateAround(Pivot, rotation);
+            PlayerB.RotateAround(Pivot, rotation);
+        }
+        else
+        {
+            Grabee.RotateAround(Pivot, rotation);
+            if (heldPivotOffset > 0)
+                Grabber.RotateAround(Pivot, rotation);
+        }
+
+        PlayerA.swingVelocity = rotationalVelocity * Mathf.PI * currentChainLength * (1 - localPivot);
+        PlayerB.swingVelocity = rotationalVelocity * Mathf.PI * currentChainLength * localPivot;
+    }
+    void UpdatePivot()
+    {
+        bool playerATryingToRotate = PlayerAInput.chainRotationalInput != 0;
+        bool playerBTryingToRotate = PlayerBInput.chainRotationalInput != 0;
+
+        // Decide who is grabbing, and set pivot accordingly
+        if (!playerATryingToRotate && !playerBTryingToRotate)
+        {
+            grabStatus = GrabStatus.NONE;
+
+            // Animate pivot back to center
+            float pivotAnimationProgress = Mathf.Clamp((Time.time - lastChainHeldTime) / pivotReadjustToCenterTime, 0, 1);
+            pivotAnimationProgress = pivotReadjustToCenterCurve.Evaluate(pivotAnimationProgress);
+            float pivotOffsetByLength = heldPivotOffset / currentChainLength;
+            localPivot = pivotOffsetByLength + pivotAnimationProgress * (0.5f - pivotOffsetByLength);
+        }
+        else
+        {
+            lastChainHeldTime = Time.time;
+            if (playerATryingToRotate && !playerBTryingToRotate)
+            {
+                grabStatus = GrabStatus.A;
+                localPivot = heldPivotOffset;
+            }
+            else if (!playerATryingToRotate && playerBTryingToRotate)
+            {
+                grabStatus = GrabStatus.B;
+                localPivot = 1 - heldPivotOffset;
+                lastChainHeldTime = Time.time;
+            }
+        }
+
+        PlayerA.beingGrabbed = grabStatus == GrabStatus.B;
+        PlayerB.beingGrabbed = grabStatus == GrabStatus.A;
+    }
+    void PositionHitbox()
+    {
+        edgeCollider.SetPoints(new List<Vector2> { PlayerA.position, PlayerB.position });
+    }
+    void Render()
+    {
+        lineRenderer.SetPosition(0, PlayerA.position);
+        lineRenderer.SetPosition(1, PlayerB.position);
+    }
 
 
     public enum GrabStatus
