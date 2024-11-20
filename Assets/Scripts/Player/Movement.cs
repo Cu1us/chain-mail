@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour, IKnockable
+public class Movement : MonoBehaviour
 {
     public Vector2 position { get { return transform.position; } set { transform.position = value; } }
     public Vector2 velocity;
@@ -95,7 +95,3 @@ public class Movement : MonoBehaviour, IKnockable
     public static implicit operator Vector3(Movement m) => m.position;
 }
 
-public interface IKnockable
-{
-    public void Launch(Vector2 force);
-}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerInputData))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IKnockable
 {
     [Header("Status")]
     [ReadOnlyInspector] public Vector2 velocity;
@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [ReadOnlyInspector] public float swingVelocity;
     [Header("Settings")]
     [SerializeField] float movementSpeed;
+    [SerializeField] float velocityDeceleration;
 
     [Header("References")]
     [ReadOnlyInspector][SerializeField] PlayerInputData Input;
@@ -30,6 +31,9 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         if (!beingGrabbed && Input.chainRotationalInput == 0) position += Input.movementInput * movementSpeed * Time.deltaTime;
+
+        position += velocity * Time.deltaTime;
+        velocity = Vector2.MoveTowards(velocity, Vector2.zero, velocityDeceleration * Time.deltaTime);
     }
 
     public void MoveTowards(Vector2 target, float distance)
@@ -46,4 +50,9 @@ public class PlayerMovement : MonoBehaviour
     {
         velocity += force;
     }
+}
+
+public interface IKnockable
+{
+    public void Launch(Vector2 force);
 }

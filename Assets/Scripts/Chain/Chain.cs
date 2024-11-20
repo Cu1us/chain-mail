@@ -66,7 +66,9 @@ public class Chain : MonoBehaviour
     }
     public void SwapPlaces()
     {
-
+        if (PlayerA.velocity.sqrMagnitude > 1 || PlayerB.velocity.sqrMagnitude > 1) return;
+        PlayerA.Launch((PlayerB.position - PlayerA.position).normalized * swapPlacesForce);
+        PlayerB.Launch((PlayerA.position - PlayerB.position).normalized * swapPlacesForce);
     }
 
     void Update()
