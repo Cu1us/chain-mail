@@ -9,19 +9,21 @@ public class Arrow : MonoBehaviour
     [Header("Settings")]
     [SerializeField] float arrowLifetime;
     [SerializeField] float maxArrowSpeed;
-    [SerializeField] float knockbackForce;
-    [SerializeField] Transform arrow;
+    [SerializeField] float maxKnockbackForce;
 
     [Header("References")]
+    [SerializeField] Transform arrow;
+    [SerializeField] TrailRenderer trailRenderer;
     [HideInInspector]public float bowChargePercentage;
 
+    float knockbackForce;
     float arrowSpeed;
     float arrowTimer;
 
     void Start()
     {
         arrowSpeed = bowChargePercentage * maxArrowSpeed;
-        knockbackForce *= bowChargePercentage;
+        knockbackForce = maxKnockbackForce * bowChargePercentage;
     }
     void Update()
     {
@@ -49,6 +51,7 @@ public class Arrow : MonoBehaviour
                 pathfinding.CancelAgentUpdate();
             }
 
+            Invoke(nameof(DisableTrail), 0.5f);
             AddKnockback(hit.collider.gameObject);
             this.enabled = false;
         }
@@ -66,5 +69,10 @@ public class Arrow : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    void DisableTrail()
+    {
+        trailRenderer.enabled = false;
     }
 }
