@@ -12,6 +12,14 @@ public class EnemyHealth : MonoBehaviour
         pathfinding = GetComponent<Pathfinding>();
     }
 
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            DestroyTemp();
+        }
+    }
+
 
     void TakeDamage(float damage)
     {
@@ -35,5 +43,10 @@ public class EnemyHealth : MonoBehaviour
         spriteRenderer.color = Color.red;
         pathfinding.enabled = false;
         Invoke(nameof(Destroy), 3f);
+    }
+
+    void DestroyTemp()
+    {
+        Destroy(this.gameObject);
     }
 }

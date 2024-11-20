@@ -4,15 +4,38 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] float playerHealth;
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            PlayerRevive();
+        }
     }
+
+    public void TakeDamage(float damage)
+    {
+        playerHealth -= damage;
+        if(playerHealth <= 0)
+        {
+            Death();
+        }
+    }
+
+    void Death()
+    {
+      //  SendMessage(OnDeath);
+    }
+
+    void PlayerRevive()
+    {
+       // SendMessage(OnRevive);
+    }
+
 }

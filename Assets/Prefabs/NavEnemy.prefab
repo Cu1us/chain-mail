@@ -54,7 +54,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 3
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -101,7 +101,7 @@ MonoBehaviour:
   flankStopDist: 0
   playerDetected: 1
   attackState: 1
-  isSpearMan: 1
+  isSpearMan: 0
   stumbleCooldownTime: 0
 --- !u!114 &7379761614196199326
 MonoBehaviour:
@@ -320,13 +320,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.532, y: 1.54}
-      - {x: 0, y: 0.7}
-      - {x: 0, y: -0.7}
-      - {x: 0.532, y: -1.54}
-      - {x: 1.19, y: -1.4}
-      - {x: 1.68, y: 0}
-      - {x: 1.19, y: 1.4}
+    - - {x: 0.665, y: 1.925}
+      - {x: 0, y: 0.875}
+      - {x: 0, y: -0.875}
+      - {x: 0.665, y: -1.925}
+      - {x: 1.4875, y: -1.75}
+      - {x: 2.1, y: 0}
+      - {x: 1.4875, y: 1.75}
   m_UseDelaunayMesh: 0
 --- !u!114 &704495694175039345
 MonoBehaviour:
@@ -340,6 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67252b5192696444d8cdd778a7f5136c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockback: 10
   pathfinding: {fileID: 6672627002612428217}
 --- !u!1 &8861824600904996986
 GameObject:
@@ -408,7 +409,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1.9
 --- !u!114 &8925448249517296978
 MonoBehaviour:
   m_ObjectHideFlags: 0
