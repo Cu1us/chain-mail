@@ -17,7 +17,7 @@ public class Sword : Weapon
     [SerializeField] Transform player2;
     [SerializeField] Transform swordPivot;
 
-    [SerializeField] Chain_Demo chain;
+    [SerializeField] Chain chain;
     [SerializeField] Animator animator;
 
     List<Collider2D> enemiesInsideTrigger = new List<Collider2D>();
@@ -71,7 +71,7 @@ public class Sword : Weapon
 
     void ChainRotating()
     {
-        if (chain.grabStatus == Chain_Demo.GrabStatus.B)
+        if (chain.grabStatus == Chain.GrabStatus.B)
         {
             isChainRotating = true;
             swordCollider.enabled = false;

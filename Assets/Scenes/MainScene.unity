@@ -600,7 +600,7 @@ MonoBehaviour:
   player1: {fileID: 7228491522720290409}
   player2: {fileID: 7228491522720290410}
   swordPivot: {fileID: 1481496304}
-  chain: {fileID: 0}
+  chain: {fileID: 7228491522720290408}
   animator: {fileID: 1365151944}
 --- !u!61 &1199419663
 BoxCollider2D:
