@@ -5,6 +5,8 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class EnemySwordAttack : MonoBehaviour
 {
+    [SerializeField] float knockback;
+
     [SerializeField] Pathfinding pathfinding;
 
     List<Collider2D> playersInsideTrigger = new List<Collider2D>();
@@ -59,7 +61,7 @@ public class EnemySwordAttack : MonoBehaviour
             Debug.Log("ATTACKING PLAYER");
             Vector2 forceDirection = playersInsideTrigger[i].transform.position - transform.position;
             forceDirection.Normalize();
-            //playersInsideTrigger[i].GetComponent<Rigidbody2D>().Ad(forceDirection * knockbackForce, ForceMode2D.Impulse);
+            playersInsideTrigger[i].GetComponent<Movement>().Launch(forceDirection * knockback);
         }
     }
 
