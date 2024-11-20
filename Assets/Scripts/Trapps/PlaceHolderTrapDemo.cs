@@ -22,6 +22,7 @@ public class PlaceHolderTrapDemo : MonoBehaviour
         if(other.CompareTag("Enemy"))
         {
             other.GetComponent<Pathfinding>().Stumble(10);
+            other.GetComponent<Pathfinding>().CancelAgentUpdate();
             other.transform.position = transform.position;
             other.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
         }

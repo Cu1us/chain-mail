@@ -77,32 +77,32 @@ MonoBehaviour:
   targetTransform: {fileID: 0}
   targetTransform2: {fileID: 0}
   minDistanceToPlayer: 1.5
-  attackMovementSpeed: 2.5
+  attackMovementSpeed: 4
   attackMinDistance: 0
   attackStopDist: 1.65
-  approackMovmementSpeed: 1.5
-  approachMinDistance: 2
-  approachStopDist: 3
-  SideStrifeMovementSpeed: 1
+  approackMovmementSpeed: 3
+  approachMinDistance: 5
+  approachStopDist: 6
+  SideStrifeMovementSpeed: 2.5
   SideStrifeMinDistance: 0
   SideStrifeStopDist: 0
-  chargeMovementSpeed: 5
+  chargeMovementSpeed: 7
   chargeMinDistance: 0
   chargeStopDist: 0
-  fleeMovementSpeed: 3
+  fleeMovementSpeed: 6
   fleeMinDisntace: 0
   fleeStopDist: 0
   idleMovementSpeed: 0
   idleMinDistance: 0
   idleStopDist: 0
-  flankMovementSpeed: 3
+  flankMovementSpeed: 4
   flankMinDistance: 2
   flankExtraDistance: 2.5
   flankStopDist: 0
   playerDetected: 1
   attackState: 1
   isSpearMan: 0
-  stumbleCooldownTime: 0
+  stumbleCooldownTime: 2
 --- !u!114 &7379761614196199326
 MonoBehaviour:
   m_ObjectHideFlags: 0

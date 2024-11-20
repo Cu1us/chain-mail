@@ -405,7 +405,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -10
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.12236457, g: 0.14465404, b: 0.13595851, a: 1}
+  m_Color: {r: 0.47798735, g: 0.47798735, b: 0.47798735, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1288,6 +1288,7 @@ GameObject:
   - component: {fileID: 1505570509}
   - component: {fileID: 1505570512}
   - component: {fileID: 1505570513}
+  - component: {fileID: 1505570514}
   m_Layer: 0
   m_Name: Placeholder Stumble Trapp
   m_TagString: Untagged
@@ -1435,6 +1436,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fce62c9737ea84b4e9c328d4b5836fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1505570514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505570508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa0352a4d56abd42ad2fc69deb72448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 2.9525461, y: 2.6950145, z: 4}
+  m_Center: {x: -0.04574877, y: 0.11553979, z: 0}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &1523768471
 GameObject:
   m_ObjectHideFlags: 0
@@ -1623,37 +1640,17 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 2.2
       objectReference: {fileID: 0}
-    - target: {fileID: 6672627002612428217, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: approachStopDist
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6672627002612428217, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: fleeMovementSpeed
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6672627002612428217, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: flankMovementSpeed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6672627002612428217, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: approachMinDistance
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6672627002612428217, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: attackMovementSpeed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6672627002612428217, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: chargeMovementSpeed
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6672627002612428217, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: approackMovmementSpeed
+    - target: {fileID: 5690647865460930091, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
+      propertyPath: m_Height
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 6672627002612428217, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: SideStrifeMovementSpeed
-      value: 2.5
+    - target: {fileID: 5690647865460930091, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
+      propertyPath: m_Radius
+      value: 1.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 5690647865460930091, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
+      propertyPath: m_BaseOffset
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 7269977404316147536, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
       propertyPath: m_Size.x
@@ -1665,11 +1662,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9137275326656028869, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.26
+      value: 2.9
       objectReference: {fileID: 0}
     - target: {fileID: 9137275326656028869, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.54
+      value: 11.4
       objectReference: {fileID: 0}
     - target: {fileID: 9137275326656028869, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
       propertyPath: m_LocalPosition.z
