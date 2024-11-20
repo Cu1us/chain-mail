@@ -42,11 +42,6 @@ public class Sword : Weapon
         {
             ChangeColliderAngle(180);
         }
-        /*
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            AttackPress();
-        }*/
     }
     void OnTriggerEnter2D(Collider2D collision)
     {

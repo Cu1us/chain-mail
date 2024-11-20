@@ -14,6 +14,7 @@ public class Arrow : MonoBehaviour
     [Header("References")]
     [SerializeField] Transform arrow;
     [SerializeField] TrailRenderer trailRenderer;
+
     [HideInInspector]public float bowChargePercentage;
 
     float knockbackForce;
