@@ -389,11 +389,11 @@ public class Pathfinding : MonoBehaviour
         float x = targetTransform.position.x - transform.position.x;
         if (x < 0)
         {
-            spriteRenderer.flipX = true;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         else
         {
-            spriteRenderer.flipX = false;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 
