@@ -44,6 +44,9 @@ public class Pathfinding : MonoBehaviour
     [SerializeField] float flankExtraDistance;
     [SerializeField] float flankStopDist;
 
+    [SerializeField] Sprite normal;
+    [SerializeField] Sprite stumble;
+
     // [Header("Speeds")]
 
     // [SerializeField] float chargeMovementSpeed;
@@ -60,7 +63,7 @@ public class Pathfinding : MonoBehaviour
         ATTACK, CHARGE, IDLE, APPROACH, FLEE, SIDESTRIFE, FLANK, STUCK
 
     }
-    EnemyState state;
+    public EnemyState state;
 
     private enum StrifeDir
     {
@@ -401,6 +404,7 @@ public class Pathfinding : MonoBehaviour
     {
         if (stumbleCooldownTime < stumbleTimer)
         {
+            spriteRenderer.sprite = stumble; // temp
             state = EnemyState.STUCK;
             attackState = false;
             agent.speed = 0f;
@@ -413,6 +417,7 @@ public class Pathfinding : MonoBehaviour
 
     void Stand()
     {
+        spriteRenderer.sprite = normal;
         spriteRenderer.color = Color.white;
         RandomState();
         stumbleTimer = 0;

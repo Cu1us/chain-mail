@@ -8,10 +8,14 @@ public class EnemyAttack : MonoBehaviour
     Pathfinding state;
     EnemyAttackTrigger trigger;
     float attackTimer;
+    SpriteRenderer spriteRenderer;
+    [SerializeField] Sprite attack;
+    [SerializeField] Sprite normal;
     void Start()
     {
         trigger = GetComponentInChildren<EnemyAttackTrigger>();
         state  = GetComponent<Pathfinding>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         
     }
 
@@ -20,8 +24,9 @@ public class EnemyAttack : MonoBehaviour
     {
         if(state.attackState && trigger.isPlayerInRange)
         {
+            spriteRenderer.sprite = attack;
             attackTimer += Time.deltaTime;
-            if(attackTimer > 0.5)
+            if(attackTimer > 1)
             {
                 weapon.Attack();
                 attackTimer = 0;
@@ -30,6 +35,12 @@ public class EnemyAttack : MonoBehaviour
         else
         {
             attackTimer = 0;
+            if(state.state != Pathfinding.EnemyState.STUCK)
+            {
+                Debug.Log("tada");
+                spriteRenderer.sprite = normal;
+            }
+         //   spriteRenderer.sprite = normal; //Remove this
         }
     }
 }

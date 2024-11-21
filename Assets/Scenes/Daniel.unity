@@ -180,7 +180,7 @@ MonoBehaviour:
   player1: {fileID: 1033227330}
   player2: {fileID: 24463749}
   swordPivot: {fileID: 926458108}
-  chain: {fileID: 932454063}
+  chain: {fileID: 0}
   animator: {fileID: 719576152}
 --- !u!61 &32618964
 BoxCollider2D:
@@ -739,17 +739,6 @@ Transform:
   - {fileID: 719576151}
   m_Father: {fileID: 1033227330}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &932454063 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3198775060258626410, guid: 95ab411edf78c68a183629ea751737a7, type: 3}
-  m_PrefabInstance: {fileID: 945462753}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17c1ef45d7af0206fb302a384f304268, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &945462753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1631,34 +1620,6 @@ PrefabInstance:
     - target: {fileID: 569884204690992695, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
       propertyPath: m_Name
       value: NavEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 4983113987866911296, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5355121093722138171, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: m_Radius
-      value: 2.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5690647865460930091, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: m_Height
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5690647865460930091, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: m_Radius
-      value: 1.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 5690647865460930091, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: m_BaseOffset
-      value: 1.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 7269977404316147536, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: m_Size.x
-      value: 1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7269977404316147536, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: m_Size.y
-      value: 2.6
       objectReference: {fileID: 0}
     - target: {fileID: 9137275326656028869, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
       propertyPath: m_LocalPosition.x
