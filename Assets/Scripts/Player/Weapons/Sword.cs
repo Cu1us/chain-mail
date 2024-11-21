@@ -184,8 +184,8 @@ public class Sword : Weapon
     {
         newBloodParticle = Instantiate(bloodParticle, transform.position, Quaternion.identity);
         newBloodParticle.transform.position = enemy.transform.position;
-        //newBloodParticle.transform.localScale = Vector3.one;
-        //Invoke(nameof(DestroyBloodParticle), 3);
+        newBloodParticle.transform.localScale = Vector3.one;
+        Invoke(nameof(DestroyBloodParticle), 3);
     }
 
     void DestroyBloodParticle()
