@@ -61,7 +61,7 @@ public class EnemySwordAttack : MonoBehaviour
             Debug.Log("ATTACKING PLAYER");
             Vector2 forceDirection = playersInsideTrigger[i].transform.position - transform.position;
             forceDirection.Normalize();
-            playersInsideTrigger[i].GetComponent<Movement>().Launch(forceDirection * knockback);
+            playersInsideTrigger[i].GetComponent<PlayerMovement>().Launch(forceDirection * knockback);
         }
     }
 
