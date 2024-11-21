@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour, IKnockable
 
     [ReadOnlyInspector] public bool beingGrabbed;
     [ReadOnlyInspector] public float swingVelocity;
+    [ReadOnlyInspector] public Vector2 swingForwardDirection;
+
     [Header("Settings")]
     [SerializeField] float movementSpeed;
     [SerializeField] float velocityDeceleration;
@@ -49,6 +51,14 @@ public class PlayerMovement : MonoBehaviour, IKnockable
     public void Launch(Vector2 force)
     {
         velocity += force;
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+
+        }
     }
 }
 
