@@ -49,7 +49,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 569884204690992695}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.6
+  m_Radius: 1.23
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -58,8 +58,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0.5
+  m_Height: 3
+  m_BaseOffset: 1.75
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!114 &6672627002612428217
@@ -99,6 +99,9 @@ MonoBehaviour:
   flankMinDistance: 2
   flankExtraDistance: 2.5
   flankStopDist: 0
+  normal: {fileID: 21300000, guid: 88fcde56d7f727e448bc6581f20b02c4, type: 3}
+  stumble: {fileID: 21300000, guid: cead128e2ddcf2547af7c5badc3c6a98, type: 3}
+  state: 0
   playerDetected: 1
   attackState: 1
   isSpearMan: 0
@@ -116,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 100
+  dead: {fileID: 21300000, guid: 58dc8f1575c907d448d04cb5a1d44288, type: 3}
 --- !u!212 &3911203691474585884
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -194,7 +198,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &4558795289814905908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,6 +212,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 704495694175039345}
+  attack: {fileID: 21300000, guid: cb042d0563876eb4691e42c4f15b93f7, type: 3}
+  normal: {fileID: 21300000, guid: 88fcde56d7f727e448bc6581f20b02c4, type: 3}
 --- !u!70 &7269977404316147536
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
