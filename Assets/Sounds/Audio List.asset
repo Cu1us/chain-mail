@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Audio List
   m_EditorClassIdentifier: 
   audioAssets:
-  - name: HurtHuman
+  - name: hurthuman
     data:
       clips:
       - {fileID: 8300000, guid: 17b7c5b644ad64b77bdb516119ce302b, type: 3}
       pitchVariation: 0
-      volume: 0.111
+      volume: 1
