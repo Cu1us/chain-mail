@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
     }
 
 
-    void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         enemyHealth -= damage;
         if (enemyHealth < 0)
@@ -42,7 +42,7 @@ public class EnemyHealth : MonoBehaviour
     void Death()
     {
         spriteRenderer.sprite = dead;
-        spriteRenderer.color = Color.red;
+       // spriteRenderer.color = Color.red;
         pathfinding.enabled = false;
         Invoke(nameof(Destroy), 3f);
     }
