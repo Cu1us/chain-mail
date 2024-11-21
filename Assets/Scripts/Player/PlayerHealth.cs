@@ -21,6 +21,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        AudioManager.Play("hurtplayer");
         playerHealth -= damage;
         if(playerHealth <= 0)
         {
