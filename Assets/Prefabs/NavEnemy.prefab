@@ -347,6 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 10
+  damage: 20
   pathfinding: {fileID: 6672627002612428217}
 --- !u!1 &8861824600904996986
 GameObject:
