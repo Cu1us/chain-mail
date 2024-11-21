@@ -391,7 +391,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.37966943, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1108,6 +1108,7 @@ MonoBehaviour:
   arrowPrefab: {fileID: -8737842409984295196, guid: c5db3965d5b4f084bb6c54cb878a269b, type: 3}
   playerInputData: {fileID: 7142328240666042984}
   playerTransform: {fileID: 1181834025525489052}
+  spriteRenderer: {fileID: 6766238923295730649}
 --- !u!212 &3636857628276474238
 SpriteRenderer:
   m_ObjectHideFlags: 0

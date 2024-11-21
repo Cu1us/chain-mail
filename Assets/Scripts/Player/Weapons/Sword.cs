@@ -36,15 +36,7 @@ public class Sword : Weapon
     void Update()
     {
         ChainRotating();
-        
-        if (playerInputData.movementInput.x > 0.3f)
-        {
-            ChangeColliderAngle(0);
-        }
-        else if (playerInputData.movementInput.x < -0.3f)
-        {
-            ChangeColliderAngle(180);
-        }
+        FlipSprite();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -70,6 +62,18 @@ public class Sword : Weapon
         if (collision.CompareTag("Enemy"))
         {
             enemiesInsideTrigger.Remove(collision);
+        }
+    }
+
+    void FlipSprite()
+    {
+        if (playerInputData.movementInput.x > 0.3f)
+        {
+            ChangeColliderAngle(0);
+        }
+        else if (playerInputData.movementInput.x < -0.3f)
+        {
+            ChangeColliderAngle(180);
         }
     }
 
