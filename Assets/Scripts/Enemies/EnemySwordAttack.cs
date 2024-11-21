@@ -6,6 +6,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class EnemySwordAttack : MonoBehaviour
 {
     [SerializeField] float knockback;
+    [SerializeField] float damage;
 
     [SerializeField] Pathfinding pathfinding;
 
@@ -67,6 +68,9 @@ public class EnemySwordAttack : MonoBehaviour
 
     void AddDamage()
     {
-        //Destroy(enemiesInsideTrigger[i].gameObject);
+        for (int i = 0; i < playersInsideTrigger.Count; i++)
+        {
+            playersInsideTrigger[i].GetComponent<PlayerHealth>().TakeDamage(damage);
+        }
     }
 }

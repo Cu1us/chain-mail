@@ -44074,6 +44074,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NavEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 704495694175039345, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 9137275326656028869, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
       propertyPath: m_LocalPosition.x
       value: -33.88
