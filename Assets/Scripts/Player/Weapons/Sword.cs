@@ -19,6 +19,8 @@ public class Sword : Weapon
     [SerializeField] Transform swordPivot;
 
     [SerializeField] Chain chain;
+    [SerializeField] PlayerInputData playerInputData;
+    [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Animator animator;
 
     List<Collider2D> enemiesInsideTrigger = new List<Collider2D>();
@@ -35,11 +37,11 @@ public class Sword : Weapon
     {
         ChainRotating();
         
-        if (Input.GetKeyDown(KeyCode.D)) // Should be changed
+        if (playerInputData.movementInput.x > 0)
         {
             ChangeColliderAngle(0);
         }
-        if (Input.GetKeyDown(KeyCode.A))
+        else if (playerInputData.movementInput.x < 0)
         {
             ChangeColliderAngle(180);
         }
@@ -108,6 +110,14 @@ public class Sword : Weapon
     void ChangeColliderAngle(float angle)
     {
         swordPivot.transform.rotation = Quaternion.Euler(0, 0, angle);
+        if (angle > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else
+        {
+            spriteRenderer.flipX = true;
+        }
     }
 
     public override void AttackPress()
