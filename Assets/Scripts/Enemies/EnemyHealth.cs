@@ -5,6 +5,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] float enemyHealth;
     SpriteRenderer spriteRenderer;
     Pathfinding pathfinding;
+    [SerializeField] Sprite dead;
 
     void Start()
     {
@@ -40,6 +41,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Death()
     {
+        spriteRenderer.sprite = dead;
         spriteRenderer.color = Color.red;
         pathfinding.enabled = false;
         Invoke(nameof(Destroy), 3f);
