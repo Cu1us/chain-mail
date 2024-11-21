@@ -7,20 +7,27 @@ public class AudioList : ScriptableObject
 {
     [SerializeField] AudioAsset[] audioAssets;
 
-    static readonly Dictionary<string, AudioData> audioDictionary = new();
+    static bool initialized = false;
+    readonly Dictionary<string, AudioData> audioDictionary = new();
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    public static void InitializeDictionary()
+    [RuntimeInitializeOnLoadMethod]
+    static void OnStartup()
+    {
+        initialized = false;
+    }
+    public void InitializeDictionary()
     {
         Debug.Log("Initializing");
         foreach (AudioAsset audioAsset in audioAssets)
         {
             audioDictionary[audioAsset.name.ToLower()] = audioAsset.data;
         }
+        initialized = true;
     }
 
-    public static AudioData Get(string soundName)
+    public AudioData Get(string soundName)
     {
+        if (!initialized) InitializeDictionary();
         return audioDictionary.TryGetValue(soundName.ToLower(), out AudioData data) ? data : null;
     }
 }

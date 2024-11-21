@@ -8,19 +8,20 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Current { get; protected set; }
 
     [ReadOnlyInspector][SerializeField] AudioSource audioSource;
+    [SerializeField] AudioList audioList;
 
     void Reset()
     {
         audioSource = GetComponent<AudioSource>();
     }
-    void Start()
+    void Awake()
     {
         Current = this;
     }
 
     public static void Play(string soundName)
     {
-        AudioData audioData = AudioList.Get(soundName);
+        AudioData audioData = Current.audioList.Get(soundName);
 
         if (audioData == null)
         {
