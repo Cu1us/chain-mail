@@ -20,6 +20,8 @@ public class Arrow : MonoBehaviour
     [HideInInspector]public float bowChargePercentage;
 
     GameObject newParticle;
+    RaycastHit2D target;
+
     float knockbackForce;
     float arrowSpeed;
     float arrowTimer;
@@ -47,45 +49,50 @@ public class Arrow : MonoBehaviour
 
         if (hit.collider != null && hit.collider.CompareTag("Enemy"))
         {
-            transform.position = hit.point;
-            transform.SetParent(hit.transform);
+            target = hit;
 
-            if (hit.collider.TryGetComponent<Pathfinding>(out Pathfinding pathfinding))
-            {
-                pathfinding.CancelAgentUpdate();
-            }
+            ChangePos();
+            DisableEnemyMovement();
+            AddKnockback();
+            AddDamage();
+            InstantiateParticle();
 
             Invoke(nameof(DisableTrail), 0.5f);
-            AddKnockback(hit.collider.gameObject);
-            AddDamage(hit.collider.gameObject);
-
-
-            newParticle = Instantiate(bloodParticle, transform.position, Quaternion.identity);
-            newParticle.transform.SetParent(transform);
-            newParticle.transform.localScale = Vector3.one;
-            Invoke(nameof(RemoveParticle), 4);
+            Invoke(nameof(DestroyParticle), 4);
 
             this.enabled = false;
         }
     }
 
-    void AddKnockback(GameObject enemy)
+    void ChangePos()
     {
-        enemy.GetComponent<Rigidbody2D>().AddForce(transform.up * knockbackForce, ForceMode2D.Impulse);
+        transform.position = target.point;
+        transform.SetParent(target.transform);
     }
 
-    void AddDamage(GameObject enemy)
+    void DisableEnemyMovement()
     {
-        enemy.GetComponent<EnemyHealth>().TakeDamage(damage);
-    }
-
-    void SelfDestruct()
-    {
-        arrowTimer += Time.deltaTime;
-        if (arrowTimer > arrowLifetime)
+        if (target.collider.TryGetComponent<Pathfinding>(out Pathfinding pathfinding))
         {
-            Destroy(gameObject);
+            pathfinding.CancelAgentUpdate();
         }
+    }
+
+    void AddKnockback()
+    {
+        target.collider.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * knockbackForce, ForceMode2D.Impulse);
+    }
+
+    void AddDamage()
+    {
+        target.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+    }
+
+    void InstantiateParticle()
+    {
+        newParticle = Instantiate(bloodParticle, transform.position, Quaternion.identity);
+        newParticle.transform.SetParent(transform);
+        newParticle.transform.localScale = Vector3.one;
     }
 
     void DisableTrail()
@@ -93,8 +100,16 @@ public class Arrow : MonoBehaviour
         trailRenderer.enabled = false;
     }
 
-    void RemoveParticle()
+    void DestroyParticle()
     {
         Destroy(newParticle);
+    }
+    void SelfDestruct()
+    {
+        arrowTimer += Time.deltaTime;
+        if (arrowTimer > arrowLifetime)
+        {
+            Destroy(gameObject);
+        }
     }
 }

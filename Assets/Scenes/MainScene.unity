@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 425457475}
   - component: {fileID: 425457474}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -485,15 +485,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9081968284255681522, guid: 4a5347251986523449bccdb34aee4ef6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.4349936
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9081968284255681522, guid: 4a5347251986523449bccdb34aee4ef6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.6282256
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9081968284255681522, guid: 4a5347251986523449bccdb34aee4ef6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.024618205
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9081968284255681522, guid: 4a5347251986523449bccdb34aee4ef6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -623,7 +623,7 @@ Transform:
   m_GameObject: {fileID: 1216570552}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.3790574, y: 0.41174957, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -940,7 +940,7 @@ Transform:
   m_GameObject: {fileID: 2115851071}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.09, y: 8.59, z: 0}
+  m_LocalPosition: {x: 6, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -955,6 +955,6 @@ SceneRoots:
   - {fileID: 1216570555}
   - {fileID: 2115851075}
   - {fileID: 927977480}
-  - {fileID: 1125270394}
   - {fileID: 1194209492}
+  - {fileID: 1125270394}
   - {fileID: 657315547}
