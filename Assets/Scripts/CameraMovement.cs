@@ -32,7 +32,7 @@ public class CameraMovement : MonoBehaviour
         cameraTarget = Vector3.Lerp(cameraToMove.transform.position, cameraTarget, chainFollowStrength * Time.deltaTime);
         cameraToMove.transform.position = cameraTarget;
 
-        cameraToMove.orthographicSize = cameraSize + chainToFollow.rotationalVelocity * cameraSizeByChainVelocity;
+        cameraToMove.orthographicSize = cameraSize + Mathf.Abs(chainToFollow.rotationalVelocity) * cameraSizeByChainVelocity;
 
     }
 }
