@@ -19,6 +19,7 @@ public class Chain : MonoBehaviour
     [SerializeField] float rotationAcceleration;
     [SerializeField] float rotationDeceleration;
     [SerializeField] float swapPlacesForce;
+    [SerializeField] float chainExtendRateWhenSwung;
 
     [Header("Advanced settings")]
     [SerializeField] float heldPivotOffset;
@@ -81,11 +82,20 @@ public class Chain : MonoBehaviour
 
         AccelerateBasedOnInput();
 
+        ExtendChainBySpeed();
+
         RotateChain();
 
         Render();
 
         PositionHitbox();
+    }
+
+    void ExtendChainBySpeed()
+    {
+        if (rotationalVelocity < 10f || grabStatus == GrabStatus.NONE || currentChainLength >= maxDistance - 0.05f) return;
+        float pushDistance = (rotationalVelocity / 720) * chainExtendRateWhenSwung;
+        Grabee.MoveTowards(Center, -pushDistance);
     }
 
     void ApplyConstraint()
@@ -133,6 +143,9 @@ public class Chain : MonoBehaviour
 
     void RotateChain()
     {
+        PlayerA.swingVelocity = rotationalVelocity / 114.591559026164f * currentChainLength * localPivot;
+        PlayerB.swingVelocity = rotationalVelocity / 114.591559026164f * currentChainLength * (1 - localPivot);
+
         if (rotationalVelocity == 0) return;
         float rotation = rotationalVelocity * Time.deltaTime;
         if (grabStatus == GrabStatus.NONE)
@@ -145,10 +158,11 @@ public class Chain : MonoBehaviour
             Grabee.RotateAround(Pivot, rotation);
             if (heldPivotOffset > 0)
                 Grabber.RotateAround(Pivot, rotation);
-        }
 
-        PlayerA.swingVelocity = rotationalVelocity * Mathf.PI * currentChainLength * (1 - localPivot);
-        PlayerB.swingVelocity = rotationalVelocity * Mathf.PI * currentChainLength * localPivot;
+            Grabee.swingForwardDirection = Vector2.Perpendicular((Grabber.position - Grabee.position).normalized) * Mathf.Sign(rotationalVelocity);
+            Debug.DrawRay(Grabee.position, Grabee.swingForwardDirection, Color.red);
+            Grabber.swingForwardDirection = Vector2.zero;
+        }
     }
     void UpdatePivot()
     {
@@ -195,6 +209,13 @@ public class Chain : MonoBehaviour
         lineRenderer.SetPosition(1, PlayerB.position);
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent(out Pathfinding enemy))
+        {
+            enemy.Stumble();
+        }
+    }
 
     public enum GrabStatus
     {
