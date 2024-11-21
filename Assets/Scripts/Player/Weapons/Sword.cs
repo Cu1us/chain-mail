@@ -35,7 +35,7 @@ public class Sword : Weapon
     {
         ChainRotating();
         
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D)) // Should be changed
         {
             ChangeColliderAngle(0);
         }
@@ -44,6 +44,7 @@ public class Sword : Weapon
             ChangeColliderAngle(180);
         }
     }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
