@@ -9,9 +9,10 @@ public class AudioList : ScriptableObject
 
     static readonly Dictionary<string, AudioData> audioDictionary = new();
 
-    [RuntimeInitializeOnLoadMethod]
-    void InitializeDictionary()
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    public static void InitializeDictionary()
     {
+        Debug.Log("Initializing");
         foreach (AudioAsset audioAsset in audioAssets)
         {
             audioDictionary[audioAsset.name.ToLower()] = audioAsset.data;
