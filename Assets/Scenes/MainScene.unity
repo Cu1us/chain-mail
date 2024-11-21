@@ -1359,9 +1359,17 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6766238923295730649, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: m_Size.x
+      value: 2.2949219
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766238923295730649, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: m_Size.y
+      value: 2.359375
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766238923295730649, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 35b2807953580624da4311733a1bfff5, type: 3}
+      objectReference: {fileID: 21300000, guid: ce50208aca6a7534fbe5191942a35a61, type: 3}
     - target: {fileID: 6766238923295730649, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -1372,6 +1380,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6766238923295730649, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766238923295730649, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7142328240666042984, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
@@ -1488,8 +1500,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.8261719, y: 1.8125}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 2.2949219, y: 2.359375}
+    newSize: {x: 2.2949219, y: 2.359375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

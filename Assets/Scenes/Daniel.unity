@@ -1621,54 +1621,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NavEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 4558795289814905908, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: attack
-      value: 
-      objectReference: {fileID: 21300000, guid: cb042d0563876eb4691e42c4f15b93f7, type: 3}
-    - target: {fileID: 4558795289814905908, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: normal
-      value: 
-      objectReference: {fileID: 21300000, guid: 88fcde56d7f727e448bc6581f20b02c4, type: 3}
-    - target: {fileID: 4983113987866911296, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5355121093722138171, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: m_Radius
-      value: 2.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5690647865460930091, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: m_Height
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5690647865460930091, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: m_Radius
-      value: 1.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 5690647865460930091, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: m_BaseOffset
-      value: 1.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 6672627002612428217, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: normal
-      value: 
-      objectReference: {fileID: 21300000, guid: 88fcde56d7f727e448bc6581f20b02c4, type: 3}
-    - target: {fileID: 6672627002612428217, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: stumble
-      value: 
-      objectReference: {fileID: 21300000, guid: cead128e2ddcf2547af7c5badc3c6a98, type: 3}
-    - target: {fileID: 7269977404316147536, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: m_Size.x
-      value: 1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7269977404316147536, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: m_Size.y
-      value: 2.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7379761614196199326, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: dead
-      value: 
-      objectReference: {fileID: 21300000, guid: 58dc8f1575c907d448d04cb5a1d44288, type: 3}
     - target: {fileID: 9137275326656028869, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.9
