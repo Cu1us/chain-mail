@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 999072213a63ddb468b09fc5e2ba832b, type: 3}
   m_Color: {r: 0.73777676, g: 0.77254903, b: 0.24313726, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,6 +132,7 @@ MonoBehaviour:
   movementInput: {x: 0, y: 0}
   aimDirection: {x: 0, y: 0}
   chainRotationalInput: 0
+  swapPlacesButtonWindow: 0
   DebugRays: 1
 --- !u!114 &3456003179340165353
 MonoBehaviour:
@@ -149,6 +150,7 @@ MonoBehaviour:
   beingGrabbed: 0
   swingVelocity: 0
   movementSpeed: 2
+  velocityDeceleration: 0
   Input: {fileID: 7142328240666042984}
 --- !u!1 &6286411619735274941
 GameObject:
@@ -459,7 +461,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b4015568b7afc2441ba6a7d7de206e5a, type: 3}
   m_Color: {r: 0.7735849, g: 0.24448201, b: 0.6780253, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -515,6 +517,7 @@ MonoBehaviour:
   movementInput: {x: 0, y: 0}
   aimDirection: {x: 0, y: 0}
   chainRotationalInput: 0
+  swapPlacesButtonWindow: 0
   DebugRays: 1
 --- !u!114 &7739225830394850822
 MonoBehaviour:
@@ -532,4 +535,5 @@ MonoBehaviour:
   beingGrabbed: 0
   swingVelocity: 0
   movementSpeed: 2
+  velocityDeceleration: 0
   Input: {fileID: 3565201630926505757}

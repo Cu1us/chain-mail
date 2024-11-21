@@ -383,7 +383,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1227,7 +1227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d90e736df607cb0a0467957a86a7f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chainToFollow: {fileID: 932454063}
+  chainToFollow: {fileID: 0}
   chainFollowStrength: 3
   cameraSizeByChainVelocity: 0.0025
 --- !u!1 &1416560752
