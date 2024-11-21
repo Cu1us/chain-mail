@@ -14,9 +14,11 @@ public class Arrow : MonoBehaviour
     [Header("References")]
     [SerializeField] Transform arrow;
     [SerializeField] TrailRenderer trailRenderer;
+    [SerializeField] GameObject bloodParticle;
 
     [HideInInspector]public float bowChargePercentage;
 
+    GameObject newParticle;
     float knockbackForce;
     float arrowSpeed;
     float arrowTimer;
@@ -54,6 +56,13 @@ public class Arrow : MonoBehaviour
 
             Invoke(nameof(DisableTrail), 0.5f);
             AddKnockback(hit.collider.gameObject);
+
+
+            newParticle = Instantiate(bloodParticle, transform.position, Quaternion.identity);
+            newParticle.transform.SetParent(transform);
+            newParticle.transform.localScale = Vector3.one;
+            Invoke(nameof(RemoveParticle), 4);
+
             this.enabled = false;
         }
     }
@@ -75,5 +84,10 @@ public class Arrow : MonoBehaviour
     void DisableTrail()
     {
         trailRenderer.enabled = false;
+    }
+
+    void RemoveParticle()
+    {
+        Destroy(newParticle);
     }
 }
