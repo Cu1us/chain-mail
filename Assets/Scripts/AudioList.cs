@@ -20,7 +20,7 @@ public class AudioList : ScriptableObject
 
     public static AudioData Get(string soundName)
     {
-        return audioDictionary.TryGetValue(soundName, out AudioData data) ? data : null;
+        return audioDictionary.TryGetValue(soundName.ToLower(), out AudioData data) ? data : null;
     }
 }
 

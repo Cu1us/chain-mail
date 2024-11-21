@@ -10,6 +10,8 @@ public class Bow : Weapon
 
     [Header("References")]
     [SerializeField] Arrow arrowPrefab;
+    [SerializeField] PlayerInputData playerInputData;
+    [SerializeField] Transform playerTransform;
 
     Vector2 mousePos;
     Vector2 arrowDirection;
@@ -60,7 +62,6 @@ public class Bow : Weapon
             chargeTimer = 0;
             GetComponent<SpriteRenderer>().color = Color.gray;
 
-            RotateArrow();
             InstantiateArrow();
         }
         else
@@ -69,18 +70,10 @@ public class Bow : Weapon
         }
     }
 
-    void RotateArrow()
-    {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        arrowDirection = mousePos - (Vector2)transform.position;
-
-        targetAngle = Mathf.Atan2(arrowDirection.y, arrowDirection.x) * Mathf.Rad2Deg;
-    }
-
     void InstantiateArrow()
     {
-        Arrow newArrow = Instantiate(arrowPrefab, transform.position, Quaternion.Euler(0, 0, targetAngle - 90));
+        targetAngle = Mathf.Atan2(playerInputData.aimDirection.y, playerInputData.aimDirection.x) * Mathf.Rad2Deg;
+        Arrow newArrow = Instantiate(arrowPrefab, playerTransform.position, Quaternion.Euler(0, 0, targetAngle - 90));
         newArrow.bowChargePercentage = bowCharge;
     }
 }
