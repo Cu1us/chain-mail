@@ -26,7 +26,7 @@ public class EnemyAttack : MonoBehaviour
         {
             spriteRenderer.sprite = attack;
             attackTimer += Time.deltaTime;
-            if(attackTimer > 0.5)
+            if(attackTimer > 1)
             {
                 weapon.Attack();
                 attackTimer = 0;
