@@ -41,8 +41,8 @@ public class AudioManager : MonoBehaviour
         float basePitch = 1;
         if (audioData.pitchVariation > 0)
         {
-            float pitchRandomness = Random.Range(0, audioData.pitchVariation);
-            Current.audioSource.pitch = Random.Range(0, 2) == 0 ? basePitch / pitchRandomness : basePitch * pitchRandomness;
+            float pitchRandomness = Random.Range(-audioData.pitchVariation, audioData.pitchVariation);
+            Current.audioSource.pitch = basePitch + pitchRandomness;
         }
         else { Current.audioSource.pitch = basePitch; }
 
