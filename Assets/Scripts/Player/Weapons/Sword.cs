@@ -37,11 +37,11 @@ public class Sword : Weapon
     {
         ChainRotating();
         
-        if (playerInputData.movementInput.x > 0)
+        if (playerInputData.movementInput.x > 0.3)
         {
             ChangeColliderAngle(0);
         }
-        else if (playerInputData.movementInput.x < 0)
+        else if (playerInputData.movementInput.x < 0.3)
         {
             ChangeColliderAngle(180);
         }
@@ -112,11 +112,11 @@ public class Sword : Weapon
         swordPivot.transform.rotation = Quaternion.Euler(0, 0, angle);
         if (angle > 0)
         {
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
         }
         else
         {
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = false;
         }
     }
 
