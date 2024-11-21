@@ -201,8 +201,8 @@ public class Chain : MonoBehaviour
     }
     void PositionHitbox()
     {
-        Vector2 pointA = PlayerA.position;
-        Vector2 pointB = PlayerA.position;
+        Vector2 pointA = Vector2.MoveTowards(PlayerA.position, Center, 0.5f);
+        Vector2 pointB = Vector2.MoveTowards(PlayerB.position, Center, 0.5f);
 
         edgeCollider.SetPoints(new List<Vector2> { pointA, pointB });
     }
