@@ -188,6 +188,7 @@ MonoBehaviour:
   playerInputData: {fileID: 3565201630926505757}
   spriteRenderer: {fileID: 355997152486189517}
   animator: {fileID: 6515293925041943800}
+  bloodParticle: {fileID: 1690743382930297057, guid: 67231f910bb46dd47825e50b3f378bf0, type: 3}
 --- !u!1 &1816031526691243865
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,7 +325,7 @@ MonoBehaviour:
   movementInput: {x: 0, y: 0}
   aimDirection: {x: 0, y: 0}
   chainRotationalInput: 0
-  swapPlacesButtonWindow: 0.5
+  swapPlacesButtonWindow: 0.2
   DebugRays: 0
 --- !u!114 &3456003179340165353
 MonoBehaviour:
@@ -342,7 +343,7 @@ MonoBehaviour:
   beingGrabbed: 0
   swingVelocity: 0
   swingForwardDirection: {x: 0, y: 0}
-  movementSpeed: 3
+  movementSpeed: 6
   velocityDeceleration: 20
   Input: {fileID: 7142328240666042984}
 --- !u!61 &8552803520788039206
@@ -719,7 +720,7 @@ MonoBehaviour:
   rotationalVelocity: 0
   maxDistance: 5
   maxRotationSpeed: 270
-  rotationAcceleration: 200
+  rotationAcceleration: 400
   rotationDeceleration: 500
   swapPlacesForce: 15
   chainExtendRateWhenSwung: 0.025
@@ -892,7 +893,7 @@ MonoBehaviour:
   movementInput: {x: 0, y: 0}
   aimDirection: {x: 0, y: 0}
   chainRotationalInput: 0
-  swapPlacesButtonWindow: 0.5
+  swapPlacesButtonWindow: 0.2
   DebugRays: 0
 --- !u!114 &7739225830394850822
 MonoBehaviour:
@@ -910,7 +911,7 @@ MonoBehaviour:
   beingGrabbed: 0
   swingVelocity: 0
   swingForwardDirection: {x: 0, y: 0}
-  movementSpeed: 3
+  movementSpeed: 6
   velocityDeceleration: 20
   Input: {fileID: 3565201630926505757}
 --- !u!114 &5767535999245932975

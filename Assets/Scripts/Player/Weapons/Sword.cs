@@ -20,12 +20,16 @@ public class Sword : Weapon
 
     [SerializeField] Chain chain;
     [SerializeField] PlayerInputData playerInputData;
+
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Animator animator;
+
+    [SerializeField] GameObject bloodParticle;
 
     List<Collider2D> enemiesInsideTrigger = new List<Collider2D>();
     Dictionary<GameObject, float> enemies = new Dictionary<GameObject, float>();
 
+    GameObject newBloodParticle;
     bool isChainRotating;
 
     void Start()
@@ -172,7 +176,21 @@ public class Sword : Weapon
         foreach (var enemy in enemiesInsideTrigger)
         {
             enemy.GetComponent<EnemyHealth>().TakeDamage(damage);
+            InstantiateParticle(enemy.gameObject);
         }
+    }
+
+    void InstantiateParticle(GameObject enemy)
+    {
+        newBloodParticle = Instantiate(bloodParticle, transform.position, Quaternion.identity);
+        newBloodParticle.transform.position = enemy.transform.position;
+        //newBloodParticle.transform.localScale = Vector3.one;
+        //Invoke(nameof(DestroyBloodParticle), 3);
+    }
+
+    void DestroyBloodParticle()
+    {
+        Destroy(bloodParticle);
     }
 
     public override void AttackRelease()
