@@ -178,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackForce: 5
   knockbackRotatingForce: 2
+  damage: 30
   swordCollider: {fileID: 8927512590897158144}
   swordRotateCollider: {fileID: 2215890249748798402}
   player1: {fileID: 7969500359791862618}
@@ -200,6 +201,7 @@ GameObject:
   - component: {fileID: 3456003179340165353}
   - component: {fileID: 5880976923804078024}
   - component: {fileID: 8552803520788039206}
+  - component: {fileID: 7896777537276725480}
   m_Layer: 7
   m_Name: Player2
   m_TagString: Player
@@ -264,15 +266,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 35b2807953580624da4311733a1bfff5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ce50208aca6a7534fbe5191942a35a61, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.2949219, y: 2.359375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &399572318235544456
@@ -386,19 +388,32 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.20585883, y: 0}
+  m_Offset: {x: 0.37966943, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.8261719, y: 1.8125}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 2.2949219, y: 2.359375}
+    newSize: {x: 2.2949219, y: 2.359375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.90245795, y: 1.5039062}
+  m_Size: {x: 1.0774446, y: 1.5039062}
   m_EdgeRadius: 0
+--- !u!114 &7896777537276725480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816031526691243865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61b04833549a5074e81be3382541c785, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 4970068012726612120}
 --- !u!1 &2083484120131044560
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,6 +769,8 @@ GameObject:
   - component: {fileID: 7739225830394850822}
   - component: {fileID: 2698382972316907906}
   - component: {fileID: 4272541994978580177}
+  - component: {fileID: 5767535999245932975}
+  - component: {fileID: 3405067410752196320}
   m_Layer: 7
   m_Name: Player1
   m_TagString: Player
@@ -909,6 +926,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 4725475305745302123}
 --- !u!61 &4272541994978580177
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973225347008501586}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.22715384, y: -0.09937942}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.7675781, y: 1.6074219}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.0639256, y: 1.408663}
+  m_EdgeRadius: 0
+--- !u!114 &5767535999245932975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973225347008501586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61b04833549a5074e81be3382541c785, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
+--- !u!61 &3405067410752196320
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
