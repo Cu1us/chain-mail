@@ -322,6 +322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackForce: 5
   knockbackRotatingForce: 2
+  damage: 30
   swordCollider: {fileID: 603568063}
   swordRotateCollider: {fileID: 603568062}
   player1: {fileID: 811148259}

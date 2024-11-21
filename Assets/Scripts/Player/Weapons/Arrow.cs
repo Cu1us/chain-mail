@@ -10,6 +10,7 @@ public class Arrow : MonoBehaviour
     [SerializeField] float arrowLifetime;
     [SerializeField] float maxArrowSpeed;
     [SerializeField] float maxKnockbackForce;
+    [SerializeField] float damage;
 
     [Header("References")]
     [SerializeField] Transform arrow;
@@ -56,6 +57,7 @@ public class Arrow : MonoBehaviour
 
             Invoke(nameof(DisableTrail), 0.5f);
             AddKnockback(hit.collider.gameObject);
+            AddDamage(hit.collider.gameObject);
 
 
             newParticle = Instantiate(bloodParticle, transform.position, Quaternion.identity);
@@ -70,6 +72,11 @@ public class Arrow : MonoBehaviour
     void AddKnockback(GameObject enemy)
     {
         enemy.GetComponent<Rigidbody2D>().AddForce(transform.up * knockbackForce, ForceMode2D.Impulse);
+    }
+
+    void AddDamage(GameObject enemy)
+    {
+        enemy.GetComponent<EnemyHealth>().TakeDamage(damage);
     }
 
     void SelfDestruct()

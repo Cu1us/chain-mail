@@ -8,6 +8,7 @@ public class Sword : Weapon
     [Header("Settings")]
     [SerializeField] float knockbackForce;
     [SerializeField] float knockbackRotatingForce;
+    [SerializeField] float damage;
 
     [Header("References")]
     [SerializeField] PolygonCollider2D swordCollider;
@@ -153,7 +154,10 @@ public class Sword : Weapon
 
     void AddDamage()
     {
-        //Destroy(enemiesInsideTrigger[i].gameObject);
+        foreach (var enemy in enemiesInsideTrigger)
+        {
+            enemy.GetComponent<EnemyHealth>().TakeDamage(damage);
+        }
     }
 
     public override void AttackRelease()
