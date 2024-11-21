@@ -185,6 +185,8 @@ MonoBehaviour:
   player2: {fileID: 1181834025525489052}
   swordPivot: {fileID: 7437963180423214002}
   chain: {fileID: 1931979293959075955}
+  playerInputData: {fileID: 3565201630926505757}
+  spriteRenderer: {fileID: 355997152486189517}
   animator: {fileID: 6515293925041943800}
 --- !u!1 &1816031526691243865
 GameObject:
@@ -393,7 +395,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.2949219, y: 2.359375}
+    oldSize: {x: 1.4980469, y: 1.7578125}
     newSize: {x: 2.2949219, y: 2.359375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1083,7 +1085,7 @@ Transform:
   m_GameObject: {fileID: 8071951953753044623}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.84, y: 0, z: 10}
+  m_LocalPosition: {x: 0.49, y: 0, z: 10}
   m_LocalScale: {x: 0.099999994, y: 0.79999995, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1104,6 +1106,8 @@ MonoBehaviour:
   maxBowCharge: 0.5
   lowestAllowedBowCharge: 0.25
   arrowPrefab: {fileID: -8737842409984295196, guid: c5db3965d5b4f084bb6c54cb878a269b, type: 3}
+  playerInputData: {fileID: 7142328240666042984}
+  playerTransform: {fileID: 1181834025525489052}
 --- !u!212 &3636857628276474238
 SpriteRenderer:
   m_ObjectHideFlags: 0
