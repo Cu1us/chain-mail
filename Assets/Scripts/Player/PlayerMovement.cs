@@ -53,11 +53,25 @@ public class PlayerMovement : MonoBehaviour, IKnockable
         velocity += force;
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (swingVelocity > 1f && other.gameObject.CompareTag("Enemy"))
         {
+            if (other.gameObject.TryGetComponent(out Rigidbody2D rigidbody) && other.gameObject.TryGetComponent(out Pathfinding pathfinding))
+            {
+                Debug.Log("Hit! " + swingForwardDirection + ", " + swingVelocity);
+                pathfinding.CancelAgentUpdate();
+                rigidbody.velocity += swingForwardDirection * swingVelocity * 2.25f;
 
+                Physics2D.IgnoreCollision(other, GetComponent<Collider2D>());
+                StartCoroutine(EnableCollisionAfterTime(0.5f, other, GetComponent<Collider2D>()));
+
+                IEnumerator EnableCollisionAfterTime(float time, Collider2D col1, Collider2D col2)
+                {
+                    yield return new WaitForSeconds(time);
+                    Physics2D.IgnoreCollision(col1, col2, false);
+                }
+            }
         }
     }
 }

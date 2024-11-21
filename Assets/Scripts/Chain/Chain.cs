@@ -159,8 +159,8 @@ public class Chain : MonoBehaviour
             if (heldPivotOffset > 0)
                 Grabber.RotateAround(Pivot, rotation);
 
-            Grabee.swingForwardDirection = Vector2.Perpendicular((Grabber.position - Grabee.position).normalized) * Mathf.Sign(rotationalVelocity);
-            Debug.DrawRay(Grabee.position, Grabee.swingForwardDirection, Color.red);
+            Grabee.swingForwardDirection = Vector2.Perpendicular((Grabee.position - Grabber.position).normalized) * Mathf.Sign(rotationalVelocity);
+            Debug.DrawRay(Grabee.position, Grabee.swingForwardDirection, Color.red, 5f);
             Grabber.swingForwardDirection = Vector2.zero;
         }
     }
@@ -201,7 +201,10 @@ public class Chain : MonoBehaviour
     }
     void PositionHitbox()
     {
-        edgeCollider.SetPoints(new List<Vector2> { PlayerA.position, PlayerB.position });
+        Vector2 pointA = Vector2.MoveTowards(PlayerA.position, Center, 0.5f);
+        Vector2 pointB = Vector2.MoveTowards(PlayerA.position, Center, 0.5f);
+
+        edgeCollider.SetPoints(new List<Vector2> { pointA, pointB });
     }
     void Render()
     {
