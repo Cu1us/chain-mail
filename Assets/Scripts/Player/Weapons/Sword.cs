@@ -37,11 +37,11 @@ public class Sword : Weapon
     {
         ChainRotating();
         
-        if (playerInputData.movementInput.x > 0.3)
+        if (playerInputData.movementInput.x > 0.3f)
         {
             ChangeColliderAngle(0);
         }
-        else if (playerInputData.movementInput.x < 0.3)
+        else if (playerInputData.movementInput.x < -0.3f)
         {
             ChangeColliderAngle(180);
         }
