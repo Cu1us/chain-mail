@@ -37,7 +37,6 @@ public class EnemyAttack : MonoBehaviour
             attackTimer = 0;
             if(state.state != Pathfinding.EnemyState.STUCK)
             {
-                Debug.Log("tada");
                 spriteRenderer.sprite = normal;
             }
          //   spriteRenderer.sprite = normal; //Remove this

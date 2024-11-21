@@ -47,11 +47,11 @@ public class EnemyHealth : MonoBehaviour
         spriteRenderer.sprite = dead;
        // spriteRenderer.color = Color.red;
         pathfinding.enabled = false;
-        Invoke(nameof(Destroy), 3f);
+        Invoke(nameof(DestroyTemp), 3f);
     }
 
     void DestroyTemp()
     {
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }
