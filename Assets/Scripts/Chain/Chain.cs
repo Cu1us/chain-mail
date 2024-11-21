@@ -93,8 +93,8 @@ public class Chain : MonoBehaviour
 
     void ExtendChainBySpeed()
     {
-        if (rotationalVelocity < 10f || grabStatus == GrabStatus.NONE || currentChainLength >= maxDistance - 0.05f) return;
-        float pushDistance = (rotationalVelocity / 720) * chainExtendRateWhenSwung;
+        if (Mathf.Abs(rotationalVelocity) < 10f || grabStatus == GrabStatus.NONE || currentChainLength >= maxDistance - 0.05f) return;
+        float pushDistance = Mathf.Abs(rotationalVelocity / 720) * chainExtendRateWhenSwung;
         Grabee.MoveTowards(Center, -pushDistance);
     }
 

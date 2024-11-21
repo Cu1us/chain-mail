@@ -12,6 +12,7 @@ public class Bow : Weapon
     [SerializeField] Arrow arrowPrefab;
     [SerializeField] PlayerInputData playerInputData;
     [SerializeField] Transform playerTransform;
+    [SerializeField] SpriteRenderer spriteRenderer;
 
     Vector2 mousePos;
     Vector2 arrowDirection;
@@ -25,6 +26,7 @@ public class Bow : Weapon
     void Update()
     {
         ChargeBow();
+        FlipSprite();
     }
 
     public override void AttackPress()
@@ -75,5 +77,17 @@ public class Bow : Weapon
         targetAngle = Mathf.Atan2(playerInputData.aimDirection.y, playerInputData.aimDirection.x) * Mathf.Rad2Deg;
         Arrow newArrow = Instantiate(arrowPrefab, playerTransform.position, Quaternion.Euler(0, 0, targetAngle - 90));
         newArrow.bowChargePercentage = bowCharge;
+    }
+
+    void FlipSprite()
+    {
+        if (playerInputData.movementInput.x > 0.3f)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if (playerInputData.movementInput.x < -0.3f)
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 }
