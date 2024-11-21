@@ -27,7 +27,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         enemyHealth -= damage;
-        AudioManager.Play("Hurt");
+        AudioManager.Play("HurtHuman");
         if (enemyHealth < 0)
         {
             Death();
@@ -45,6 +45,7 @@ public class EnemyHealth : MonoBehaviour
     void Death()
     {
         spriteRenderer.sprite = dead;
+        pathfinding.StateChange(Pathfinding.EnemyState.STUCK);
        // spriteRenderer.color = Color.red;
         pathfinding.enabled = false;
         Invoke(nameof(DestroyTemp), 3f);
