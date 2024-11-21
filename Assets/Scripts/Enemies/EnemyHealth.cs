@@ -6,11 +6,13 @@ public class EnemyHealth : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Pathfinding pathfinding;
     [SerializeField] Sprite dead;
+    
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         pathfinding = GetComponent<Pathfinding>();
+
     }
 
     void Update()
@@ -25,6 +27,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         enemyHealth -= damage;
+        AudioManager.Play("Hurt");
         if (enemyHealth < 0)
         {
             Death();
