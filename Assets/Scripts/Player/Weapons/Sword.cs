@@ -185,12 +185,12 @@ public class Sword : Weapon
         newBloodParticle = Instantiate(bloodParticle, transform.position, Quaternion.identity);
         newBloodParticle.transform.position = enemy.transform.position;
         newBloodParticle.transform.localScale = Vector3.one;
-        Invoke(nameof(DestroyBloodParticle), 3);
+        Invoke(nameof(DestroyBloodParticle), 2);
     }
 
     void DestroyBloodParticle()
     {
-        Destroy(bloodParticle);
+        Destroy(newBloodParticle);
     }
 
     public override void AttackRelease()
