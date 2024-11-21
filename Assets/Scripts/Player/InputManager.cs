@@ -16,7 +16,6 @@ public class InputManager : MonoBehaviour
     static InputDevice[] rangedPlayerDevices;
 
 
-
     [RuntimeInitializeOnLoadMethod]
     static void Initialize()
     {
@@ -25,7 +24,6 @@ public class InputManager : MonoBehaviour
 
     static void OnDeviceChanged(InputDevice device, InputDeviceChange change)
     {
-        Debug.Log($"Device {change}: {device.name}, (display name \"{device.device.displayName}\") which is class \"{device.description.deviceClass}\", with interface \"{device.description.interfaceName}\" and capabilities \"{device.description.capabilities}\"");
         switch (change)
         {
             case InputDeviceChange.Added:
@@ -52,7 +50,6 @@ public class InputManager : MonoBehaviour
             instance = this;
         if (!inputManager)
             inputManager = FindFirstObjectByType<PlayerInputManager>();
-        Debug.Log($"Melee player ID: {meleePlayer.playerIndex}, ranged player ID: {rangedPlayer.playerIndex}");
         ReassignDevices();
     }
 
@@ -63,7 +60,6 @@ public class InputManager : MonoBehaviour
 
     static void ReassignDevices()
     {
-        Debug.LogWarning("Reassigning devices!");
         List<InputDevice> meleeDevices = new();
         List<InputDevice> rangedDevices = new();
         bool meleeHasGamepad = false;
@@ -74,7 +70,6 @@ public class InputManager : MonoBehaviour
         foreach (InputDevice device in InputSystem.devices)
         {
             string deviceClass = device.description.deviceClass;
-            Debug.Log($"Iterating through device: {device.name} {device.description}");
             if (deviceClass == "Keyboard")
             {
                 meleeDevices.Add(device);
@@ -114,18 +109,10 @@ public class InputManager : MonoBehaviour
     void AssignDeviceToMeleePlayer(InputDevice[] devices)
     {
         meleePlayer.SwitchCurrentControlScheme("Melee", devices);
-        foreach (InputDevice device in devices)
-        {
-            Debug.Log("Melee device assigned: " + device.description.deviceClass);
-        }
     }
     void AssignDeviceToRangedPlayer(InputDevice[] devices)
     {
         rangedPlayer.SwitchCurrentControlScheme("Ranged", devices);
-        foreach (InputDevice device in devices)
-        {
-            Debug.Log("Ranged device assigned: " + device.description.deviceClass);
-        }
     }
 
     static bool IsGamepad(InputDevice device)
