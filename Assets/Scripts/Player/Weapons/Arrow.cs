@@ -58,7 +58,6 @@ public class Arrow : MonoBehaviour
             InstantiateParticle();
 
             Invoke(nameof(DisableTrail), 0.5f);
-            Invoke(nameof(DestroyParticle), 4);
 
             this.enabled = false;
         }
@@ -98,11 +97,6 @@ public class Arrow : MonoBehaviour
     void DisableTrail()
     {
         trailRenderer.enabled = false;
-    }
-
-    void DestroyParticle()
-    {
-        Destroy(newParticle);
     }
     void SelfDestruct()
     {

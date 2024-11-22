@@ -30,6 +30,7 @@ public class Sword : Weapon
     Dictionary<GameObject, float> enemies = new Dictionary<GameObject, float>();
 
     GameObject newBloodParticle;
+    List<GameObject> bloodParticles = new List<GameObject>();
     bool isChainRotating;
 
     void Start()
@@ -186,12 +187,6 @@ public class Sword : Weapon
         newBloodParticle = Instantiate(bloodParticle, transform.position, Quaternion.identity);
         newBloodParticle.transform.position = enemy.transform.position;
         newBloodParticle.transform.localScale = Vector3.one;
-        Invoke(nameof(DestroyBloodParticle), 2);
-    }
-
-    void DestroyBloodParticle()
-    {
-        Destroy(newBloodParticle);
     }
 
     public override void AttackRelease()
