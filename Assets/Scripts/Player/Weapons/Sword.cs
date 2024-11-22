@@ -9,6 +9,7 @@ public class Sword : Weapon
     [SerializeField] float knockbackForce;
     [SerializeField] float knockbackRotatingForce;
     [SerializeField] float damage;
+    [SerializeField] float coolDown;
 
     [Header("References")]
     [SerializeField] PolygonCollider2D swordCollider;
@@ -32,6 +33,7 @@ public class Sword : Weapon
     GameObject newBloodParticle;
     List<GameObject> bloodParticles = new List<GameObject>();
     bool isChainRotating;
+    float coolDownTimer;
 
     void Start()
     {
@@ -40,6 +42,7 @@ public class Sword : Weapon
 
     void Update()
     {
+        coolDownTimer += Time.deltaTime;
         ChainRotating();
         FlipSprite();
     }
@@ -131,10 +134,14 @@ public class Sword : Weapon
 
     public override void AttackPress()
     {
-        AudioManager.Play("swordswing");
-        animator.SetTrigger("PlayAttack");
-        AddKnockback();
-        AddDamage();
+        if (coolDownTimer > coolDown)
+        {
+            AudioManager.Play("swordswing");
+            animator.SetTrigger("PlayAttack");
+            AddKnockback();
+            AddDamage();
+            coolDownTimer = 0;
+        }
     }
 
     void AddKnockback()

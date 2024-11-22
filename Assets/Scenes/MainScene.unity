@@ -21700,6 +21700,10 @@ PrefabInstance:
       propertyPath: canCollideWith.Array.data[2]
       value: 
       objectReference: {fileID: 680314489}
+    - target: {fileID: 4725475305745302123, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: coolDown
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5769951615074734439, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

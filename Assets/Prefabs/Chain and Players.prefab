@@ -179,6 +179,7 @@ MonoBehaviour:
   knockbackForce: 5
   knockbackRotatingForce: 2
   damage: 30
+  coolDown: 0.2
   swordCollider: {fileID: 8927512590897158144}
   swordRotateCollider: {fileID: 2215890249748798402}
   player1: {fileID: 7969500359791862618}
@@ -345,6 +346,11 @@ MonoBehaviour:
   swingForwardDirection: {x: 0, y: 0}
   movementSpeed: 6
   velocityDeceleration: 20
+  canCollideWith:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  localPointOfCollision: {x: 0, y: 0}
   Input: {fileID: 7142328240666042984}
 --- !u!61 &8552803520788039206
 BoxCollider2D:
@@ -913,6 +919,11 @@ MonoBehaviour:
   swingForwardDirection: {x: 0, y: 0}
   movementSpeed: 6
   velocityDeceleration: 20
+  canCollideWith:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  localPointOfCollision: {x: 0, y: 0}
   Input: {fileID: 3565201630926505757}
 --- !u!114 &5767535999245932975
 MonoBehaviour:
