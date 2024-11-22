@@ -19542,7 +19542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 569884204690992695, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-  spawnEnemiesTimeDelay: 5
+  spawnEnemiesTimeDelay: 10
 --- !u!4 &425457475
 Transform:
   m_ObjectHideFlags: 0
@@ -20325,7 +20325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 569884204690992695, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-  spawnEnemiesTimeDelay: 5
+  spawnEnemiesTimeDelay: 7
 --- !u!4 &721918019
 Transform:
   m_ObjectHideFlags: 0

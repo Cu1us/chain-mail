@@ -1041,8 +1041,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8956cd1f4d04d8e40815eee96a9da460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxBowCharge: 1
-  lowestAllowedBowCharge: 0.5
+  maxBowCharge: 0.5
+  lowestAllowedBowCharge: 0.25
   arrowPrefab: {fileID: -8737842409984295196, guid: c5db3965d5b4f084bb6c54cb878a269b, type: 3}
   playerInputData: {fileID: 7142328240666042984}
   playerTransform: {fileID: 1181834025525489052}
