@@ -47,6 +47,7 @@ public class EnemyHealth : MonoBehaviour
     void Death()
     {
         spriteRenderer.sprite = dead;
+        pathfinding.attackState = false;
         pathfinding.StateChange(Pathfinding.EnemyState.STUCK);
        // spriteRenderer.color = Color.red;
         pathfinding.enabled = false;

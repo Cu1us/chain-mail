@@ -11,6 +11,7 @@ public class EnemyAttack : MonoBehaviour
     SpriteRenderer spriteRenderer;
     [SerializeField] Sprite attack;
     [SerializeField] Sprite normal;
+    [SerializeField] Sprite swing;
     void Start()
     {
         trigger = GetComponentInChildren<EnemyAttackTrigger>();
@@ -28,6 +29,7 @@ public class EnemyAttack : MonoBehaviour
             attackTimer += Time.deltaTime;
             if(attackTimer > 1)
             {
+                spriteRenderer.sprite = swing;
                 weapon.Attack();
                 attackTimer = 0;
             }

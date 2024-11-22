@@ -28,7 +28,8 @@ public class PlaceHolderTrapDemo : MonoBehaviour
         }
         else if(other.CompareTag("Player"))
         {
-            GetComponent<PlayerHealth>().TakeDamage(20);
+            other.GetComponent<PlayerHealth>().TakeDamage(20);
+           
         }
     }
 }

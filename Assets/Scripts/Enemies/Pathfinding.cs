@@ -112,8 +112,8 @@ public class Pathfinding : MonoBehaviour
     void Update()
     {
         stumbleTimer += Time.deltaTime;
-        // stateTimer -= Time.deltaTime;   //använd senare. just nu sett state för att testa olika states.
-        stateTimer = 1; // Ta bort denna
+        stateTimer -= Time.deltaTime;   //använd senare. just nu sett state för att testa olika states.
+       // stateTimer = 1; // Ta bort denna
         if (rb.velocity.sqrMagnitude < 0.1 && agent.updatePosition == false && state != EnemyState.STUCK)
         {
             AgentUpdate();
@@ -172,7 +172,7 @@ public class Pathfinding : MonoBehaviour
     {
         if (playerDetected)
         {
-            int random = Random.Range(0, 12);
+            int random = Random.Range(0, 11);
 
             if (random <= 2)
             {
@@ -186,7 +186,7 @@ public class Pathfinding : MonoBehaviour
             {
                 state = EnemyState.FLANK;
             }
-            else if (random > 6 && random <= 8)
+            else if (random > 6 && random <= 10)
             {
                 state = EnemyState.ATTACK;
             }

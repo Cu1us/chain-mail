@@ -130,6 +130,7 @@ public class Sword : Weapon
 
     public override void AttackPress()
     {
+        AudioManager.Play("swordswing");
         animator.SetTrigger("PlayAttack");
         AddKnockback();
         AddDamage();
