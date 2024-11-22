@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Arrow : MonoBehaviour
 {
@@ -17,7 +15,7 @@ public class Arrow : MonoBehaviour
     [SerializeField] TrailRenderer trailRenderer;
     [SerializeField] GameObject bloodParticle;
 
-    [HideInInspector]public float bowChargePercentage;
+    [HideInInspector] public float bowChargePercentage;
 
     GameObject newParticle;
     RaycastHit2D target;
