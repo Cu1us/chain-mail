@@ -219,6 +219,7 @@ public class Pathfinding : MonoBehaviour
                 agent.speed = attackMovementSpeed;
                 minDistanceToPlayer = attackMinDistance;
                 agent.stoppingDistance = attackStopDist;
+                stateTimer = 3;
                 break;
 
 
@@ -244,6 +245,7 @@ public class Pathfinding : MonoBehaviour
                 minDistanceToPlayer = approachMinDistance;
                 agent.stoppingDistance = approachStopDist;//stoppingDistanceOutsideAttackRange;
                 agent.speed = approackMovmementSpeed;
+                stateTimer = 2;
                 break;
 
 
@@ -252,6 +254,7 @@ public class Pathfinding : MonoBehaviour
                 agent.stoppingDistance = fleeStopDist;
                 agent.speed = fleeMovementSpeed;
                 minDistanceToPlayer = fleeMinDisntace;
+                stateTimer = 1;
                 Flee();
                 break;
 
@@ -269,6 +272,7 @@ public class Pathfinding : MonoBehaviour
                 agent.speed = SideStrifeMovementSpeed;
                 agent.stoppingDistance = SideStrifeStopDist;
                 minDistanceToPlayer = SideStrifeMinDistance;
+                stateTimer = 3;
                 break;
 
 
@@ -277,6 +281,7 @@ public class Pathfinding : MonoBehaviour
                 minDistanceToPlayer = flankMinDistance;
                 agent.stoppingDistance = flankStopDist;
                 agent.speed = flankMovementSpeed;
+                stateTimer = 4;
 
                 break;
         }
@@ -386,7 +391,6 @@ public class Pathfinding : MonoBehaviour
         Vector2 pos = targetTransform.position - transform.position;
         pos.Normalize();
         target = new Vector2(targetTransform.position.x - pos.x * 10, targetTransform.position.y - pos.y * 10);
-        stateTimer = 1;
     }
 
     void Flip()
@@ -410,7 +414,6 @@ public class Pathfinding : MonoBehaviour
             state = EnemyState.STUCK;
             attackState = false;
             agent.speed = 0f;
-            spriteRenderer.color = Color.cyan;
             Invoke(nameof(Stand), timer);
         }
         //play animation
@@ -420,7 +423,6 @@ public class Pathfinding : MonoBehaviour
     void Stand()
     {
         spriteRenderer.sprite = normal;
-        spriteRenderer.color = Color.white;
         RandomState();
         stumbleTimer = 0;
     }
