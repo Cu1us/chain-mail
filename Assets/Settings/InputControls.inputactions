@@ -304,7 +304,7 @@
                 {
                     "name": "",
                     "id": "07f2da51-0263-4066-a51a-4b3f1711005d",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Melee;Ranged",
@@ -338,6 +338,17 @@
                     "name": "",
                     "id": "244f8040-cdd4-4e47-baed-7a1d2b956e06",
                     "path": "<Joystick>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Melee;Ranged",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e13a0130-b7e3-4ec4-911e-fa39abb38756",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Melee;Ranged",
