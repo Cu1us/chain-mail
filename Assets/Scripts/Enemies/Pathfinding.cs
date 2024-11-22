@@ -423,7 +423,7 @@ public class Pathfinding : MonoBehaviour
     void Stand()
     {
         spriteRenderer.sprite = normal;
-        RandomState();
+        StateChange(EnemyState.ATTACK);
         stumbleTimer = 0;
     }
 
