@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 [RequireComponent(typeof(PlayerInputData))]
 public class PlayerMovement : MonoBehaviour, IKnockable
@@ -15,15 +16,41 @@ public class PlayerMovement : MonoBehaviour, IKnockable
     [Header("Settings")]
     [SerializeField] float movementSpeed;
     [SerializeField] float velocityDeceleration;
+    [SerializeField] Collider2D[] canCollideWith;
+    [SerializeField] Vector2 localPointOfCollision;
 
     [Header("References")]
     [ReadOnlyInspector][SerializeField] PlayerInputData Input;
 
     // Properties
-    public Vector2 position { get { return transform.position; } set { transform.position = value; } }
+    public Vector2 position { get { return transform.position; } set { SetPosition(value, transform.position); } }
 
     // Local variables
     //
+
+    void SetPosition(Vector2 newPos, Vector2 oldPos)
+    {
+        if (newPos == oldPos) return;
+        Vector2 collisionCheckPoint = newPos + localPointOfCollision;
+        if (!IsPointInACollider(newPos))
+        {
+            transform.position = newPos;
+        }
+        else
+        {
+            Debug.Log("In collider!");
+        }
+    }
+
+    bool IsPointInACollider(Vector2 position)
+    {
+        foreach (Collider2D collider in canCollideWith)
+        {
+            if (collider.OverlapPoint(position))
+                return true;
+        }
+        return false;
+    }
 
     void Reset()
     {
