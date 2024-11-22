@@ -6,12 +6,12 @@ public class EnemyHealth : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Pathfinding pathfinding;
     [SerializeField] Sprite dead;
-    Collider2D collider2D;
+    Collider2D coll2D;
     
 
     void Start()
     {
-        collider2D = GetComponent<Collider2D>();
+        coll2D = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         pathfinding = GetComponent<Pathfinding>();
 
@@ -51,7 +51,7 @@ public class EnemyHealth : MonoBehaviour
         pathfinding.StateChange(Pathfinding.EnemyState.STUCK);
        // spriteRenderer.color = Color.red;
         pathfinding.enabled = false;
-        collider2D.enabled=false;
+        coll2D.enabled=false;
         Invoke(nameof(DestroyTemp), 3f);
     }
 
