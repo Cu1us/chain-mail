@@ -120,11 +120,11 @@ public class Sword : Weapon
         swordPivot.transform.rotation = Quaternion.Euler(0, 0, angle);
         if (angle > 0)
         {
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = false;
         }
         else
         {
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
         }
     }
 
