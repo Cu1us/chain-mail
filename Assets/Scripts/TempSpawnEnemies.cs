@@ -6,9 +6,10 @@ using UnityEngine;
 public class TempSpawnEnemies : MonoBehaviour
 {
     [SerializeField] GameObject enemy;
+    [SerializeField] float spawnEnemiesTimeDelay = 5;
     void Start()
     {
-        
+        InvokeRepeating(nameof(SpawnEnemies),5f,spawnEnemiesTimeDelay);
     }
 
     // Update is called once per frame
