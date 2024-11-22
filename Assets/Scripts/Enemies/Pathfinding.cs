@@ -104,6 +104,8 @@ public class Pathfinding : MonoBehaviour
 
         player1 = GameObject.Find("Player1").transform;
         player2 = GameObject.Find("Player2").transform;
+        targetTransform = player1;
+        targetTransform2 = player2;
 
     }
 
