@@ -71,6 +71,8 @@ public class PlayerKnockback : MonoBehaviour
 
     void AddKnockback(GameObject enemy)
     {
+        Debug.Log("TesT!");
+
         if (enemy.TryGetComponent<Pathfinding>(out Pathfinding pathfinding))
         {
             pathfinding.CancelAgentUpdate();
@@ -91,6 +93,14 @@ public class PlayerKnockback : MonoBehaviour
             forceDirection.Normalize();
 
             enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * normalKnockbackForce, ForceMode2D.Impulse);
+        }
+    }
+
+    void ClearEnemies()
+    {
+        if (chain.grabStatus == Chain.GrabStatus.B)
+        {
+            enemies.Clear();
         }
     }
 }

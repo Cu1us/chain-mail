@@ -236,8 +236,8 @@ MonoBehaviour:
   normalKnockbackForce: 15
   maxAttackTime: 1
   coolDown: 0.5
-  boxCollider: {fileID: 3405067410752196320}
-  playerInputData: {fileID: 3565201630926505757}
+  boxCollider: {fileID: 8552803520788039206}
+  playerInputData: {fileID: 7142328240666042984}
   chain: {fileID: 1931979293959075955}
   player1: {fileID: 7969500359791862618}
   player2: {fileID: 1181834025525489052}
