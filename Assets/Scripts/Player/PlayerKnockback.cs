@@ -72,8 +72,6 @@ public class PlayerKnockback : MonoBehaviour
 
     void AddKnockback(GameObject enemy)
     {
-        Debug.Log("TesT!");
-
         if (enemy.TryGetComponent<Pathfinding>(out Pathfinding pathfinding))
         {
             pathfinding.CancelAgentUpdate();
@@ -89,12 +87,14 @@ public class PlayerKnockback : MonoBehaviour
             Vector2 perpendicular = Vector2.Perpendicular(player1.position - player2.position);
             perpendicular *= Mathf.Sign(chain.rotationalVelocity);
 
+            Vector2 enemyDirection = player1.position - player2.position;
+
             if (grabStatus == Chain.GrabStatus.A)
             {
                 perpendicular *= -1;
+                enemyDirection *= -1;
             }
 
-            Vector2 enemyDirection = player1.position - player2.position;
             Vector2 forceDirection = perpendicular + enemyDirection;
             forceDirection.Normalize();
 

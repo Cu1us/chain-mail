@@ -232,8 +232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af36841f9bab9b4bb6d1683b98d87c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackForce: 25
-  normalKnockbackForce: 15
+  knockbackForce: 35
+  normalKnockbackForce: 20
   maxAttackTime: 1
   coolDown: 0.5
   grabStatus: 0
@@ -708,8 +708,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af36841f9bab9b4bb6d1683b98d87c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackForce: 25
-  normalKnockbackForce: 15
+  knockbackForce: 35
+  normalKnockbackForce: 20
   maxAttackTime: 1
   coolDown: 0.5
   grabStatus: 1
