@@ -1,17 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerKnockback : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] float knockbackForce;
+    [SerializeField] float normalKnockbackForce;
+    [SerializeField] float maxAttackTime;
+    [SerializeField] float coolDown;
 
     [Header("References")]
     [SerializeField] BoxCollider2D boxCollider;
     [SerializeField] PlayerInputData playerInputData;
-    [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Chain chain;
+
+    [SerializeField] Transform player1;
+    [SerializeField] Transform player2;
+
+    bool pressedAttack;
+    float attackTimer;
+    float coolDownTimer;
+
+    Dictionary<GameObject, float> enemies = new Dictionary<GameObject, float>();
 
     void Start()
     {
@@ -19,31 +31,66 @@ public class PlayerKnockback : MonoBehaviour
     }
     void Update()
     {
-        FlipSprite();
+        AttackTimer();
     }
 
-    void FlipSprite()
+    void AttackPress()
     {
-        if (playerInputData.movementInput.x > 0.3f)
-        {
-            spriteRenderer.flipX = false;
-        }
-        else if (playerInputData.movementInput.x < -0.3f)
-        {
-            spriteRenderer.flipX = true;
-        }
+        pressedAttack = true;
     }
 
-    public void AttackPress()
+    void AttackTimer()
     {
-        Debug.Log("TEST!");
+        if (pressedAttack)
+        {
+            attackTimer += Time.deltaTime;
+        }
+
+        if (attackTimer > maxAttackTime)
+        {
+            pressedAttack = false;
+            attackTimer = 0;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (chain.grabStatus == Chain.GrabStatus.B)
         {
-            
+            if (collision.CompareTag("Enemy"))
+            {
+                float currentTime = Time.time;
+                if (!enemies.ContainsKey(collision.gameObject) || currentTime - enemies[collision.gameObject] > coolDown)
+                {
+                    AddKnockback(collision.gameObject);
+                    enemies[collision.gameObject] = currentTime;
+                }
+            }
+        }
+    }
+
+    void AddKnockback(GameObject enemy)
+    {
+        if (enemy.TryGetComponent<Pathfinding>(out Pathfinding pathfinding))
+        {
+            pathfinding.CancelAgentUpdate();
+        }
+
+        if (pressedAttack)
+        {
+            Vector2 forceDirection = playerInputData.movementInput.normalized;
+            enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * knockbackForce, ForceMode2D.Impulse);
+        }
+        else
+        {
+            Vector2 perpendicular = Vector2.Perpendicular(player1.position - player2.position);
+            perpendicular *= Mathf.Sign(chain.rotationalVelocity);
+
+            Vector2 enemyDirection = player1.position - player2.position;
+            Vector2 forceDirection = perpendicular + enemyDirection;
+            forceDirection.Normalize();
+
+            enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * normalKnockbackForce, ForceMode2D.Impulse);
         }
     }
 }
