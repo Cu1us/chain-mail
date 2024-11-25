@@ -20228,52 +20228,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1686771663}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &721918017
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 721918019}
-  - component: {fileID: 721918018}
-  m_Layer: 0
-  m_Name: EnemySpawner (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &721918018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 721918017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b69a05de458b8854c9540e84b917bedd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 569884204690992695, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-  spawnEnemiesTimeDelay: 7
---- !u!4 &721918019
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 721918017}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.62, y: -26.05, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &726407510
 GameObject:
   m_ObjectHideFlags: 0
@@ -21617,14 +21571,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 275708057928939215, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
-      propertyPath: knockbackForce
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 275708057928939215, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
-      propertyPath: normalKnockbackForce
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 3456003179340165353, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: canCollideWith.Array.data[0]
       value: 
@@ -21693,14 +21639,6 @@ PrefabInstance:
       propertyPath: canCollideWith.Array.data[2]
       value: 
       objectReference: {fileID: 680314489}
-    - target: {fileID: 7987785583070952663, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
-      propertyPath: knockbackForce
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 7987785583070952663, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
-      propertyPath: normalKnockbackForce
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -24345,7 +24283,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1348330406}
   - {fileID: 425457475}
-  - {fileID: 721918019}
   - {fileID: 2115851075}
   - {fileID: 927977480}
   - {fileID: 1194209492}
