@@ -21629,6 +21629,10 @@ PrefabInstance:
       propertyPath: canCollideWith.Array.data[2]
       value: 
       objectReference: {fileID: 680314489}
+    - target: {fileID: 5767535999245932975, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5769951615074734439, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -21685,14 +21689,8 @@ PrefabInstance:
       propertyPath: canCollideWith.Array.data[2]
       value: 
       objectReference: {fileID: 680314489}
-    - target: {fileID: 7896777537276725480, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
-      propertyPath: weapon
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 8071951953753044623, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
-    - {fileID: 849049699458622374, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
