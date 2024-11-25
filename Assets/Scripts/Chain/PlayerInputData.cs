@@ -55,7 +55,7 @@ public class PlayerInputData : MonoBehaviour
     }
     void OnAttack(InputValue value)
     {
-        isHoldingAttack = Mathf.RoundToInt(value.Get<float>()) != +0;
+        isHoldingAttack = Mathf.RoundToInt(value.Get<float>()) != 0;
         if (isHoldingAttack)
         {
             onAttackPress?.Invoke();
