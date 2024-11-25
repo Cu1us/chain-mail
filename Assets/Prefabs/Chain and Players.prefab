@@ -236,6 +236,7 @@ MonoBehaviour:
   normalKnockbackForce: 15
   maxAttackTime: 1
   coolDown: 0.5
+  grabStatus: 0
   boxCollider: {fileID: 8552803520788039206}
   playerInputData: {fileID: 7142328240666042984}
   chain: {fileID: 1931979293959075955}
@@ -711,6 +712,7 @@ MonoBehaviour:
   normalKnockbackForce: 15
   maxAttackTime: 1
   coolDown: 0.5
+  grabStatus: 1
   boxCollider: {fileID: 3405067410752196320}
   playerInputData: {fileID: 3565201630926505757}
   chain: {fileID: 1931979293959075955}

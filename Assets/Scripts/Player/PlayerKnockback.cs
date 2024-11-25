@@ -10,6 +10,7 @@ public class PlayerKnockback : MonoBehaviour
     [SerializeField] float normalKnockbackForce;
     [SerializeField] float maxAttackTime;
     [SerializeField] float coolDown;
+    [SerializeField] Chain.GrabStatus grabStatus;
 
     [Header("References")]
     [SerializeField] BoxCollider2D boxCollider;
@@ -55,7 +56,7 @@ public class PlayerKnockback : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (chain.grabStatus == Chain.GrabStatus.B)
+        if (chain.grabStatus == grabStatus)
         {
             if (collision.CompareTag("Enemy"))
             {
@@ -88,6 +89,11 @@ public class PlayerKnockback : MonoBehaviour
             Vector2 perpendicular = Vector2.Perpendicular(player1.position - player2.position);
             perpendicular *= Mathf.Sign(chain.rotationalVelocity);
 
+            if (grabStatus == Chain.GrabStatus.A)
+            {
+                perpendicular *= -1;
+            }
+
             Vector2 enemyDirection = player1.position - player2.position;
             Vector2 forceDirection = perpendicular + enemyDirection;
             forceDirection.Normalize();
@@ -98,7 +104,7 @@ public class PlayerKnockback : MonoBehaviour
 
     void ClearEnemies()
     {
-        if (chain.grabStatus == Chain.GrabStatus.B)
+        if (chain.grabStatus == grabStatus)
         {
             enemies.Clear();
         }

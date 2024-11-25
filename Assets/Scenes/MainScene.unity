@@ -21617,6 +21617,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 275708057928939215, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: grabStatus
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3456003179340165353, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: canCollideWith.Array.data[0]
       value: 
