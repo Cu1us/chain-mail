@@ -10,6 +10,7 @@ public class PlayerInputData : MonoBehaviour
     [ReadOnlyInspector] public Vector2 movementInput;
     [ReadOnlyInspector] public Vector2 aimDirection;
     [ReadOnlyInspector] public float chainRotationalInput;
+    [ReadOnlyInspector] public bool isHoldingAttack;
     public Action onAttackPress;
     public Action onAttackRelease;
     public Action onChainSwap;
@@ -54,8 +55,8 @@ public class PlayerInputData : MonoBehaviour
     }
     void OnAttack(InputValue value)
     {
-        bool held = Mathf.RoundToInt(value.Get<float>()) != 0;
-        if (held)
+        isHoldingAttack = Mathf.RoundToInt(value.Get<float>()) != +0;
+        if (isHoldingAttack)
         {
             onAttackPress?.Invoke();
         }
