@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1181834025525489052}
   - component: {fileID: 6766238923295730649}
+  - component: {fileID: 8552803520788039206}
   - component: {fileID: 399572318235544456}
   - component: {fileID: 7142328240666042984}
   - component: {fileID: 3456003179340165353}
-  - component: {fileID: 8552803520788039206}
-  - component: {fileID: 7896777537276725480}
   - component: {fileID: 378560818260661485}
+  - component: {fileID: 7987785583070952663}
   m_Layer: 7
   m_Name: Player2
   m_TagString: Player
@@ -90,77 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &399572318235544456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1816031526691243865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: bbe44d462897162d9b49358578bd46ff, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Ranged
-  m_DefaultActionMap: PlayerMovement
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!114 &7142328240666042984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1816031526691243865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3de68a44b5db69c36b1a8bba4c8a8e5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementInput: {x: 0, y: 0}
-  aimDirection: {x: 0, y: 0}
-  chainRotationalInput: 0
-  swapPlacesButtonWindow: 0.2
-  DebugRays: 0
---- !u!114 &3456003179340165353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1816031526691243865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27c37d81781603e75bd69c3c21961020, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 0}
-  beingGrabbed: 0
-  swingVelocity: 0
-  swingForwardDirection: {x: 0, y: 0}
-  movementSpeed: 6
-  velocityDeceleration: 20
-  canCollideWith:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  localPointOfCollision: {x: 0, y: 0}
-  Input: {fileID: 7142328240666042984}
 --- !u!61 &8552803520788039206
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -206,7 +135,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0774446, y: 1.5039062}
   m_EdgeRadius: 0
---- !u!114 &7896777537276725480
+--- !u!114 &399572318235544456
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,10 +144,69 @@ MonoBehaviour:
   m_GameObject: {fileID: 1816031526691243865}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61b04833549a5074e81be3382541c785, type: 3}
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
+  m_Actions: {fileID: -944628639613478452, guid: bbe44d462897162d9b49358578bd46ff, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Ranged
+  m_DefaultActionMap: PlayerMovement
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &7142328240666042984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816031526691243865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de68a44b5db69c36b1a8bba4c8a8e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementInput: {x: 0, y: 0}
+  aimDirection: {x: 0, y: 0}
+  chainRotationalInput: 0
+  isHoldingAttack: 0
+  swapPlacesButtonWindow: 0.2
+  DebugRays: 0
+--- !u!114 &3456003179340165353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816031526691243865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27c37d81781603e75bd69c3c21961020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0}
+  beingGrabbed: 0
+  swingVelocity: 0
+  swingForwardDirection: {x: 0, y: 0}
+  movementSpeed: 6
+  velocityDeceleration: 20
+  canCollideWith:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  localPointOfCollision: {x: 0, y: 0}
+  Input: {fileID: 7142328240666042984}
 --- !u!114 &378560818260661485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,6 +220,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: 100
+--- !u!114 &7987785583070952663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816031526691243865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9af36841f9bab9b4bb6d1683b98d87c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackForce: 35
+  normalKnockbackForce: 20
+  maxAttackTime: 1
+  coolDown: 0.5
+  grabStatus: 0
+  boxCollider: {fileID: 8552803520788039206}
+  playerInputData: {fileID: 7142328240666042984}
+  chain: {fileID: 1931979293959075955}
+  player1: {fileID: 7969500359791862618}
+  player2: {fileID: 1181834025525489052}
 --- !u!1 &6286411619735274941
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,12 +486,12 @@ GameObject:
   m_Component:
   - component: {fileID: 7969500359791862618}
   - component: {fileID: 355997152486189517}
+  - component: {fileID: 3405067410752196320}
   - component: {fileID: 149371687736191209}
   - component: {fileID: 3565201630926505757}
   - component: {fileID: 7739225830394850822}
-  - component: {fileID: 5767535999245932975}
-  - component: {fileID: 3405067410752196320}
   - component: {fileID: 4692490535370305448}
+  - component: {fileID: 275708057928939215}
   m_Layer: 7
   m_Name: Player1
   m_TagString: Player
@@ -556,90 +566,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &149371687736191209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7973225347008501586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: bbe44d462897162d9b49358578bd46ff, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Melee
-  m_DefaultActionMap: PlayerMovement
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!114 &3565201630926505757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7973225347008501586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3de68a44b5db69c36b1a8bba4c8a8e5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementInput: {x: 0, y: 0}
-  aimDirection: {x: 0, y: 0}
-  chainRotationalInput: 0
-  swapPlacesButtonWindow: 0.2
-  DebugRays: 0
---- !u!114 &7739225830394850822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7973225347008501586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27c37d81781603e75bd69c3c21961020, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 0}
-  beingGrabbed: 0
-  swingVelocity: 0
-  swingForwardDirection: {x: 0, y: 0}
-  movementSpeed: 6
-  velocityDeceleration: 20
-  canCollideWith:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  localPointOfCollision: {x: 0, y: 0}
-  Input: {fileID: 3565201630926505757}
---- !u!114 &5767535999245932975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7973225347008501586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61b04833549a5074e81be3382541c785, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
 --- !u!61 &3405067410752196320
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -685,6 +611,78 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0639256, y: 1.408663}
   m_EdgeRadius: 0
+--- !u!114 &149371687736191209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973225347008501586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: bbe44d462897162d9b49358578bd46ff, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Melee
+  m_DefaultActionMap: PlayerMovement
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &3565201630926505757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973225347008501586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de68a44b5db69c36b1a8bba4c8a8e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementInput: {x: 0, y: 0}
+  aimDirection: {x: 0, y: 0}
+  chainRotationalInput: 0
+  isHoldingAttack: 0
+  swapPlacesButtonWindow: 0.2
+  DebugRays: 0
+--- !u!114 &7739225830394850822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973225347008501586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27c37d81781603e75bd69c3c21961020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0}
+  beingGrabbed: 0
+  swingVelocity: 0
+  swingForwardDirection: {x: 0, y: 0}
+  movementSpeed: 6
+  velocityDeceleration: 20
+  canCollideWith:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  localPointOfCollision: {x: 0, y: 0}
+  Input: {fileID: 3565201630926505757}
 --- !u!114 &4692490535370305448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,3 +696,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: 150
+--- !u!114 &275708057928939215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973225347008501586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9af36841f9bab9b4bb6d1683b98d87c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackForce: 35
+  normalKnockbackForce: 20
+  maxAttackTime: 1
+  coolDown: 0.5
+  grabStatus: 1
+  boxCollider: {fileID: 3405067410752196320}
+  playerInputData: {fileID: 3565201630926505757}
+  chain: {fileID: 1931979293959075955}
+  player1: {fileID: 7969500359791862618}
+  player2: {fileID: 1181834025525489052}
