@@ -7,12 +7,12 @@ public class Trap : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Enemy"))
+        if(other.gameObject.layer == LayerMask.NameToLayer("EnemyFeet"))
         {
-            other.transform.position = transform.position;
-            other.GetComponent<Pathfinding>().CancelAgentUpdate();
-            other.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
-            other.GetComponent<EnemyHealth>().TakeDamage(200);
+            other.GetComponentInParent<Transform>().transform.position = transform.position;
+            other.GetComponentInParent<Pathfinding>().CancelAgentUpdate();
+            other.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(0,0);
+            other.GetComponentInParent<EnemyHealth>().TakeDamage(200);
         }
 
         /*else if(other.CompareTag("Player"))
