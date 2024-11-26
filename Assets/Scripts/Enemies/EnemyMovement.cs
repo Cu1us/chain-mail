@@ -21,6 +21,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float attackDistance;
     public bool isAttackState;
     Chain chain;
+    float stumbleTimer;
+    float stumbleTimerCooldown;
 
 
     public enum EnemyState
@@ -57,7 +59,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-
+        stumbleTimer += Time.deltaTime;
         ClosestEnemy();
 
         switch (state)
@@ -81,7 +83,10 @@ public class EnemyMovement : MonoBehaviour
             case EnemyState.CHARGE:
                 break;
         }
-        //target = player1.position + (transform.position - player1.position).normalized * 2;
+
+
+
+        
         agent.SetDestination(target);
 
         direction = agent.nextPosition - transform.position;
@@ -98,7 +103,6 @@ public class EnemyMovement : MonoBehaviour
         }
 
         rb.velocity = Vector2.MoveTowards(rb.velocity, direction * maxVelocity, acceleration * Time.deltaTime);
-        //Debug.Log(rb.velocity.magnitude);
         agent.nextPosition = transform.position;
         Flip();
     }
@@ -107,10 +111,12 @@ public class EnemyMovement : MonoBehaviour
     {
         state = _state;
         maxVelocity = 5;
-
+        isAttackState = true;
         switch (state)
         {
+
             case EnemyState.STUCK:
+                isAttackState = false;
                 break;
             case EnemyState.KEEPDISTANCE:
                 break;
@@ -195,14 +201,17 @@ public class EnemyMovement : MonoBehaviour
 
     public void Stumble()
     {
-        maxVelocity = 0;
-        Invoke(nameof(Stand), 2f);
-        spriteRenderer.color = Color.cyan;
+        if (stumbleTimer < stumbleTimerCooldown)
+        {
+            maxVelocity = 0;
+            Invoke(nameof(Stand), 2f);
+            state = EnemyState.STUCK;
+        }
+
     }
 
     void Stand()
     {
-        spriteRenderer.color = Color.white;
         StateChange(EnemyState.MOVECLOSETOATTACK);
     }
 
@@ -220,6 +229,9 @@ public class EnemyMovement : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
         }
-
     }
+
+
+
+
 }
