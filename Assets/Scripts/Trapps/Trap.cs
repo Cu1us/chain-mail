@@ -9,9 +9,9 @@ public class Trap : MonoBehaviour
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("EnemyFeet"))
         {
-            other.GetComponentInParent<Transform>().transform.position = transform.position;
             other.GetComponentInParent<Pathfinding>().CancelAgentUpdate();
             other.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(0,0);
+            other.GetComponentInParent<Transform>().position = transform.position;
             other.GetComponentInParent<EnemyHealth>().TakeDamage(200);
         }
 
