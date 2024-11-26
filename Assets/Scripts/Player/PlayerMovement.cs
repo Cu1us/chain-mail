@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour, IKnockable
         velocity += force;
     }
 
-    /*void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (swingVelocity > 1f && other.gameObject.CompareTag("Enemy"))
         {
@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour, IKnockable
                 }
             }
         }
-    }*/
+    }
 }
 
 public interface IKnockable

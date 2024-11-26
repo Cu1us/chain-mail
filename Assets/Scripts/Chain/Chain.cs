@@ -15,14 +15,11 @@ public class Chain : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] float maxDistance;
-    [SerializeField] float minDistance;
     [SerializeField] float maxRotationSpeed;
     [SerializeField] float rotationAcceleration;
     [SerializeField] float rotationDeceleration;
     [SerializeField] float swapPlacesForce;
-    [SerializeField] float extendChainSpeed;
-
-    //[SerializeField] float chainExtendRateWhenSwung;
+    [SerializeField] float chainExtendRateWhenSwung;
 
     [Header("Advanced settings")]
     [SerializeField] float heldPivotOffset;
@@ -67,8 +64,6 @@ public class Chain : MonoBehaviour
     {
         PlayerAInput.onChainSwap += SwapPlaces;
         PlayerBInput.onChainSwap += SwapPlaces;
-        PlayerAInput.onChainRotate += PlayerAGrabChain;
-        PlayerBInput.onChainRotate += PlayerBGrabChain;
     }
     public void SwapPlaces()
     {
@@ -76,14 +71,7 @@ public class Chain : MonoBehaviour
         PlayerA.Launch((PlayerB.position - PlayerA.position).normalized * swapPlacesForce);
         PlayerB.Launch((PlayerA.position - PlayerB.position).normalized * swapPlacesForce);
     }
-    void PlayerAGrabChain(int dir)
-    {
-        if (dir != 0) SetGrabber(GrabStatus.A);
-    }
-    void PlayerBGrabChain(int dir)
-    {
-        if (dir != 0) SetGrabber(GrabStatus.B);
-    }
+
     void Update()
     {
         currentChainLength = Vector2.Distance(PlayerA.position, PlayerB.position);
@@ -94,7 +82,7 @@ public class Chain : MonoBehaviour
 
         AccelerateBasedOnInput();
 
-        ExtendChainByInput();
+        ExtendChainBySpeed();
 
         RotateChain();
 
@@ -103,21 +91,10 @@ public class Chain : MonoBehaviour
         PositionHitbox();
     }
 
-    /*void ExtendChainBySpeed()
+    void ExtendChainBySpeed()
     {
         if (Mathf.Abs(rotationalVelocity) < 10f || grabStatus == GrabStatus.NONE || currentChainLength >= maxDistance - 0.05f) return;
         float pushDistance = Mathf.Abs(rotationalVelocity / 720) * chainExtendRateWhenSwung;
-        Grabee.MoveTowards(Center, -pushDistance);
-    }*/
-
-    void ExtendChainByInput()
-    {
-        if (grabStatus == GrabStatus.NONE || currentChainLength >= maxDistance) return;
-        float pushDistance = GrabberInput.chainExtendInput * extendChainSpeed * Time.deltaTime;
-
-        if (currentChainLength + pushDistance > maxDistance) pushDistance = maxDistance - currentChainLength;
-        if (currentChainLength + pushDistance < minDistance) pushDistance = minDistance - currentChainLength;
-
         Grabee.MoveTowards(Center, -pushDistance);
     }
 
@@ -170,7 +147,7 @@ public class Chain : MonoBehaviour
         PlayerB.swingVelocity = rotationalVelocity / 114.591559026164f * currentChainLength * (1 - localPivot);
 
         if (rotationalVelocity == 0) return;
-        float rotation = rotationalVelocity * Time.deltaTime / currentChainLength;
+        float rotation = rotationalVelocity * Time.deltaTime;
         if (grabStatus == GrabStatus.NONE)
         {
             PlayerA.RotateAround(Pivot, rotation);
@@ -195,41 +172,30 @@ public class Chain : MonoBehaviour
         // Decide who is grabbing, and set pivot accordingly
         if (!playerATryingToRotate && !playerBTryingToRotate)
         {
-            SetGrabber(GrabStatus.NONE);
+            grabStatus = GrabStatus.NONE;
+
+            // Animate pivot back to center
+            float pivotAnimationProgress = Mathf.Clamp((Time.time - lastChainHeldTime) / pivotReadjustToCenterTime, 0, 1);
+            pivotAnimationProgress = pivotReadjustToCenterCurve.Evaluate(pivotAnimationProgress);
+            float pivotOffsetByLength = heldPivotOffset / currentChainLength;
+            localPivot = pivotOffsetByLength + pivotAnimationProgress * (0.5f - pivotOffsetByLength);
         }
         else
         {
+            lastChainHeldTime = Time.time;
             if (playerATryingToRotate && !playerBTryingToRotate)
             {
-                SetGrabber(GrabStatus.A);
+                grabStatus = GrabStatus.A;
+                localPivot = heldPivotOffset;
             }
             else if (!playerATryingToRotate && playerBTryingToRotate)
             {
-                SetGrabber(GrabStatus.B);
+                grabStatus = GrabStatus.B;
+                localPivot = 1 - heldPivotOffset;
+                lastChainHeldTime = Time.time;
             }
         }
-    }
-    void SetGrabber(GrabStatus grabber)
-    {
-        grabStatus = grabber;
-        if (grabber != GrabStatus.NONE)
-            lastChainHeldTime = Time.time;
-        switch (grabber)
-        {
-            case GrabStatus.A:
-                localPivot = heldPivotOffset;
-                break;
-            case GrabStatus.B:
-                localPivot = 1 - heldPivotOffset;
-                break;
-            case GrabStatus.NONE:
-                // Animate pivot back to center
-                float pivotAnimationProgress = Mathf.Clamp((Time.time - lastChainHeldTime) / pivotReadjustToCenterTime, 0, 1);
-                pivotAnimationProgress = pivotReadjustToCenterCurve.Evaluate(pivotAnimationProgress);
-                float pivotOffsetByLength = heldPivotOffset / currentChainLength;
-                localPivot = pivotOffsetByLength + pivotAnimationProgress * (0.5f - pivotOffsetByLength);
-                break;
-        }
+
         PlayerA.beingGrabbed = grabStatus == GrabStatus.B;
         PlayerB.beingGrabbed = grabStatus == GrabStatus.A;
     }
