@@ -13,6 +13,7 @@ public class PlayerInputData : MonoBehaviour
     [ReadOnlyInspector] public bool isHoldingAttack;
     public Action onAttackPress;
     public Action onAttackRelease;
+    public Action<int> onChainRotate;
     public Action onChainSwap;
 
     [SerializeField] float swapPlacesButtonWindow;
@@ -52,6 +53,7 @@ public class PlayerInputData : MonoBehaviour
         chainRotationalInput = value.Get<float>();
         Debug.Log("Rotating: value: " + chainRotationalInput);
         if (DebugRays) Debug.DrawRay(transform.position, movementInput, Color.gray, 1f);
+        onChainRotate?.Invoke(Mathf.RoundToInt(chainRotationalInput));
     }
     void OnAttack(InputValue value)
     {
