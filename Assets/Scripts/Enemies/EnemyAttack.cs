@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] EnemySwordAttack weapon;
-    Pathfinding state;
+    EnemyMovement state;
     EnemyAttackTrigger trigger;
     float attackTimer;
     SpriteRenderer spriteRenderer;
@@ -15,7 +15,7 @@ public class EnemyAttack : MonoBehaviour
     void Start()
     {
         trigger = GetComponentInChildren<EnemyAttackTrigger>();
-        state  = GetComponent<Pathfinding>();
+        state  = GetComponent<EnemyMovement>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         
     }
@@ -23,7 +23,7 @@ public class EnemyAttack : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(state.attackState && trigger.isPlayerInRange)
+        if(state.isAttackState && trigger.isPlayerInRange)
         {
             spriteRenderer.sprite = attack;
             attackTimer += Time.deltaTime;
@@ -37,7 +37,7 @@ public class EnemyAttack : MonoBehaviour
         else
         {
             attackTimer = 0;
-            if(state.state != Pathfinding.EnemyState.STUCK)
+            if(state.state != EnemyMovement.EnemyState.STUCK)
             {
                 spriteRenderer.sprite = normal;
             }
