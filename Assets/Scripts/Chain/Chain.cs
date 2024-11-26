@@ -53,7 +53,7 @@ public class Chain : MonoBehaviour
 
     // Local variables
     float localPivot;
-    float currentChainLength;
+    public float currentChainLength { get; protected set; }
     float lastChainHeldTime;
 
 
