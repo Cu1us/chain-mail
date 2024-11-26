@@ -38,7 +38,12 @@ public class PlayerMovement : MonoBehaviour, IKnockable
         }
         else
         {
-            Debug.Log("In collider!");
+            Vector2 toWall = newPos - oldPos;
+            Vector2 dirToWall = toWall.normalized;
+            RaycastHit2D hit = Physics2D.Raycast(oldPos, dirToWall, 2f, LayerMask.NameToLayer("Environment"));
+            float dot = Vector2.Dot(dirToWall, -hit.normal);
+            newPos += hit.normal * dot * toWall.magnitude;
+            transform.position = newPos;
         }
     }
 
