@@ -53,7 +53,6 @@ public class EnemyMovement : MonoBehaviour
         targetTransform1 = player1;
         targetTransform2 = player2;
         chain = GetComponent<Chain>();
-        StateChange(EnemyState.FLANK);
     }
 
 
