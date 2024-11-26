@@ -326,6 +326,8 @@ MonoBehaviour:
   movementInput: {x: 0, y: 0}
   aimDirection: {x: 0, y: 0}
   chainRotationalInput: 0
+  chainExtendInput: 0
+  isHoldingAttack: 0
   swapPlacesButtonWindow: 0.2
   DebugRays: 0
 --- !u!114 &3456003179340165353
@@ -724,12 +726,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabStatus: 0
   rotationalVelocity: 0
-  maxDistance: 5
-  maxRotationSpeed: 270
-  rotationAcceleration: 400
-  rotationDeceleration: 500
+  maxDistance: 5.5
+  minDistance: 2
+  maxRotationSpeed: 1420
+  rotationAcceleration: 1000
+  rotationDeceleration: 800
   swapPlacesForce: 15
-  chainExtendRateWhenSwung: 0.025
+  extendChainSpeed: 8
   heldPivotOffset: 0.075
   forcePreserveMomentumThreshold: 0.4
   pivotReadjustToCenterTime: 0.25
@@ -899,6 +902,8 @@ MonoBehaviour:
   movementInput: {x: 0, y: 0}
   aimDirection: {x: 0, y: 0}
   chainRotationalInput: 0
+  chainExtendInput: 0
+  isHoldingAttack: 0
   swapPlacesButtonWindow: 0.2
   DebugRays: 0
 --- !u!114 &7739225830394850822
