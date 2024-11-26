@@ -9,11 +9,15 @@ public class PlayerInputData : MonoBehaviour
 {
     [ReadOnlyInspector] public Vector2 movementInput;
     [ReadOnlyInspector] public Vector2 aimDirection;
-    [ReadOnlyInspector] public float chainRotationalInput;
+    [ReadOnlyInspector][Obsolete] public float chainRotationalInput;
     [ReadOnlyInspector] public bool isHoldingAttack;
+    [ReadOnlyInspector] public bool isGrabbingChain;
+
     public Action onAttackPress;
     public Action onAttackRelease;
     public Action onChainSwap;
+    public Action onChainGrab;
+
 
     [SerializeField] float swapPlacesButtonWindow;
 
@@ -35,6 +39,11 @@ public class PlayerInputData : MonoBehaviour
         movementInput = value.Get<Vector2>();
         if (DebugRays) Debug.DrawRay(transform.position, movementInput, Color.green, 1f);
     }
+    void OnGrabChain(InputValue value)
+    {
+        isGrabbingChain = Mathf.RoundToInt(value.Get<float>()) != 0;
+        onChainGrab?.Invoke();
+    }
     void OnAim(InputValue value)
     {
         aimDirection = value.Get<Vector2>();
@@ -47,6 +56,8 @@ public class PlayerInputData : MonoBehaviour
         aimDirection = (aimTarget - (Vector2)transform.position).normalized;
         if (DebugRays) Debug.DrawRay(transform.position, aimDirection, Color.cyan, 1f);
     }
+
+    [Obsolete]
     void OnChainRotation(InputValue value)
     {
         chainRotationalInput = value.Get<float>();

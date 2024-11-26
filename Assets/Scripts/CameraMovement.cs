@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField] Chain chainToFollow;
+    [SerializeField] Chain_old chainToFollow;
     [SerializeField][Min(0)] float chainFollowStrength;
     [SerializeField] float cameraSizeByChainVelocity;
 
@@ -17,7 +17,7 @@ public class CameraMovement : MonoBehaviour
     {
         if (!chainToFollow)
         {
-            chainToFollow = FindFirstObjectByType<Chain>();
+            chainToFollow = FindFirstObjectByType<Chain_old>();
             if (chainToFollow == null)
                 Debug.LogWarning("The camera movement script is missing a Chain object reference - the old Chain_Demo will not work anymore");
         }

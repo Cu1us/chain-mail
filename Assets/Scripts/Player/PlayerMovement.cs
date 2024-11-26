@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour, IKnockable
 
     void Update()
     {
-        if (!beingGrabbed && Input.chainRotationalInput == 0) position += Input.movementInput * movementSpeed * Time.deltaTime;
+        if (!beingGrabbed && !Input.isGrabbingChain) position += Input.movementInput * movementSpeed * Time.deltaTime;
 
         position += velocity * Time.deltaTime;
         velocity = Vector2.MoveTowards(velocity, Vector2.zero, velocityDeceleration * Time.deltaTime);

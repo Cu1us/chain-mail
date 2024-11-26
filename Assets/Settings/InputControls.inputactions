@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "GrabChain",
+                    "type": "Button",
+                    "id": "33cd700e-23e0-4760-b677-bddcde88496e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -441,6 +450,39 @@
                     "processors": "",
                     "groups": "Ranged",
                     "action": "ChainSwap2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "59aa7d96-225a-4b33-afb2-3d9eabc14fa0",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Melee;Ranged",
+                    "action": "GrabChain",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5670b9de-21c0-4018-bc81-95c2059ac9f2",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Melee",
+                    "action": "GrabChain",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "912a9f19-bcd6-4e75-aec8-0ae440634f24",
+                    "path": "<Keyboard>/slash",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Ranged",
+                    "action": "GrabChain",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
