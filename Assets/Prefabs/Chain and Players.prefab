@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f8cb243a443a234c831e7c3b926b24e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackForce: 5
+  knockbackForce: 100
   knockbackRotatingForce: 2
   damage: 30
   coolDown: 0.2
