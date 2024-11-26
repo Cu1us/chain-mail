@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ExtendChain",
+                    "type": "Value",
+                    "id": "3a2c2e2a-cc36-4fc3-9dc6-82eb449796cd",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -214,7 +223,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
+                    "name": "positive",
                     "id": "e99d3b4a-366e-413a-a172-3871f10b0ab1",
                     "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
@@ -225,7 +234,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "positive",
+                    "name": "negative",
                     "id": "7a340250-64c8-48a4-959a-8abb0dea363f",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
@@ -441,6 +450,17 @@
                     "processors": "",
                     "groups": "Ranged",
                     "action": "ChainSwap2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd40a2df-c6c8-4507-8c0c-6c5299cc9820",
+                    "path": "<Gamepad>/rightStick/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Melee;Ranged",
+                    "action": "ExtendChain",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
