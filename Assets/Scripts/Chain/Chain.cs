@@ -15,11 +15,14 @@ public class Chain : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] float maxDistance;
+    [SerializeField] float minDistance;
     [SerializeField] float maxRotationSpeed;
     [SerializeField] float rotationAcceleration;
     [SerializeField] float rotationDeceleration;
     [SerializeField] float swapPlacesForce;
-    [SerializeField] float chainExtendRateWhenSwung;
+    [SerializeField] float extendChainSpeed;
+
+    //[SerializeField] float chainExtendRateWhenSwung;
 
     [Header("Advanced settings")]
     [SerializeField] float heldPivotOffset;
@@ -91,7 +94,7 @@ public class Chain : MonoBehaviour
 
         AccelerateBasedOnInput();
 
-        ExtendChainBySpeed();
+        ExtendChainByInput();
 
         RotateChain();
 
@@ -100,10 +103,21 @@ public class Chain : MonoBehaviour
         PositionHitbox();
     }
 
-    void ExtendChainBySpeed()
+    /*void ExtendChainBySpeed()
     {
         if (Mathf.Abs(rotationalVelocity) < 10f || grabStatus == GrabStatus.NONE || currentChainLength >= maxDistance - 0.05f) return;
         float pushDistance = Mathf.Abs(rotationalVelocity / 720) * chainExtendRateWhenSwung;
+        Grabee.MoveTowards(Center, -pushDistance);
+    }*/
+
+    void ExtendChainByInput()
+    {
+        if (grabStatus == GrabStatus.NONE || currentChainLength >= maxDistance) return;
+        float pushDistance = GrabberInput.chainExtendInput * extendChainSpeed * Time.deltaTime;
+
+        if (currentChainLength + pushDistance > maxDistance) pushDistance = maxDistance - currentChainLength;
+        if (currentChainLength + pushDistance < minDistance) pushDistance = minDistance - currentChainLength;
+
         Grabee.MoveTowards(Center, -pushDistance);
     }
 
@@ -140,7 +154,7 @@ public class Chain : MonoBehaviour
                 if (Mathf.Abs(rotationalVelocity) / maxRotationSpeed > forcePreserveMomentumThreshold)
                     targetRotVelocity *= -1;
                 else
-                    acceleration *= 3;
+                    acceleration *= 2;
             }
             rotationalVelocity = Mathf.MoveTowards(rotationalVelocity, targetRotVelocity, acceleration);
         }
@@ -156,7 +170,7 @@ public class Chain : MonoBehaviour
         PlayerB.swingVelocity = rotationalVelocity / 114.591559026164f * currentChainLength * (1 - localPivot);
 
         if (rotationalVelocity == 0) return;
-        float rotation = rotationalVelocity * Time.deltaTime;
+        float rotation = rotationalVelocity * Time.deltaTime / currentChainLength;
         if (grabStatus == GrabStatus.NONE)
         {
             PlayerA.RotateAround(Pivot, rotation);
@@ -216,6 +230,8 @@ public class Chain : MonoBehaviour
                 localPivot = pivotOffsetByLength + pivotAnimationProgress * (0.5f - pivotOffsetByLength);
                 break;
         }
+        PlayerA.beingGrabbed = grabStatus == GrabStatus.B;
+        PlayerB.beingGrabbed = grabStatus == GrabStatus.A;
     }
     void PositionHitbox()
     {

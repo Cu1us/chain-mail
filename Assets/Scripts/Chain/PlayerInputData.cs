@@ -10,6 +10,7 @@ public class PlayerInputData : MonoBehaviour
     [ReadOnlyInspector] public Vector2 movementInput;
     [ReadOnlyInspector] public Vector2 aimDirection;
     [ReadOnlyInspector] public float chainRotationalInput;
+    [ReadOnlyInspector] public float chainExtendInput;
     [ReadOnlyInspector] public bool isHoldingAttack;
     public Action onAttackPress;
     public Action onAttackRelease;
@@ -51,9 +52,12 @@ public class PlayerInputData : MonoBehaviour
     void OnChainRotation(InputValue value)
     {
         chainRotationalInput = value.Get<float>();
-        Debug.Log("Rotating: value: " + chainRotationalInput);
         if (DebugRays) Debug.DrawRay(transform.position, movementInput, Color.gray, 1f);
         onChainRotate?.Invoke(Mathf.RoundToInt(chainRotationalInput));
+    }
+    void OnExtendChain(InputValue value)
+    {
+        chainExtendInput = value.Get<float>();
     }
     void OnAttack(InputValue value)
     {
