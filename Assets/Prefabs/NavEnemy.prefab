@@ -223,13 +223,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11c4f5dc371ddf48a80444e7c1b1108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chain: {fileID: 0}
+  animator: {fileID: 3742826125167725315}
   acceleration: 10
   maxVelocity: 5
   flankExtraDistance: 5
   keepDistanceDistance: 6
   attackDistance: 2
   isAttackState: 0
-  chain: {fileID: 0}
   state: 1
 --- !u!1 &4818969038544234171
 GameObject:
