@@ -297,10 +297,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9157047647374926665, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
-      propertyPath: maxSqrVelocity
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 9157047647374926665, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: canCollideWith.Array.size
       value: 2
       objectReference: {fileID: 0}

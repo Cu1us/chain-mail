@@ -348,7 +348,7 @@ MonoBehaviour:
   swingForwardDirection: {x: 0, y: 0}
   movementSpeed: 6
   velocityDeceleration: 20
-  maxSqrVelocity: 100
+  maxSqrVelocity: 1000
   canCollideWith:
   - {fileID: 0}
   - {fileID: 0}
