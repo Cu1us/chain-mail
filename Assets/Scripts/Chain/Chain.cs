@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -69,12 +70,22 @@ public class Chain : MonoBehaviour
         PlayerBInput.onChainSwap += SwapPlaces;
         PlayerAInput.onChainRotate += PlayerAGrabChain;
         PlayerBInput.onChainRotate += PlayerBGrabChain;
+        PlayerA.onKnockedChain += OnKnockedWhileSwung;
+        PlayerB.onKnockedChain += OnKnockedWhileSwung;
     }
     public void SwapPlaces()
     {
         if (PlayerA.velocity.sqrMagnitude > 1 || PlayerB.velocity.sqrMagnitude > 1) return;
-        PlayerA.Launch((PlayerB.position - PlayerA.position).normalized * swapPlacesForce);
-        PlayerB.Launch((PlayerA.position - PlayerB.position).normalized * swapPlacesForce);
+        if (grabStatus == GrabStatus.NONE)
+        {
+            PlayerA.Launch((PlayerB.position - PlayerA.position).normalized * swapPlacesForce);
+            PlayerB.Launch((PlayerA.position - PlayerB.position).normalized * swapPlacesForce);
+        }
+        else
+        {
+            rotationalVelocity = 0;
+            Grabber.Launch((Grabee.position - Grabber.position).normalized * swapPlacesForce * 2);
+        }
     }
     void PlayerAGrabChain(int dir)
     {
@@ -83,6 +94,12 @@ public class Chain : MonoBehaviour
     void PlayerBGrabChain(int dir)
     {
         if (dir != 0) SetGrabber(GrabStatus.B);
+    }
+    void OnKnockedWhileSwung(float amount)
+    {
+        if (grabStatus == GrabStatus.NONE) return;
+        float chainLength = currentChainLength * (grabStatus == GrabStatus.B ? heldPivotOffset : (1 - heldPivotOffset));
+        rotationalVelocity += amount * 114.591559026164f / chainLength * Mathf.Sign(rotationalVelocity);
     }
     void Update()
     {
@@ -112,7 +129,7 @@ public class Chain : MonoBehaviour
 
     void ExtendChainByInput()
     {
-        if (grabStatus == GrabStatus.NONE || currentChainLength >= maxDistance) return;
+        if (grabStatus == GrabStatus.NONE || currentChainLength >= maxDistance || Grabee.velocity.sqrMagnitude > 1f || Grabber.velocity.sqrMagnitude > 1f) return;
         float pushDistance = GrabberInput.chainExtendInput * extendChainSpeed * Time.deltaTime;
 
         if (currentChainLength + pushDistance > maxDistance) pushDistance = maxDistance - currentChainLength;
