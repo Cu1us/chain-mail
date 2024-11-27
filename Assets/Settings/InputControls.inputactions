@@ -463,6 +463,72 @@
                     "action": "ExtendChain",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Keyboard Melee",
+                    "id": "ce588ca9-40a9-4121-b329-2ba2d64ee0cb",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ExtendChain",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "6587538d-5e6a-4dca-b785-d9a504b4d696",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Melee",
+                    "action": "ExtendChain",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "66d89b3f-e38d-4237-84ed-5192c94ff46b",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Melee",
+                    "action": "ExtendChain",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Keyboard Ranged",
+                    "id": "bc45e737-6f32-4af3-906e-697893eaf53c",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ExtendChain",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "583d9bc9-d584-4480-8215-bb5282960207",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Ranged",
+                    "action": "ExtendChain",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "21b1d008-f318-462b-a398-bcbd1d22c0cb",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Ranged",
+                    "action": "ExtendChain",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
