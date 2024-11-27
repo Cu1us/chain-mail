@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3911203691474585884}
   - component: {fileID: 4983113987866911296}
   - component: {fileID: 7269977404316147536}
+  - component: {fileID: 3742826125167725315}
   - component: {fileID: 7379761614196199326}
   - component: {fileID: 1971338446580476409}
   m_Layer: 6
@@ -102,7 +103,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cb042d0563876eb4691e42c4f15b93f7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 88fcde56d7f727e448bc6581f20b02c4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -172,9 +173,30 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.44, y: -0.4}
+  m_Offset: {x: 0, y: -0.4}
   m_Size: {x: 1.9, y: 2.8}
   m_Direction: 0
+--- !u!95 &3742826125167725315
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569884204690992695}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2ca8abba2079fe141b486f1e1c5cc858, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7379761614196199326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,13 +223,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11c4f5dc371ddf48a80444e7c1b1108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chain: {fileID: 0}
+  animator: {fileID: 3742826125167725315}
   acceleration: 10
   maxVelocity: 5
   flankExtraDistance: 5
   keepDistanceDistance: 6
   attackDistance: 2
   isAttackState: 0
-  chain: {fileID: 0}
   state: 1
 --- !u!1 &4818969038544234171
 GameObject:
@@ -273,7 +296,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.33945084, y: -0.70681393}
+  m_Offset: {x: 0, y: -0.70681393}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
