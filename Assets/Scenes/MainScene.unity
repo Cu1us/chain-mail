@@ -19973,10 +19973,6 @@ PrefabInstance:
       propertyPath: chain
       value: 
       objectReference: {fileID: 1125270395}
-    - target: {fileID: 1971338446580476409, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 1486255498}
     - target: {fileID: 9137275326656028869, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.76
@@ -22418,11 +22414,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1486255498 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3742826125167725315, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-  m_PrefabInstance: {fileID: 657315547}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1521610189
 GameObject:
   m_ObjectHideFlags: 0
