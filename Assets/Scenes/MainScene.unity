@@ -21011,7 +21011,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chainToFollow: {fileID: 1125270395}
   chainFollowStrength: 3
-  cameraSizeByChainVelocity: 0.0025
+  cameraSizeByChainVelocity: 0.001
 --- !u!114 &927977477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21657,6 +21657,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1931979293959075955, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: rotationDeceleration
+      value: 1600
+      objectReference: {fileID: 0}
     - target: {fileID: 3405067410752196320, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: m_Size.x
       value: 1.5
@@ -21728,6 +21732,10 @@ PrefabInstance:
     - target: {fileID: 6286411619735274941, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: m_Name
       value: Chain and Players
+      objectReference: {fileID: 0}
+    - target: {fileID: 6286411619735274941, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7739225830394850822, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: canCollideWith.Array.data[0]
