@@ -21,7 +21,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Keypad1))
         {
-            DestroyTemp();
+            DestroyEnemy();
         }
     }
 
@@ -52,10 +52,10 @@ public class EnemyHealth : MonoBehaviour
        // spriteRenderer.color = Color.red;
         pathfinding.enabled = false;
         coll2D.enabled=false;
-        Invoke(nameof(DestroyTemp), 3f);
+        Invoke(nameof(DestroyEnemy), 3f);
     }
 
-    void DestroyTemp()
+    void DestroyEnemy()
     {
         Destroy(gameObject);
     }
