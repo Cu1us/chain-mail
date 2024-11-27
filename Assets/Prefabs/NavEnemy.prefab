@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11c4f5dc371ddf48a80444e7c1b1108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chain: {fileID: 0}
+  chain: {fileID: 1931979293959075955, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
   animator: {fileID: 3742826125167725315}
   acceleration: 10
   maxVelocity: 5
@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 8929492261661092247}
   - component: {fileID: 693304060645416680}
   - component: {fileID: 5697587726356314454}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: TrapDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.70681393}
