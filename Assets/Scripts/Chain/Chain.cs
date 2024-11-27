@@ -18,6 +18,7 @@ public class Chain : MonoBehaviour
     [SerializeField] float maxDistance;
     [SerializeField] float minDistance;
     [SerializeField] float maxRotationSpeed;
+    [SerializeField] float rotationSpeedCap;
     [SerializeField] float rotationAcceleration;
     [SerializeField] float rotationDeceleration;
     [SerializeField] float swapPlacesForce;
@@ -152,7 +153,7 @@ public class Chain : MonoBehaviour
 
             void ConstrainVelocity(PlayerMovement player)
             {
-                Vector2 direction = (center - player.position).normalized;
+                Vector2 direction = (player.position - center).normalized;
                 float dot = Vector2.Dot(player.velocity, direction);
                 player.velocity -= direction * dot;
             }
@@ -178,6 +179,10 @@ public class Chain : MonoBehaviour
         else
         {
             rotationalVelocity = Mathf.MoveTowards(rotationalVelocity, 0, rotationDeceleration * Time.deltaTime);
+        }
+        if (Mathf.Abs(rotationalVelocity) > rotationSpeedCap)
+        {
+            rotationalVelocity = rotationSpeedCap * Mathf.Sign(rotationalVelocity);
         }
     }
 

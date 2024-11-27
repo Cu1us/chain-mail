@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour, IKnockable
     [Header("Settings")]
     [SerializeField] float movementSpeed;
     [SerializeField] float velocityDeceleration;
+    [SerializeField] float maxSqrVelocity;
+
     [SerializeField] Collider2D[] canCollideWith;
     [SerializeField] Vector2 localPointOfCollision;
 
@@ -49,8 +51,8 @@ public class PlayerMovement : MonoBehaviour, IKnockable
             newPos += hit.normal * dot * toWall.magnitude;
             transform.position = newPos;
 
-            float velocityDot = Vector2.Dot(velocity, -hit.normal);
-            velocity += hit.normal * dot;
+            float velocityDot = Vector2.Dot(velocity.normalized, -hit.normal);
+            velocity += hit.normal * dot * velocity.magnitude;
         }
     }
 
@@ -71,10 +73,18 @@ public class PlayerMovement : MonoBehaviour, IKnockable
 
     void Update()
     {
-        if (!beingGrabbed && Input.chainRotationalInput == 0) position += Input.movementInput * movementSpeed * Time.deltaTime;
+        Vector2 translation = Vector2.zero;
+        if (!beingGrabbed && Input.chainRotationalInput == 0) translation += Input.movementInput * movementSpeed * Time.deltaTime;
 
-        position += velocity * Time.deltaTime;
+
+        translation += velocity * Time.deltaTime;
+        if (velocity.sqrMagnitude > maxSqrVelocity)
+        {
+            velocity = velocity.normalized * Mathf.Sqrt(maxSqrVelocity);
+        }
         velocity = Vector2.MoveTowards(velocity, Vector2.zero, velocityDeceleration * Time.deltaTime);
+
+        position += translation;
     }
 
     public void MoveTowards(Vector2 target, float distance)
