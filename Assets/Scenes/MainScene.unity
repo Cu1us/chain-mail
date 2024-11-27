@@ -21728,17 +21728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9fb7636938e98a929d895276a902001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1125270396 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 399572318235544456, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
-  m_PrefabInstance: {fileID: 1125270394}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1125270397 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 149371687736191209, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
@@ -22326,7 +22315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputManager: {fileID: 1348330405}
   meleePlayer: {fileID: 1125270397}
-  rangedPlayer: {fileID: 1125270396}
+  rangedPlayer: {fileID: 0}
 --- !u!114 &1348330405
 MonoBehaviour:
   m_ObjectHideFlags: 0
