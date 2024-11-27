@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 [RequireComponent(typeof(PlayerInputData))]
 public class PlayerMovement : MonoBehaviour, IKnockable
@@ -28,6 +27,8 @@ public class PlayerMovement : MonoBehaviour, IKnockable
 
     // Events
     public Action<float> onKnockedChain;
+    public Action onSwingIntoWall;
+
 
     // Properties
     public Vector2 position { get { return transform.position; } set { SetPosition(value, transform.position); } }
@@ -54,6 +55,15 @@ public class PlayerMovement : MonoBehaviour, IKnockable
 
             float velocityDot = Vector2.Dot(velocity.normalized, -hit.normal);
             velocity += hit.normal * dot * velocity.magnitude;
+
+            if (beingGrabbed && Mathf.Abs(swingVelocity) > 10f)
+            {
+                float swingDot = Vector2.Dot(swingForwardDirection, -hit.normal);
+                if (swingDot > 0.25f)
+                {
+                    onSwingIntoWall?.Invoke();
+                }
+            }
         }
     }
 
