@@ -18,18 +18,25 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] Animator animator;
 
 
-
-    Vector2 target;
-    Vector2 direction;
-    Vector2 distToTarget;
+    [Header("settings")]
     [SerializeField] float acceleration;
     [SerializeField] float maxVelocity;
     [SerializeField] float flankExtraDistance;
     [SerializeField] float keepDistanceDistance;
     [SerializeField] float attackDistance;
+
+
+
+    Vector2 target;
+    Vector2 direction;
+    Vector2 distToTarget;
+
+    [Header("Bools")]
     public bool isAttackState;
-    
+    [SerializeField] bool isSpearMan;
+
     float currentChainLength;
+    [Header("Timers")]
     float stumbleTimer;
     float stumbleTimerCooldown = 2;
     float stateTimer;
@@ -114,7 +121,9 @@ public class EnemyMovement : MonoBehaviour
             direction.Normalize();
         }
 
+        CompareVelocity();
         rb.velocity = Vector2.MoveTowards(rb.velocity, direction * maxVelocity, acceleration * Time.deltaTime);
+
         agent.nextPosition = transform.position;
         Flip();
     }
@@ -125,7 +134,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void RandomState()
     {
-        if(chain.rotationalVelocity != 0)
+        if (chain.rotationalVelocity != 0)
         {
             nextState = EnemyState.INTERCEPT;
         }
@@ -170,7 +179,22 @@ public class EnemyMovement : MonoBehaviour
             case EnemyState.KEEPDISTANCE:
                 break;
             case EnemyState.MOVECLOSETOATTACK:
-            nextState = EnemyState.KEEPDISTANCE;
+                if (isSpearMan)
+                {
+                    if (Random.Range(0, 2) == 0)
+                    {
+                        state = EnemyState.CHARGE;
+                    }
+                    else
+                    {
+                        state = EnemyState.MOVECLOSETOATTACK;
+                    }
+                }
+                else
+                {
+                    state = EnemyState.MOVECLOSETOATTACK;
+                }
+                nextState = EnemyState.KEEPDISTANCE;
                 break;
             case EnemyState.FLANK:
                 if (Random.Range(0, 2) == 0)
@@ -249,7 +273,7 @@ public class EnemyMovement : MonoBehaviour
     {
         float interceptDistance = chain.currentChainLength;
         Vector2 dist = (transform.position - targetTransform1.position).normalized;
-        target = (Vector2)targetTransform1.position + dist * interceptDistance + dist*0.5f;
+        target = (Vector2)targetTransform1.position + dist * interceptDistance + dist * 0.5f;
     }
 
     void Charge()
@@ -271,7 +295,7 @@ public class EnemyMovement : MonoBehaviour
     {
         animator.Play("Idle");
         Vector2 dist = targetTransform1.position - transform.position;
-        if(dist.sqrMagnitude > 16)
+        if (dist.sqrMagnitude > 16)
         {
             StateChange(EnemyState.FLANK);
         }
@@ -279,7 +303,7 @@ public class EnemyMovement : MonoBehaviour
         {
             StateChange(EnemyState.MOVECLOSETOATTACK);
         }
-        
+
     }
 
     void Flip()
@@ -298,6 +322,20 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    void CompareVelocity()
+    {
+        if (rb.velocity.sqrMagnitude > 100)
+        {
+            if (state != EnemyState.STUCK)
+            {
+                animator.Play("Knockback");
+            }
+            else
+            {
+                //animator.Play("Tumble");
+            }
+        }
+    }
 
 
 
