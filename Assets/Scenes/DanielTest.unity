@@ -21669,7 +21669,7 @@ MonoBehaviour:
   attackDistance: 1
   isAttackState: 0
   chain: {fileID: 1125270395}
-  state: 2
+  state: 6
 --- !u!1 &1115950815
 GameObject:
   m_ObjectHideFlags: 0
@@ -22020,9 +22020,17 @@ PrefabInstance:
       propertyPath: m_CompressBounds
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4327550332019066693, guid: 4a5347251986523449bccdb34aee4ef6, type: 3}
+      propertyPath: m_OverrideByGrid
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5762071513925406466, guid: 4a5347251986523449bccdb34aee4ef6, type: 3}
       propertyPath: m_Name
       value: Navmesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 9081968284255681522, guid: 4a5347251986523449bccdb34aee4ef6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9081968284255681522, guid: 4a5347251986523449bccdb34aee4ef6, type: 3}
       propertyPath: m_LocalPosition.x
