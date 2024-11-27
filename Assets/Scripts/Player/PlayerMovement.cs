@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour, IKnockable
 
     [Header("References")]
     [ReadOnlyInspector][SerializeField] PlayerInputData Input;
+    [SerializeField] TrailRenderer trailRenderer;
 
     // Events
     public Action<float> onKnockedChain;
@@ -83,6 +84,8 @@ public class PlayerMovement : MonoBehaviour, IKnockable
             velocity = velocity.normalized * Mathf.Sqrt(maxSqrVelocity);
         }
         velocity = Vector2.MoveTowards(velocity, Vector2.zero, velocityDeceleration * Time.deltaTime);
+
+        if (trailRenderer) trailRenderer.emitting = beingGrabbed;
 
         position += translation;
     }
