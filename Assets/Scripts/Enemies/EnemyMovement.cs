@@ -335,6 +335,7 @@ public class EnemyMovement : MonoBehaviour
                 //animator.Play("Tumble");
             }
         }
+        
     }
 
 
