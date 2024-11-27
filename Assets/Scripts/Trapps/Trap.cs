@@ -14,7 +14,7 @@ public class Trap : MonoBehaviour
             Enemy.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
             Enemy.GetComponent<Transform>().position = (Vector2)other.transform.position + new Vector2(0, 1);
             Enemy.GetComponent<CapsuleCollider2D>().enabled = false;
-            Enemy.GetComponent<Animator>().Play("Trapfall");
+            Enemy.GetComponent<Animator>().SetBool("Trapfall", true);
         }
     }
 }

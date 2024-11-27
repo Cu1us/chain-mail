@@ -193,8 +193,7 @@ public class EnemyMovement : MonoBehaviour
                 else
                 {
                     state = EnemyState.MOVECLOSETOATTACK;
-                }
-                nextState = EnemyState.KEEPDISTANCE;
+                };
                 break;
             case EnemyState.FLANK:
                 if (Random.Range(0, 2) == 0)

@@ -348,13 +348,14 @@ MonoBehaviour:
   swingForwardDirection: {x: 0, y: 0}
   movementSpeed: 6
   velocityDeceleration: 20
-  maxSqrVelocity: 100
+  maxSqrVelocity: 1000
   canCollideWith:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   localPointOfCollision: {x: 0, y: 0}
   Input: {fileID: 2668731653776018002}
+  trailRenderer: {fileID: 5439516395281125458}
 --- !u!114 &6155310138716365543
 MonoBehaviour:
   m_ObjectHideFlags: 0

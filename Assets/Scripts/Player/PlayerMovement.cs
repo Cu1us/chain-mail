@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 [RequireComponent(typeof(PlayerInputData))]
 public class PlayerMovement : MonoBehaviour, IKnockable
@@ -24,9 +23,12 @@ public class PlayerMovement : MonoBehaviour, IKnockable
 
     [Header("References")]
     [ReadOnlyInspector][SerializeField] PlayerInputData Input;
+    [SerializeField] TrailRenderer trailRenderer;
 
     // Events
     public Action<float> onKnockedChain;
+    public Action onSwingIntoWall;
+
 
     // Properties
     public Vector2 position { get { return transform.position; } set { SetPosition(value, transform.position); } }
@@ -47,12 +49,22 @@ public class PlayerMovement : MonoBehaviour, IKnockable
             Vector2 toWall = newPos - oldPos;
             Vector2 dirToWall = toWall.normalized;
             RaycastHit2D hit = Physics2D.Raycast(oldPos, dirToWall, 2f, LayerMask.NameToLayer("Environment"));
+            if (hit.collider == null) return;
             float dot = Vector2.Dot(dirToWall, -hit.normal);
             newPos += hit.normal * dot * toWall.magnitude;
             transform.position = newPos;
 
             float velocityDot = Vector2.Dot(velocity.normalized, -hit.normal);
             velocity += hit.normal * dot * velocity.magnitude;
+
+            if (beingGrabbed && Mathf.Abs(swingVelocity) > 10f)
+            {
+                float swingDot = Vector2.Dot(swingForwardDirection, -hit.normal);
+                if (swingDot > 0.25f)
+                {
+                    onSwingIntoWall?.Invoke();
+                }
+            }
         }
     }
 
@@ -83,6 +95,8 @@ public class PlayerMovement : MonoBehaviour, IKnockable
             velocity = velocity.normalized * Mathf.Sqrt(maxSqrVelocity);
         }
         velocity = Vector2.MoveTowards(velocity, Vector2.zero, velocityDeceleration * Time.deltaTime);
+
+        if (trailRenderer) trailRenderer.emitting = beingGrabbed;
 
         position += translation;
     }

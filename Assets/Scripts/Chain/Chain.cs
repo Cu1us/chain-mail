@@ -73,6 +73,8 @@ public class Chain : MonoBehaviour
         PlayerBInput.onChainRotate += PlayerBGrabChain;
         PlayerA.onKnockedChain += OnKnockedWhileSwung;
         PlayerB.onKnockedChain += OnKnockedWhileSwung;
+        PlayerA.onSwingIntoWall += OnSwingIntoWall;
+        PlayerB.onSwingIntoWall += OnSwingIntoWall;
     }
     public void SwapPlaces()
     {
@@ -87,6 +89,10 @@ public class Chain : MonoBehaviour
             rotationalVelocity = 0;
             Grabber.Launch((Grabee.position - Grabber.position).normalized * swapPlacesForce * 2);
         }
+    }
+    void OnSwingIntoWall()
+    {
+        rotationalVelocity = -rotationalVelocity;
     }
     void PlayerAGrabChain(int dir)
     {
