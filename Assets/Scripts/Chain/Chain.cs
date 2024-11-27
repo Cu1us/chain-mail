@@ -248,7 +248,7 @@ public class Chain : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent(out Pathfinding enemy))
+        if (other.TryGetComponent(out EnemyMovement enemy))
         {
             enemy.Stumble();
         }
