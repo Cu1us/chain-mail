@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3911203691474585884}
   - component: {fileID: 4983113987866911296}
   - component: {fileID: 7269977404316147536}
-  - component: {fileID: 4558795289814905908}
   - component: {fileID: 7379761614196199326}
   - component: {fileID: 1971338446580476409}
   m_Layer: 6
@@ -176,19 +175,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.44, y: -0.4}
   m_Size: {x: 1.9, y: 2.8}
   m_Direction: 0
---- !u!114 &4558795289814905908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 569884204690992695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff9c210e39fb6e849a8aea90f35ceb72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 704495694175039345}
 --- !u!114 &7379761614196199326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,7 +207,8 @@ MonoBehaviour:
   keepDistanceDistance: 6
   attackDistance: 2
   isAttackState: 0
-  state: 0
+  chain: {fileID: 0}
+  state: 1
 --- !u!1 &4818969038544234171
 GameObject:
   m_ObjectHideFlags: 0
