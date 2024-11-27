@@ -201,7 +201,7 @@ MonoBehaviour:
   rotationSpeedCap: 2500
   rotationAcceleration: 1000
   rotationDeceleration: 1600
-  swapPlacesForce: 15
+  swapPlacesForce: 30
   extendChainSpeed: 8
   heldPivotOffset: 0.075
   forcePreserveMomentumThreshold: 0.666
@@ -296,6 +296,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9157047647374926665, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: maxSqrVelocity
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157047647374926665, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: canCollideWith.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -380,6 +388,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 1652479865594501830, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
+      propertyPath: canCollideWith.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9104600906751115791, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
       propertyPath: chain
       value: 
@@ -392,6 +404,10 @@ PrefabInstance:
       propertyPath: player2
       value: 
       objectReference: {fileID: 5789651416746514506}
+    - target: {fileID: 9104600906751115791, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
+      propertyPath: grabStatus
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9194984364361686057, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
       propertyPath: m_DefaultControlScheme
       value: Ranged
