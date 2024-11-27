@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 7038626947200222316}
   - component: {fileID: 6925236174571540213}
   - component: {fileID: 7742981981295681520}
-  - component: {fileID: 4201192141544284772}
   - component: {fileID: 9212427142887092705}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trapp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,18 +102,6 @@ MonoBehaviour:
   m_Center: {x: 0, y: -0.3, z: 0}
   m_Area: 1
   m_AffectedAgents: ffffffff
---- !u!114 &4201192141544284772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6379021087018135195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fce62c9737ea84b4e9c328d4b5836fec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!70 &9212427142887092705
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

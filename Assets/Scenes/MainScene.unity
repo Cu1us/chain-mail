@@ -19973,6 +19973,14 @@ PrefabInstance:
       propertyPath: chain
       value: 
       objectReference: {fileID: 1125270395}
+    - target: {fileID: 4818969038544234171, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4818969038544234171, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 9137275326656028869, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.76
