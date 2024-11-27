@@ -30,12 +30,18 @@ public class EnemySwordAttack : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        playersInsideTrigger.Add(collision);
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            playersInsideTrigger.Add(collision);
+        }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        playersInsideTrigger.Remove(collision);
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            playersInsideTrigger.Remove(collision);
+        }
     }
 
     public void Attack()
