@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11c4f5dc371ddf48a80444e7c1b1108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chain: {fileID: 0}
+  chain: {fileID: 1931979293959075955, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
   animator: {fileID: 3742826125167725315}
   acceleration: 10
   maxVelocity: 5
