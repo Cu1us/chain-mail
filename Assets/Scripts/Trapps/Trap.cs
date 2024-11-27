@@ -12,7 +12,7 @@ public class Trap : MonoBehaviour
             other.GetComponentInParent<EnemyMovement>().state = EnemyMovement.EnemyState.STUCK;
             other.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(0,0);
             other.GetComponentInParent<Transform>().position = transform.position;
-            other.GetComponentInParent<EnemyHealth>().TakeDamage(200);
+            other.GetComponentInParent<Animator>().Play("Trapfall");
         }
     }
 }
