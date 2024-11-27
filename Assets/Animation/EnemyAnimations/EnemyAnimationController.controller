@@ -153,6 +153,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 4
     m_ConditionEvent: Velocity
     m_EventTreshold: 10
+  - m_ConditionMode: 2
+    m_ConditionEvent: Trapfall
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8477142671649033145}
   m_Solo: 0
@@ -209,7 +212,7 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
   - m_Name: Trapfall
-    m_Type: 9
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -264,6 +267,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 3
     m_ConditionEvent: Velocity
     m_EventTreshold: 100
+  - m_ConditionMode: 2
+    m_ConditionEvent: Trapfall
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7633899793838797648}
   m_Solo: 0
