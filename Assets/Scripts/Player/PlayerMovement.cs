@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,9 @@ public class PlayerMovement : MonoBehaviour, IKnockable
     [Header("References")]
     [ReadOnlyInspector][SerializeField] PlayerInputData Input;
 
+    // Events
+    public Action<float> onKnockedChain;
+
     // Properties
     public Vector2 position { get { return transform.position; } set { SetPosition(value, transform.position); } }
 
@@ -44,6 +48,9 @@ public class PlayerMovement : MonoBehaviour, IKnockable
             float dot = Vector2.Dot(dirToWall, -hit.normal);
             newPos += hit.normal * dot * toWall.magnitude;
             transform.position = newPos;
+
+            float velocityDot = Vector2.Dot(velocity, -hit.normal);
+            velocity += hit.normal * dot;
         }
     }
 
@@ -82,30 +89,14 @@ public class PlayerMovement : MonoBehaviour, IKnockable
     }
     public void Launch(Vector2 force)
     {
+        if (beingGrabbed)
+        {
+            float dot = Vector2.Dot(force.normalized, swingForwardDirection.normalized);
+            force -= dot * force.normalized;
+            onKnockedChain?.Invoke(dot);
+        }
         velocity += force;
     }
-
-    /*void OnTriggerEnter2D(Collider2D other)
-    {
-        if (swingVelocity > 1f && other.gameObject.CompareTag("Enemy"))
-        {
-            if (other.gameObject.TryGetComponent(out Rigidbody2D rigidbody) && other.gameObject.TryGetComponent(out Pathfinding pathfinding))
-            {
-                Debug.Log("Hit! " + swingForwardDirection + ", " + swingVelocity);
-                pathfinding.CancelAgentUpdate();
-                rigidbody.velocity += swingForwardDirection * swingVelocity * 2.25f;
-
-                Physics2D.IgnoreCollision(other, GetComponent<Collider2D>());
-                StartCoroutine(EnableCollisionAfterTime(0.5f, other, GetComponent<Collider2D>()));
-
-                IEnumerator EnableCollisionAfterTime(float time, Collider2D col1, Collider2D col2)
-                {
-                    yield return new WaitForSeconds(time);
-                    Physics2D.IgnoreCollision(col1, col2, false);
-                }
-            }
-        }
-    }*/
 }
 
 public interface IKnockable
