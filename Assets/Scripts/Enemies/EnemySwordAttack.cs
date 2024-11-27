@@ -11,7 +11,9 @@ public class EnemySwordAttack : MonoBehaviour
     List<Collider2D> playersInsideTrigger = new List<Collider2D>();
 
     [SerializeField] EnemyMovement state;
+    [SerializeField] GameObject hitParticle;
 
+    GameObject newParticle;
     float attackTimer;
 
     void Update()
@@ -30,7 +32,7 @@ public class EnemySwordAttack : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             playersInsideTrigger.Add(collision);
         }
@@ -38,7 +40,7 @@ public class EnemySwordAttack : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             playersInsideTrigger.Remove(collision);
         }
@@ -48,13 +50,13 @@ public class EnemySwordAttack : MonoBehaviour
     {
         AddKnockback();
         AddDamage();
+        InstantiateHitParticle();
     }
 
     void AddKnockback()
     {
         for (int i = playersInsideTrigger.Count - 1; i >= 0; i--)
         {
-            Debug.Log("ATTACKING PLAYER");
             Vector2 forceDirection = playersInsideTrigger[i].transform.position - transform.position;
             forceDirection.Normalize();
             playersInsideTrigger[i].GetComponent<PlayerMovement>().Launch(forceDirection * knockback);
@@ -69,19 +71,14 @@ public class EnemySwordAttack : MonoBehaviour
         }
     }
 
-    /*void RotateTowardsPlayer()
+    void InstantiateHitParticle()
     {
-    float targetAngle = transform.position.x - pathfinding.targetTransform.transform.position.x;
-
-    if (targetAngle > 0)
-    {
-        targetAngle = 180;
-    }
-    else
-    {
-        targetAngle = 0;
+        newParticle = Instantiate(hitParticle, transform.position, Quaternion.identity);
+        Invoke(nameof(DestroyParticle), 0.5f);
     }
 
-    transform.rotation = Quaternion.Euler(0, 0, targetAngle);
-    }*/
+    void DestroyParticle()
+    {
+        Destroy(newParticle);
+    }
 }
