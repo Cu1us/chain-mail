@@ -293,7 +293,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Stand()
     {
-        animator.Play("Idle");
+        animator.Play("Walk");
         Vector2 dist = targetTransform1.position - transform.position;
         if (dist.sqrMagnitude > 16)
         {
@@ -324,18 +324,7 @@ public class EnemyMovement : MonoBehaviour
 
     void CompareVelocity()
     {
-        if (rb.velocity.sqrMagnitude > 100)
-        {
-            if (state != EnemyState.STUCK)
-            {
-                animator.Play("Knockback");
-            }
-            else
-            {
-                //animator.Play("Tumble");
-            }
-        }
-        
+        animator.SetFloat("Velocity",rb.velocity.sqrMagnitude);
     }
 
 
