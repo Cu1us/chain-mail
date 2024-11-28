@@ -21998,6 +21998,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108629609}
     - target: {fileID: 4692490535370305448, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: playerInput
+      value: 
+      objectReference: {fileID: 1125270397}
+    - target: {fileID: 4692490535370305448, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: gameoverText
+      value: 
+      objectReference: {fileID: 1436669956}
+    - target: {fileID: 4692490535370305448, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: maxPlayerHealth
       value: 150
       objectReference: {fileID: 0}
@@ -22065,6 +22073,14 @@ PrefabInstance:
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 389569955}
+    - target: {fileID: 9213995762648585400, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: playerInput
+      value: 
+      objectReference: {fileID: 395197105}
+    - target: {fileID: 9213995762648585400, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: gameoverText
+      value: 
+      objectReference: {fileID: 1436669956}
     - target: {fileID: 9213995762648585400, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: maxPlayerHealth
       value: 150
