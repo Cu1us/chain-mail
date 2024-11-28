@@ -41,6 +41,7 @@ public class PlayerHealth : MonoBehaviour
 
     void PlayerRevive()
     {
+        playerHealth = maxPlayerHealth;
        // SendMessage(OnRevive);
     }
 
