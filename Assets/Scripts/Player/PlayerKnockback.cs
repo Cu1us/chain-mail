@@ -72,12 +72,7 @@ public class PlayerKnockback : MonoBehaviour
 
     void AddKnockback(GameObject enemy)
     {
-        if (enemy.TryGetComponent<Pathfinding>(out Pathfinding pathfinding))
-        {
-            pathfinding.CancelAgentUpdate();
-        }
-
-        if (pressedAttack)
+        if (pressedAttack || playerMovement.beingSwapped)
         {
             Vector2 forceDirection = playerInputData.movementInput.normalized;
 
@@ -93,7 +88,6 @@ public class PlayerKnockback : MonoBehaviour
             }
 
             enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * knockbackForce, ForceMode2D.Impulse);
-
 
             if (enemy.GetComponent<SpriteRenderer>().color == Color.red) // SHOULD LATER BE REMOVED!
             {
