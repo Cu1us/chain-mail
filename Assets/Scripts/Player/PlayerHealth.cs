@@ -59,9 +59,11 @@ public class PlayerHealth : MonoBehaviour
     {
         gameoverText.SetActive(true);
         playerInput.DisableInput();
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene("MainScene");
-        }
+        Invoke(nameof(ResetScene), 2);
+    }
+
+    void ResetScene()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 }

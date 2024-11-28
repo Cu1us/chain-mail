@@ -74,6 +74,7 @@ public class PlayerKnockback : MonoBehaviour
     {
         if (pressedAttack || playerMovement.beingSwapped)
         {
+            TimeManager.Freeze(0.1f);
             Vector2 forceDirection = playerInputData.movementInput.normalized;
 
             if (forceDirection == Vector2.zero)
@@ -89,16 +90,7 @@ public class PlayerKnockback : MonoBehaviour
 
             enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * knockbackForce, ForceMode2D.Impulse);
 
-            TimeManager.Freeze(0.1f);
-
-            if (enemy.GetComponent<SpriteRenderer>().color == Color.red) // SHOULD LATER BE REMOVED!
-            {
-                enemy.GetComponent<SpriteRenderer>().color = Color.blue; // SHOULD LATER BE REMOVED!
-            }
-            else
-            {
-                enemy.GetComponent<SpriteRenderer>().color = Color.red; // SHOULD LATER BE REMOVED!
-            }
+            enemy.GetComponent<SpriteBlink>().Blink(0.1f);
         }
         else
         {
