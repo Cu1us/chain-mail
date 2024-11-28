@@ -1,9 +1,13 @@
+using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
+
+    public static readonly List<EnemyMovement> EnemyList = new();
+
     [Header("Players")]
     Transform player1;
     Transform player2;
@@ -322,9 +326,19 @@ public class EnemyMovement : MonoBehaviour
 
     void CompareVelocity()
     {
-        animator.SetFloat("Velocity",rb.velocity.sqrMagnitude);
+        animator.SetFloat("Velocity", rb.velocity.sqrMagnitude);
     }
 
 
-
+    void OnEnable()
+    {
+        if (!EnemyList.Contains(this))
+        {
+            EnemyList.Add(this);
+        }
+    }
+    void OnDisable()
+    {
+        EnemyList.Remove(this);
+    }
 }
