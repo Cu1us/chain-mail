@@ -270,6 +270,14 @@ PrefabInstance:
       propertyPath: normalKnockbackForce
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 6155310138716365543, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: playerInput
+      value: 
+      objectReference: {fileID: 3565201630926505757}
+    - target: {fileID: 6155310138716365543, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: maxPlayerHealth
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 8851130757255043613, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: m_Name
       value: Player1
@@ -405,6 +413,14 @@ PrefabInstance:
     - target: {fileID: 1652479865594501830, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
       propertyPath: canCollideWith.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4365846258446343016, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
+      propertyPath: playerInput
+      value: 
+      objectReference: {fileID: 1133641489935121421}
+    - target: {fileID: 4365846258446343016, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
+      propertyPath: maxPlayerHealth
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 9104600906751115791, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
       propertyPath: chain
