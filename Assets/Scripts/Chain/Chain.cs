@@ -70,8 +70,8 @@ public class Chain : MonoBehaviour
     #region Events
     void BindEvents()
     {
-        PlayerAInput.onChainSwap += SwapPlaces;
-        PlayerBInput.onChainSwap += SwapPlaces;
+        PlayerAInput.onChainSwap += PlayerASwapPlaces;
+        PlayerBInput.onChainSwap += PlayerBSwapPlaces;
         PlayerAInput.onChainRotate += PlayerAGrabChain;
         PlayerBInput.onChainRotate += PlayerBGrabChain;
         PlayerA.onKnockedChain += OnKnockedWhileSwung;
@@ -82,6 +82,14 @@ public class Chain : MonoBehaviour
     void OnSwingIntoWall()
     {
         rotationalVelocity = -rotationalVelocity;
+    }
+    void PlayerASwapPlaces()
+    {
+        SwapPlaces(PlayerA, PlayerB);
+    }
+    void PlayerBSwapPlaces()
+    {
+        SwapPlaces(PlayerB, PlayerA);
     }
     void PlayerAGrabChain(int dir)
     {
@@ -271,7 +279,7 @@ public class Chain : MonoBehaviour
         PlayerA.beingGrabbed = grabStatus == GrabStatus.B;
         PlayerB.beingGrabbed = grabStatus == GrabStatus.A;
     }
-    public void SwapPlaces()
+    public void SwapPlaces(PlayerMovement swapper, PlayerMovement anchor)
     {
         if (PlayerA.velocity.sqrMagnitude > 1 || PlayerB.velocity.sqrMagnitude > 1) return;
         /*if (grabStatus == GrabStatus.NONE)
@@ -282,10 +290,10 @@ public class Chain : MonoBehaviour
         else*/
 
         rotationalVelocity = 0;
-        Grabber.lastSwapTime = Time.time;
+        swapper.lastSwapTime = Time.time;
 
-        Vector2 swapToPos = Grabee.position + (Grabee.position - Grabber.position).normalized * maxDistance;
-        Debug.DrawLine(Grabber.position, swapToPos, Color.gray, 2f);
+        Vector2 swapToPos = anchor.position + (anchor.position - swapper.position).normalized * maxDistance;
+        Debug.DrawLine(swapper.position, swapToPos, Color.gray, 2f);
 
         if (useSwapAimbot && EnemyMovement.EnemyList.Count > 0)
         {
@@ -302,9 +310,9 @@ public class Chain : MonoBehaviour
             }
             if (closestPos != Vector2.zero) swapToPos = closestPos;
         }
-        Debug.DrawLine(Grabber.position, swapToPos, Color.green, 2f);
+        Debug.DrawLine(swapper.position, swapToPos, Color.green, 2f);
 
-        Grabber.Launch((swapToPos - Grabber.position).normalized * swapPlacesForce * 2);
+        Grabber.Launch((swapToPos - swapper.position).normalized * swapPlacesForce * 2);
     }
 
     void Reset()
