@@ -42,8 +42,8 @@ public class TimeManager : MonoBehaviour
         float newTimeScale = timeScale;
         if (Time.unscaledTimeAsDouble < freezeUntil)
         {
-            timeScale = 0;
+            newTimeScale = 0;
         }
-        Time.timeScale = timeScale;
+        Time.timeScale = newTimeScale;
     }
 }
