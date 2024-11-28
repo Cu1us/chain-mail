@@ -88,8 +88,7 @@ public class EnemyMovement : MonoBehaviour
 
         switch (state)
         {
-            case EnemyState.STUCK:
-                break;
+
             case EnemyState.KEEPDISTANCE:
                 KeepDistance();
                 break;
