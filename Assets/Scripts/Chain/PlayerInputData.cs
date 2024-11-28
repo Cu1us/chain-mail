@@ -62,7 +62,7 @@ public class PlayerInputData : MonoBehaviour
     {
         _chainRotationalInput = value.Get<float>();
         if (DebugRays) Debug.DrawRay(transform.position, movementInput, Color.gray, 1f);
-        onChainRotate?.Invoke(Mathf.RoundToInt(chainRotationalInput));
+        if (!inputDisabled) onChainRotate?.Invoke(Mathf.RoundToInt(chainRotationalInput));
     }
     void OnExtendChain(InputValue value)
     {
@@ -73,11 +73,11 @@ public class PlayerInputData : MonoBehaviour
         _isHoldingAttack = Mathf.RoundToInt(value.Get<float>()) != 0;
         if (isHoldingAttack)
         {
-            onAttackPress?.Invoke();
+            if (!inputDisabled) onAttackPress?.Invoke();
         }
         else
         {
-            onAttackRelease?.Invoke();
+            if (!inputDisabled) onAttackRelease?.Invoke();
         }
     }
 
@@ -101,7 +101,7 @@ public class PlayerInputData : MonoBehaviour
     {
         lastSwap1Press = float.NegativeInfinity;
         lastSwap2Press = float.NegativeInfinity;
-        onChainSwap?.Invoke();
+        if (!inputDisabled) onChainSwap?.Invoke();
     }
 
 
