@@ -74,7 +74,7 @@ public class EnemyMovement : MonoBehaviour
         player2 = GameObject.Find("Player2").transform;
         targetTransform1 = player1;
         targetTransform2 = player2;
-
+        nextState = state;
     }
 
 
