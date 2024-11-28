@@ -24,6 +24,8 @@ public class Chain : MonoBehaviour
     [SerializeField] float rotationDeceleration;
     [SerializeField] float swapPlacesForce;
     [SerializeField] float extendChainSpeed;
+    [SerializeField] bool useSwapAimbot;
+    [SerializeField] float aimbotTargetDistance;
 
     //[SerializeField] float chainExtendRateWhenSwung;
 
@@ -280,8 +282,29 @@ public class Chain : MonoBehaviour
         else*/
 
         rotationalVelocity = 0;
-        Grabber.Launch((Grabee.position - Grabber.position).normalized * swapPlacesForce * 2);
         Grabber.lastSwapTime = Time.time;
+
+        Vector2 swapToPos = Grabee.position + (Grabee.position - Grabber.position).normalized * maxDistance;
+        Debug.DrawLine(Grabber.position, swapToPos, Color.gray, 2f);
+
+        if (useSwapAimbot && EnemyMovement.EnemyList.Count > 0)
+        {
+            Vector2 closestPos = Vector2.zero;
+            float closestDistance = aimbotTargetDistance * aimbotTargetDistance;
+            foreach (EnemyMovement enemy in EnemyMovement.EnemyList)
+            {
+                float distance = ((Vector2)enemy.transform.position - swapToPos).sqrMagnitude;
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestPos = enemy.transform.position;
+                }
+            }
+            if (closestPos != Vector2.zero) swapToPos = closestPos;
+        }
+        Debug.DrawLine(Grabber.position, swapToPos, Color.green, 2f);
+
+        Grabber.Launch((swapToPos - Grabber.position).normalized * swapPlacesForce * 2);
     }
 
     void Reset()
