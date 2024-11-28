@@ -88,7 +88,7 @@ public class Chain : MonoBehaviour
 
         rotationalVelocity = 0;
         Grabber.Launch((Grabee.position - Grabber.position).normalized * swapPlacesForce * 2);
-
+        Grabber.lastSwapTime = Time.time;
     }
     void OnSwingIntoWall()
     {

@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour, IKnockable
 
     // Properties
     public Vector2 position { get { return transform.position; } set { SetPosition(value, transform.position); } }
-    public bool beingSwapped { get { return velocity.magnitude > 1f; } }
+    public bool beingSwapped { get { return velocity.sqrMagnitude > 1f && Time.time - lastSwapTime < 0.75f; } }
 
     // Local variables
     //
