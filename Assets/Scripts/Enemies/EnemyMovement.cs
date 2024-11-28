@@ -18,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
     [SerializeField] Chain chain;
+    Transform grabber;
     [SerializeField] Animator animator;
 
 
@@ -75,6 +76,7 @@ public class EnemyMovement : MonoBehaviour
         targetTransform1 = player1;
         targetTransform2 = player2;
         nextState = state;
+        grabber = chain.PlayerA.transform;
     }
 
 
@@ -138,7 +140,8 @@ public class EnemyMovement : MonoBehaviour
     {
         if (chain.rotationalVelocity != 0)
         {
-            nextState = EnemyState.INTERCEPT;
+            StateChange(EnemyState.INTERCEPT);
+            return;
         }
         if (nextState == state)
         {
@@ -163,6 +166,7 @@ public class EnemyMovement : MonoBehaviour
             state = nextState;
         }
         StateChange(state);
+        Debug.Log("!");
     }
 
     public void StateChange(EnemyState _state)
@@ -272,9 +276,10 @@ public class EnemyMovement : MonoBehaviour
 
     void Intercept()
     {
+
         float interceptDistance = chain.currentChainLength;
-        Vector2 dist = (transform.position - targetTransform1.position).normalized;
-        target = (Vector2)targetTransform1.position + dist * interceptDistance + dist * 0.5f;
+        Vector2 dist = (transform.position - grabber.position).normalized;
+        target = (Vector2)grabber.position + dist * interceptDistance + dist * 1;
     }
 
     void Charge()
