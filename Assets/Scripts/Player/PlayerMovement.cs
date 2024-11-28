@@ -88,7 +88,7 @@ public class PlayerMovement : MonoBehaviour, IKnockable
     void Update()
     {
         Vector2 translation = Vector2.zero;
-        if (!beingGrabbed && Input.chainRotationalInput == 0) translation += Input.movementInput * movementSpeed * Time.deltaTime;
+        if (!beingGrabbed && Input.chainRotationalInput == 0 && !beingSwapped) translation += Input.movementInput * movementSpeed * Time.deltaTime;
 
 
         translation += velocity * Time.deltaTime;
