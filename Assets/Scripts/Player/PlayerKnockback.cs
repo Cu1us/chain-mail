@@ -89,7 +89,7 @@ public class PlayerKnockback : MonoBehaviour
 
             enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * knockbackForce, ForceMode2D.Impulse);
 
-            TimeManager.Freeze(0.05f);
+            TimeManager.Freeze(0.1f);
 
             if (enemy.GetComponent<SpriteRenderer>().color == Color.red) // SHOULD LATER BE REMOVED!
             {
@@ -117,8 +117,6 @@ public class PlayerKnockback : MonoBehaviour
             forceDirection.Normalize();
 
             enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * normalKnockbackForce, ForceMode2D.Impulse);
-
-            TimeManager.Freeze(0.05f);
         }
     }
 
