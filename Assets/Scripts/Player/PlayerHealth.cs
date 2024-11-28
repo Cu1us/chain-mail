@@ -1,14 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] float maxPlayerHealth;
+    [SerializeField] GameObject gameoverText;
     [SerializeField] Image HealthBar;
+    [SerializeField] PlayerInput playerInput;
 
     float playerHealth;
+    bool death;
 
     void Start()
     {
@@ -21,6 +27,11 @@ public class PlayerHealth : MonoBehaviour
         {
             PlayerRevive();
         }
+
+        if (death)
+        {
+            Death();
+        }
     }
 
     public void TakeDamage(float damage)
@@ -30,7 +41,7 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthBar();
         if(playerHealth <= 0)
         {
-            Death();
+            death = true;
         }
     }
 
@@ -41,11 +52,16 @@ public class PlayerHealth : MonoBehaviour
 
     void PlayerRevive()
     {
+        playerHealth = maxPlayerHealth;
        // SendMessage(OnRevive);
     }
 
     void Death()
     {
-      //  SendMessage(OnDeath);
+        gameoverText.SetActive(true);
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.SetActiveScene(SceneManager.GetActiveScene());
+        }
     }
 }
