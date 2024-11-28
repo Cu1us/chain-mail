@@ -15,9 +15,12 @@ public class TimeManager : MonoBehaviour
         timeScale = 1f;
     }
 
-    public static void Freeze(float duration)
+    public static void Freeze(float duration, bool additive = true)
     {
-        freezeUntil = System.Math.Max(freezeUntil, Time.unscaledTimeAsDouble) + duration;
+        if (additive)
+            freezeUntil = System.Math.Max(freezeUntil, Time.unscaledTimeAsDouble) + duration;
+        else
+            freezeUntil = Time.unscaledTimeAsDouble + duration;
         UpdateTimeScale();
     }
     public static void Unfreeze()
