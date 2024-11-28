@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] float playerHealth;
+    [SerializeField] float maxPlayerHealth;
+    [SerializeField] Image HealthBar;
+
+    float playerHealth;
 
     void Start()
     {
-
+        playerHealth = maxPlayerHealth;
     }
 
     void Update()
@@ -23,15 +27,16 @@ public class PlayerHealth : MonoBehaviour
     {
         AudioManager.Play("hurtplayer");
         playerHealth -= damage;
+        UpdateHealthBar();
         if(playerHealth <= 0)
         {
             Death();
         }
     }
 
-    void Death()
+    void UpdateHealthBar()
     {
-      //  SendMessage(OnDeath);
+        HealthBar.fillAmount =  1 - playerHealth/maxPlayerHealth;
     }
 
     void PlayerRevive()
@@ -39,4 +44,8 @@ public class PlayerHealth : MonoBehaviour
        // SendMessage(OnRevive);
     }
 
+    void Death()
+    {
+      //  SendMessage(OnDeath);
+    }
 }
