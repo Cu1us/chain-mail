@@ -12,11 +12,13 @@ public class TimeManager : MonoBehaviour
     void Awake()
     {
         if (!instance) instance = this;
+        timeScale = 1f;
     }
 
     public static void Freeze(float duration)
     {
         freezeUntil = System.Math.Max(freezeUntil, Time.unscaledTimeAsDouble) + duration;
+        UpdateTimeScale();
     }
     public static void Unfreeze()
     {
