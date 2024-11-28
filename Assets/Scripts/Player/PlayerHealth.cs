@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float maxPlayerHealth;
     [SerializeField] GameObject gameoverText;
     [SerializeField] Image HealthBar;
-    [SerializeField] PlayerInput playerInput;
+    [SerializeField] PlayerInputData playerInput;
 
     float playerHealth;
     bool death;
@@ -59,9 +59,10 @@ public class PlayerHealth : MonoBehaviour
     void Death()
     {
         gameoverText.SetActive(true);
+        playerInput.DisableInput();
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.SetActiveScene(SceneManager.GetActiveScene());
+            SceneManager.LoadScene("MainScene");
         }
     }
 }
