@@ -203,6 +203,8 @@ MonoBehaviour:
   rotationDeceleration: 1600
   swapPlacesForce: 30
   extendChainSpeed: 8
+  useSwapAimbot: 1
+  aimbotTargetDistance: 2
   heldPivotOffset: 0.075
   forcePreserveMomentumThreshold: 0.666
   pivotReadjustToCenterTime: 0.25
@@ -252,6 +254,30 @@ PrefabInstance:
       propertyPath: player2
       value: 
       objectReference: {fileID: 5789651416746514506}
+    - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: maxAttackTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: knockbackForce
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 7739225830394850822}
+    - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: normalKnockbackForce
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155310138716365543, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: playerInput
+      value: 
+      objectReference: {fileID: 3565201630926505757}
+    - target: {fileID: 6155310138716365543, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: maxPlayerHealth
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 8851130757255043613, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: m_Name
       value: Player1
@@ -388,6 +414,14 @@ PrefabInstance:
       propertyPath: canCollideWith.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4365846258446343016, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
+      propertyPath: playerInput
+      value: 
+      objectReference: {fileID: 1133641489935121421}
+    - target: {fileID: 4365846258446343016, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
+      propertyPath: maxPlayerHealth
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 9104600906751115791, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
       propertyPath: chain
       value: 
@@ -403,6 +437,22 @@ PrefabInstance:
     - target: {fileID: 9104600906751115791, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
       propertyPath: grabStatus
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104600906751115791, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
+      propertyPath: maxAttackTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104600906751115791, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
+      propertyPath: knockbackForce
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104600906751115791, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 6171870962561635606}
+    - target: {fileID: 9104600906751115791, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
+      propertyPath: normalKnockbackForce
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 9194984364361686057, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
       propertyPath: m_DefaultControlScheme

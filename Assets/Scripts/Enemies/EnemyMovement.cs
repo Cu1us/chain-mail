@@ -1,9 +1,12 @@
-using UnityEditorInternal;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
+
+    public static readonly List<EnemyMovement> EnemyList = new();
+
     [Header("Players")]
     Transform player1;
     Transform player2;
@@ -15,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
     [SerializeField] Chain chain;
+    Transform grabber;
     [SerializeField] Animator animator;
 
 
@@ -71,7 +75,8 @@ public class EnemyMovement : MonoBehaviour
         player2 = GameObject.Find("Player2").transform;
         targetTransform1 = player1;
         targetTransform2 = player2;
-        StateChange(EnemyState.CHARGE);
+        nextState = state;
+        grabber = chain.PlayerA.transform;
     }
 
 
@@ -88,8 +93,7 @@ public class EnemyMovement : MonoBehaviour
 
         switch (state)
         {
-            case EnemyState.STUCK:
-                break;
+
             case EnemyState.KEEPDISTANCE:
                 KeepDistance();
                 break;
@@ -136,7 +140,8 @@ public class EnemyMovement : MonoBehaviour
     {
         if (chain.rotationalVelocity != 0)
         {
-            nextState = EnemyState.INTERCEPT;
+            StateChange(EnemyState.INTERCEPT);
+            return;
         }
         if (nextState == state)
         {
@@ -161,6 +166,7 @@ public class EnemyMovement : MonoBehaviour
             state = nextState;
         }
         StateChange(state);
+        Debug.Log("!");
     }
 
     public void StateChange(EnemyState _state)
@@ -270,9 +276,10 @@ public class EnemyMovement : MonoBehaviour
 
     void Intercept()
     {
+
         float interceptDistance = chain.currentChainLength;
-        Vector2 dist = (transform.position - targetTransform1.position).normalized;
-        target = (Vector2)targetTransform1.position + dist * interceptDistance + dist * 0.5f;
+        Vector2 dist = (transform.position - grabber.position).normalized;
+        target = (Vector2)grabber.position + dist * interceptDistance + dist * 1;
     }
 
     void Charge()
@@ -323,9 +330,19 @@ public class EnemyMovement : MonoBehaviour
 
     void CompareVelocity()
     {
-        animator.SetFloat("Velocity",rb.velocity.sqrMagnitude);
+        animator.SetFloat("Velocity", rb.velocity.sqrMagnitude);
     }
 
 
-
+    void OnEnable()
+    {
+        if (!EnemyList.Contains(this))
+        {
+            EnemyList.Add(this);
+        }
+    }
+    void OnDisable()
+    {
+        EnemyList.Remove(this);
+    }
 }

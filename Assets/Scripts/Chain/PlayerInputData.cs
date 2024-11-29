@@ -7,11 +7,20 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerInputData : MonoBehaviour
 {
-    [ReadOnlyInspector] public Vector2 movementInput;
-    [ReadOnlyInspector] public Vector2 aimDirection;
-    [ReadOnlyInspector] public float chainRotationalInput;
-    [ReadOnlyInspector] public float chainExtendInput;
-    [ReadOnlyInspector] public bool isHoldingAttack;
+    public bool inputDisabled { get; private set; } = false;
+
+    public Vector2 movementInput { get => inputDisabled ? default : _movementInput; }
+    public Vector2 aimDirection { get => inputDisabled ? default : _aimDirection; }
+    public float chainRotationalInput { get => inputDisabled ? default : _chainRotationalInput; }
+    public float chainExtendInput { get => inputDisabled ? default : _chainExtendInput; }
+    public bool isHoldingAttack { get => inputDisabled ? default : _isHoldingAttack; }
+
+    Vector2 _movementInput;
+    Vector2 _aimDirection;
+    float _chainRotationalInput;
+    float _chainExtendInput;
+    bool _isHoldingAttack;
+
     public Action onAttackPress;
     public Action onAttackRelease;
     public Action<int> onChainRotate;
@@ -34,41 +43,41 @@ public class PlayerInputData : MonoBehaviour
 
     void OnMovement(InputValue value)
     {
-        movementInput = value.Get<Vector2>();
+        _movementInput = value.Get<Vector2>();
         if (DebugRays) Debug.DrawRay(transform.position, movementInput, Color.green, 1f);
     }
     void OnAim(InputValue value)
     {
-        aimDirection = value.Get<Vector2>();
+        _aimDirection = value.Get<Vector2>();
         if (DebugRays) Debug.DrawRay(transform.position, aimDirection, Color.cyan, 1f);
     }
     void OnAimScreenCoords(InputValue value)
     {
         Vector2 aimTarget = value.Get<Vector2>();
         aimTarget = mainCamera.ScreenToWorldPoint(aimTarget);
-        aimDirection = (aimTarget - (Vector2)transform.position).normalized;
+        _aimDirection = (aimTarget - (Vector2)transform.position).normalized;
         if (DebugRays) Debug.DrawRay(transform.position, aimDirection, Color.cyan, 1f);
     }
     void OnChainRotation(InputValue value)
     {
-        chainRotationalInput = value.Get<float>();
+        _chainRotationalInput = value.Get<float>();
         if (DebugRays) Debug.DrawRay(transform.position, movementInput, Color.gray, 1f);
-        onChainRotate?.Invoke(Mathf.RoundToInt(chainRotationalInput));
+        if (!inputDisabled) onChainRotate?.Invoke(Mathf.RoundToInt(chainRotationalInput));
     }
     void OnExtendChain(InputValue value)
     {
-        chainExtendInput = value.Get<float>();
+        _chainExtendInput = value.Get<float>();
     }
     void OnAttack(InputValue value)
     {
-        isHoldingAttack = Mathf.RoundToInt(value.Get<float>()) != 0;
+        _isHoldingAttack = Mathf.RoundToInt(value.Get<float>()) != 0;
         if (isHoldingAttack)
         {
-            onAttackPress?.Invoke();
+            if (!inputDisabled) onAttackPress?.Invoke();
         }
         else
         {
-            onAttackRelease?.Invoke();
+            if (!inputDisabled) onAttackRelease?.Invoke();
         }
     }
 
@@ -92,6 +101,16 @@ public class PlayerInputData : MonoBehaviour
     {
         lastSwap1Press = float.NegativeInfinity;
         lastSwap2Press = float.NegativeInfinity;
-        onChainSwap?.Invoke();
+        if (!inputDisabled) onChainSwap?.Invoke();
+    }
+
+
+    public void DisableInput()
+    {
+        inputDisabled = true;
+    }
+    public void EnableInput()
+    {
+        inputDisabled = false;
     }
 }

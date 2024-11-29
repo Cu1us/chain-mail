@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(EdgeCollider2D))]
 public class Chain : MonoBehaviour
 {
+    #region Fields
     // Exposed fields
 
     [Header("Status")]
@@ -23,6 +24,8 @@ public class Chain : MonoBehaviour
     [SerializeField] float rotationDeceleration;
     [SerializeField] float swapPlacesForce;
     [SerializeField] float extendChainSpeed;
+    [SerializeField] bool useSwapAimbot;
+    [SerializeField] float aimbotTargetDistance;
 
     //[SerializeField] float chainExtendRateWhenSwung;
 
@@ -57,18 +60,18 @@ public class Chain : MonoBehaviour
     float localPivot;
     public float currentChainLength { get; private set; }
     float lastChainHeldTime;
+    #endregion
 
-
-    void Reset()
-    {
-        lineRenderer = GetComponent<LineRenderer>();
-        edgeCollider = GetComponent<EdgeCollider2D>();
-        lineRenderer.positionCount = 2;
-    }
     void Start()
     {
-        PlayerAInput.onChainSwap += SwapPlaces;
-        PlayerBInput.onChainSwap += SwapPlaces;
+        BindEvents();
+    }
+
+    #region Events
+    void BindEvents()
+    {
+        PlayerAInput.onChainSwap += PlayerASwapPlaces;
+        PlayerBInput.onChainSwap += PlayerBSwapPlaces;
         PlayerAInput.onChainRotate += PlayerAGrabChain;
         PlayerBInput.onChainRotate += PlayerBGrabChain;
         PlayerA.onKnockedChain += OnKnockedWhileSwung;
@@ -76,23 +79,17 @@ public class Chain : MonoBehaviour
         PlayerA.onSwingIntoWall += OnSwingIntoWall;
         PlayerB.onSwingIntoWall += OnSwingIntoWall;
     }
-    public void SwapPlaces()
-    {
-        if (PlayerA.velocity.sqrMagnitude > 1 || PlayerB.velocity.sqrMagnitude > 1) return;
-        if (grabStatus == GrabStatus.NONE)
-        {
-            PlayerA.Launch((PlayerB.position - PlayerA.position).normalized * swapPlacesForce);
-            PlayerB.Launch((PlayerA.position - PlayerB.position).normalized * swapPlacesForce);
-        }
-        else
-        {
-            rotationalVelocity = 0;
-            Grabber.Launch((Grabee.position - Grabber.position).normalized * swapPlacesForce * 2);
-        }
-    }
     void OnSwingIntoWall()
     {
         rotationalVelocity = -rotationalVelocity;
+    }
+    void PlayerASwapPlaces()
+    {
+        SwapPlaces(PlayerA, PlayerB);
+    }
+    void PlayerBSwapPlaces()
+    {
+        SwapPlaces(PlayerB, PlayerA);
     }
     void PlayerAGrabChain(int dir)
     {
@@ -108,6 +105,16 @@ public class Chain : MonoBehaviour
         float chainLength = currentChainLength * (grabStatus == GrabStatus.B ? heldPivotOffset : (1 - heldPivotOffset));
         rotationalVelocity += amount * 114.591559026164f / chainLength * Mathf.Sign(rotationalVelocity);
     }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent(out EnemyMovement enemy))
+        {
+            enemy.Stumble();
+        }
+    }
+    #endregion
+
+    #region Main Loop
     void Update()
     {
         currentChainLength = Vector2.Distance(PlayerA.position, PlayerB.position);
@@ -134,17 +141,6 @@ public class Chain : MonoBehaviour
         Grabee.MoveTowards(Center, -pushDistance);
     }*/
 
-    void ExtendChainByInput()
-    {
-        if (grabStatus == GrabStatus.NONE || currentChainLength >= maxDistance || Grabee.velocity.sqrMagnitude > 1f || Grabber.velocity.sqrMagnitude > 1f) return;
-        float pushDistance = GrabberInput.chainExtendInput * extendChainSpeed * Time.deltaTime;
-
-        if (currentChainLength + pushDistance > maxDistance) pushDistance = maxDistance - currentChainLength;
-        if (currentChainLength + pushDistance < minDistance) pushDistance = minDistance - currentChainLength;
-
-        Grabee.MoveTowards(Center, -pushDistance);
-    }
-
     void ApplyConstraint()
     {
         if (currentChainLength > maxDistance)
@@ -165,7 +161,28 @@ public class Chain : MonoBehaviour
             }
         }
     }
+    void UpdatePivot()
+    {
+        bool playerATryingToRotate = PlayerAInput.chainRotationalInput != 0;
+        bool playerBTryingToRotate = PlayerBInput.chainRotationalInput != 0;
 
+        // Decide who is grabbing, and set pivot accordingly
+        if (!playerATryingToRotate && !playerBTryingToRotate)
+        {
+            SetGrabber(GrabStatus.NONE);
+        }
+        else
+        {
+            if (playerATryingToRotate && !playerBTryingToRotate)
+            {
+                SetGrabber(GrabStatus.A);
+            }
+            else if (!playerATryingToRotate && playerBTryingToRotate)
+            {
+                SetGrabber(GrabStatus.B);
+            }
+        }
+    }
     void AccelerateBasedOnInput()
     {
         if (grabStatus != GrabStatus.NONE && GrabberInput.chainRotationalInput != 0)
@@ -191,7 +208,16 @@ public class Chain : MonoBehaviour
             rotationalVelocity = rotationSpeedCap * Mathf.Sign(rotationalVelocity);
         }
     }
+    void ExtendChainByInput()
+    {
+        if (grabStatus == GrabStatus.NONE || currentChainLength >= maxDistance || Grabee.velocity.sqrMagnitude > 1f || Grabber.velocity.sqrMagnitude > 1f) return;
+        float pushDistance = GrabberInput.chainExtendInput * extendChainSpeed * Time.deltaTime;
 
+        if (currentChainLength + pushDistance > maxDistance) pushDistance = maxDistance - currentChainLength;
+        if (currentChainLength + pushDistance < minDistance) pushDistance = minDistance - currentChainLength;
+
+        Grabee.MoveTowards(Center, -pushDistance);
+    }
     void RotateChain()
     {
         PlayerA.swingVelocity = rotationalVelocity / 114.591559026164f * currentChainLength * localPivot;
@@ -215,28 +241,20 @@ public class Chain : MonoBehaviour
             Grabber.swingForwardDirection = Vector2.zero;
         }
     }
-    void UpdatePivot()
+    void Render()
     {
-        bool playerATryingToRotate = PlayerAInput.chainRotationalInput != 0;
-        bool playerBTryingToRotate = PlayerBInput.chainRotationalInput != 0;
-
-        // Decide who is grabbing, and set pivot accordingly
-        if (!playerATryingToRotate && !playerBTryingToRotate)
-        {
-            SetGrabber(GrabStatus.NONE);
-        }
-        else
-        {
-            if (playerATryingToRotate && !playerBTryingToRotate)
-            {
-                SetGrabber(GrabStatus.A);
-            }
-            else if (!playerATryingToRotate && playerBTryingToRotate)
-            {
-                SetGrabber(GrabStatus.B);
-            }
-        }
+        lineRenderer.SetPosition(0, PlayerA.position);
+        lineRenderer.SetPosition(1, PlayerB.position);
     }
+    void PositionHitbox()
+    {
+        Vector2 pointA = Vector2.MoveTowards(PlayerA.position, Center, 0.5f);
+        Vector2 pointB = Vector2.MoveTowards(PlayerB.position, Center, 0.5f);
+
+        edgeCollider.SetPoints(new List<Vector2> { pointA, pointB });
+    }
+    #endregion
+
     void SetGrabber(GrabStatus grabber)
     {
         grabStatus = grabber;
@@ -261,25 +279,47 @@ public class Chain : MonoBehaviour
         PlayerA.beingGrabbed = grabStatus == GrabStatus.B;
         PlayerB.beingGrabbed = grabStatus == GrabStatus.A;
     }
-    void PositionHitbox()
+    public void SwapPlaces(PlayerMovement swapper, PlayerMovement anchor)
     {
-        Vector2 pointA = Vector2.MoveTowards(PlayerA.position, Center, 0.5f);
-        Vector2 pointB = Vector2.MoveTowards(PlayerB.position, Center, 0.5f);
-
-        edgeCollider.SetPoints(new List<Vector2> { pointA, pointB });
-    }
-    void Render()
-    {
-        lineRenderer.SetPosition(0, PlayerA.position);
-        lineRenderer.SetPosition(1, PlayerB.position);
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.TryGetComponent(out EnemyMovement enemy))
+        if (PlayerA.velocity.sqrMagnitude > 1 || PlayerB.velocity.sqrMagnitude > 1) return;
+        /*if (grabStatus == GrabStatus.NONE)
         {
-            enemy.Stumble();
+            PlayerA.Launch((PlayerB.position - PlayerA.position).normalized * swapPlacesForce);
+            PlayerB.Launch((PlayerA.position - PlayerB.position).normalized * swapPlacesForce);
         }
+        else*/
+
+        rotationalVelocity = 0;
+        swapper.lastSwapTime = Time.time;
+
+        Vector2 swapToPos = anchor.position + (anchor.position - swapper.position).normalized * maxDistance;
+        Debug.DrawLine(swapper.position, swapToPos, Color.gray, 2f);
+
+        if (useSwapAimbot && EnemyMovement.EnemyList.Count > 0)
+        {
+            Vector2 closestPos = Vector2.zero;
+            float closestDistance = aimbotTargetDistance * aimbotTargetDistance;
+            foreach (EnemyMovement enemy in EnemyMovement.EnemyList)
+            {
+                float distance = ((Vector2)enemy.transform.position - swapToPos).sqrMagnitude;
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestPos = enemy.transform.position;
+                }
+            }
+            if (closestPos != Vector2.zero) swapToPos = closestPos;
+        }
+        Debug.DrawLine(swapper.position, swapToPos, Color.green, 2f);
+
+        Grabber.Launch((swapToPos - swapper.position).normalized * swapPlacesForce * 2);
+    }
+
+    void Reset()
+    {
+        lineRenderer = GetComponent<LineRenderer>();
+        edgeCollider = GetComponent<EdgeCollider2D>();
+        lineRenderer.positionCount = 2;
     }
 
     public enum GrabStatus

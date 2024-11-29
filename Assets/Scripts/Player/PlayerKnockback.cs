@@ -14,6 +14,7 @@ public class PlayerKnockback : MonoBehaviour
     [Header("References")]
     [SerializeField] BoxCollider2D boxCollider;
     [SerializeField] PlayerInputData playerInputData;
+    [SerializeField] PlayerMovement playerMovement;
     [SerializeField] Chain chain;
 
     [SerializeField] Transform player1;
@@ -55,7 +56,7 @@ public class PlayerKnockback : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (chain.grabStatus == grabStatus)
+        if (chain.grabStatus == grabStatus || playerMovement.beingSwapped)
         {
             if (collision.CompareTag("Enemy"))
             {
@@ -71,15 +72,25 @@ public class PlayerKnockback : MonoBehaviour
 
     void AddKnockback(GameObject enemy)
     {
-        if (enemy.TryGetComponent<Pathfinding>(out Pathfinding pathfinding))
+        if (pressedAttack || playerMovement.beingSwapped)
         {
-            pathfinding.CancelAgentUpdate();
-        }
-
-        if (pressedAttack)
-        {
+            //TimeManager.Freeze(0.1f);
             Vector2 forceDirection = playerInputData.movementInput.normalized;
+
+            if (forceDirection == Vector2.zero)
+            {
+                forceDirection = player1.position - player2.position;
+                forceDirection.Normalize();
+
+                if (grabStatus == Chain.GrabStatus.A)
+                {
+                    forceDirection *= -1;
+                }
+            }
+
             enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * knockbackForce, ForceMode2D.Impulse);
+
+            enemy.GetComponent<SpriteBlink>().Blink(0.1f);
         }
         else
         {

@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour, IKnockable
     [ReadOnlyInspector] public Vector2 velocity;
 
     [ReadOnlyInspector] public bool beingGrabbed;
+    [ReadOnlyInspector] public float lastSwapTime;
     [ReadOnlyInspector] public float swingVelocity;
     [ReadOnlyInspector] public Vector2 swingForwardDirection;
 
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour, IKnockable
 
     // Properties
     public Vector2 position { get { return transform.position; } set { SetPosition(value, transform.position); } }
+    public bool beingSwapped { get { return velocity.sqrMagnitude > 1f && Time.time - lastSwapTime < 0.75f; } }
 
     // Local variables
     //
@@ -86,7 +88,7 @@ public class PlayerMovement : MonoBehaviour, IKnockable
     void Update()
     {
         Vector2 translation = Vector2.zero;
-        if (!beingGrabbed && Input.chainRotationalInput == 0) translation += Input.movementInput * movementSpeed * Time.deltaTime;
+        if (!beingGrabbed && Input.chainRotationalInput == 0 && !beingSwapped) translation += Input.movementInput * movementSpeed * Time.deltaTime;
 
 
         translation += velocity * Time.deltaTime;

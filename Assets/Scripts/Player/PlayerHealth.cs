@@ -1,14 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] float playerHealth;
+    [SerializeField] float maxPlayerHealth;
+    [SerializeField] GameObject gameoverText;
+    [SerializeField] Image HealthBar;
+    [SerializeField] PlayerInputData playerInput;
+
+    float playerHealth;
+    bool death;
 
     void Start()
     {
-
+        playerHealth = maxPlayerHealth;
     }
 
     void Update()
@@ -17,26 +27,43 @@ public class PlayerHealth : MonoBehaviour
         {
             PlayerRevive();
         }
+
+        if (death)
+        {
+            Death();
+        }
     }
 
     public void TakeDamage(float damage)
     {
         AudioManager.Play("hurtplayer");
         playerHealth -= damage;
+        UpdateHealthBar();
         if(playerHealth <= 0)
         {
-            Death();
+            death = true;
         }
     }
 
-    void Death()
+    void UpdateHealthBar()
     {
-      //  SendMessage(OnDeath);
+        HealthBar.fillAmount =  1 - playerHealth/maxPlayerHealth;
     }
 
     void PlayerRevive()
     {
-       // SendMessage(OnRevive);
+        playerHealth = maxPlayerHealth;
     }
 
+    void Death()
+    {
+        gameoverText.SetActive(true);
+        playerInput.DisableInput();
+        Invoke(nameof(ResetScene), 2);
+    }
+
+    void ResetScene()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
 }
