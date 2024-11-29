@@ -85,11 +85,11 @@ public class Chain : MonoBehaviour
     }
     void PlayerASwapPlaces()
     {
-        SwapPlaces(PlayerA, PlayerB);
+        SwapPlaces(PlayerB, PlayerA);
     }
     void PlayerBSwapPlaces()
     {
-        SwapPlaces(PlayerB, PlayerA);
+        SwapPlaces(PlayerA, PlayerB);
     }
     void PlayerAGrabChain(int dir)
     {
@@ -281,7 +281,7 @@ public class Chain : MonoBehaviour
     }
     public void SwapPlaces(PlayerMovement swapper, PlayerMovement anchor)
     {
-        if (PlayerA.velocity.sqrMagnitude > 1 || PlayerB.velocity.sqrMagnitude > 1) return;
+        if (PlayerA.velocity.sqrMagnitude > 10 || PlayerB.velocity.sqrMagnitude > 10) return;
         /*if (grabStatus == GrabStatus.NONE)
         {
             PlayerA.Launch((PlayerB.position - PlayerA.position).normalized * swapPlacesForce);
@@ -312,7 +312,7 @@ public class Chain : MonoBehaviour
         }
         Debug.DrawLine(swapper.position, swapToPos, Color.green, 2f);
 
-        Grabber.Launch((swapToPos - swapper.position).normalized * swapPlacesForce * 2);
+        swapper.Launch((swapToPos - swapper.position).normalized * swapPlacesForce * 2);
     }
 
     void Reset()

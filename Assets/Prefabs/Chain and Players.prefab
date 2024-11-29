@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabStatus: 0
   rotationalVelocity: 0
-  maxDistance: 5
+  maxDistance: 6
   minDistance: 2
   maxRotationSpeed: 1420
   rotationSpeedCap: 2500
