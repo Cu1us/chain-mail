@@ -10,6 +10,7 @@ public class PlayerKnockback : MonoBehaviour
     [SerializeField] float maxAttackTime;
     [SerializeField] float coolDown;
     [SerializeField] Chain.GrabStatus grabStatus;
+    [SerializeField] bool freezeTimeOnHit;
 
     [Header("References")]
     [SerializeField] BoxCollider2D boxCollider;
@@ -89,7 +90,8 @@ public class PlayerKnockback : MonoBehaviour
 
             enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * knockbackForce, ForceMode2D.Impulse);
 
-            enemy.GetComponent<SpriteBlink>().Blink(0.1f);
+            if (freezeTimeOnHit) TimeManager.Slowmo(0.1f, 0.2f);
+            enemy.GetComponent<SpriteBlink>().Blink(0.2f);
         }
         else
         {
