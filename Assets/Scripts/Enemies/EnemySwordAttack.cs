@@ -24,7 +24,7 @@ public class EnemySwordAttack : MonoBehaviour
 
     void Update()
     {
-        if (playersInsideTrigger.Count > 0)
+        if (playersInsideTrigger.Count > 0 && state.state != EnemyMovement.EnemyState.STUCK)
         {
             animator.Play("Attack");
         }
