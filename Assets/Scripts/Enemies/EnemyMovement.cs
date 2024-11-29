@@ -140,8 +140,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (chain.rotationalVelocity != 0)
         {
-            StateChange(EnemyState.INTERCEPT);
-            return;
+            nextState =EnemyState.INTERCEPT;
         }
         if (nextState == state)
         {
@@ -166,7 +165,6 @@ public class EnemyMovement : MonoBehaviour
             state = nextState;
         }
         StateChange(state);
-        Debug.Log("!");
     }
 
     public void StateChange(EnemyState _state)
@@ -215,6 +213,7 @@ public class EnemyMovement : MonoBehaviour
             case EnemyState.GUARD:
                 break;
             case EnemyState.INTERCEPT:
+                stateTimer = -2;
                 break;
             case EnemyState.CHARGE:
                 target = targetTransform1.position + (targetTransform1.position - transform.position).normalized * 2;
@@ -279,7 +278,8 @@ public class EnemyMovement : MonoBehaviour
 
         float interceptDistance = chain.currentChainLength;
         Vector2 dist = (transform.position - grabber.position).normalized;
-        target = (Vector2)grabber.position + dist * interceptDistance + dist * 1;
+        Vector2 perpendicular = Vector2.Perpendicular(dist);
+        target = (Vector2)grabber.position + dist * interceptDistance + dist * 1.5f + (perpendicular*chain.rotationalVelocity).normalized*3;
     }
 
     void Charge()
