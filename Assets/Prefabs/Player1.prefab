@@ -226,7 +226,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 10904c76f6aa8c5419b8ab635c3fe742, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.95654917, g: 0.9829853, b: 0.38240623, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -323,11 +323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3de68a44b5db69c36b1a8bba4c8a8e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementInput: {x: 0, y: 0}
-  aimDirection: {x: 0, y: 0}
-  chainRotationalInput: 0
-  chainExtendInput: 0
-  isHoldingAttack: 0
   swapPlacesButtonWindow: 0.2
   DebugRays: 0
 --- !u!114 &9157047647374926665
@@ -344,6 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0}
   beingGrabbed: 0
+  lastSwapTime: 0
   swingVelocity: 0
   swingForwardDirection: {x: 0, y: 0}
   movementSpeed: 6
@@ -368,7 +364,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4db75b147f84534cb4e42bec825ceb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 150
+  maxPlayerHealth: 0
+  gameoverText: {fileID: 0}
+  HealthBar: {fileID: 0}
+  playerInput: {fileID: 0}
 --- !u!114 &1702534065677974400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,8 +385,10 @@ MonoBehaviour:
   maxAttackTime: 1
   coolDown: 0.5
   grabStatus: 1
+  freezeTimeOnHit: 1
   boxCollider: {fileID: 4265511886869054383}
   playerInputData: {fileID: 2668731653776018002}
+  playerMovement: {fileID: 0}
   chain: {fileID: 0}
   player1: {fileID: 8856967382859542037}
   player2: {fileID: 0}

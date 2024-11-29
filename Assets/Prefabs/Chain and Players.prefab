@@ -204,7 +204,7 @@ MonoBehaviour:
   swapPlacesForce: 30
   extendChainSpeed: 8
   useSwapAimbot: 1
-  aimbotTargetDistance: 2
+  aimbotTargetDistance: 3
   heldPivotOffset: 0.075
   forcePreserveMomentumThreshold: 0.666
   pivotReadjustToCenterTime: 0.25

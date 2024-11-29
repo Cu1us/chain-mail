@@ -71,7 +71,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Blink: 0
-    - _BlinkPercent: 0.3
+    - _BlinkPercent: 0.6
     - _EnableExternalAlpha: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
