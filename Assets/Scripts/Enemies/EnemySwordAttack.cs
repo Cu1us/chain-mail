@@ -6,31 +6,31 @@ public class EnemySwordAttack : MonoBehaviour
 {
     [SerializeField] float knockback;
     [SerializeField] float damage;
-    [SerializeField] float attackChargeup;
 
     List<Collider2D> playersInsideTrigger = new List<Collider2D>();
 
     [SerializeField] EnemyMovement state;
     [SerializeField] GameObject hitParticle;
+    [SerializeField] Animator animator;
+    [SerializeField] CollisionDetector collisionDetector;
 
     GameObject newParticle;
-    float attackTimer;
+
+    private void Start()
+    {
+        collisionDetector.onTriggerEnter += CollisionEnter;
+        collisionDetector.onTriggerExit += CollisionExit;
+    }
 
     void Update()
     {
         if (playersInsideTrigger.Count > 0)
         {
-            attackTimer += Time.deltaTime;
-
-            if (state.isAttackState && attackTimer > attackChargeup)
-            {
-                Attack();
-                attackTimer = 0;
-            }
+            animator.Play("Attack");
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void CollisionEnter(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -38,7 +38,7 @@ public class EnemySwordAttack : MonoBehaviour
         }
     }
 
-    void OnTriggerExit2D(Collider2D collision)
+    void CollisionExit(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
