@@ -133,7 +133,7 @@ Rigidbody2D:
   m_LinearDrag: 2
   m_AngularDrag: 0
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d854e3df6acdaaf4cbe7d917ad0d97d1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -229,6 +229,7 @@ MonoBehaviour:
   chain: {fileID: 1931979293959075955, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
   animator: {fileID: 3742826125167725315}
   acceleration: 10
+  knockbackDeceleration: 10
   maxVelocity: 5
   flankExtraDistance: 5
   keepDistanceDistance: 6
