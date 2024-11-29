@@ -130,9 +130,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 135868290}
     m_Modifications:
+    - target: {fileID: 1959611848925332476, guid: ff78d5f3d19ad9b4caa4f0f9ff8cea4e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4524571282302265665, guid: ff78d5f3d19ad9b4caa4f0f9ff8cea4e, type: 3}
       propertyPath: m_Name
       value: WindowTrap (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5851796152644628382, guid: ff78d5f3d19ad9b4caa4f0f9ff8cea4e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5926348766110632249, guid: ff78d5f3d19ad9b4caa4f0f9ff8cea4e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6769,7 +6777,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d854e3df6acdaaf4cbe7d917ad0d97d1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -7308,6 +7316,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 135868290}
     m_Modifications:
+    - target: {fileID: 1959611848925332476, guid: ff78d5f3d19ad9b4caa4f0f9ff8cea4e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4524571282302265665, guid: ff78d5f3d19ad9b4caa4f0f9ff8cea4e, type: 3}
       propertyPath: m_Name
       value: WindowTrap (3)
@@ -21955,6 +21967,14 @@ PrefabInstance:
     - target: {fileID: 5769951615074734439, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5789651416746514506, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5789651416746514506, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.06
       objectReference: {fileID: 0}
     - target: {fileID: 6171870962561635606, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: canCollideWith.Array.data[0]
