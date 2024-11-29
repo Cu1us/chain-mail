@@ -74,7 +74,7 @@ public class PlayerKnockback : MonoBehaviour
     {
         if (pressedAttack || playerMovement.beingSwapped)
         {
-            TimeManager.Freeze(0.1f);
+            //TimeManager.Freeze(0.1f);
             Vector2 forceDirection = playerInputData.movementInput.normalized;
 
             if (forceDirection == Vector2.zero)
