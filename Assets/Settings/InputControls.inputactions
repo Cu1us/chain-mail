@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "SwapPlaces",
+                    "type": "Button",
+                    "id": "68054319-d6d7-4f35-b956-270f39c793d0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -529,6 +538,17 @@
                     "action": "ExtendChain",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "9d732851-e2b0-4b3d-9feb-b3fd560fca85",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Melee;Ranged",
+                    "action": "SwapPlaces",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

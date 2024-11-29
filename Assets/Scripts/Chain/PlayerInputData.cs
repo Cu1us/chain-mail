@@ -86,7 +86,7 @@ public class PlayerInputData : MonoBehaviour
         lastSwap1Press = Time.time;
         if (Time.time - lastSwap2Press < swapPlacesButtonWindow)
         {
-            SwapPlaces();
+            OnSwapPlaces();
         }
     }
     void OnChainSwap2()
@@ -94,10 +94,10 @@ public class PlayerInputData : MonoBehaviour
         lastSwap2Press = Time.time;
         if (Time.time - lastSwap1Press < swapPlacesButtonWindow)
         {
-            SwapPlaces();
+            OnSwapPlaces();
         }
     }
-    void SwapPlaces()
+    void OnSwapPlaces()
     {
         lastSwap1Press = float.NegativeInfinity;
         lastSwap2Press = float.NegativeInfinity;
