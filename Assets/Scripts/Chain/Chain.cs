@@ -60,6 +60,7 @@ public class Chain : MonoBehaviour
     float localPivot;
     public float currentChainLength { get; private set; }
     float lastChainHeldTime;
+    public float chainHeldTimer;
     #endregion
 
     void Start()
@@ -132,6 +133,12 @@ public class Chain : MonoBehaviour
         Render();
 
         PositionHitbox();
+        if (chainHeldTimer > 2)
+        {
+            PlayerA.beingGrabbed = grabStatus == GrabStatus.NONE;
+            PlayerB.beingGrabbed = grabStatus == GrabStatus.NONE;
+           // chainHeldTimer = 0;
+        }
     }
 
     /*void ExtendChainBySpeed()
@@ -189,6 +196,7 @@ public class Chain : MonoBehaviour
         {
             float targetRotVelocity = GrabberInput.chainRotationalInput * maxRotationSpeed;
             float acceleration = rotationAcceleration * Time.deltaTime;
+            chainHeldTimer += Time.deltaTime;
 
             if (Mathf.Sign(rotationalVelocity) != Mathf.Sign(targetRotVelocity))
             {

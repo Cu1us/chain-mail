@@ -30,6 +30,8 @@ public class PlayerInputData : MonoBehaviour
 
     float lastSwap1Press = float.NegativeInfinity;
     float lastSwap2Press = float.NegativeInfinity;
+    float swapPlaceTimer;
+    float chainRotateTimer;
 
 
     [SerializeField] bool DebugRays;
@@ -39,6 +41,13 @@ public class PlayerInputData : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
+    }
+
+    void Update()
+    {
+        swapPlaceTimer += Time.deltaTime;
+        chainRotateTimer += Time.deltaTime;
+
     }
 
     void OnMovement(InputValue value)
@@ -60,6 +69,13 @@ public class PlayerInputData : MonoBehaviour
     }
     void OnChainRotation(InputValue value)
     {
+        if (chainRotateTimer < 2)
+        {
+            return;
+        }
+
+        chainRotateTimer = 0;
+
         _chainRotationalInput = value.Get<float>();
         if (DebugRays) Debug.DrawRay(transform.position, movementInput, Color.gray, 1f);
         if (!inputDisabled) onChainRotate?.Invoke(Mathf.RoundToInt(chainRotationalInput));
@@ -83,17 +99,27 @@ public class PlayerInputData : MonoBehaviour
 
     void OnChainSwap1()
     {
+        if (swapPlaceTimer < 1)
+        {
+            return;
+        }
         lastSwap1Press = Time.time;
         if (Time.time - lastSwap2Press < swapPlacesButtonWindow)
         {
+            swapPlaceTimer = 0;
             OnSwapPlaces();
         }
     }
     void OnChainSwap2()
     {
+        if (swapPlaceTimer < 1)
+        {
+            return;
+        }
         lastSwap2Press = Time.time;
         if (Time.time - lastSwap1Press < swapPlacesButtonWindow)
         {
+            swapPlaceTimer = 0;
             OnSwapPlaces();
         }
     }
