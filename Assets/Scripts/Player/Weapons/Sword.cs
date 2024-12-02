@@ -164,10 +164,6 @@ public class Sword : Weapon
         {
             foreach (var enemy in enemiesInsideTrigger)
             {
-                if (enemy.TryGetComponent<Pathfinding>(out Pathfinding pathfinding))
-                {
-                    pathfinding.CancelAgentUpdate();
-                }
 
                 Vector2 perpendicular = Vector2.Perpendicular(player1.position - player2.position);
                 perpendicular *= Mathf.Sign(chain.rotationalVelocity);
