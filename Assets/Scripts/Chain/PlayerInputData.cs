@@ -32,6 +32,9 @@ public class PlayerInputData : MonoBehaviour
     float lastSwap2Press = float.NegativeInfinity;
     float swapPlaceTimer;
     float chainRotateTimer;
+    float chainHeldTimer;
+    [SerializeField] float chainHeldMaxTime;
+    [SerializeField] float chainRotateCooldown;
 
 
     [SerializeField] bool DebugRays;
@@ -47,7 +50,18 @@ public class PlayerInputData : MonoBehaviour
     {
         swapPlaceTimer += Time.deltaTime;
         chainRotateTimer += Time.deltaTime;
-
+        if(_chainRotationalInput != 0)
+        {
+            chainHeldTimer += Time.deltaTime;
+        }
+        if(chainHeldTimer > chainHeldMaxTime)
+        {
+            _chainRotationalInput = 0;
+        }
+        if(_chainRotationalInput == 0)
+        {
+            chainHeldTimer = 0;
+        }
     }
 
     void OnMovement(InputValue value)
@@ -69,7 +83,7 @@ public class PlayerInputData : MonoBehaviour
     }
     void OnChainRotation(InputValue value)
     {
-        if (chainRotateTimer < 2)
+        if (chainRotateTimer < chainRotateCooldown)
         {
             return;
         }
