@@ -199,7 +199,7 @@ MonoBehaviour:
   minDistance: 2
   maxRotationSpeed: 1420
   rotationSpeedCap: 2500
-  rotationAcceleration: 1000
+  rotationAcceleration: 3000
   rotationDeceleration: 1600
   swapPlacesForce: 30
   extendChainSpeed: 8
@@ -238,6 +238,7 @@ MonoBehaviour:
   PlayerBInput: {fileID: 1133641489935121421}
   lineRenderer: {fileID: 6497738465712202784}
   edgeCollider: {fileID: 260225083304844264}
+  chainHeldTimer: 0
 --- !u!1001 &1473555256358833487
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -269,6 +270,14 @@ PrefabInstance:
     - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: normalKnockbackForce
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668731653776018002, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: chainHeldMaxTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668731653776018002, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: chainRotateCooldown
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 6155310138716365543, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: playerInput
@@ -421,6 +430,14 @@ PrefabInstance:
     - target: {fileID: 4365846258446343016, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
       propertyPath: maxPlayerHealth
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5544963255187551197, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
+      propertyPath: chainHeldMaxTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5544963255187551197, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
+      propertyPath: chainRotateCooldown
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 9104600906751115791, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
       propertyPath: chain

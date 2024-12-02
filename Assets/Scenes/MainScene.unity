@@ -22239,10 +22239,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1133641489935121421, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: chainRotateCooldown
-      value: 1
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 1931979293959075955, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: rotationAcceleration
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1931979293959075955, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: rotationDeceleration
       value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 3565201630926505757, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
@@ -22251,7 +22255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3565201630926505757, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: chainRotateCooldown
-      value: 1
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 4692490535370305448, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: HealthBar
