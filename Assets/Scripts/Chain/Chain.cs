@@ -133,12 +133,7 @@ public class Chain : MonoBehaviour
         Render();
 
         PositionHitbox();
-        if (chainHeldTimer > 2)
-        {
-            PlayerA.beingGrabbed = grabStatus == GrabStatus.NONE;
-            PlayerB.beingGrabbed = grabStatus == GrabStatus.NONE;
-           // chainHeldTimer = 0;
-        }
+
     }
 
     /*void ExtendChainBySpeed()
