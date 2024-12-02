@@ -75,7 +75,7 @@ public class EnemyMovement : MonoBehaviour
         agent.updatePosition = false;
 
         player1 = GameObject.Find("Player1").transform;
-        player2 = GameObject.Find("Player2").transform;
+        player2 = GameObject.Find("Stone").transform;
         targetTransform1 = player1;
         targetTransform2 = player2;
         nextState = state;

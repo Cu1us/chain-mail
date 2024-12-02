@@ -7648,7 +7648,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389569953}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -21233,7 +21233,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795918289}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -22233,6 +22233,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1133641489935121421, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4193241122778370781, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5dd6b21291d7527469d91ac7707d376c, type: 3}
+    - target: {fileID: 4193241122778370781, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4193241122778370781, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4193241122778370781, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382864254986523641, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4692490535370305448, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: HealthBar
       value: 
@@ -22289,6 +22313,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.06
       objectReference: {fileID: 0}
+    - target: {fileID: 5793657883777018946, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: m_Name
+      value: Stone
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171870962561635606, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6171870962561635606, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: canCollideWith.Array.data[0]
       value: 
@@ -22313,6 +22345,10 @@ PrefabInstance:
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 389569955}
+    - target: {fileID: 9213995762648585400, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9213995762648585400, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: gameoverText
       value: 
@@ -22443,7 +22479,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1162656973
 RectTransform:
   m_ObjectHideFlags: 0

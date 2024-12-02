@@ -14,7 +14,7 @@ public class DangerZone : MonoBehaviour
     void Start()
     {
         player1 = GameObject.Find("Player1").transform;
-        player2 = GameObject.Find("Player2").transform;
+        player2 = GameObject.Find("Stone").transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         coll = GetComponent<Collider2D>();

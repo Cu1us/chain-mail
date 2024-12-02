@@ -265,12 +265,12 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "positive",
+                    "name": "negative",
                     "id": "d5a91f38-b2e7-4d11-ab1b-bc7b2cbd9404",
                     "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Melee",
+                    "groups": "Ranged",
                     "action": "ChainRotation",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -410,7 +410,7 @@
                 {
                     "name": "",
                     "id": "b87e7e55-ad0f-46ba-a5f6-69ff11bc66c2",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "Melee",
@@ -421,7 +421,7 @@
                 {
                     "name": "",
                     "id": "ea8146b9-b2c3-45ac-9ff5-eeb6c56ca939",
-                    "path": "<Keyboard>/u",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "Ranged",
@@ -443,7 +443,7 @@
                 {
                     "name": "",
                     "id": "2db20402-6ce9-48d5-ae43-4db3790955a8",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "Melee",
@@ -454,7 +454,7 @@
                 {
                     "name": "",
                     "id": "2022c400-d268-46e6-99ae-856fd0a21373",
-                    "path": "<Keyboard>/o",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "Ranged",

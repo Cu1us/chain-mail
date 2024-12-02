@@ -88,6 +88,7 @@ public class PlayerInputData : MonoBehaviour
         {
             OnSwapPlaces();
         }
+        OnSwapPlaces();
     }
     void OnChainSwap2()
     {
@@ -96,6 +97,7 @@ public class PlayerInputData : MonoBehaviour
         {
             OnSwapPlaces();
         }
+        OnSwapPlaces();
     }
     void OnSwapPlaces()
     {
