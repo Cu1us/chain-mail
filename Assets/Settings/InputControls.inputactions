@@ -409,55 +409,11 @@
                 },
                 {
                     "name": "",
-                    "id": "b87e7e55-ad0f-46ba-a5f6-69ff11bc66c2",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Melee",
-                    "action": "ChainSwap1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ea8146b9-b2c3-45ac-9ff5-eeb6c56ca939",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Ranged",
-                    "action": "ChainSwap1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d2392127-b579-4031-bfe7-f3be31458694",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Melee;Ranged",
-                    "action": "ChainSwap2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2db20402-6ce9-48d5-ae43-4db3790955a8",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Melee",
-                    "action": "ChainSwap2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2022c400-d268-46e6-99ae-856fd0a21373",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Ranged",
                     "action": "ChainSwap2",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -543,6 +499,17 @@
                     "name": "",
                     "id": "9d732851-e2b0-4b3d-9feb-b3fd560fca85",
                     "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Melee;Ranged",
+                    "action": "SwapPlaces",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "44ed228a-5c8a-423e-8875-726090e9de77",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "Melee;Ranged",
