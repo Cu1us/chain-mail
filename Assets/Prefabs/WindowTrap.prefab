@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5851796152644628382}
   - component: {fileID: 7390206506281370816}
   - component: {fileID: 7523455234027168160}
+  - component: {fileID: 5666117326793143945}
   m_Layer: 10
   m_Name: WindowTrap
   m_TagString: Untagged
@@ -110,7 +111,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4524571282302265665}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -138,6 +139,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -3.8660226}
   m_Size: {x: 3.9141612, y: 1.0289918}
   m_Direction: 1
+--- !u!114 &5666117326793143945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4524571282302265665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b29d9a46ab1f3104cb95ff64b0c68ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brokenWindowSprite: {fileID: 21300000, guid: 89b228c7d5afe405ebb1d80f52c6ca1e, type: 3}
 --- !u!1 &4602949848194088391
 GameObject:
   m_ObjectHideFlags: 0
