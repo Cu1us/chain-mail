@@ -7660,7 +7660,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 794606bd8a82a44e5808654e74f8b242, type: 2}
+  - {fileID: 2100000, guid: 7256b30ed4ea43d44b70f48a770021b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20003,8 +20003,8 @@ Transform:
   m_GameObject: {fileID: 450257250}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -26.23, y: -0.71, z: 0.12691008}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: -26.23, y: -1.5554, z: 0.12691008}
+  m_LocalScale: {x: 2, y: 1.236, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1686771663}
@@ -21894,8 +21894,8 @@ Transform:
   m_GameObject: {fileID: 939474716}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.7, y: -20.6, z: 0.12691008}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: -13.7, y: -21.3355, z: 0.12691008}
+  m_LocalScale: {x: 2, y: 1.3352025, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1686771663}
