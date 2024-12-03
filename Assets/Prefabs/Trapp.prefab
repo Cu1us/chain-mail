@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7038626947200222316}
   - component: {fileID: 6925236174571540213}
   - component: {fileID: 7742981981295681520}
+  - component: {fileID: 4002983075378344015}
   m_Layer: 10
   m_Name: Trapp
   m_TagString: Untagged
@@ -101,3 +102,59 @@ MonoBehaviour:
   m_Center: {x: 0, y: 0, z: 0}
   m_Area: 1
   m_AffectedAgents: ffffffff
+--- !u!60 &4002983075378344015
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6379021087018135195}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 36.678074, y: 13.02}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 6.544776, y: 1.7126797}
+      - {x: -1.3196884, y: 2.191901}
+      - {x: -4.909136, y: 1.1831527}
+      - {x: -12.29168, y: 0.5877492}
+      - {x: -13.861357, y: -0.6824283}
+      - {x: -11.373185, y: -1.7844968}
+      - {x: -4.4580674, y: -2.0952039}
+      - {x: -3.0823424, y: -3.1234915}
+      - {x: 6.4938307, y: -2.963627}
+      - {x: 7.1633472, y: -1.115685}
+      - {x: 11.587363, y: 0.3685193}
+  m_UseDelaunayMesh: 0
