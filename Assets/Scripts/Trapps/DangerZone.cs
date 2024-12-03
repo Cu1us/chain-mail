@@ -49,19 +49,20 @@ public class DangerZone : MonoBehaviour
 
     void Boom()
     {
-        coll.enabled = true;
+        
         GameObject clone = Instantiate(boom, transform.position, Quaternion.identity);
         Destroy(clone, 0.5f);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Boom");
         if (other.CompareTag("Player"))
         {
             other.GetComponent<PlayerHealth>().TakeDamage(50);
 
         }
-        coll.enabled = false;
+        //coll.enabled = false;
     }
 
 }
