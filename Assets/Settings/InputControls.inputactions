@@ -265,12 +265,12 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
+                    "name": "positive",
                     "id": "d5a91f38-b2e7-4d11-ab1b-bc7b2cbd9404",
                     "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Ranged",
+                    "groups": "Melee",
                     "action": "ChainRotation",
                     "isComposite": false,
                     "isPartOfComposite": true
