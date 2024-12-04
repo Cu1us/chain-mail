@@ -896,7 +896,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &425457474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40687,6 +40687,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1683632477157957467, guid: 668963442f0cc174491493de8d80f496, type: 3}
+      propertyPath: shootInterval
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2194492424679235516, guid: 668963442f0cc174491493de8d80f496, type: 3}
       propertyPath: m_Name
       value: EnemyArcher
