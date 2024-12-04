@@ -10,7 +10,7 @@ public class EnemyMovement : MonoBehaviour
     [Header("Players")]
     Transform player1;
     Transform player2;
-    Transform targetTransform1;
+    public Transform targetTransform1;
     Transform targetTransform2;
 
     [Header("Referenses")]
@@ -134,7 +134,6 @@ public class EnemyMovement : MonoBehaviour
 
         CompareVelocity();
         rb.velocity = Vector2.MoveTowards(rb.velocity, direction * currentMaxVelocity, accell * Time.deltaTime);
-
         agent.nextPosition = transform.position;
         Flip();
     }
@@ -224,7 +223,9 @@ public class EnemyMovement : MonoBehaviour
                 break;
             case EnemyState.ARCHER:
                 break;
+                
         }
+        agent.speed = currentMaxVelocity;
     }
 
     void ClosestEnemy()
