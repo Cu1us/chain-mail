@@ -132,7 +132,8 @@ public class PlayerKnockback : MonoBehaviour
 
     void AddDamage(GameObject enemy)
     {
-        enemy.GetComponent<EnemyHealth>().TakeDamage(knockbackDamage);
+        float damage = knockbackDamage * GetComponent<PlayerMovement>().velocity.magnitude;
+        enemy.GetComponent<EnemyHealth>().TakeDamage(damage);
     }
 
     void ClearEnemies()

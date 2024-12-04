@@ -31,6 +31,7 @@ public class EnemyHealth : MonoBehaviour
             damage *= damageStuckMultiplier;
         }
 
+        damage = Mathf.Round(damage);
         enemyHealth -= damage;
 
         AudioManager.Play("hurthuman");
