@@ -348,10 +348,23 @@ public class EnemyMovement : MonoBehaviour
             if (x < 0)
             {
                 transform.rotation = Quaternion.Euler(0, 180, 0);
+                Transform child = gameObject.transform.Find("DamageText(Clone)");
+                if (child != null)
+                {
+                    if (child.rotation.y != 0)
+                    {
+                        child.rotation = Quaternion.Euler(0, 180, 0);
+                    }
+                }
             }
             else
             {
                 transform.rotation = Quaternion.Euler(0, 0, 0);
+                Transform child = gameObject.transform.Find("DamageText(Clone)");
+                if (child != null)
+                {
+                    child.rotation = Quaternion.Euler(0, 0, 0);
+                }
             }
         }
     }
