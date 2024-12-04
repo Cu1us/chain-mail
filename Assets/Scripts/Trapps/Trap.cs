@@ -5,16 +5,15 @@ using UnityEngine.AI;
 
 public class Trap : MonoBehaviour
 {
-    [SerializeField] GameObject Enemy;
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Trap"))
+        if(other.CompareTag("Enemy"))
         {
-            Enemy.GetComponent<EnemyMovement>().StateChange(EnemyMovement.EnemyState.STUCK);
-            Enemy.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
-            Enemy.GetComponent<Transform>().position = (Vector2)other.transform.position + new Vector2(0, 1);
-            Enemy.GetComponent<CapsuleCollider2D>().enabled = false;
-            Enemy.GetComponent<Animator>().SetBool("Trapfall", true);
+            other.GetComponent<EnemyMovement>().StateChange(EnemyMovement.EnemyState.STUCK);
+            other.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
+            other.GetComponent<Transform>().position = new Vector2(other.GetComponent<Transform>().position.x , transform.position.y);
+            other.GetComponent<CapsuleCollider2D>().enabled = false;
+            other.GetComponent<Animator>().SetBool("Trapfall", true);
         }
     }
 }
