@@ -4,17 +4,19 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] float enemyHealth;
     SpriteRenderer spriteRenderer;
-    Pathfinding pathfinding;
+    EnemyMovement enemyMovement;
     [SerializeField] Sprite dead;
     Collider2D coll2D;
+    float damageStuckMultiplier = 2;
+    Animator animator;
     
 
     void Start()
     {
         coll2D = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        pathfinding = GetComponent<Pathfinding>();
-
+        enemyMovement = GetComponent<EnemyMovement>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -28,29 +30,28 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        enemyHealth -= damage;
+        if (enemyMovement.state == EnemyMovement.EnemyState.STUCK)
+        {
+            enemyHealth -= damage * damageStuckMultiplier;
+        }
+        else 
+        {
+            enemyHealth -= damage;
+        }
         AudioManager.Play("hurthuman");
         if (enemyHealth < 0)
         {
             Death();
-        }
-        else if (enemyHealth < 30)
-        {
-            if (Random.Range(0, 2) < 1)
-            {
-                pathfinding.StateChange(Pathfinding.EnemyState.FLEE);
-            }
         }
 
     }
 
     void Death()
     {
-        spriteRenderer.sprite = dead;
-        pathfinding.attackState = false;
-        pathfinding.StateChange(Pathfinding.EnemyState.STUCK);
-       // spriteRenderer.color = Color.red;
-        pathfinding.enabled = false;
+        animator.SetBool("isDead", true);
+        enemyMovement.isAttackState = false;
+        enemyMovement.StateChange(EnemyMovement.EnemyState.STUCK);
+        enemyMovement.enabled = false;
         coll2D.enabled=false;
         Invoke(nameof(DestroyEnemy), 3f);
     }

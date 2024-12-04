@@ -27,7 +27,7 @@ public class EnemyMovement : MonoBehaviour
     float accell;
     [SerializeField] float knockbackDeceleration = 10;
     [SerializeField] float maxVelocity;
-    float velocity;
+    float currentMaxVelocity;
     [SerializeField] float flankExtraDistance;
     [SerializeField] float keepDistanceDistance;
     [SerializeField] float attackDistance;
@@ -80,7 +80,7 @@ public class EnemyMovement : MonoBehaviour
         targetTransform2 = player2;
         nextState = state;
         grabber = chain.PlayerA.transform;
-        velocity = maxVelocity;
+        currentMaxVelocity = maxVelocity;
         accell = acceleration;
     }
 
@@ -131,7 +131,7 @@ public class EnemyMovement : MonoBehaviour
         }
 
         CompareVelocity();
-        rb.velocity = Vector2.MoveTowards(rb.velocity, direction * maxVelocity, accell * Time.deltaTime);
+        rb.velocity = Vector2.MoveTowards(rb.velocity, direction * currentMaxVelocity, accell * Time.deltaTime);
 
         agent.nextPosition = transform.position;
         Flip();
@@ -176,14 +176,14 @@ public class EnemyMovement : MonoBehaviour
     {
         stateTimer = 0;
         state = _state;
-        velocity = maxVelocity;
+        currentMaxVelocity = maxVelocity;
         isAttackState = true;
         switch (state)
         {
 
             case EnemyState.STUCK:
                 isAttackState = false;
-                velocity = 0;
+                currentMaxVelocity = 0;
                 break;
             case EnemyState.KEEPDISTANCE:
                 break;
@@ -344,6 +344,16 @@ public class EnemyMovement : MonoBehaviour
         {
             accell = acceleration;
         }
+    }
+
+    void StandStill()
+    {
+        rb.velocity = Vector2.zero;
+        currentMaxVelocity = 0;
+    }
+    void DoneAttacking()
+    {
+        currentMaxVelocity = maxVelocity;
     }
 
 
