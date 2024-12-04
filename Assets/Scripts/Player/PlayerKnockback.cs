@@ -7,8 +7,10 @@ public class PlayerKnockback : MonoBehaviour
     [Header("Settings")]
     [SerializeField] float knockbackForce;
     [SerializeField] float normalKnockbackForce;
-    [SerializeField] float maxAttackTime;
+    //[SerializeField] float maxAttackTime;
     [SerializeField] float coolDown;
+    [SerializeField] float knockbackDamage;
+
     [SerializeField] Chain.GrabStatus grabStatus;
     [SerializeField] bool freezeTimeOnHit;
 
@@ -27,7 +29,9 @@ public class PlayerKnockback : MonoBehaviour
 
     Dictionary<GameObject, float> enemies = new Dictionary<GameObject, float>();
 
-    void Start()
+    // GIVES THE PLAYER ABILITY TO ADJUST THE KNOCKBACK DIRECTION
+    /////////////////////////////////////////////////////////////////////
+    /*void Start()
     {
         playerInputData.onAttackPress += AttackPress;
     }
@@ -53,7 +57,8 @@ public class PlayerKnockback : MonoBehaviour
             pressedAttack = false;
             attackTimer = 0;
         }
-    }
+    }*/
+    /////////////////////////////////////////////////////////////////////
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -65,6 +70,7 @@ public class PlayerKnockback : MonoBehaviour
                 if (!enemies.ContainsKey(collision.gameObject) || currentTime - enemies[collision.gameObject] > coolDown)
                 {
                     AddKnockback(collision.gameObject);
+                    AddDamage(collision.gameObject);
                     enemies[collision.gameObject] = currentTime;
                 }
             }
@@ -73,9 +79,11 @@ public class PlayerKnockback : MonoBehaviour
 
     void AddKnockback(GameObject enemy)
     {
-        if (pressedAttack || playerMovement.beingSwapped)
+        if (playerMovement.beingSwapped)
         {
-            Vector2 forceDirection = playerInputData.movementInput.normalized;
+            // GIVES THE PLAYER ABILITY TO ADJUST THE KNOCKBACK DIRECTION
+            /////////////////////////////////////////////////////////////////////
+            /*Vector2 forceDirection = playerInputData.movementInput.normalized;
 
             if (forceDirection == Vector2.zero)
             {
@@ -86,6 +94,15 @@ public class PlayerKnockback : MonoBehaviour
                 {
                     forceDirection *= -1;
                 }
+            }*/
+            /////////////////////////////////////////////////////////////////////
+
+            Vector2 forceDirection = player1.position - player2.position;
+            forceDirection.Normalize();
+
+            if (grabStatus == Chain.GrabStatus.A)
+            {
+                forceDirection *= -1;
             }
 
             enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * knockbackForce, ForceMode2D.Impulse);
@@ -111,6 +128,11 @@ public class PlayerKnockback : MonoBehaviour
 
             enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * normalKnockbackForce, ForceMode2D.Impulse);
         }
+    }
+
+    void AddDamage(GameObject enemy)
+    {
+        enemy.GetComponent<EnemyHealth>().TakeDamage(knockbackDamage);
     }
 
     void ClearEnemies()
