@@ -348,7 +348,6 @@ public class EnemyMovement : MonoBehaviour
 
     void StandStill()
     {
-        rb.velocity = Vector2.zero;
         currentMaxVelocity = 0;
     }
     void DoneAttacking()
