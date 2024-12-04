@@ -85,6 +85,7 @@ public class EnemyMovement : MonoBehaviour
         grabber = chain.PlayerA.transform;
         currentMaxVelocity = maxVelocity;
         accell = acceleration;
+        agent.speed = currentMaxVelocity;
     }
 
 
