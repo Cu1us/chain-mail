@@ -346,11 +346,11 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    void StandStill()
+    void StoppMoving()
     {
         currentMaxVelocity = 0;
     }
-    void DoneAttacking()
+    void ContinueMoving()
     {
         currentMaxVelocity = maxVelocity;
     }
