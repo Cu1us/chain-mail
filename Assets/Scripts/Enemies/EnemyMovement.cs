@@ -31,7 +31,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float flankExtraDistance;
     [SerializeField] float keepDistanceDistance;
     [SerializeField] float attackDistance;
-
+    float currentChainLength;
 
 
     Vector2 target;
@@ -40,9 +40,12 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("Bools")]
     public bool isAttackState;
-    [SerializeField] bool isSpearMan;
+    [Header("EnemyType")]
+    [SerializeField] bool isArcher;
+    [SerializeField] bool isSentinel;
+    [SerializeField] bool isSwordman;
 
-    float currentChainLength;
+
     [Header("Timers")]
     float stumbleTimer;
     float stumbleTimerCooldown = 2;
@@ -52,7 +55,7 @@ public class EnemyMovement : MonoBehaviour
 
     public enum EnemyState
     {
-        STUCK, MOVECLOSETOATTACK, FLANK, GUARD, KEEPDISTANCE, INTERCEPT, CHARGE, IDLE
+        STUCK, MOVECLOSETOATTACK, FLANK, GUARD, KEEPDISTANCE, INTERCEPT, ARCHER, IDLE
 
     }
     public EnemyState state;
@@ -113,8 +116,9 @@ public class EnemyMovement : MonoBehaviour
             case EnemyState.INTERCEPT:
                 Intercept();
                 break;
-            case EnemyState.CHARGE:
-                break;
+            case EnemyState.ARCHER:
+                ArcherMoveTo();
+            break;
         }
         agent.SetDestination(target);
 
@@ -143,33 +147,49 @@ public class EnemyMovement : MonoBehaviour
 
     public void RandomState()
     {
-        if (chain.rotationalVelocity != 0)
-        {
-            nextState =EnemyState.INTERCEPT;
-        }
-        if (nextState == state)
-        {
-            int random = Random.Range(0, 7);
+        int random = Random.Range(0, 7);
 
-            if (random <= 2)
-            {
-                state = EnemyState.KEEPDISTANCE;
-            }
-            else if (random > 2 && random <= 4)
-            {
-                state = EnemyState.MOVECLOSETOATTACK;
-            }
-            else if (random > 4 && random <= 6)
-            {
-                state = EnemyState.FLANK;
-            }
-            nextState = state;
-        }
-        else
+        if (isSwordman || isSentinel)
         {
-            state = nextState;
+            if (chain.rotationalVelocity != 0)
+            {
+                nextState = EnemyState.INTERCEPT;
+            }
+            if (nextState == state)
+            {
+
+
+                if (random <= 2)
+                {
+                    state = EnemyState.KEEPDISTANCE;
+                }
+                else if (random > 2 && random <= 4)
+                {
+                    state = EnemyState.MOVECLOSETOATTACK;
+                }
+                else if (random > 4 && random <= 6)
+                {
+                    state = EnemyState.FLANK;
+                }
+                nextState = state;
+            }
+            else
+            {
+                state = nextState;
+            }
+            StateChange(state);
         }
-        StateChange(state);
+
+
+
+        else if (isArcher)
+        {
+            state = EnemyState.ARCHER;
+            StateChange(state);
+        }
+
+
+
     }
 
     public void StateChange(EnemyState _state)
@@ -188,21 +208,7 @@ public class EnemyMovement : MonoBehaviour
             case EnemyState.KEEPDISTANCE:
                 break;
             case EnemyState.MOVECLOSETOATTACK:
-                if (isSpearMan)
-                {
-                    if (Random.Range(0, 2) == 0)
-                    {
-                        state = EnemyState.CHARGE;
-                    }
-                    else
-                    {
-                        state = EnemyState.MOVECLOSETOATTACK;
-                    }
-                }
-                else
-                {
-                    state = EnemyState.MOVECLOSETOATTACK;
-                };
+
                 break;
             case EnemyState.FLANK:
                 if (Random.Range(0, 2) == 0)
@@ -220,8 +226,7 @@ public class EnemyMovement : MonoBehaviour
             case EnemyState.INTERCEPT:
                 stateTimer = -2;
                 break;
-            case EnemyState.CHARGE:
-                target = targetTransform1.position + (targetTransform1.position - transform.position).normalized * 2;
+            case EnemyState.ARCHER:
                 break;
         }
     }
@@ -242,6 +247,12 @@ public class EnemyMovement : MonoBehaviour
             targetTransform2 = player1;
         }
 
+    }
+
+    void ArcherMoveTo()
+    {
+        Vector2 targetTransformVector = targetTransform1.position.normalized;
+        target = new Vector2 (targetTransform1.position.x-targetTransformVector.y*12, targetTransform1.position.y-targetTransformVector.x*12);
     }
 
     void Flank()
@@ -284,11 +295,7 @@ public class EnemyMovement : MonoBehaviour
         float interceptDistance = chain.currentChainLength;
         Vector2 dist = (transform.position - grabber.position).normalized;
         Vector2 perpendicular = Vector2.Perpendicular(dist);
-        target = (Vector2)grabber.position + dist * interceptDistance + dist * 1.5f + (perpendicular*chain.rotationalVelocity).normalized*3;
-    }
-
-    void Charge()
-    {
+        target = (Vector2)grabber.position + dist * interceptDistance + dist * 1.5f + (perpendicular * chain.rotationalVelocity).normalized * 3;
     }
 
     public void Stumble()
@@ -336,7 +343,7 @@ public class EnemyMovement : MonoBehaviour
     void CompareVelocity()
     {
         animator.SetFloat("Velocity", rb.velocity.sqrMagnitude);
-        if (rb.velocity.sqrMagnitude > maxVelocity*maxVelocity)
+        if (rb.velocity.sqrMagnitude > maxVelocity * maxVelocity)
         {
             accell = knockbackDeceleration;
         }
