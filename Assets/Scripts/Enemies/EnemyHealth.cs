@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] Sprite dead;
     Collider2D coll2D;
     float damageStuckMultiplier = 2;
+    Animator animator;
     
 
     void Start()
@@ -15,6 +16,7 @@ public class EnemyHealth : MonoBehaviour
         coll2D = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemyMovement = GetComponent<EnemyMovement>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -46,7 +48,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Death()
     {
-        spriteRenderer.sprite = dead;
+        animator.SetBool("isDead", true);
         enemyMovement.isAttackState = false;
         enemyMovement.StateChange(EnemyMovement.EnemyState.STUCK);
         enemyMovement.enabled = false;
