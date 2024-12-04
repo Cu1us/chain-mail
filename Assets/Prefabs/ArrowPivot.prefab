@@ -278,7 +278,7 @@ MonoBehaviour:
   arrowLifetime: 4
   maxArrowSpeed: 20
   maxKnockbackForce: 8
-  damage: 30
+  damage: 15
   arrow: {fileID: 2669688133422587893}
   trailRenderer: {fileID: 415978992183402838}
   bloodParticle: {fileID: 1690743382930297057, guid: 67231f910bb46dd47825e50b3f378bf0, type: 3}

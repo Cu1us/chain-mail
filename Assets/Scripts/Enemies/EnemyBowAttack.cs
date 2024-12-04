@@ -18,7 +18,7 @@ public class EnemyBowAttack : MonoBehaviour
     void Update()
     {
         shootTimer += Time.deltaTime;
-        if (shootTimer > shootInterval)
+        if (shootTimer > shootInterval && enemyMovement.isAttackState)
         {
             InstantiateArrow();
             shootTimer = 0;
