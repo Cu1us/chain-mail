@@ -55,7 +55,7 @@ public class EnemyMovement : MonoBehaviour
 
     public enum EnemyState
     {
-        STUCK, MOVECLOSETOATTACK, FLANK, GUARD, KEEPDISTANCE, INTERCEPT, ARCHER, IDLE
+        STUCK, MOVECLOSETOATTACK, FLANK, KEEPDISTANCE, INTERCEPT, ARCHER, IDLE
 
     }
     public EnemyState state;
@@ -111,14 +111,12 @@ public class EnemyMovement : MonoBehaviour
             case EnemyState.FLANK:
                 Flank();
                 break;
-            case EnemyState.GUARD:
-                break;
             case EnemyState.INTERCEPT:
                 Intercept();
                 break;
             case EnemyState.ARCHER:
                 ArcherMoveTo();
-            break;
+                break;
         }
         agent.SetDestination(target);
 
@@ -221,8 +219,6 @@ public class EnemyMovement : MonoBehaviour
                 }
                 nextState = EnemyState.MOVECLOSETOATTACK;
                 break;
-            case EnemyState.GUARD:
-                break;
             case EnemyState.INTERCEPT:
                 stateTimer = -2;
                 break;
@@ -258,8 +254,8 @@ public class EnemyMovement : MonoBehaviour
         Vector2 point1 = (Vector2)targetTransform1.position + perpendicular * distFromCenter;
         Vector2 point2 = (Vector2)targetTransform1.position - perpendicular * distFromCenter;
 
-        float dot1 = Vector2.Dot(transform.position - targetTransform1.position , point1);
-        float dot2 = Vector2.Dot(transform.position - targetTransform1.position , point2);
+        float dot1 = Vector2.Dot(transform.position - targetTransform1.position, point1);
+        float dot2 = Vector2.Dot(transform.position - targetTransform1.position, point2);
 
         if (dot1 > dot2)
         {
@@ -288,11 +284,6 @@ public class EnemyMovement : MonoBehaviour
         {
             target = midPoint + dir * flankExtraDistance + perpendicular * 4;
         }
-    }
-
-    void Guard()
-    {
-
     }
 
     void KeepDistance()
