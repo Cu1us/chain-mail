@@ -896,7 +896,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &425457474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2072,7 +2072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a232887c440b458a9978ad8ae5da50e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simulatedDistance: 30
+  simulatedDistance: 0
 --- !u!212 &769290522
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -39291,7 +39291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a232887c440b458a9978ad8ae5da50e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simulatedDistance: 20
+  simulatedDistance: 0
 --- !u!212 &1867897211
 SpriteRenderer:
   m_ObjectHideFlags: 0
