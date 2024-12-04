@@ -47,7 +47,7 @@ public class EnemyMovement : MonoBehaviour
 
 
     [Header("Timers")]
-    float stumbleTimer;
+    float stumbleTimer = 2;
     float stumbleTimerCooldown = 2;
     float stateTimer;
     float stateChangeCooldown = 3;
@@ -308,7 +308,6 @@ public class EnemyMovement : MonoBehaviour
 
     void Intercept()
     {
-
         float interceptDistance = chain.currentChainLength;
         Vector2 dist = (transform.position - grabber.position).normalized;
         Vector2 perpendicular = Vector2.Perpendicular(dist);
@@ -323,11 +322,11 @@ public class EnemyMovement : MonoBehaviour
             Invoke(nameof(Stand), 2f);
             StateChange(EnemyState.STUCK);
         }
-
     }
 
     void Stand()
     {
+        stumbleTimer = 0;
         animator.Play("Walk");
         Vector2 dist = targetTransform1.position - transform.position;
         if (dist.sqrMagnitude > 16)
