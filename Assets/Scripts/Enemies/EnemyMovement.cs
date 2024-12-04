@@ -253,8 +253,22 @@ public class EnemyMovement : MonoBehaviour
     {
         float distFromCenter = 10;
         Vector2 perpendicular = Vector2.Perpendicular(targetTransform1.position).normalized;
-        target =(Vector2)targetTransform1.position + perpendicular * distFromCenter;
 
+
+        Vector2 point1 = (Vector2)targetTransform1.position + perpendicular * distFromCenter;
+        Vector2 point2 = (Vector2)targetTransform1.position - perpendicular * distFromCenter;
+
+        float dot1 = Vector2.Dot(transform.position - targetTransform1.position , point1);
+        float dot2 = Vector2.Dot(transform.position - targetTransform1.position , point2);
+
+        if (dot1 > dot2)
+        {
+            target = point1;
+        }
+        else
+        {
+            target = point2;
+        }
     }
 
     void Flank()
