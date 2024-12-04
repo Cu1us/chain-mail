@@ -1,23 +1,20 @@
 using UnityEngine;
+using TMPro;
 
 public class EnemyHealth : MonoBehaviour
 {
+    [Header("Settings")]
     [SerializeField] float enemyHealth;
-    SpriteRenderer spriteRenderer;
-    EnemyMovement enemyMovement;
-    [SerializeField] Sprite dead;
-    Collider2D coll2D;
-    float damageStuckMultiplier = 2;
-    Animator animator;
-    
+    [SerializeField] float damageStuckMultiplier = 2;
 
-    void Start()
-    {
-        coll2D = GetComponent<Collider2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        enemyMovement = GetComponent<EnemyMovement>();
-        animator = GetComponent<Animator>();
-    }
+    [Header("References")]
+    [SerializeField] Sprite dead;
+    [SerializeField] SpriteRenderer spriteRenderer;
+
+    [SerializeField] EnemyMovement enemyMovement;
+    [SerializeField] Collider2D coll2D;
+    [SerializeField] Animator animator;
+    [SerializeField] GameObject DamageText;
 
     void Update()
     {
@@ -27,23 +24,24 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-
     public void TakeDamage(float damage)
     {
         if (enemyMovement.state == EnemyMovement.EnemyState.STUCK)
         {
-            enemyHealth -= damage * damageStuckMultiplier;
+            damage *= damageStuckMultiplier;
         }
-        else 
-        {
-            enemyHealth -= damage;
-        }
+
+        enemyHealth -= damage;
+
         AudioManager.Play("hurthuman");
+        GameObject damageText = Instantiate(DamageText, (Vector2)transform.position + new Vector2(0, -0.5f), Quaternion.identity);
+        damageText.transform.SetParent(transform);
+        damageText.GetComponentInChildren<TextMeshPro>().text = damage.ToString();
+
         if (enemyHealth < 0)
         {
             Death();
         }
-
     }
 
     void Death()
