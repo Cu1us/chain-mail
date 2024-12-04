@@ -251,8 +251,16 @@ public class EnemyMovement : MonoBehaviour
     {
         float distFromCenter = 10;
         Vector2 perpendicular = Vector2.Perpendicular(targetTransform1.position).normalized;
-
-
+        
+        Vector2 dist1 = targetTransform1.position - transform.position;
+        if(dist1.sqrMagnitude < 64)
+        {
+            isAttackState=false;
+        }
+        else
+        {
+            isAttackState=true;
+        }
         Vector2 point1 = (Vector2)targetTransform1.position + perpendicular * distFromCenter;
         Vector2 point2 = (Vector2)targetTransform1.position - perpendicular * distFromCenter;
 
