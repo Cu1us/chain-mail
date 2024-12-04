@@ -43,9 +43,9 @@ public class Arrow : MonoBehaviour
 
     void CheckCollision()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.up, arrowSpeed * Time.deltaTime, LayerMask.GetMask("Enemy"));
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.up, arrowSpeed * Time.deltaTime, LayerMask.GetMask("Player"));
 
-        if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+        if (hit.collider != null && hit.collider.CompareTag("Player"))
         {
             target = hit;
 
@@ -77,12 +77,12 @@ public class Arrow : MonoBehaviour
 
     void AddKnockback()
     {
-        target.collider.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * knockbackForce, ForceMode2D.Impulse);
+        //target.collider.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * knockbackForce, ForceMode2D.Impulse);
     }
 
     void AddDamage()
     {
-        target.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+        target.collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
     }
 
     void InstantiateParticle()

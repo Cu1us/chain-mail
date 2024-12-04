@@ -54,7 +54,7 @@ public class DangerZone : MonoBehaviour
         Destroy(clone, 0.5f);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other) //starts and stops collider in animator
     {
         Debug.Log("Boom");
         if (other.CompareTag("Player"))
@@ -62,7 +62,6 @@ public class DangerZone : MonoBehaviour
             other.GetComponent<PlayerHealth>().TakeDamage(50);
 
         }
-        //coll.enabled = false;
     }
 
 }
