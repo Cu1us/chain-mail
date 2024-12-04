@@ -14,14 +14,26 @@ public class EnemyBowAttack : MonoBehaviour
     [SerializeField] EnemyMovement enemyMovement;
 
     float shootTimer;
+    float randomInterval;
+
+    void Start()
+    {
+        randomInterval = shootInterval;    
+    }
 
     void Update()
     {
+        ShootArrow();
+    }
+
+    void ShootArrow()
+    {
         shootTimer += Time.deltaTime;
-        if (shootTimer > shootInterval && enemyMovement.isAttackState)
+        if (shootTimer > randomInterval && enemyMovement.isAttackState)
         {
             InstantiateArrow();
             shootTimer = 0;
+            randomInterval = Random.Range(shootInterval - 1, shootInterval + 1);
         }
     }
 

@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bowCharge: 0.5
-  shootInterval: 1
+  shootInterval: 3
   arrowPrefab: {fileID: -8737842409984295196, guid: c5db3965d5b4f084bb6c54cb878a269b, type: 3}
   enemyMovement: {fileID: 2373808877317278814}
 --- !u!1 &6574501345191673496
