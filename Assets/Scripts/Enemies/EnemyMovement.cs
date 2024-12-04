@@ -251,8 +251,10 @@ public class EnemyMovement : MonoBehaviour
 
     void ArcherMoveTo()
     {
-        Vector2 targetTransformVector = targetTransform1.position.normalized;
-        target = new Vector2 (targetTransform1.position.x-targetTransformVector.y*12, targetTransform1.position.y-targetTransformVector.x*12);
+        float distFromCenter = 10;
+        Vector2 perpendicular = Vector2.Perpendicular(targetTransform1.position).normalized;
+        target =(Vector2)targetTransform1.position + perpendicular * distFromCenter;
+
     }
 
     void Flank()
