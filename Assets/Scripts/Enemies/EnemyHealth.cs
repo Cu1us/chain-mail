@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] float enemyHealth;
     [SerializeField] float damageStuckMultiplier;
     [SerializeField] float damageWallBounce;
+    [SerializeField] float redTextDamage;
 
     [Header("References")]
     [SerializeField] Sprite dead;
@@ -32,7 +33,6 @@ public class EnemyHealth : MonoBehaviour
         if (collision.CompareTag("Wall") && math.abs(rigidbody2D.velocity.magnitude) > 1)
         {
             TakeDamage(damageWallBounce);
-            Debug.Log("TEEEEEEEEEEEEEEST");
         }
     }
 
@@ -47,14 +47,26 @@ public class EnemyHealth : MonoBehaviour
         enemyHealth -= damage;
 
         AudioManager.Play("hurthuman");
-        GameObject damageText = Instantiate(DamageText, (Vector2)transform.position + new Vector2(0, -0.5f), Quaternion.identity);
-        damageText.GetComponent<SelfDestruct>().targetTransform = transform;
-        damageText.GetComponentInChildren<TextMeshPro>().text = damage.ToString();
+        CreateDamageText(damage);
 
         if (enemyHealth < 0)
         {
             Death();
         }
+    }
+
+    void CreateDamageText(float damage)
+    {
+        GameObject damageText = Instantiate(DamageText, (Vector2)transform.position + new Vector2(0, -0.5f), Quaternion.identity);
+        damageText.GetComponent<SelfDestruct>().targetTransform = transform;
+        damageText.GetComponentInChildren<TextMeshPro>().text = damage.ToString();
+
+        float gradientValue = Mathf.Clamp01(damage / redTextDamage);
+
+        Color darkRed = new Color(0.5f, 0f, 0f);
+        Color damageColor = Color.Lerp(Color.yellow, darkRed, gradientValue);
+
+        damageText.GetComponentInChildren<TextMeshPro>().color = damageColor;
     }
 
     void Death()
