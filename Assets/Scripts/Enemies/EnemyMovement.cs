@@ -51,6 +51,7 @@ public class EnemyMovement : MonoBehaviour
     float stumbleTimerCooldown = 2;
     float stateTimer;
     float stateChangeCooldown = 3;
+    [SerializeField] float stumbleTime = 3;
 
 
     public enum EnemyState
@@ -196,9 +197,12 @@ public class EnemyMovement : MonoBehaviour
         state = _state;
         currentMaxVelocity = maxVelocity;
         isAttackState = true;
+        if (isArcher)
+        {
+            state = EnemyState.ARCHER;
+        }
         switch (state)
         {
-
             case EnemyState.STUCK:
                 isAttackState = false;
                 currentMaxVelocity = 0;
@@ -319,7 +323,8 @@ public class EnemyMovement : MonoBehaviour
         if (stumbleTimer > stumbleTimerCooldown)
         {
             animator.Play("Stumble");
-            Invoke(nameof(Stand), 2f);
+            Invoke(nameof(Stand), stumbleTime);
+            stateTimer += stumbleTime;
             StateChange(EnemyState.STUCK);
         }
     }
