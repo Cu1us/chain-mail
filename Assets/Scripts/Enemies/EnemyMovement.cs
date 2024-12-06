@@ -12,12 +12,13 @@ public class EnemyMovement : MonoBehaviour
     Transform player2;
     public Transform targetTransform1;
     Transform targetTransform2;
+    GameObject chainAndPlayers;
 
     [Header("Referenses")]
     NavMeshAgent agent;
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
-    [SerializeField] MultiplayerChain chain;
+    Chain chain;
     Transform grabber;
     [SerializeField] Animator animator;
 
@@ -79,12 +80,14 @@ public class EnemyMovement : MonoBehaviour
         agent.updatePosition = false;
 
         player1 = GameObject.Find("Player1").transform;
-        player2 = GameObject.Find("Player2").transform;
-        
+        player2 = GameObject.Find("Rock").transform;
+        chainAndPlayers = GameObject.Find("Chain and Players");
+        chain = chainAndPlayers.GetComponent<Chain>();
+
         targetTransform1 = player1;
         targetTransform2 = player2;
         nextState = state;
-        grabber = chain.PlayerA.transform;
+        //grabber = chain.PlayerA.transform;
         currentMaxVelocity = maxVelocity;
         accell = acceleration;
         agent.speed = currentMaxVelocity;
@@ -150,14 +153,14 @@ public class EnemyMovement : MonoBehaviour
 
         if (isSwordman || isSentinel)
         {
-            if (chain.rotationalVelocity != 0)
-            {
-                Debug.Log("Intercept");
-                nextState = EnemyState.INTERCEPT;
-                StateChange(EnemyState.INTERCEPT);
-                return;
+            // if (chain.rotationalVelocity != 0)
+            // {
+            //     Debug.Log("Intercept");
+            //     nextState = EnemyState.INTERCEPT;
+            //     StateChange(EnemyState.INTERCEPT);
+            //     return;
 
-            }
+            // }
             if (nextState == state)
             {
 
