@@ -314,8 +314,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7485948357042832565}
     - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: swapKnockbackForce
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: knockbackBaseDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: normalKnockbackForce
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: rotateKnockbackForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: knockbackSwapDamageMultiply
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: knockbackSwingDamageMultiply
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6155310138716365543, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: playerInput
@@ -414,6 +434,30 @@ PrefabInstance:
       propertyPath: playerInputData
       value: 
       objectReference: {fileID: 7485948357042832565}
+    - target: {fileID: 56475983521545747, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
+      propertyPath: swapKnockbackForce
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 56475983521545747, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
+      propertyPath: knockbackBaseDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 56475983521545747, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
+      propertyPath: rotateKnockbackForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 56475983521545747, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
+      propertyPath: knockbackSwapDamageMultiply
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 56475983521545747, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
+      propertyPath: knockbackSwingDamageMultiply
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2612734432615552725, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
+      propertyPath: canCollideWith.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7891007783511305094, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.9
