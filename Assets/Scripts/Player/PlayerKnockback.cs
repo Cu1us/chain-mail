@@ -5,11 +5,14 @@ using UnityEngine;
 public class PlayerKnockback : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] float knockbackForce;
-    [SerializeField] float normalKnockbackForce;
+    [SerializeField] float swapKnockbackForce;
+    [SerializeField] float rotateKnockbackForce;
     //[SerializeField] float maxAttackTime;
     [SerializeField] float coolDown;
-    [SerializeField] float knockbackDamage;
+    [SerializeField] float knockbackBaseDamage;
+    [SerializeField] float knockbackSwingDamageMultiply;
+    [SerializeField] float knockbackSwapDamageMultiply;
+
 
     [SerializeField] Chain.GrabStatus grabStatus;
     [SerializeField] bool freezeTimeOnHit;
@@ -105,7 +108,7 @@ public class PlayerKnockback : MonoBehaviour
                 forceDirection *= -1;
             }
 
-            enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * knockbackForce, ForceMode2D.Impulse);
+            enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * swapKnockbackForce, ForceMode2D.Impulse);
 
             if (freezeTimeOnHit) TimeManager.Slowmo(0.1f, 0.2f);
             enemy.GetComponent<SpriteBlink>().Blink(0.2f);
@@ -126,14 +129,24 @@ public class PlayerKnockback : MonoBehaviour
             Vector2 forceDirection = perpendicular + enemyDirection;
             forceDirection.Normalize();
 
-            enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * normalKnockbackForce, ForceMode2D.Impulse);
+            enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * rotateKnockbackForce, ForceMode2D.Impulse);
         }
     }
 
     void AddDamage(GameObject enemy)
     {
-        //float damage = knockbackDamage * GetComponent<PlayerMovement>().velocity.magnitude; //SHOULD LATER BE ADDED
-        enemy.GetComponent<EnemyHealth>().TakeDamage(knockbackDamage);
+        float damage;
+
+        if (playerMovement.beingSwapped)
+        {
+            damage = knockbackBaseDamage * playerMovement.velocity.magnitude * knockbackSwapDamageMultiply;
+        }
+        else
+        {
+            damage = knockbackBaseDamage * playerMovement.swingVelocity * knockbackSwingDamageMultiply;
+        }
+
+        enemy.GetComponent<EnemyHealth>().TakeDamage(Mathf.Abs(damage));
     }
 
     void ClearEnemies()

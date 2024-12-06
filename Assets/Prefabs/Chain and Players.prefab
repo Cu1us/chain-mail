@@ -271,8 +271,36 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: swapKnockbackForce
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: knockbackBaseDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: normalKnockbackForce
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: rotateKnockbackForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: knockbackSwapDamageDevider
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: knockbackSwapDamageMultiply
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: knockbackSwingDamageDevider
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: knockbackSwingDamageMultiply
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6155310138716365543, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: playerInput
@@ -459,8 +487,36 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9104600906751115791, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
+      propertyPath: swapKnockbackForce
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104600906751115791, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
+      propertyPath: knockbackBaseDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104600906751115791, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
       propertyPath: normalKnockbackForce
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104600906751115791, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
+      propertyPath: rotateKnockbackForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104600906751115791, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
+      propertyPath: knockbackSwapDamageDevider
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104600906751115791, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
+      propertyPath: knockbackSwapDamageMultiply
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104600906751115791, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
+      propertyPath: knockbackSwingDamageDevider
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104600906751115791, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
+      propertyPath: knockbackSwingDamageMultiply
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 9194984364361686057, guid: 0fcdc86b144d87a81a4a695f03862919, type: 3}
       propertyPath: m_DefaultControlScheme
