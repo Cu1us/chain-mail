@@ -290,10 +290,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af36841f9bab9b4bb6d1683b98d87c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackForce: 45
-  normalKnockbackForce: 25
+  swapKnockbackForce: 0
+  rotateKnockbackForce: 0
   coolDown: 0.5
-  knockbackDamage: 20
+  knockbackBaseDamage: 0
+  knockbackSwingDamageMultiply: 0
+  knockbackSwapDamageMultiply: 0
   grabStatus: 0
   freezeTimeOnHit: 1
   boxCollider: {fileID: 3195899166019651132}
@@ -323,4 +325,4 @@ MonoBehaviour:
   maxSqrVelocity: 1000
   canCollideWith: []
   localPointOfCollision: {x: 0, y: 0}
-  trailRenderer: {fileID: 0}
+  trailRenderer: {fileID: 6635265128658752961}
