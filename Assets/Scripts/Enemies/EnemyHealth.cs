@@ -13,7 +13,7 @@ public class EnemyHealth : MonoBehaviour
     [Header("References")]
     [SerializeField] Sprite dead;
     [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] Rigidbody2D rigidbody2D;
+    [SerializeField] Rigidbody2D rigidbody;
 
     [SerializeField] EnemyMovement enemyMovement;
     [SerializeField] Collider2D coll2D;
@@ -30,7 +30,7 @@ public class EnemyHealth : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Wall") && math.abs(rigidbody2D.velocity.magnitude) > 1)
+        if (collision.CompareTag("Wall") && math.abs(rigidbody.velocity.magnitude) > 1)
         {
             TakeDamage(damageWallBounce);
         }
