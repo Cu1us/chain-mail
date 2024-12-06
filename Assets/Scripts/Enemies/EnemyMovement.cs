@@ -80,6 +80,7 @@ public class EnemyMovement : MonoBehaviour
 
         player1 = GameObject.Find("Player1").transform;
         player2 = GameObject.Find("Player2").transform;
+        
         targetTransform1 = player1;
         targetTransform2 = player2;
         nextState = state;
@@ -92,7 +93,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-
+        
         stumbleTimer += Time.deltaTime;
         stateTimer += Time.deltaTime;
         if (stateTimer > stateChangeCooldown)
@@ -143,7 +144,6 @@ public class EnemyMovement : MonoBehaviour
 
 
 
-
     public void RandomState()
     {
         int random = Random.Range(0, 7);
@@ -152,11 +152,14 @@ public class EnemyMovement : MonoBehaviour
         {
             if (chain.rotationalVelocity != 0)
             {
+                Debug.Log("Intercept");
                 nextState = EnemyState.INTERCEPT;
+                StateChange(EnemyState.INTERCEPT);
+                return;
+
             }
             if (nextState == state)
             {
-
 
                 if (random <= 2)
                 {
@@ -228,7 +231,7 @@ public class EnemyMovement : MonoBehaviour
                 break;
             case EnemyState.ARCHER:
                 break;
-                
+
         }
         agent.speed = currentMaxVelocity;
     }
@@ -255,15 +258,15 @@ public class EnemyMovement : MonoBehaviour
     {
         float distFromCenter = 10;
         Vector2 perpendicular = Vector2.Perpendicular(targetTransform1.position).normalized;
-        
+
         Vector2 dist1 = targetTransform1.position - transform.position;
-        if(dist1.sqrMagnitude < 64)
+        if (dist1.sqrMagnitude < 64)
         {
-            isAttackState=false;
+            isAttackState = false;
         }
         else
         {
-            isAttackState=true;
+            isAttackState = true;
         }
         Vector2 point1 = (Vector2)targetTransform1.position + perpendicular * distFromCenter;
         Vector2 point2 = (Vector2)targetTransform1.position - perpendicular * distFromCenter;
@@ -315,7 +318,7 @@ public class EnemyMovement : MonoBehaviour
         float interceptDistance = chain.currentChainLength;
         Vector2 dist = (transform.position - grabber.position).normalized;
         Vector2 perpendicular = Vector2.Perpendicular(dist);
-        target = (Vector2)grabber.position + dist * interceptDistance + dist * 1.5f + (perpendicular * chain.rotationalVelocity).normalized * 3;
+        target = (Vector2)grabber.position + dist * interceptDistance + dist * 2f;//+ perpendicular.normalized * 2;
     }
 
     public void Stumble()
