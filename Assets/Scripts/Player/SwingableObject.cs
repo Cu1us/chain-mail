@@ -52,7 +52,8 @@ public class SwingableObject : MonoBehaviour, IKnockable
         {
             Vector2 toWall = newPos - oldPos;
             Vector2 dirToWall = toWall.normalized;
-            RaycastHit2D hit = Physics2D.Raycast(oldPos, dirToWall, 2f, LayerMask.NameToLayer("Environment"));
+            RaycastHit2D hit = Physics2D.Raycast(oldPos, dirToWall, 2f, LayerMask.GetMask("Environment"));
+            Debug.DrawRay(oldPos, dirToWall, Color.blue, 2f);
             if (hit.collider == null) return;
             float dot = Vector2.Dot(dirToWall, -hit.normal);
             newPos += hit.normal * dot * toWall.magnitude;
