@@ -36,7 +36,7 @@ public class EnemyHealth : MonoBehaviour
 
         AudioManager.Play("hurthuman");
         GameObject damageText = Instantiate(DamageText, (Vector2)transform.position + new Vector2(0, -0.5f), Quaternion.identity);
-        damageText.transform.SetParent(transform);
+        damageText.GetComponent<SelfDestruct>().targetTransform = transform;
         damageText.GetComponentInChildren<TextMeshPro>().text = damage.ToString();
 
         if (enemyHealth < 0)
