@@ -14,14 +14,14 @@ public class PlayerKnockback : MonoBehaviour
     [SerializeField] float knockbackSwapDamageMultiply;
 
 
-    [SerializeField] MultiplayerChain.GrabStatus grabStatus;
+    [SerializeField] Chain.AnchorStatus anchorStatus;
     [SerializeField] bool freezeTimeOnHit;
 
     [Header("References")]
     [SerializeField] BoxCollider2D boxCollider;
     [SerializeField] PlayerInputData playerInputData;
     [SerializeField] PlayerMovement playerMovement;
-    [SerializeField] MultiplayerChain chain;
+    [SerializeField] Chain chain;
 
     [SerializeField] Transform player1;
     [SerializeField] Transform player2;
@@ -65,7 +65,7 @@ public class PlayerKnockback : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (chain.grabStatus == grabStatus || playerMovement.beingSwapped)
+        if (chain.anchorStatus == anchorStatus || playerMovement.beingSwapped)
         {
             if (collision.CompareTag("Enemy"))
             {
@@ -103,7 +103,7 @@ public class PlayerKnockback : MonoBehaviour
             Vector2 forceDirection = player1.position - player2.position;
             forceDirection.Normalize();
 
-            if (grabStatus == MultiplayerChain.GrabStatus.A)
+            if (anchorStatus == Chain.AnchorStatus.PLAYER)
             {
                 forceDirection *= -1;
             }
@@ -120,7 +120,7 @@ public class PlayerKnockback : MonoBehaviour
 
             Vector2 enemyDirection = player1.position - player2.position;
 
-            if (grabStatus == MultiplayerChain.GrabStatus.A)
+            if (anchorStatus == Chain.AnchorStatus.PLAYER)
             {
                 perpendicular *= -1;
                 enemyDirection *= -1;
@@ -151,7 +151,7 @@ public class PlayerKnockback : MonoBehaviour
 
     void ClearEnemies()
     {
-        if (chain.grabStatus == grabStatus)
+        if (chain.anchorStatus == anchorStatus)
         {
             enemies.Clear();
         }
