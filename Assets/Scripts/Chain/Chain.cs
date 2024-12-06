@@ -190,7 +190,7 @@ public class Chain : MonoBehaviour
     }
     void ExtendChainByInput()
     {
-        if (anchorStatus == AnchorStatus.NONE || currentChainLength >= maxDistance || Swingee.velocity.sqrMagnitude > 1f || Anchor.velocity.sqrMagnitude > 1f) return;
+        if (anchorStatus == AnchorStatus.NONE || rotationalVelocity == 0 || Player.velocity.sqrMagnitude > 1f || Anchor.velocity.sqrMagnitude > 1f) return;
         float pushDistance = inputData.chainExtendInput * extendChainSpeed * Time.deltaTime;
 
         if (currentChainLength + pushDistance > maxDistance) pushDistance = maxDistance - currentChainLength;
