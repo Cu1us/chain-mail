@@ -160,8 +160,8 @@ public class Chain : MonoBehaviour
                 localPivot = pivotOffsetByLength + pivotAnimationProgress * (0.5f - pivotOffsetByLength);
                 break;
         }
-        Player.beingGrabbed = anchorStatus == AnchorStatus.ROCK && rotationalVelocity > 0;
-        Rock.beingGrabbed = anchorStatus == AnchorStatus.PLAYER && rotationalVelocity > 0;
+        Player.beingGrabbed = anchorStatus == AnchorStatus.ROCK && rotationalVelocity != 0;
+        Rock.beingGrabbed = anchorStatus == AnchorStatus.PLAYER && rotationalVelocity != 0;
     }
     void AccelerateBasedOnInput()
     {
