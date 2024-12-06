@@ -290,6 +290,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 5769951615074734439}
     m_Modifications:
     - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: chain
+      value: 
+      objectReference: {fileID: 2505282835149810871}
+    - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: player2
       value: 
       objectReference: {fileID: 5789651416746514506}
@@ -427,9 +431,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 5769951615074734439}
     m_Modifications:
     - target: {fileID: 56475983521545747, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
+      propertyPath: chain
+      value: 
+      objectReference: {fileID: 2505282835149810871}
+    - target: {fileID: 56475983521545747, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: player1
       value: 
       objectReference: {fileID: 7969500359791862618}
+    - target: {fileID: 56475983521545747, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
+      propertyPath: anchorStatus
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 56475983521545747, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 7739225830394850822}
     - target: {fileID: 56475983521545747, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: playerInputData
       value: 
