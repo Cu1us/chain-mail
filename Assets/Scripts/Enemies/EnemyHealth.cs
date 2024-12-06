@@ -1,15 +1,19 @@
 using UnityEngine;
 using TMPro;
+using Unity.Mathematics;
 
 public class EnemyHealth : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] float enemyHealth;
-    [SerializeField] float damageStuckMultiplier = 2;
+    [SerializeField] float damageStuckMultiplier;
+    [SerializeField] float damageWallBounce;
+    [SerializeField] float redTextDamage;
 
     [Header("References")]
     [SerializeField] Sprite dead;
     [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Rigidbody2D rigidbody2D;
 
     [SerializeField] EnemyMovement enemyMovement;
     [SerializeField] Collider2D coll2D;
@@ -24,6 +28,14 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Wall") && math.abs(rigidbody2D.velocity.magnitude) > 1)
+        {
+            TakeDamage(damageWallBounce);
+        }
+    }
+
     public void TakeDamage(float damage)
     {
         if (enemyMovement.state == EnemyMovement.EnemyState.STUCK)
@@ -35,14 +47,26 @@ public class EnemyHealth : MonoBehaviour
         enemyHealth -= damage;
 
         AudioManager.Play("hurthuman");
-        GameObject damageText = Instantiate(DamageText, (Vector2)transform.position + new Vector2(0, -0.5f), Quaternion.identity);
-        damageText.GetComponent<SelfDestruct>().targetTransform = transform;
-        damageText.GetComponentInChildren<TextMeshPro>().text = damage.ToString();
+        CreateDamageText(damage);
 
         if (enemyHealth < 0)
         {
             Death();
         }
+    }
+
+    void CreateDamageText(float damage)
+    {
+        GameObject damageText = Instantiate(DamageText, (Vector2)transform.position + new Vector2(0, -0.5f), Quaternion.identity);
+        damageText.GetComponent<SelfDestruct>().targetTransform = transform;
+        damageText.GetComponentInChildren<TextMeshPro>().text = damage.ToString();
+
+        float gradientValue = Mathf.Clamp01(damage / redTextDamage);
+
+        Color darkRed = new Color(0.5f, 0f, 0f);
+        Color damageColor = Color.Lerp(Color.yellow, darkRed, gradientValue);
+
+        damageText.GetComponentInChildren<TextMeshPro>().color = damageColor;
     }
 
     void Death()
