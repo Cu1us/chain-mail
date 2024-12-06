@@ -142,7 +142,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &7269977404316147536
 CapsuleCollider2D:
@@ -214,8 +214,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealth: 100
   damageStuckMultiplier: 2
+  damageWallBounce: 10
   dead: {fileID: 21300000, guid: 58dc8f1575c907d448d04cb5a1d44288, type: 3}
   spriteRenderer: {fileID: 3911203691474585884}
+  rigidbody2D: {fileID: 4983113987866911296}
   enemyMovement: {fileID: 1971338446580476409}
   coll2D: {fileID: 7269977404316147536}
   animator: {fileID: 3742826125167725315}
@@ -245,6 +247,7 @@ MonoBehaviour:
   isArcher: 0
   isSentinel: 0
   isSwordman: 1
+  stumbleTime: 3
   state: 1
 --- !u!114 &-7956447530525605050
 MonoBehaviour:

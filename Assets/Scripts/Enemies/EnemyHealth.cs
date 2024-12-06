@@ -1,15 +1,18 @@
 using UnityEngine;
 using TMPro;
+using Unity.Mathematics;
 
 public class EnemyHealth : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] float enemyHealth;
-    [SerializeField] float damageStuckMultiplier = 2;
+    [SerializeField] float damageStuckMultiplier;
+    [SerializeField] float damageWallBounce;
 
     [Header("References")]
     [SerializeField] Sprite dead;
     [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Rigidbody2D rigidbody2D;
 
     [SerializeField] EnemyMovement enemyMovement;
     [SerializeField] Collider2D coll2D;
@@ -21,6 +24,15 @@ public class EnemyHealth : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Keypad1))
         {
             DestroyEnemy();
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Wall") && math.abs(rigidbody2D.velocity.magnitude) > 1)
+        {
+            TakeDamage(damageWallBounce);
+            Debug.Log("TEEEEEEEEEEEEEEST");
         }
     }
 
