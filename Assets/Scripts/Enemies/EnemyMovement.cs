@@ -9,7 +9,7 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("Players")]
     Transform player1;
-    Transform player2;
+    Transform playerRock;
     public Transform targetTransform1;
     Transform targetTransform2;
     GameObject chainAndPlayers;
@@ -80,12 +80,12 @@ public class EnemyMovement : MonoBehaviour
         agent.updatePosition = false;
 
         player1 = GameObject.Find("Player1").transform;
-        player2 = GameObject.Find("Rock").transform;
+        playerRock = GameObject.Find("Rock").transform;
         chainAndPlayers = GameObject.Find("Chain and Players");
         chain = chainAndPlayers.GetComponent<Chain>();
 
         targetTransform1 = player1;
-        targetTransform2 = player2;
+        targetTransform2 = playerRock;
         nextState = state;
         //grabber = chain.PlayerA.transform;
         currentMaxVelocity = maxVelocity;
@@ -96,7 +96,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        
+
         stumbleTimer += Time.deltaTime;
         stateTimer += Time.deltaTime;
         if (stateTimer > stateChangeCooldown)
@@ -153,14 +153,14 @@ public class EnemyMovement : MonoBehaviour
 
         if (isSwordman || isSentinel)
         {
-            // if (chain.rotationalVelocity != 0)
-            // {
-            //     Debug.Log("Intercept");
-            //     nextState = EnemyState.INTERCEPT;
-            //     StateChange(EnemyState.INTERCEPT);
-            //     return;
+            if (chain.rotationalVelocity != 0)
+            {
+                Debug.Log("Intercept");
+                nextState = EnemyState.INTERCEPT;
+                StateChange(EnemyState.INTERCEPT);
+                return;
 
-            // }
+            }
             if (nextState == state)
             {
 
@@ -192,9 +192,6 @@ public class EnemyMovement : MonoBehaviour
             state = EnemyState.ARCHER;
             StateChange(state);
         }
-
-
-
     }
 
     public void StateChange(EnemyState _state)
@@ -203,7 +200,7 @@ public class EnemyMovement : MonoBehaviour
         state = _state;
         currentMaxVelocity = maxVelocity;
         isAttackState = true;
-        if (isArcher)
+        if (isArcher && _state != EnemyState.STUCK)
         {
             state = EnemyState.ARCHER;
         }
@@ -242,16 +239,16 @@ public class EnemyMovement : MonoBehaviour
     void ClosestEnemy()
     {
         Vector2 dist1 = player1.position - transform.position;
-        Vector2 dist2 = player2.position - transform.position;
+        Vector2 dist2 = playerRock.position - transform.position;
 
         if (dist1.sqrMagnitude < dist2.sqrMagnitude)
         {
             targetTransform1 = player1;
-            targetTransform2 = player2;
+            targetTransform2 = playerRock;
         }
         else
         {
-            targetTransform1 = player2;
+            targetTransform1 = playerRock;
             targetTransform2 = player1;
         }
 
@@ -289,7 +286,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Flank()
     {
-        Vector2 midPoint = (player1.position + player2.position) / 2;
+        Vector2 midPoint = (player1.position + playerRock.position) / 2;
         Vector2 dir = (Vector2)transform.position - midPoint;
         dir.Normalize();
         Vector2 perpendicular = Vector2.Perpendicular(dir);
@@ -321,7 +318,7 @@ public class EnemyMovement : MonoBehaviour
         float interceptDistance = chain.currentChainLength;
         Vector2 dist = (transform.position - grabber.position).normalized;
         Vector2 perpendicular = Vector2.Perpendicular(dist);
-        target = (Vector2)grabber.position + dist * interceptDistance + dist * 2f;//+ perpendicular.normalized * 2;
+        target = (Vector2)grabber.position + dist * interceptDistance + dist * 1.8f + perpendicular.normalized * 2;
     }
 
     public void Stumble()
