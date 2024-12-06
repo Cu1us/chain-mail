@@ -59,7 +59,7 @@ public class EnemySwordAttack : MonoBehaviour
         {
             Vector2 forceDirection = playersInsideTrigger[i].transform.position - transform.position;
             forceDirection.Normalize();
-            playersInsideTrigger[i].GetComponent<PlayerMovement>().Launch(forceDirection * knockback);
+            playersInsideTrigger[i].GetComponent<SwingableObject>().Launch(forceDirection * knockback);
         }
     }
 
@@ -67,7 +67,10 @@ public class EnemySwordAttack : MonoBehaviour
     {
         for (int i = 0; i < playersInsideTrigger.Count; i++)
         {
-            playersInsideTrigger[i].GetComponent<PlayerHealth>().TakeDamage(damage);
+            if (gameObject.TryGetComponent<PlayerHealth>(out PlayerHealth component))
+            {
+                playersInsideTrigger[i].GetComponent<PlayerHealth>().TakeDamage(damage);
+            }
         }
     }
 

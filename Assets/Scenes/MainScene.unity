@@ -607,6 +607,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c4c9de55f9fe3a49ad66be9b4b62b5c, type: 3}
+--- !u!114 &223838546 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1844444581378172185, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+  m_PrefabInstance: {fileID: 1125270394}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f1f01a9b2d94a543aa36abecfd15039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &229506176
 GameObject:
   m_ObjectHideFlags: 0
@@ -2218,6 +2229,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7038626947200222316, guid: eefb0a3d936d40e4aa687935f54bc97b, type: 3}
   m_PrefabInstance: {fileID: 6333355295854384159}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &744685622 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7739225830394850822, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+  m_PrefabInstance: {fileID: 1125270394}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27c37d81781603e75bd69c3c21961020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &795918289
 GameObject:
   m_ObjectHideFlags: 0
@@ -16109,6 +16131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 275708057928939215, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: swingableObject
+      value: 
+      objectReference: {fileID: 744685622}
     - target: {fileID: 1844444581378172185, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: canCollideWith.Array.size
       value: 2
@@ -16133,6 +16159,10 @@ PrefabInstance:
       propertyPath: m_DefaultControlScheme
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4400615069800435167, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: swingableObject
+      value: 
+      objectReference: {fileID: 223838546}
     - target: {fileID: 4692490535370305448, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: HealthBar
       value: 

@@ -21,6 +21,7 @@ public class PlayerKnockback : MonoBehaviour
     [SerializeField] BoxCollider2D boxCollider;
     [SerializeField] PlayerInputData playerInputData;
     [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] SwingableObject swingableObject;
     [SerializeField] Chain chain;
 
     [SerializeField] Transform player1;
@@ -65,8 +66,9 @@ public class PlayerKnockback : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (chain.anchorStatus == anchorStatus || playerMovement.beingSwapped)
+        if (Mathf.Abs(swingableObject.swingVelocity) > 0 || playerMovement.beingSwapped)
         {
+            Debug.Log("TEEEEEST");
             if (collision.CompareTag("Enemy"))
             {
                 float currentTime = Time.time;
@@ -103,7 +105,7 @@ public class PlayerKnockback : MonoBehaviour
             Vector2 forceDirection = player1.position - player2.position;
             forceDirection.Normalize();
 
-            if (anchorStatus == Chain.AnchorStatus.PLAYER)
+            if (anchorStatus == Chain.AnchorStatus.ROCK)
             {
                 forceDirection *= -1;
             }
@@ -120,7 +122,7 @@ public class PlayerKnockback : MonoBehaviour
 
             Vector2 enemyDirection = player1.position - player2.position;
 
-            if (anchorStatus == Chain.AnchorStatus.PLAYER)
+            if (anchorStatus == Chain.AnchorStatus.ROCK)
             {
                 perpendicular *= -1;
                 enemyDirection *= -1;
@@ -139,11 +141,11 @@ public class PlayerKnockback : MonoBehaviour
 
         if (playerMovement.beingSwapped)
         {
-            damage = knockbackBaseDamage * playerMovement.velocity.magnitude * knockbackSwapDamageMultiply;
+            damage = knockbackBaseDamage * swingableObject.velocity.magnitude * knockbackSwapDamageMultiply;
         }
         else
         {
-            damage = knockbackBaseDamage * playerMovement.swingVelocity * knockbackSwingDamageMultiply;
+            damage = knockbackBaseDamage * swingableObject.swingVelocity * knockbackSwingDamageMultiply;
         }
 
         enemy.GetComponent<EnemyHealth>().TakeDamage(Mathf.Abs(damage));

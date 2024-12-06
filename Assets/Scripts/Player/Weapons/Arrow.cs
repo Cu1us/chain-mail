@@ -52,7 +52,7 @@ public class Arrow : MonoBehaviour
             ChangePos();
             DisableEnemyMovement();
             AddKnockback();
-            AddDamage();
+            AddDamage(target);
             InstantiateParticle();
 
             Invoke(nameof(DisableTrail), 0.5f);
@@ -80,9 +80,12 @@ public class Arrow : MonoBehaviour
         //target.collider.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * knockbackForce, ForceMode2D.Impulse);
     }
 
-    void AddDamage()
+    void AddDamage(RaycastHit2D target)
     {
-        target.collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+        if (target.transform.gameObject.TryGetComponent<PlayerHealth>(out PlayerHealth component))
+        {
+            target.collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+        }
     }
 
     void InstantiateParticle()
