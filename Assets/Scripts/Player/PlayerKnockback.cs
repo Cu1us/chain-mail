@@ -11,14 +11,14 @@ public class PlayerKnockback : MonoBehaviour
     [SerializeField] float coolDown;
     [SerializeField] float knockbackDamage;
 
-    [SerializeField] Chain.GrabStatus grabStatus;
+    [SerializeField] MultiplayerChain.GrabStatus grabStatus;
     [SerializeField] bool freezeTimeOnHit;
 
     [Header("References")]
     [SerializeField] BoxCollider2D boxCollider;
     [SerializeField] PlayerInputData playerInputData;
     [SerializeField] PlayerMovement playerMovement;
-    [SerializeField] Chain chain;
+    [SerializeField] MultiplayerChain chain;
 
     [SerializeField] Transform player1;
     [SerializeField] Transform player2;
@@ -100,7 +100,7 @@ public class PlayerKnockback : MonoBehaviour
             Vector2 forceDirection = player1.position - player2.position;
             forceDirection.Normalize();
 
-            if (grabStatus == Chain.GrabStatus.A)
+            if (grabStatus == MultiplayerChain.GrabStatus.A)
             {
                 forceDirection *= -1;
             }
@@ -117,7 +117,7 @@ public class PlayerKnockback : MonoBehaviour
 
             Vector2 enemyDirection = player1.position - player2.position;
 
-            if (grabStatus == Chain.GrabStatus.A)
+            if (grabStatus == MultiplayerChain.GrabStatus.A)
             {
                 perpendicular *= -1;
                 enemyDirection *= -1;

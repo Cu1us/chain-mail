@@ -19,7 +19,7 @@ public class Sword : Weapon
     [SerializeField] Transform player2;
     [SerializeField] Transform swordPivot;
 
-    [SerializeField] Chain chain;
+    [SerializeField] MultiplayerChain chain;
     [SerializeField] PlayerInputData playerInputData;
 
     [SerializeField] SpriteRenderer spriteRenderer;
@@ -87,7 +87,7 @@ public class Sword : Weapon
 
     void ChainRotating()
     {
-        if (chain.grabStatus == Chain.GrabStatus.B)
+        if (chain.grabStatus == MultiplayerChain.GrabStatus.B)
         {
             isChainRotating = true;
             swordCollider.enabled = false;

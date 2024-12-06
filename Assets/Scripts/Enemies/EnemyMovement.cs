@@ -17,7 +17,7 @@ public class EnemyMovement : MonoBehaviour
     NavMeshAgent agent;
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
-    [SerializeField] Chain chain;
+    [SerializeField] MultiplayerChain chain;
     Transform grabber;
     [SerializeField] Animator animator;
 
