@@ -160,8 +160,8 @@ public class Chain : MonoBehaviour
                 localPivot = pivotOffsetByLength + pivotAnimationProgress * (0.5f - pivotOffsetByLength);
                 break;
         }
-        Player.beingGrabbed = anchorStatus == AnchorStatus.ROCK && inputData.chainRotationalInput > 0;
-        Rock.beingGrabbed = anchorStatus == AnchorStatus.PLAYER && inputData.chainRotationalInput > 0;
+        Player.beingGrabbed = anchorStatus == AnchorStatus.ROCK && rotationalVelocity > 0;
+        Rock.beingGrabbed = anchorStatus == AnchorStatus.PLAYER && rotationalVelocity > 0;
     }
     void AccelerateBasedOnInput()
     {
@@ -177,7 +177,6 @@ public class Chain : MonoBehaviour
                 else
                     acceleration *= 2;
             }
-            Debug.Log("Accelerating towards: " + targetRotVelocity + " with acceleration: " + acceleration / Time.deltaTime);
             rotationalVelocity = Mathf.MoveTowards(rotationalVelocity, targetRotVelocity, acceleration);
         }
         else
