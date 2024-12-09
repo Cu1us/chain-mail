@@ -68,6 +68,7 @@ public class SwingableObject : MonoBehaviour, IKnockable
                 if (swingDot > 0.25f)
                 {
                     onSwingIntoWall?.Invoke(hit.normal);
+                    //VFX.Spawn(VFXType.GROUND_IMPACT, hit.point, hit.normal);
                 }
             }
         }
