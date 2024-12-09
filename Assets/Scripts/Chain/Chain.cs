@@ -257,8 +257,8 @@ public class Chain : MonoBehaviour
             return;
         }*/
 
-        SwingableObject toSwap = Anchor;
-        SwingableObject swapAnchor = Swingee;
+        SwingableObject toSwap = Swingee;
+        SwingableObject swapAnchor = Anchor;
 
         rotationalVelocity = 0;
         toSwap.lastSwapTime = Time.time;
@@ -284,7 +284,6 @@ public class Chain : MonoBehaviour
         Debug.DrawLine(toSwap.position, swapToPos, Color.green, 2f);
 
         toSwap.Launch((swapToPos - toSwap.position).normalized * swapPlacesForce * 2);
-        SwitchAnchor();
     }
 
     void Reset()
