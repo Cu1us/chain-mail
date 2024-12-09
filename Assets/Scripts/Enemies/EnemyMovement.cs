@@ -350,7 +350,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Flip()
     {
-        if (state != EnemyState.STUCK && rb.velocity.sqrMagnitude > currentMaxVelocity*currentMaxVelocity)
+        if (state != EnemyState.STUCK && rb.velocity.sqrMagnitude < currentMaxVelocity*currentMaxVelocity )
         {
             float x = targetTransform1.position.x - transform.position.x;
             if (x < 0)
