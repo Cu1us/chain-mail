@@ -87,7 +87,7 @@ public class EnemyMovement : MonoBehaviour
         targetTransform1 = player1;
         targetTransform2 = playerRock;
         nextState = state;
-        //grabber = chain.PlayerA.transform;
+        grabber = chain.Anchor.transform;
         currentMaxVelocity = maxVelocity;
         accell = acceleration;
         agent.speed = currentMaxVelocity;
