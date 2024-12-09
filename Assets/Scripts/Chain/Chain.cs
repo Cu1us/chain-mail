@@ -30,6 +30,7 @@ public class Chain : MonoBehaviour
     [SerializeField][Range(0, 1)] float forcePreserveMomentumThreshold;
     [SerializeField][Min(0)] float pivotReadjustToCenterTime;
     [SerializeField] AnimationCurve pivotReadjustToCenterCurve;
+    [SerializeField] float knockbackWhenHittingWall;
 
     [Header("Connections")]
     public SwingableObject Player;
@@ -67,9 +68,12 @@ public class Chain : MonoBehaviour
         Player.onSwingIntoWall += OnSwingIntoWall;
         Rock.onSwingIntoWall += OnSwingIntoWall;
     }
-    void OnSwingIntoWall()
+    void OnSwingIntoWall(Vector2 hitNormal)
     {
         rotationalVelocity = -rotationalVelocity;
+        Vector2 launchVelocity = hitNormal * knockbackWhenHittingWall * currentChainLength;
+        Anchor.Launch(launchVelocity);
+        Swingee.Launch(launchVelocity);
     }
     void OnKnockedWhileSwung(float amount)
     {
