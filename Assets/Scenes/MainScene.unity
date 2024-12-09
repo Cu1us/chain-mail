@@ -1206,6 +1206,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DangerZone
       objectReference: {fileID: 0}
+    - target: {fileID: 1606154601757155516, guid: 38598d02dbcfec84aa6cdd710b6c259f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2044594233828183142, guid: 38598d02dbcfec84aa6cdd710b6c259f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
