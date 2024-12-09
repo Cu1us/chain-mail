@@ -250,18 +250,21 @@ public class Chain : MonoBehaviour
     public void SwapPlaces()
     {
         if (Player.velocity.sqrMagnitude > 20 || Rock.velocity.sqrMagnitude > 20) return;
-        if (anchorStatus == AnchorStatus.NONE)
+        if (Mathf.Abs(rotationalVelocity) == 0)
         {
             Player.Launch((Rock.position - Player.position).normalized * swapPlacesForce);
             Rock.Launch((Player.position - Rock.position).normalized * swapPlacesForce);
             return;
         }
 
+        SwingableObject toSwap = Anchor;
+        SwingableObject swapAnchor = Swingee;
+
         rotationalVelocity = 0;
         Swingee.lastSwapTime = Time.time;
 
-        Vector2 swapToPos = Anchor.position + (Anchor.position - Swingee.position).normalized * maxDistance;
-        Debug.DrawLine(Swingee.position, swapToPos, Color.gray, 2f);
+        Vector2 swapToPos = swapAnchor.position + (swapAnchor.position - toSwap.position).normalized * maxDistance;
+        Debug.DrawLine(toSwap.position, swapToPos, Color.gray, 2f);
 
         if (useSwapAimbot && EnemyMovement.EnemyList.Count > 0)
         {
@@ -278,9 +281,10 @@ public class Chain : MonoBehaviour
             }
             if (closestPos != Vector2.zero) swapToPos = closestPos;
         }
-        Debug.DrawLine(Swingee.position, swapToPos, Color.green, 2f);
+        Debug.DrawLine(toSwap.position, swapToPos, Color.green, 2f);
 
-        Swingee.Launch((swapToPos - Swingee.position).normalized * swapPlacesForce * 2);
+        toSwap.Launch((swapToPos - toSwap.position).normalized * swapPlacesForce * 2);
+        SwitchAnchor();
     }
 
     void Reset()
