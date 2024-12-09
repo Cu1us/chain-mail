@@ -67,7 +67,6 @@ public class PlayerKnockback : MonoBehaviour
     {
         if (Mathf.Abs(swingableObject.swingVelocity) > 0 || swingableObject.beingSwapped)    
         {
-            Debug.Log("TEEEEEST");
             if (collision.CompareTag("Enemy"))
             {
                 float currentTime = Time.time;
