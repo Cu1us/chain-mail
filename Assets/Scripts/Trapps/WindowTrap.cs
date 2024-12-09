@@ -22,15 +22,17 @@ public class WindowTrap : MonoBehaviour
             if(other.CompareTag("Enemy"))
             {
                 float velocity = other.GetComponent<Rigidbody2D>().velocity.sqrMagnitude;
-                if (velocity > 9)
+                if (velocity > 100)
                 {
                     isWindowBroken = true;
                     spriteRenderer.sprite = brokenWindowSprite;
                 }
             }
         }
-        if(other.CompareTag("Enemy") && isWindowBroken)
+        if(other.CompareTag("Enemy") && isWindowBroken && other.GetComponent<Rigidbody2D>().velocity.sqrMagnitude > 100)
         {
+          
+
             other.GetComponent<EnemyMovement>().StateChange(EnemyMovement.EnemyState.STUCK);
             other.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
             other.GetComponent<Transform>().position = fallPos.transform.position;

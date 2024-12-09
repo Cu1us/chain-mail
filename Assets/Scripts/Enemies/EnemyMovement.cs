@@ -156,7 +156,7 @@ public class EnemyMovement : MonoBehaviour
             if (chain.rotationalVelocity != 0)
             {
                 nextState = EnemyState.INTERCEPT;
-                StateChange(EnemyState.INTERCEPT);
+               // StateChange(EnemyState.INTERCEPT);
                 return;
 
             }
@@ -184,8 +184,6 @@ public class EnemyMovement : MonoBehaviour
             StateChange(state);
         }
 
-
-
         else if (isArcher)
         {
             state = EnemyState.ARCHER;
@@ -205,7 +203,7 @@ public class EnemyMovement : MonoBehaviour
         }
         switch (state)
         {
-            case EnemyState.STUCK: Debug.Log("Stuck");
+            case EnemyState.STUCK:
                 isAttackState = false;
                 currentMaxVelocity = 0;
                 break;
