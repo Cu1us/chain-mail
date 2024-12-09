@@ -211,6 +211,7 @@ public class EnemyMovement : MonoBehaviour
                 currentMaxVelocity = 0;
                 break;
             case EnemyState.KEEPDISTANCE:
+            stateTimer = stateChangeCooldown -2;
                 break;
             case EnemyState.MOVECLOSETOATTACK:
 
