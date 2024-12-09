@@ -48,8 +48,8 @@ public class EnemyMovement : MonoBehaviour
 
 
     [Header("Timers")]
-    float stumbleTimer = 2;
-    float stumbleTimerCooldown = 2;
+    public float stumbleTimer = 2;
+    public float stumbleTimerCooldown = 2;
     float stateTimer;
     float stateChangeCooldown = 3;
     [SerializeField] float stumbleTime = 3;

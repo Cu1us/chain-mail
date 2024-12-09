@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Keypad1))
+        if (Input.GetKeyDown(KeyCode.Keypad1))
         {
             DestroyEnemy();
         }
@@ -42,6 +42,9 @@ public class EnemyHealth : MonoBehaviour
         {
             damage *= damageStuckMultiplier;
         }
+
+        enemyMovement.stumbleTimer = enemyMovement.stumbleTimerCooldown - 0.3f;
+
 
         damage = Mathf.Round(damage);
         enemyHealth -= damage;
@@ -75,7 +78,7 @@ public class EnemyHealth : MonoBehaviour
         enemyMovement.isAttackState = false;
         enemyMovement.StateChange(EnemyMovement.EnemyState.STUCK);
         enemyMovement.enabled = false;
-        coll2D.enabled=false;
+        coll2D.enabled = false;
         Invoke(nameof(DestroyEnemy), 3f);
     }
 
