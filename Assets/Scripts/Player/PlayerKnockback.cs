@@ -7,7 +7,6 @@ public class PlayerKnockback : MonoBehaviour
     [Header("Settings")]
     [SerializeField] float swapKnockbackForce;
     [SerializeField] float rotateKnockbackForce;
-    //[SerializeField] float maxAttackTime;
     [SerializeField] float coolDown;
     [SerializeField] float knockbackBaseDamage;
     [SerializeField] float knockbackSwingDamageMultiply;
@@ -32,37 +31,6 @@ public class PlayerKnockback : MonoBehaviour
 
     Dictionary<GameObject, float> enemies = new Dictionary<GameObject, float>();
 
-    // GIVES THE PLAYER ABILITY TO ADJUST THE KNOCKBACK DIRECTION
-    /////////////////////////////////////////////////////////////////////
-    /*void Start()
-    {
-        playerInputData.onAttackPress += AttackPress;
-    }
-    void Update()
-    {
-        AttackTimer();
-    }
-
-    void AttackPress()
-    {
-        pressedAttack = true;
-    }
-
-    void AttackTimer()
-    {
-        if (pressedAttack)
-        {
-            attackTimer += Time.deltaTime;
-        }
-
-        if (attackTimer > maxAttackTime)
-        {
-            pressedAttack = false;
-            attackTimer = 0;
-        }
-    }*/
-    /////////////////////////////////////////////////////////////////////
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (Mathf.Abs(swingableObject.swingVelocity) > 0 || swingableObject.beingSwapped)    
@@ -84,29 +52,8 @@ public class PlayerKnockback : MonoBehaviour
     {
         if (swingableObject.beingSwapped)
         {
-            // GIVES THE PLAYER ABILITY TO ADJUST THE KNOCKBACK DIRECTION
-            /////////////////////////////////////////////////////////////////////
-            /*Vector2 forceDirection = playerInputData.movementInput.normalized;
-
-            if (forceDirection == Vector2.zero)
-            {
-                forceDirection = player1.position - player2.position;
-                forceDirection.Normalize();
-
-                if (grabStatus == Chain.GrabStatus.A)
-                {
-                    forceDirection *= -1;
-                }
-            }*/
-            /////////////////////////////////////////////////////////////////////
-
-            Vector2 forceDirection = player1.position - player2.position;
+            Vector2 forceDirection = swingableObject.velocity;
             forceDirection.Normalize();
-
-            if (anchorStatus == Chain.AnchorStatus.ROCK)
-            {
-                forceDirection *= -1;
-            }
 
             enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * swapKnockbackForce, ForceMode2D.Impulse);
         }
