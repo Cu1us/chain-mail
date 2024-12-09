@@ -5,17 +5,23 @@ using UnityEngine;
 public class PlayerKnockback : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] float knockbackForce;
-    [SerializeField] float normalKnockbackForce;
-    [SerializeField] float maxAttackTime;
+    [SerializeField] float swapKnockbackForce;
+    [SerializeField] float rotateKnockbackForce;
+    //[SerializeField] float maxAttackTime;
     [SerializeField] float coolDown;
-    [SerializeField] Chain.GrabStatus grabStatus;
+    [SerializeField] float knockbackBaseDamage;
+    [SerializeField] float knockbackSwingDamageMultiply;
+    [SerializeField] float knockbackSwapDamageMultiply;
+
+
+    [SerializeField] Chain.AnchorStatus anchorStatus;
     [SerializeField] bool freezeTimeOnHit;
 
     [Header("References")]
     [SerializeField] BoxCollider2D boxCollider;
     [SerializeField] PlayerInputData playerInputData;
     [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] SwingableObject swingableObject;
     [SerializeField] Chain chain;
 
     [SerializeField] Transform player1;
@@ -27,7 +33,9 @@ public class PlayerKnockback : MonoBehaviour
 
     Dictionary<GameObject, float> enemies = new Dictionary<GameObject, float>();
 
-    void Start()
+    // GIVES THE PLAYER ABILITY TO ADJUST THE KNOCKBACK DIRECTION
+    /////////////////////////////////////////////////////////////////////
+    /*void Start()
     {
         playerInputData.onAttackPress += AttackPress;
     }
@@ -53,18 +61,21 @@ public class PlayerKnockback : MonoBehaviour
             pressedAttack = false;
             attackTimer = 0;
         }
-    }
+    }*/
+    /////////////////////////////////////////////////////////////////////
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (chain.grabStatus == grabStatus || playerMovement.beingSwapped)
+        if (Mathf.Abs(swingableObject.swingVelocity) > 0 || playerMovement.beingSwapped)
         {
+            Debug.Log("TEEEEEST");
             if (collision.CompareTag("Enemy"))
             {
                 float currentTime = Time.time;
                 if (!enemies.ContainsKey(collision.gameObject) || currentTime - enemies[collision.gameObject] > coolDown)
                 {
                     AddKnockback(collision.gameObject);
+                    AddDamage(collision.gameObject);
                     enemies[collision.gameObject] = currentTime;
                 }
             }
@@ -73,9 +84,11 @@ public class PlayerKnockback : MonoBehaviour
 
     void AddKnockback(GameObject enemy)
     {
-        if (pressedAttack || playerMovement.beingSwapped)
+        if (playerMovement.beingSwapped)
         {
-            Vector2 forceDirection = playerInputData.movementInput.normalized;
+            // GIVES THE PLAYER ABILITY TO ADJUST THE KNOCKBACK DIRECTION
+            /////////////////////////////////////////////////////////////////////
+            /*Vector2 forceDirection = playerInputData.movementInput.normalized;
 
             if (forceDirection == Vector2.zero)
             {
@@ -86,9 +99,18 @@ public class PlayerKnockback : MonoBehaviour
                 {
                     forceDirection *= -1;
                 }
+            }*/
+            /////////////////////////////////////////////////////////////////////
+
+            Vector2 forceDirection = player1.position - player2.position;
+            forceDirection.Normalize();
+
+            if (anchorStatus == Chain.AnchorStatus.ROCK)
+            {
+                forceDirection *= -1;
             }
 
-            enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * knockbackForce, ForceMode2D.Impulse);
+            enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * swapKnockbackForce, ForceMode2D.Impulse);
 
             if (freezeTimeOnHit) TimeManager.Slowmo(0.1f, 0.2f);
             enemy.GetComponent<SpriteBlink>().Blink(0.2f);
@@ -100,7 +122,7 @@ public class PlayerKnockback : MonoBehaviour
 
             Vector2 enemyDirection = player1.position - player2.position;
 
-            if (grabStatus == Chain.GrabStatus.A)
+            if (anchorStatus == Chain.AnchorStatus.ROCK)
             {
                 perpendicular *= -1;
                 enemyDirection *= -1;
@@ -109,13 +131,29 @@ public class PlayerKnockback : MonoBehaviour
             Vector2 forceDirection = perpendicular + enemyDirection;
             forceDirection.Normalize();
 
-            enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * normalKnockbackForce, ForceMode2D.Impulse);
+            enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * rotateKnockbackForce, ForceMode2D.Impulse);
         }
+    }
+
+    void AddDamage(GameObject enemy)
+    {
+        float damage;
+
+        if (playerMovement.beingSwapped)
+        {
+            damage = knockbackBaseDamage * swingableObject.velocity.magnitude * knockbackSwapDamageMultiply;
+        }
+        else
+        {
+            damage = knockbackBaseDamage * swingableObject.swingVelocity * knockbackSwingDamageMultiply;
+        }
+
+        enemy.GetComponent<EnemyHealth>().TakeDamage(Mathf.Abs(damage));
     }
 
     void ClearEnemies()
     {
-        if (chain.grabStatus == grabStatus)
+        if (chain.anchorStatus == anchorStatus)
         {
             enemies.Clear();
         }

@@ -9,15 +9,16 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("Players")]
     Transform player1;
-    Transform player2;
-    Transform targetTransform1;
+    Transform playerRock;
+    public Transform targetTransform1;
     Transform targetTransform2;
+    GameObject chainAndPlayers;
 
     [Header("Referenses")]
     NavMeshAgent agent;
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
-    [SerializeField] Chain chain;
+    Chain chain;
     Transform grabber;
     [SerializeField] Animator animator;
 
@@ -27,11 +28,11 @@ public class EnemyMovement : MonoBehaviour
     float accell;
     [SerializeField] float knockbackDeceleration = 10;
     [SerializeField] float maxVelocity;
-    float velocity;
+    float currentMaxVelocity;
     [SerializeField] float flankExtraDistance;
     [SerializeField] float keepDistanceDistance;
     [SerializeField] float attackDistance;
-
+    float currentChainLength;
 
 
     Vector2 target;
@@ -40,19 +41,23 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("Bools")]
     public bool isAttackState;
-    [SerializeField] bool isSpearMan;
+    [Header("EnemyType")]
+    [SerializeField] bool isArcher;
+    [SerializeField] bool isSentinel;
+    [SerializeField] bool isSwordman;
 
-    float currentChainLength;
+
     [Header("Timers")]
-    float stumbleTimer;
+    float stumbleTimer = 2;
     float stumbleTimerCooldown = 2;
     float stateTimer;
     float stateChangeCooldown = 3;
+    [SerializeField] float stumbleTime = 3;
 
 
     public enum EnemyState
     {
-        STUCK, MOVECLOSETOATTACK, FLANK, GUARD, KEEPDISTANCE, INTERCEPT, CHARGE, IDLE
+        STUCK, MOVECLOSETOATTACK, FLANK, KEEPDISTANCE, INTERCEPT, ARCHER, IDLE
 
     }
     public EnemyState state;
@@ -75,13 +80,17 @@ public class EnemyMovement : MonoBehaviour
         agent.updatePosition = false;
 
         player1 = GameObject.Find("Player1").transform;
-        player2 = GameObject.Find("Player2").transform;
+        playerRock = GameObject.Find("Rock").transform;
+        chainAndPlayers = GameObject.Find("Chain and Players");
+        chain = chainAndPlayers.GetComponent<Chain>();
+
         targetTransform1 = player1;
-        targetTransform2 = player2;
+        targetTransform2 = playerRock;
         nextState = state;
-        grabber = chain.PlayerA.transform;
-        velocity = maxVelocity;
+        //grabber = chain.PlayerA.transform;
+        currentMaxVelocity = maxVelocity;
         accell = acceleration;
+        agent.speed = currentMaxVelocity;
     }
 
 
@@ -108,12 +117,11 @@ public class EnemyMovement : MonoBehaviour
             case EnemyState.FLANK:
                 Flank();
                 break;
-            case EnemyState.GUARD:
-                break;
             case EnemyState.INTERCEPT:
                 Intercept();
                 break;
-            case EnemyState.CHARGE:
+            case EnemyState.ARCHER:
+                ArcherMoveTo();
                 break;
         }
         agent.SetDestination(target);
@@ -131,8 +139,7 @@ public class EnemyMovement : MonoBehaviour
         }
 
         CompareVelocity();
-        rb.velocity = Vector2.MoveTowards(rb.velocity, direction * maxVelocity, accell * Time.deltaTime);
-
+        rb.velocity = Vector2.MoveTowards(rb.velocity, direction * currentMaxVelocity, accell * Time.deltaTime);
         agent.nextPosition = transform.position;
         Flip();
     }
@@ -140,69 +147,73 @@ public class EnemyMovement : MonoBehaviour
 
 
 
-
     public void RandomState()
     {
-        if (chain.rotationalVelocity != 0)
-        {
-            nextState =EnemyState.INTERCEPT;
-        }
-        if (nextState == state)
-        {
-            int random = Random.Range(0, 7);
+        int random = Random.Range(0, 7);
 
-            if (random <= 2)
-            {
-                state = EnemyState.KEEPDISTANCE;
-            }
-            else if (random > 2 && random <= 4)
-            {
-                state = EnemyState.MOVECLOSETOATTACK;
-            }
-            else if (random > 4 && random <= 6)
-            {
-                state = EnemyState.FLANK;
-            }
-            nextState = state;
-        }
-        else
+        if (isSwordman || isSentinel)
         {
-            state = nextState;
+            if (chain.rotationalVelocity != 0)
+            {
+                Debug.Log("Intercept");
+                nextState = EnemyState.INTERCEPT;
+                StateChange(EnemyState.INTERCEPT);
+                return;
+
+            }
+            if (nextState == state)
+            {
+
+                if (random <= 2)
+                {
+                    state = EnemyState.KEEPDISTANCE;
+                }
+                else if (random > 2 && random <= 4)
+                {
+                    state = EnemyState.MOVECLOSETOATTACK;
+                }
+                else if (random > 4 && random <= 6)
+                {
+                    state = EnemyState.FLANK;
+                }
+                nextState = state;
+            }
+            else
+            {
+                state = nextState;
+            }
+            StateChange(state);
         }
-        StateChange(state);
+
+
+
+        else if (isArcher)
+        {
+            state = EnemyState.ARCHER;
+            StateChange(state);
+        }
     }
 
     public void StateChange(EnemyState _state)
     {
         stateTimer = 0;
         state = _state;
-        velocity = maxVelocity;
+        currentMaxVelocity = maxVelocity;
         isAttackState = true;
+        if (isArcher && _state != EnemyState.STUCK)
+        {
+            state = EnemyState.ARCHER;
+        }
         switch (state)
         {
-
             case EnemyState.STUCK:
                 isAttackState = false;
-                velocity = 0;
+                currentMaxVelocity = 0;
                 break;
             case EnemyState.KEEPDISTANCE:
                 break;
             case EnemyState.MOVECLOSETOATTACK:
-                if (isSpearMan)
-                {
-                    if (Random.Range(0, 2) == 0)
-                    {
-                        state = EnemyState.CHARGE;
-                    }
-                    else
-                    {
-                        state = EnemyState.MOVECLOSETOATTACK;
-                    }
-                }
-                else
-                {
-                    state = EnemyState.MOVECLOSETOATTACK;
-                };
+
                 break;
             case EnemyState.FLANK:
                 if (Random.Range(0, 2) == 0)
@@ -215,38 +226,67 @@ public class EnemyMovement : MonoBehaviour
                 }
                 nextState = EnemyState.MOVECLOSETOATTACK;
                 break;
-            case EnemyState.GUARD:
-                break;
             case EnemyState.INTERCEPT:
                 stateTimer = -2;
                 break;
-            case EnemyState.CHARGE:
-                target = targetTransform1.position + (targetTransform1.position - transform.position).normalized * 2;
+            case EnemyState.ARCHER:
                 break;
+
         }
+        agent.speed = currentMaxVelocity;
     }
 
     void ClosestEnemy()
     {
         Vector2 dist1 = player1.position - transform.position;
-        Vector2 dist2 = player2.position - transform.position;
+        Vector2 dist2 = playerRock.position - transform.position;
 
         if (dist1.sqrMagnitude < dist2.sqrMagnitude)
         {
             targetTransform1 = player1;
-            targetTransform2 = player2;
+            targetTransform2 = playerRock;
         }
         else
         {
-            targetTransform1 = player2;
+            targetTransform1 = playerRock;
             targetTransform2 = player1;
         }
 
     }
 
+    void ArcherMoveTo()
+    {
+        float distFromCenter = 10;
+        Vector2 perpendicular = Vector2.Perpendicular(targetTransform1.position).normalized;
+
+        Vector2 dist1 = targetTransform1.position - transform.position;
+        if (dist1.sqrMagnitude < 64)
+        {
+            isAttackState = false;
+        }
+        else
+        {
+            isAttackState = true;
+        }
+        Vector2 point1 = (Vector2)targetTransform1.position + perpendicular * distFromCenter;
+        Vector2 point2 = (Vector2)targetTransform1.position - perpendicular * distFromCenter;
+
+        float dot1 = Vector2.Dot(transform.position - targetTransform1.position, point1);
+        float dot2 = Vector2.Dot(transform.position - targetTransform1.position, point2);
+
+        if (dot1 > dot2)
+        {
+            target = point1;
+        }
+        else
+        {
+            target = point2;
+        }
+    }
+
     void Flank()
     {
-        Vector2 midPoint = (player1.position + player2.position) / 2;
+        Vector2 midPoint = (player1.position + playerRock.position) / 2;
         Vector2 dir = (Vector2)transform.position - midPoint;
         dir.Normalize();
         Vector2 perpendicular = Vector2.Perpendicular(dir);
@@ -263,11 +303,6 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    void Guard()
-    {
-
-    }
-
     void KeepDistance()
     {
         target = targetTransform1.position + (transform.position - targetTransform1.position).normalized * keepDistanceDistance;
@@ -280,15 +315,10 @@ public class EnemyMovement : MonoBehaviour
 
     void Intercept()
     {
-
         float interceptDistance = chain.currentChainLength;
         Vector2 dist = (transform.position - grabber.position).normalized;
         Vector2 perpendicular = Vector2.Perpendicular(dist);
-        target = (Vector2)grabber.position + dist * interceptDistance + dist * 1.5f + (perpendicular*chain.rotationalVelocity).normalized*3;
-    }
-
-    void Charge()
-    {
+        target = (Vector2)grabber.position + dist * interceptDistance + dist * 1.8f + perpendicular.normalized * 2;
     }
 
     public void Stumble()
@@ -296,14 +326,15 @@ public class EnemyMovement : MonoBehaviour
         if (stumbleTimer > stumbleTimerCooldown)
         {
             animator.Play("Stumble");
-            Invoke(nameof(Stand), 2f);
+            Invoke(nameof(Stand), stumbleTime);
+            stateTimer += stumbleTime;
             StateChange(EnemyState.STUCK);
         }
-
     }
 
     void Stand()
     {
+        stumbleTimer = 0;
         animator.Play("Walk");
         Vector2 dist = targetTransform1.position - transform.position;
         if (dist.sqrMagnitude > 16)
@@ -336,7 +367,7 @@ public class EnemyMovement : MonoBehaviour
     void CompareVelocity()
     {
         animator.SetFloat("Velocity", rb.velocity.sqrMagnitude);
-        if (rb.velocity.sqrMagnitude > maxVelocity*maxVelocity)
+        if (rb.velocity.sqrMagnitude > maxVelocity * maxVelocity)
         {
             accell = knockbackDeceleration;
         }
@@ -344,6 +375,15 @@ public class EnemyMovement : MonoBehaviour
         {
             accell = acceleration;
         }
+    }
+
+    void StoppMoving()
+    {
+        currentMaxVelocity = 0;
+    }
+    void ContinueMoving()
+    {
+        currentMaxVelocity = maxVelocity;
     }
 
 

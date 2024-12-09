@@ -33,8 +33,8 @@ public class WindowTrap : MonoBehaviour
         {
             other.GetComponent<EnemyMovement>().StateChange(EnemyMovement.EnemyState.STUCK);
             other.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
-            other.GetComponent<Transform>().position = fallPos.transform.position;//(Vector2)other.transform.position + new Vector2(0, 1);
-            other.GetComponent<CapsuleCollider2D>().enabled = false;
+            other.GetComponent<Transform>().position = fallPos.transform.position;
+            other.GetComponentInChildren<BoxCollider2D>().enabled = false;
             other.GetComponent<Animator>().SetBool("Trapfall", true);
         }
         else if(other.CompareTag("Player"))

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6925236174571540213}
   - component: {fileID: 7742981981295681520}
   - component: {fileID: 4002983075378344015}
+  - component: {fileID: 2079108905183706763}
   m_Layer: 10
   m_Name: Trapp
   m_TagString: Untagged
@@ -98,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fa0352a4d56abd42ad2fc69deb72448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Size: {x: 30, y: 7.5, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 32.027233, y: 9.13167, z: 1}
+  m_Center: {x: -0.074165344, y: -0.12361121, z: 0}
   m_Area: 1
   m_AffectedAgents: ffffffff
 --- !u!60 &4002983075378344015
@@ -146,15 +147,27 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 6.544776, y: 1.7126797}
-      - {x: -1.3196884, y: 2.191901}
-      - {x: -4.909136, y: 1.1831527}
-      - {x: -12.29168, y: 0.5877492}
-      - {x: -13.861357, y: -0.6824283}
-      - {x: -11.373185, y: -1.7844968}
-      - {x: -4.4580674, y: -2.0952039}
-      - {x: -3.0823424, y: -3.1234915}
-      - {x: 6.4938307, y: -2.963627}
+    - - {x: 6.58916, y: 1.0025594}
+      - {x: -1.2087284, y: 1.3042471}
+      - {x: -4.6206455, y: 0.33988273}
+      - {x: -11.736895, y: 0.0995394}
+      - {x: -13.084657, y: -0.6824283}
+      - {x: -10.640871, y: -1.3406687}
+      - {x: -4.1030064, y: -1.5182309}
+      - {x: -2.5275576, y: -2.2136478}
+      - {x: 6.271918, y: -2.0537834}
       - {x: 7.1633472, y: -1.115685}
       - {x: 11.587363, y: 0.3685193}
   m_UseDelaunayMesh: 0
+--- !u!114 &2079108905183706763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6379021087018135195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce62c9737ea84b4e9c328d4b5836fec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -142,7 +142,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &7269977404316147536
 CapsuleCollider2D:
@@ -213,7 +213,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 100
+  damageStuckMultiplier: 2
+  damageWallBounce: 10
+  redTextDamage: 50
   dead: {fileID: 21300000, guid: 58dc8f1575c907d448d04cb5a1d44288, type: 3}
+  spriteRenderer: {fileID: 3911203691474585884}
+  rigidbody: {fileID: 4983113987866911296}
+  enemyMovement: {fileID: 1971338446580476409}
+  coll2D: {fileID: 7269977404316147536}
+  animator: {fileID: 3742826125167725315}
+  DamageText: {fileID: 7880372099245737446, guid: cd889e5e751da994c92d6279be429bd1, type: 3}
 --- !u!114 &1971338446580476409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11c4f5dc371ddf48a80444e7c1b1108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chain: {fileID: 1931979293959075955, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+  targetTransform1: {fileID: 0}
   animator: {fileID: 3742826125167725315}
   acceleration: 10
   knockbackDeceleration: 10
@@ -235,7 +244,10 @@ MonoBehaviour:
   keepDistanceDistance: 6
   attackDistance: 2
   isAttackState: 0
-  isSpearMan: 0
+  isArcher: 0
+  isSentinel: 0
+  isSwordman: 1
+  stumbleTime: 3
   state: 1
 --- !u!114 &-7956447530525605050
 MonoBehaviour:
@@ -5166,7 +5178,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8929492261661092247}
   - component: {fileID: 693304060645416680}
-  - component: {fileID: 5697587726356314454}
   m_Layer: 0
   m_Name: TrapDetection
   m_TagString: Untagged
@@ -5234,19 +5245,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5945339, y: 0.7250817}
   m_EdgeRadius: 0
---- !u!114 &5697587726356314454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4818969038544234171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fce62c9737ea84b4e9c328d4b5836fec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Enemy: {fileID: 569884204690992695}
 --- !u!1 &8663568860817936689
 GameObject:
   m_ObjectHideFlags: 0
