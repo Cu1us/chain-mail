@@ -37,7 +37,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mat_GroundImpactOutline
-  m_Shader: {fileID: -6465566751694194690, guid: e7cb78f3335f54852a208967fb8bc339, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: b65f6b890bdb24b86b20fe6b4471d83d, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -184,6 +184,7 @@ Material:
     - _SupportDecals: 1
     - _Surface: 1
     - _SurfaceType: 0
+    - _Thickness: 0.002
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
     - _TransparentDepthPostpassEnable: 0
