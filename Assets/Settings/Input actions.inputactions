@@ -253,7 +253,7 @@
                 {
                     "name": "",
                     "id": "94bb8e16-bff2-4aca-b29c-4863f54b4bfb",
-                    "path": "<Gamepad>/rightStick/y",
+                    "path": "<Gamepad>/leftStick/y",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
