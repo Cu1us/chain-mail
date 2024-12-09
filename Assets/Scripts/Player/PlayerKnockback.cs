@@ -20,7 +20,6 @@ public class PlayerKnockback : MonoBehaviour
     [Header("References")]
     [SerializeField] BoxCollider2D boxCollider;
     [SerializeField] PlayerInputData playerInputData;
-    [SerializeField] PlayerMovement playerMovement;
     [SerializeField] SwingableObject swingableObject;
     [SerializeField] Chain chain;
 
@@ -66,9 +65,8 @@ public class PlayerKnockback : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Mathf.Abs(swingableObject.swingVelocity) > 0 || playerMovement.beingSwapped)
+        if (Mathf.Abs(swingableObject.swingVelocity) > 0 || swingableObject.beingSwapped)    
         {
-            Debug.Log("TEEEEEST");
             if (collision.CompareTag("Enemy"))
             {
                 float currentTime = Time.time;
@@ -84,7 +82,7 @@ public class PlayerKnockback : MonoBehaviour
 
     void AddKnockback(GameObject enemy)
     {
-        if (playerMovement.beingSwapped)
+        if (swingableObject.beingSwapped)
         {
             // GIVES THE PLAYER ABILITY TO ADJUST THE KNOCKBACK DIRECTION
             /////////////////////////////////////////////////////////////////////
@@ -111,9 +109,6 @@ public class PlayerKnockback : MonoBehaviour
             }
 
             enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * swapKnockbackForce, ForceMode2D.Impulse);
-
-            if (freezeTimeOnHit) TimeManager.Slowmo(0.1f, 0.2f);
-            enemy.GetComponent<SpriteBlink>().Blink(0.2f);
         }
         else
         {
@@ -133,13 +128,16 @@ public class PlayerKnockback : MonoBehaviour
 
             enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * rotateKnockbackForce, ForceMode2D.Impulse);
         }
+
+        if (freezeTimeOnHit) TimeManager.Slowmo(0.1f, 0.2f);
+        enemy.GetComponent<SpriteBlink>().Blink(0.2f);
     }
 
     void AddDamage(GameObject enemy)
     {
         float damage;
 
-        if (playerMovement.beingSwapped)
+        if (swingableObject.beingSwapped)
         {
             damage = knockbackBaseDamage * swingableObject.velocity.magnitude * knockbackSwapDamageMultiply;
         }

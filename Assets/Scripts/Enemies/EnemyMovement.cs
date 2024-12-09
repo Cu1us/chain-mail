@@ -48,8 +48,8 @@ public class EnemyMovement : MonoBehaviour
 
 
     [Header("Timers")]
-    float stumbleTimer = 2;
-    float stumbleTimerCooldown = 2;
+    public float stumbleTimer = 2;
+    public float stumbleTimerCooldown = 2;
     float stateTimer;
     float stateChangeCooldown = 3;
     [SerializeField] float stumbleTime = 3;
@@ -87,7 +87,7 @@ public class EnemyMovement : MonoBehaviour
         targetTransform1 = player1;
         targetTransform2 = playerRock;
         nextState = state;
-        //grabber = chain.PlayerA.transform;
+        grabber = chain.Anchor.transform;
         currentMaxVelocity = maxVelocity;
         accell = acceleration;
         agent.speed = currentMaxVelocity;
@@ -211,6 +211,7 @@ public class EnemyMovement : MonoBehaviour
                 currentMaxVelocity = 0;
                 break;
             case EnemyState.KEEPDISTANCE:
+            stateTimer = stateChangeCooldown -2;
                 break;
             case EnemyState.MOVECLOSETOATTACK:
 
@@ -350,7 +351,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Flip()
     {
-        if (state != EnemyState.STUCK)
+        if (state != EnemyState.STUCK && rb.velocity.sqrMagnitude < currentMaxVelocity*currentMaxVelocity )
         {
             float x = targetTransform1.position.x - transform.position.x;
             if (x < 0)

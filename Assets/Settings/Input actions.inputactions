@@ -219,8 +219,19 @@
                 },
                 {
                     "name": "",
+                    "id": "b711f598-5122-4468-9fd2-d5a017dc0f6b",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchAnchor",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "94bb8e16-bff2-4aca-b29c-4863f54b4bfb",
-                    "path": "<Gamepad>/leftStick/y",
+                    "path": "<Gamepad>/rightStick/y",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -309,6 +320,17 @@
                     "name": "",
                     "id": "7910e1a6-fb3c-41c1-9182-28266a0db38c",
                     "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwapPlaces",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e7b22116-b7f8-49ba-a6cf-46df68ee433b",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

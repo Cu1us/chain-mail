@@ -74,7 +74,7 @@ public class Chain : MonoBehaviour
     void OnKnockedWhileSwung(float amount)
     {
         if (anchorStatus == AnchorStatus.NONE) return;
-        float chainLength = currentChainLength * (anchorStatus == AnchorStatus.ROCK ? heldPivotOffset : (1 - heldPivotOffset));
+        float chainLength = currentChainLength * (anchorStatus == AnchorStatus.ROCK ? 1 : (1 - heldPivotOffset));
         rotationalVelocity += amount * 114.591559026164f / chainLength * Mathf.Sign(rotationalVelocity);
     }
     void OnTriggerEnter2D(Collider2D other)
@@ -150,7 +150,7 @@ public class Chain : MonoBehaviour
                 localPivot = heldPivotOffset;
                 break;
             case AnchorStatus.ROCK:
-                localPivot = 1 - heldPivotOffset;
+                localPivot = 1;
                 break;
             case AnchorStatus.NONE:
                 // Animate pivot back to center
@@ -190,7 +190,7 @@ public class Chain : MonoBehaviour
     }
     void ExtendChainByInput()
     {
-        if (anchorStatus == AnchorStatus.NONE || rotationalVelocity == 0 || Player.velocity.sqrMagnitude > 1f || Anchor.velocity.sqrMagnitude > 1f) return;
+        if (inputData.chainExtendInput == 0 || anchorStatus == AnchorStatus.NONE || rotationalVelocity == 0 || Player.velocity.sqrMagnitude > 1f || Anchor.velocity.sqrMagnitude > 1f) return;
         float pushDistance = inputData.chainExtendInput * extendChainSpeed * Time.deltaTime;
 
         if (currentChainLength + pushDistance > maxDistance) pushDistance = maxDistance - currentChainLength;
@@ -250,18 +250,21 @@ public class Chain : MonoBehaviour
     public void SwapPlaces()
     {
         if (Player.velocity.sqrMagnitude > 20 || Rock.velocity.sqrMagnitude > 20) return;
-        if (anchorStatus == AnchorStatus.NONE)
+        /*if (Mathf.Abs(rotationalVelocity) == 0)
         {
             Player.Launch((Rock.position - Player.position).normalized * swapPlacesForce);
             Rock.Launch((Player.position - Rock.position).normalized * swapPlacesForce);
             return;
-        }
+        }*/
+
+        SwingableObject toSwap = Swingee;
+        SwingableObject swapAnchor = Anchor;
 
         rotationalVelocity = 0;
-        Swingee.lastSwapTime = Time.time;
+        toSwap.lastSwapTime = Time.time;
 
-        Vector2 swapToPos = Anchor.position + (Anchor.position - Swingee.position).normalized * maxDistance;
-        Debug.DrawLine(Swingee.position, swapToPos, Color.gray, 2f);
+        Vector2 swapToPos = swapAnchor.position + (swapAnchor.position - toSwap.position).normalized * maxDistance;
+        Debug.DrawLine(toSwap.position, swapToPos, Color.gray, 2f);
 
         if (useSwapAimbot && EnemyMovement.EnemyList.Count > 0)
         {
@@ -278,9 +281,9 @@ public class Chain : MonoBehaviour
             }
             if (closestPos != Vector2.zero) swapToPos = closestPos;
         }
-        Debug.DrawLine(Swingee.position, swapToPos, Color.green, 2f);
+        Debug.DrawLine(toSwap.position, swapToPos, Color.green, 2f);
 
-        Swingee.Launch((swapToPos - Swingee.position).normalized * swapPlacesForce * 2);
+        toSwap.Launch((swapToPos - toSwap.position).normalized * swapPlacesForce * 2);
     }
 
     void Reset()
