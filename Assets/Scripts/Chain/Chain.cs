@@ -250,12 +250,12 @@ public class Chain : MonoBehaviour
     public void SwapPlaces()
     {
         if (Player.velocity.sqrMagnitude > 20 || Rock.velocity.sqrMagnitude > 20) return;
-        if (Mathf.Abs(rotationalVelocity) == 0)
+        /*if (Mathf.Abs(rotationalVelocity) == 0)
         {
             Player.Launch((Rock.position - Player.position).normalized * swapPlacesForce);
             Rock.Launch((Player.position - Rock.position).normalized * swapPlacesForce);
             return;
-        }
+        }*/
 
         SwingableObject toSwap = Anchor;
         SwingableObject swapAnchor = Swingee;
