@@ -17,7 +17,7 @@ public class AudioList : ScriptableObject
     }
     public void InitializeDictionary()
     {
-        Debug.Log("Initializing");
+        Debug.Log("Initializing sound list");
         foreach (AudioAsset audioAsset in audioAssets)
         {
             audioDictionary[audioAsset.name.ToLower()] = audioAsset.data;
