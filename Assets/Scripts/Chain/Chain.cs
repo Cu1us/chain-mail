@@ -261,7 +261,7 @@ public class Chain : MonoBehaviour
         SwingableObject swapAnchor = Swingee;
 
         rotationalVelocity = 0;
-        Swingee.lastSwapTime = Time.time;
+        toSwap.lastSwapTime = Time.time;
 
         Vector2 swapToPos = swapAnchor.position + (swapAnchor.position - toSwap.position).normalized * maxDistance;
         Debug.DrawLine(toSwap.position, swapToPos, Color.gray, 2f);
