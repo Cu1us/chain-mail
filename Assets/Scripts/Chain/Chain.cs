@@ -74,7 +74,7 @@ public class Chain : MonoBehaviour
     void OnKnockedWhileSwung(float amount)
     {
         if (anchorStatus == AnchorStatus.NONE) return;
-        float chainLength = currentChainLength * (anchorStatus == AnchorStatus.ROCK ? heldPivotOffset : (1 - heldPivotOffset));
+        float chainLength = currentChainLength * (anchorStatus == AnchorStatus.ROCK ? 1 : (1 - heldPivotOffset));
         rotationalVelocity += amount * 114.591559026164f / chainLength * Mathf.Sign(rotationalVelocity);
     }
     void OnTriggerEnter2D(Collider2D other)
@@ -150,7 +150,7 @@ public class Chain : MonoBehaviour
                 localPivot = heldPivotOffset;
                 break;
             case AnchorStatus.ROCK:
-                localPivot = 1 - heldPivotOffset;
+                localPivot = 1;
                 break;
             case AnchorStatus.NONE:
                 // Animate pivot back to center
