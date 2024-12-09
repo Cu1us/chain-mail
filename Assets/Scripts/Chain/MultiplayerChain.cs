@@ -72,14 +72,14 @@ public class MultiplayerChain : MonoBehaviour
     {
         PlayerAInput.onChainSwap += PlayerASwapPlaces;
         PlayerBInput.onChainSwap += PlayerBSwapPlaces;
-        PlayerAInput.onChainRotate += PlayerAGrabChain;
-        PlayerBInput.onChainRotate += PlayerBGrabChain;
+        //PlayerAInput.onChainRotate += PlayerAGrabChain;
+        //PlayerBInput.onChainRotate += PlayerBGrabChain;
         PlayerA.onKnockedChain += OnKnockedWhileSwung;
         PlayerB.onKnockedChain += OnKnockedWhileSwung;
         PlayerA.onSwingIntoWall += OnSwingIntoWall;
         PlayerB.onSwingIntoWall += OnSwingIntoWall;
     }
-    void OnSwingIntoWall()
+    void OnSwingIntoWall(Vector2 hitNormal)
     {
         rotationalVelocity = -rotationalVelocity;
     }

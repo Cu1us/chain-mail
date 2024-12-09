@@ -155,9 +155,8 @@ public class EnemyMovement : MonoBehaviour
         {
             if (chain.rotationalVelocity != 0)
             {
-                Debug.Log("Intercept");
                 nextState = EnemyState.INTERCEPT;
-                StateChange(EnemyState.INTERCEPT);
+               // StateChange(EnemyState.INTERCEPT);
                 return;
 
             }
@@ -184,8 +183,6 @@ public class EnemyMovement : MonoBehaviour
             }
             StateChange(state);
         }
-
-
 
         else if (isArcher)
         {
@@ -323,7 +320,7 @@ public class EnemyMovement : MonoBehaviour
     }
 
     public void Stumble()
-    {
+    {   
         if (stumbleTimer > stumbleTimerCooldown)
         {
             animator.Play("Stumble");
@@ -380,11 +377,13 @@ public class EnemyMovement : MonoBehaviour
 
     void StoppMoving()
     {
+        Debug.Log("StopMoving");
         currentMaxVelocity = 0;
     }
     void ContinueMoving()
     {
         currentMaxVelocity = maxVelocity;
+        Debug.Log("ContinueMoving");
     }
 
 

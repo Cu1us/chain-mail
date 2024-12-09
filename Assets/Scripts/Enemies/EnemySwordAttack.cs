@@ -67,7 +67,7 @@ public class EnemySwordAttack : MonoBehaviour
     {
         for (int i = 0; i < playersInsideTrigger.Count; i++)
         {
-            if (gameObject.TryGetComponent<PlayerHealth>(out PlayerHealth component))
+            if (playersInsideTrigger[i].TryGetComponent<PlayerHealth>(out PlayerHealth component))
             {
                 playersInsideTrigger[i].GetComponent<PlayerHealth>().TakeDamage(damage);
             }

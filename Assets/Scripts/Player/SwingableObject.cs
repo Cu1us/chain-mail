@@ -22,7 +22,7 @@ public class SwingableObject : MonoBehaviour, IKnockable
 
     // Events
     public Action<float> onKnockedChain;
-    public Action onSwingIntoWall;
+    public Action<Vector2> onSwingIntoWall;
 
     // Properties
     public Vector2 position { get { return transform.position; } set { SetPosition(value, transform.position); } }
@@ -67,7 +67,7 @@ public class SwingableObject : MonoBehaviour, IKnockable
                 float swingDot = Vector2.Dot(swingForwardDirection, -hit.normal);
                 if (swingDot > 0.25f)
                 {
-                    onSwingIntoWall?.Invoke();
+                    onSwingIntoWall?.Invoke(hit.normal);
                 }
             }
         }
