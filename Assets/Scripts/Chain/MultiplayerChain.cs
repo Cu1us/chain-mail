@@ -72,8 +72,8 @@ public class MultiplayerChain : MonoBehaviour
     {
         PlayerAInput.onChainSwap += PlayerASwapPlaces;
         PlayerBInput.onChainSwap += PlayerBSwapPlaces;
-        PlayerAInput.onChainRotate += PlayerAGrabChain;
-        PlayerBInput.onChainRotate += PlayerBGrabChain;
+        //PlayerAInput.onChainRotate += PlayerAGrabChain;
+        //PlayerBInput.onChainRotate += PlayerBGrabChain;
         PlayerA.onKnockedChain += OnKnockedWhileSwung;
         PlayerB.onKnockedChain += OnKnockedWhileSwung;
         PlayerA.onSwingIntoWall += OnSwingIntoWall;
