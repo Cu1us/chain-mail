@@ -250,7 +250,7 @@ MonoBehaviour:
   useSwapAimbot: 1
   aimbotTargetDistance: 3
   heldPivotOffset: 0.075
-  forcePreserveMomentumThreshold: 0.666
+  forcePreserveMomentumThreshold: 0.95
   pivotReadjustToCenterTime: 0.25
   pivotReadjustToCenterCurve:
     serializedVersion: 2
@@ -404,6 +404,10 @@ PrefabInstance:
     - target: {fileID: 9157047647374926665, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: canCollideWith.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157047647374926665, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: speedMultiplierWhenSwinging
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
