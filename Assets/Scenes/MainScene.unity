@@ -3213,6 +3213,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NavEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2190873294422252990, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9137275326656028869, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.5238643
