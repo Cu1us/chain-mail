@@ -34,11 +34,11 @@ public class PlayerInputData : MonoBehaviour
     }
     void OnRotateChain(InputValue value)
     {
-        _chainRotationalInput = value.Get<float>();
+        _chainRotationalInput = Mathf.Round(value.Get<float>());
     }
     void OnExtendChain(InputValue value)
     {
-        _chainExtendInput = value.Get<float>();
+        _chainExtendInput = Mathf.Round(value.Get<float>());
     }
     void OnSwitchAnchor()
     {

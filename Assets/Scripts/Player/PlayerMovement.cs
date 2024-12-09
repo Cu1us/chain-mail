@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerMovement : SwingableObject
 {
     [SerializeField] float movementSpeed;
+    [SerializeField] float speedMultiplierWhenSwinging = 1f;
 
     [SerializeField] PlayerInputData Input;
     [SerializeField] TrailRenderer trailRenderer;
@@ -18,7 +19,11 @@ public class PlayerMovement : SwingableObject
 
     protected override void Update()
     {
-        if (!beingGrabbed && Input.chainRotationalInput == 0 && !beingSwapped) translation += Input.movementInput * movementSpeed * Time.deltaTime;
+        Vector2 movement = movementSpeed * Time.deltaTime * Input.movementInput;
+        if (!beingGrabbed && Input.chainRotationalInput != 0)
+            movement *= speedMultiplierWhenSwinging;
+        if (!beingSwapped && !beingGrabbed)
+            translation += movement;
 
         if (trailRenderer) trailRenderer.emitting = beingGrabbed;
 
