@@ -79,7 +79,7 @@ public class MultiplayerChain : MonoBehaviour
         PlayerA.onSwingIntoWall += OnSwingIntoWall;
         PlayerB.onSwingIntoWall += OnSwingIntoWall;
     }
-    void OnSwingIntoWall()
+    void OnSwingIntoWall(Vector2 hitNormal)
     {
         rotationalVelocity = -rotationalVelocity;
     }
