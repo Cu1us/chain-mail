@@ -10,9 +10,10 @@ public class PlayerInputData : MonoBehaviour
     public bool inputDisabled { get; private set; } = false;
 
     [Obsolete] public Vector2 aimDirection => Vector2.zero;
-    [Obsolete] public Action<int> onChainRotate;
     [Obsolete] public bool isHoldingAttack { get => !inputDisabled && _isHoldingAttack; }
     [Obsolete] bool _isHoldingAttack;
+    [Obsolete] public Action onAttackPress;
+    [Obsolete] public Action onAttackRelease;
 
     public Vector2 movementInput { get => inputDisabled ? default : _movementInput; }
     public float chainRotationalInput { get => inputDisabled ? default : _chainRotationalInput; }
@@ -22,8 +23,7 @@ public class PlayerInputData : MonoBehaviour
     float _chainRotationalInput;
     float _chainExtendInput;
 
-    public Action onAttackPress;
-    public Action onAttackRelease;
+    public Action<int> onChainRotate;
     public Action onChainSwap;
     public Action onSwitchAnchor;
 
@@ -35,6 +35,7 @@ public class PlayerInputData : MonoBehaviour
     void OnRotateChain(InputValue value)
     {
         _chainRotationalInput = Mathf.Round(value.Get<float>());
+        if (!inputDisabled) onChainRotate?.Invoke(Mathf.RoundToInt(value.Get<float>()));
     }
     void OnExtendChain(InputValue value)
     {

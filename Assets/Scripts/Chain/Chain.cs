@@ -31,6 +31,7 @@ public class Chain : MonoBehaviour
     [SerializeField][Min(0)] float pivotReadjustToCenterTime;
     [SerializeField] AnimationCurve pivotReadjustToCenterCurve;
     [SerializeField] float knockbackWhenHittingWall;
+    [SerializeField][Range(0, 1)] float speedMultiplierWhenSwitchDir;
 
     [Header("Connections")]
     public SwingableObject Player;
@@ -63,10 +64,21 @@ public class Chain : MonoBehaviour
     {
         inputData.onChainSwap += SwapPlaces;
         inputData.onSwitchAnchor += SwitchAnchor;
+        inputData.onChainRotate += OnChainRotate;
         Player.onKnockedChain += OnKnockedWhileSwung;
         Rock.onKnockedChain += OnKnockedWhileSwung;
         Player.onSwingIntoWall += OnSwingIntoWall;
         Rock.onSwingIntoWall += OnSwingIntoWall;
+    }
+    void OnChainRotate(int direction)
+    {
+        Debug.Log("Switched dir! " + direction + " dir, rotvel: " + rotationalVelocity);
+        if (direction == 0 || rotationalVelocity == 0) return;
+        if (Mathf.Sign(direction) == Mathf.Sign(rotationalVelocity))
+        {
+            rotationalVelocity = -rotationalVelocity * speedMultiplierWhenSwitchDir;
+            //SwitchAnchor();
+        }
     }
     void OnSwingIntoWall(Vector2 hitNormal)
     {
@@ -179,7 +191,7 @@ public class Chain : MonoBehaviour
                 if (Mathf.Abs(rotationalVelocity) / maxRotationSpeed > forcePreserveMomentumThreshold)
                     targetRotVelocity *= -1;
                 else
-                    acceleration *= 2;
+                    acceleration *= 5;
             }
             rotationalVelocity = Mathf.MoveTowards(rotationalVelocity, targetRotVelocity, acceleration);
         }
@@ -221,7 +233,6 @@ public class Chain : MonoBehaviour
                 Anchor.RotateAround(Pivot, rotation);
 
             Swingee.swingForwardDirection = Vector2.Perpendicular((Swingee.position - Anchor.position).normalized) * Mathf.Sign(rotationalVelocity);
-            Debug.DrawRay(Swingee.position, Swingee.swingForwardDirection, Color.red, 5f);
             Anchor.swingForwardDirection = Vector2.zero;
         }
     }
@@ -245,7 +256,6 @@ public class Chain : MonoBehaviour
     }
     void SwitchAnchor()
     {
-        Debug.Log("Swapping anchor!");
         if (anchorStatus == AnchorStatus.PLAYER)
             SetAnchor(AnchorStatus.ROCK);
         else if (anchorStatus == AnchorStatus.ROCK)

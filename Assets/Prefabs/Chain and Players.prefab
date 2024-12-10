@@ -276,6 +276,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  knockbackWhenHittingWall: 1
+  speedMultiplierWhenSwitchDir: 0.4
   Player: {fileID: 7739225830394850822}
   Rock: {fileID: 1844444581378172185}
   inputData: {fileID: 7485948357042832565}
