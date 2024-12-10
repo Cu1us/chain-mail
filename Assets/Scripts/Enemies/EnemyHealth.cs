@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using Unity.Mathematics;
+using System;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] Collider2D coll2D;
     [SerializeField] Animator animator;
     [SerializeField] GameObject DamageText;
+
+    GameObject OldText;
 
     void Update()
     {
@@ -60,16 +63,37 @@ public class EnemyHealth : MonoBehaviour
 
     void CreateDamageText(float damage)
     {
-        GameObject damageText = Instantiate(DamageText, (Vector2)transform.position + new Vector2(0, -0.5f), Quaternion.identity);
-        damageText.GetComponent<SelfDestruct>().targetTransform = transform;
-        damageText.GetComponentInChildren<TextMeshPro>().text = damage.ToString();
+        if (OldText == null)
+        {
+            GameObject damageText = Instantiate(DamageText, (Vector2)transform.position + new Vector2(0, -0.5f), Quaternion.identity);
+            damageText.GetComponent<SelfDestruct>().targetTransform = transform;
+            damageText.GetComponentInChildren<TextMeshPro>().text = damage.ToString();
 
+            damageText.GetComponentInChildren<TextMeshPro>().color = getDamageColor(damage);
+
+            OldText = damageText;
+        }
+        else
+        {
+            float newDamage = damage + Convert.ToInt32(OldText.GetComponentInChildren<TextMeshPro>().text);
+            OldText.GetComponentInChildren<TextMeshPro>().text = newDamage.ToString();
+
+            OldText.GetComponentInChildren<TextMeshPro>().color = getDamageColor(newDamage);
+
+            OldText.GetComponent<Animator>().Play("DamageText", 0, 0f);
+
+            LeanTween.moveLocalX(OldText.gameObject, 10f, 0.1f).setEaseShake();
+        }
+    }
+
+    Color getDamageColor(float damage)
+    {
         float gradientValue = Mathf.Clamp01(damage / redTextDamage);
 
         Color darkRed = new Color(0.5f, 0f, 0f);
         Color damageColor = Color.Lerp(Color.yellow, darkRed, gradientValue);
 
-        damageText.GetComponentInChildren<TextMeshPro>().color = damageColor;
+        return damageColor;
     }
 
     void Death()
