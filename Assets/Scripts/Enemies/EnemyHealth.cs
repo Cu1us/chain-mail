@@ -82,7 +82,7 @@ public class EnemyHealth : MonoBehaviour
 
             OldText.GetComponent<Animator>().Play("DamageText", 0, 0f);
 
-            LeanTween.moveLocalX(OldText.gameObject, 10f, 0.1f).setEaseShake();
+            LeanTween.moveX(OldText.gameObject, 10f, 0.5f).setEaseShake();
         }
     }
 
