@@ -84,7 +84,7 @@ public class EnemyHealth : MonoBehaviour
 
             OldText.GetComponentInChildren<TextMeshPro>().text = newDamage.ToString();
 
-            OldText.GetComponent<Animator>().Play("DamageText", 0, 0f);
+            OldText.GetComponent<Animator>().Play("OldDamageText", 0, 0f);
 
             OldText.gameObject.transform.DOScale(1.2f, 1);
 
