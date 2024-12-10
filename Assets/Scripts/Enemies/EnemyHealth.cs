@@ -39,7 +39,7 @@ public class EnemyHealth : MonoBehaviour
         if (collision.CompareTag("Wall") && math.abs(rigidbody.velocity.magnitude) > 5)
         {
             TakeDamage(damageWallBounce);
-            VFX.Spawn(VFXType.CIRCLE_IMPACT, transform.position);
+            VFX.Spawn(VFXType.CIRCLE_IMPACT, transform.position, 5);
         }
     }
 
