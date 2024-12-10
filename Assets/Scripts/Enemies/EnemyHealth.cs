@@ -83,7 +83,6 @@ public class EnemyHealth : MonoBehaviour
             float newDamage = damage + Convert.ToInt32(OldText.GetComponentInChildren<TextMeshPro>().text);
 
             OldText.GetComponentInChildren<TextMeshPro>().text = newDamage.ToString();
-            OldText.GetComponentInChildren<TextMeshPro>().color = getDamageColor(newDamage);
 
             OldText.GetComponent<Animator>().Play("DamageText", 0, 0f);
 
@@ -92,7 +91,6 @@ public class EnemyHealth : MonoBehaviour
             // Resets timers
             OldText.GetComponent<SelfDestruct>().timer = 0;
             OldTextTimer = 0;
-
         }
     }
 
