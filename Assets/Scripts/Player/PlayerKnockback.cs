@@ -55,6 +55,8 @@ public class PlayerKnockback : MonoBehaviour
             Vector2 forceDirection = swingableObject.velocity;
             forceDirection.Normalize();
 
+            VFX.Spawn(VFXType.DIRECTIONAL_IMPACT, enemy.transform.position, forceDirection, 3f);
+
             enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * swapKnockbackForce, ForceMode2D.Impulse);
         }
         else
@@ -73,7 +75,7 @@ public class PlayerKnockback : MonoBehaviour
             Vector2 forceDirection = perpendicular + enemyDirection;
             forceDirection.Normalize();
 
-            VFX.Spawn(VFXType.DIRECTIONAL_IMPACT, enemy.transform.position, forceDirection, 3);
+            VFX.Spawn(VFXType.DIRECTIONAL_IMPACT, enemy.transform.position, forceDirection, 1.5f);
 
             enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * rotateKnockbackForce, ForceMode2D.Impulse);
         }

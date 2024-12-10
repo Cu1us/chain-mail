@@ -47,6 +47,7 @@ public class VFX : MonoBehaviour
             startSize.constant *= scale;
 
             main.startRotation = startRotation;
+            main.startSize = startSize;
             particleSystem.Play();
             duration = Mathf.Max(duration, main.duration);
         }
