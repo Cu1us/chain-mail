@@ -69,7 +69,7 @@ public class EnemyMovement : MonoBehaviour
         LEFT, RIGHT
     }
     FlankDir flankDir;
-
+    
 
     void Start()
     {
@@ -350,7 +350,8 @@ public class EnemyMovement : MonoBehaviour
 
     void Flip()
     {
-        if (state != EnemyState.STUCK && rb.velocity.sqrMagnitude < currentMaxVelocity * currentMaxVelocity)
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
         {
             float x = targetTransform1.position.x - transform.position.x;
             if (x < 0)
@@ -399,10 +400,5 @@ public class EnemyMovement : MonoBehaviour
     void OnDisable()
     {
         EnemyList.Remove(this);
-        if (EnemyList.Count == 0 )
-        {
-            // GameObject nextLevel = GameObject.Find("NextLevel");
-            // nextLevel.GetComponent<DoorNextLevel>().OpenNextLevel();
-        }
     }
 }

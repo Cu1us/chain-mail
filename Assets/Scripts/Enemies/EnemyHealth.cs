@@ -32,15 +32,14 @@ public class EnemyHealth : MonoBehaviour
         {
             DestroyEnemy();
         }
-
-        //TimeManager.Slowmo(1000, float.PositiveInfinity);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Wall") && math.abs(rigidbody.velocity.magnitude) > 1)
+        if (collision.CompareTag("Wall") && math.abs(rigidbody.velocity.magnitude) > 5)
         {
             TakeDamage(damageWallBounce);
+            VFX.Spawn(VFXType.CIRCLE_IMPACT, transform.position);
         }
     }
 
