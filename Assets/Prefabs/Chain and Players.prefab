@@ -291,6 +291,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5769951615074734439}
     m_Modifications:
+    - target: {fileID: 1190040144926794882, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: chain
       value: 
@@ -325,7 +329,7 @@ PrefabInstance:
       objectReference: {fileID: 7739225830394850822}
     - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: swapKnockbackForce
-      value: 35
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: knockbackBaseDamage
@@ -466,7 +470,7 @@ PrefabInstance:
       objectReference: {fileID: 1844444581378172185}
     - target: {fileID: 56475983521545747, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: swapKnockbackForce
-      value: 35
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 56475983521545747, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: knockbackBaseDamage
@@ -483,6 +487,10 @@ PrefabInstance:
     - target: {fileID: 56475983521545747, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: knockbackSwingDamageMultiply
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 570802773516886289, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2612734432615552725, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: canCollideWith.Array.size

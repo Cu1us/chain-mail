@@ -104,7 +104,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 88fcde56d7f727e448bc6581f20b02c4, type: 3}
   m_Color: {r: 0.1349682, g: 0.9811321, b: 0.10798612, a: 1}
   m_FlipX: 1
@@ -211,11 +211,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180e6bf3d1b9b8c42a619346f117aa8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 100
+  enemyHealth: 150
   damageStuckMultiplier: 2
   damageWallBounce: 10
   redTextDamage: 50
-  damageTextLifeTime: 1.4
+  damageTextLifeTime: 1.2
   dead: {fileID: 21300000, guid: 58dc8f1575c907d448d04cb5a1d44288, type: 3}
   spriteRenderer: {fileID: 2423591872181807181}
   rigidbody: {fileID: 2007872311423679315}

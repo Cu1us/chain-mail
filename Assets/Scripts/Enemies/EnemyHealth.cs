@@ -30,17 +30,16 @@ public class EnemyHealth : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            DestroyEnemy();
+           TakeDamage(1000);
         }
-
-        //TimeManager.Slowmo(1000, 0.2f);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Wall") && math.abs(rigidbody.velocity.magnitude) > 1)
+        if (collision.CompareTag("Wall") && math.abs(rigidbody.velocity.magnitude) > 5)
         {
             TakeDamage(damageWallBounce);
+            VFX.Spawn(VFXType.CIRCLE_IMPACT, transform.position, 5);
         }
     }
 
@@ -84,9 +83,9 @@ public class EnemyHealth : MonoBehaviour
 
             OldText.GetComponentInChildren<TextMeshPro>().text = newDamage.ToString();
 
-            OldText.GetComponent<Animator>().Play("DamageText", 0, 0f);
-
-            OldText.gameObject.transform.DOScale(1.2f, 1);
+            OldText.GetComponent<Animator>().Play("OldDamageText", 0, 0f);
+            OldText.GetComponentInChildren<TextMeshPro>().color = getDamageColor(newDamage);
+            OldText.gameObject.transform.DOScale(1.4f, 0.1f);
 
             // Resets timers
             OldText.GetComponent<SelfDestruct>().timer = 0;
@@ -117,15 +116,21 @@ public class EnemyHealth : MonoBehaviour
     void Death()
     {
         animator.SetBool("isDead", true);
-        enemyMovement.isAttackState = false;
         enemyMovement.StateChange(EnemyMovement.EnemyState.STUCK);
-        enemyMovement.enabled = false;
-        coll2D.enabled = false;
-        Invoke(nameof(DestroyEnemy), 3f);
+        enemyMovement.isAttackState = false;
+        
+       // enemyMovement.enabled = false;
+       // coll2D.enabled = false;
+        Invoke(nameof(DestroyEnemy), 2f);
     }
 
     void DestroyEnemy()
     {
+        if (EnemyMovement.EnemyList.Count == 1)
+        {
+            GameObject nextLevel = GameObject.Find("NextLevel");
+            nextLevel.GetComponent<DoorNextLevel>().OpenNextLevel();
+        }
         Destroy(gameObject);
     }
 }
