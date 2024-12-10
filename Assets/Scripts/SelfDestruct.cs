@@ -6,20 +6,22 @@ public class SelfDestruct : MonoBehaviour
 {
     [SerializeField] float selfDestructTimer;
     [HideInInspector] public Transform targetTransform;
-
-    void Start()
-    {
-        Invoke(nameof(DestroyGameObject), selfDestructTimer);
-    }
+    [HideInInspector] public float timer;
 
     void Update()
     {
         UpdatePosition();
+        DestroyGameObject();
     }
 
     void DestroyGameObject()
     {
-        Destroy(gameObject);
+        timer += Time.deltaTime;
+
+        if(timer > selfDestructTimer)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void UpdatePosition()
