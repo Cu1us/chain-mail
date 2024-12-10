@@ -16438,10 +16438,6 @@ PrefabInstance:
       propertyPath: canCollideWith.Array.data[1]
       value: 
       objectReference: {fileID: 1393189114}
-    - target: {fileID: 2505282835149810871, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
-      propertyPath: knockbackWhenHittingWall
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4692490535370305448, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: HealthBar
       value: 
@@ -16837,7 +16833,6 @@ GameObject:
   - component: {fileID: 1348330402}
   - component: {fileID: 1348330407}
   - component: {fileID: 1348330408}
-  - component: {fileID: 1348330409}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -16997,18 +16992,6 @@ MonoBehaviour:
   CircleImpact: {fileID: 8301040361922311825, guid: 3a51dfa901d7d5d9689036f0d8284642, type: 3}
   DirectionalImpact: {fileID: 6260949521140913571, guid: 8d9a7a0fcf455aff68979235d893f61f, type: 3}
   GroundImpact: {fileID: -6540145752894409085, guid: 3a2556a2e4a10b49e9c27ecf853efb67, type: 3}
---- !u!114 &1348330409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1348330401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d729317ae8611f4ab4232ef44e5fc77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1393189111
 GameObject:
   m_ObjectHideFlags: 0
