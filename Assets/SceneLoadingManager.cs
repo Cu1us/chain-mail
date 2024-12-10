@@ -17,7 +17,7 @@ public static class SceneLoadingManager
         float MaxBuildIndex = SceneManager.sceneCountInBuildSettings - 1;
        if(nextSceneIndex > MaxBuildIndex)
        {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadSceneAsync(0);
        }
        else 
        {
