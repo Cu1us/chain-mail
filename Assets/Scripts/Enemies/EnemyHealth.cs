@@ -30,7 +30,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            DestroyEnemy();
+           TakeDamage(1000);
         }
     }
 
@@ -116,10 +116,11 @@ public class EnemyHealth : MonoBehaviour
     void Death()
     {
         animator.SetBool("isDead", true);
-        enemyMovement.isAttackState = false;
         enemyMovement.StateChange(EnemyMovement.EnemyState.STUCK);
-        enemyMovement.enabled = false;
-        coll2D.enabled = false;
+        enemyMovement.isAttackState = false;
+        
+       // enemyMovement.enabled = false;
+       // coll2D.enabled = false;
         Invoke(nameof(DestroyEnemy), 2f);
     }
 
