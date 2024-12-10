@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180e6bf3d1b9b8c42a619346f117aa8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 100
+  enemyHealth: 150
   damageStuckMultiplier: 2
   damageWallBounce: 10
   redTextDamage: 50
