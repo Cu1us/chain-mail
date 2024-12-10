@@ -64,6 +64,6 @@ public class PlayerHealth : MonoBehaviour
 
     void ResetScene()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneLoadingManager.RestartLevel();
     }
 }

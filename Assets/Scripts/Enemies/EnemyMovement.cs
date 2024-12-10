@@ -70,6 +70,7 @@ public class EnemyMovement : MonoBehaviour
     }
     FlankDir flankDir;
 
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -398,7 +399,7 @@ public class EnemyMovement : MonoBehaviour
     void OnDisable()
     {
         EnemyList.Remove(this);
-        if (EnemyList.Count == 0)
+        if (EnemyList.Count == 0 )
         {
             GameObject nextLevel = GameObject.Find("NextLevel");
             nextLevel.GetComponent<DoorNextLevel>().OpenNextLevel();
