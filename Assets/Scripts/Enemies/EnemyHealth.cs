@@ -33,7 +33,7 @@ public class EnemyHealth : MonoBehaviour
             DestroyEnemy();
         }
 
-        //TimeManager.Slowmo(1000, 0.2f);
+        //TimeManager.Slowmo(1000, float.PositiveInfinity);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -85,8 +85,8 @@ public class EnemyHealth : MonoBehaviour
             OldText.GetComponentInChildren<TextMeshPro>().text = newDamage.ToString();
 
             OldText.GetComponent<Animator>().Play("OldDamageText", 0, 0f);
-            OldText.GetComponentInChildren<TextMeshPro>().color = getDamageColor(damage);
-            OldText.gameObject.transform.DOScale(1.2f, 1);
+            OldText.GetComponentInChildren<TextMeshPro>().color = getDamageColor(newDamage);
+            OldText.gameObject.transform.DOScale(1.4f, 0.1f);
 
             // Resets timers
             OldText.GetComponent<SelfDestruct>().timer = 0;
