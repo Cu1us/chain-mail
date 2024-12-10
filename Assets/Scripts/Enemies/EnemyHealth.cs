@@ -121,7 +121,7 @@ public class EnemyHealth : MonoBehaviour
         enemyMovement.StateChange(EnemyMovement.EnemyState.STUCK);
         enemyMovement.enabled = false;
         coll2D.enabled = false;
-        Invoke(nameof(DestroyEnemy), 3f);
+        Invoke(nameof(DestroyEnemy), 2f);
     }
 
     void DestroyEnemy()
