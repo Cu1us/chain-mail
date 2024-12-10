@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public static class SceneLoadingManager 
@@ -18,14 +14,16 @@ public static class SceneLoadingManager
     public static void NextLevel()
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        try
-        {
-            SceneManager.LoadScene(nextSceneIndex);
-        } 
+        float MaxBuildIndex = SceneManager.sceneCountInBuildSettings - 1;
+       if(nextSceneIndex > MaxBuildIndex)
+       {
+        SceneManager.LoadScene(0);
+       }
+       else 
+       {
+        SceneManager.LoadScene(nextSceneIndex);
+       }
 
-        catch
-        {
-            SceneManager.LoadScene(0);
-        }
+
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DoorNextLevel : MonoBehaviour
@@ -12,12 +10,10 @@ public class DoorNextLevel : MonoBehaviour
         coll.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OpenNextLevel()
     {
-
+        coll.enabled = true;
     }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Door");
@@ -29,13 +25,8 @@ public class DoorNextLevel : MonoBehaviour
 
     void NextLevel()
     {
-       // GameObject gameManager = GameObject.Find("GameManager");
-        //gameManager.GetComponent<SceneLoadingManager>().NextLevel();
         SceneLoadingManager.NextLevel();
     }
 
-    public void OpenNextLevel()
-    {
-        coll.enabled = true;
-    }
+
 }
