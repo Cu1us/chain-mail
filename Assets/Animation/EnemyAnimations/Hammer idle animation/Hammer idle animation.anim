@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Hammer attack animation
+  m_Name: Hammer idle animation
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,25 +21,25 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: c1fa2bb90e2d6e14999cb5d48860c3bc, type: 3}
+      value: {fileID: 21300000, guid: c53cf0e670224af44bf95ccaf2bf648b, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: c50270ca617b8c84cae899babfe0f7cf, type: 3}
+      value: {fileID: 21300000, guid: 65a17acaee6f4904bb45ba38398976d4, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: b2f07ee0c5d83524b979776dd9d83e0d, type: 3}
+      value: {fileID: 21300000, guid: 40f596502cccb0e4fb9008790a7001a1, type: 3}
     - time: 0.25
-      value: {fileID: 21300000, guid: 8c57d691cff3c4946a8449c75e15d445, type: 3}
+      value: {fileID: 21300000, guid: f3aa016891b2d4f4f9266f0ceae4f050, type: 3}
     - time: 0.33333334
-      value: {fileID: 21300000, guid: b14f55d6409ecbd4c8e416c6db0feaec, type: 3}
+      value: {fileID: 21300000, guid: f8f50fa742c8f584eb412d45b4fe8100, type: 3}
     - time: 0.41666666
-      value: {fileID: 21300000, guid: 52c312cd0ec04044d804f450f1ffc1c8, type: 3}
+      value: {fileID: 21300000, guid: 08f2c0f3e6a0f044692d1b139d7191e3, type: 3}
     - time: 0.5
-      value: {fileID: 21300000, guid: 749d6ed48f819254297b03817dfb44ad, type: 3}
+      value: {fileID: 21300000, guid: a0fbd299d55fa9d4d8de4d5250adc3e0, type: 3}
     - time: 0.5833333
-      value: {fileID: 21300000, guid: 6386f7e525a46f5489b5e22cfa6f09f6, type: 3}
+      value: {fileID: 21300000, guid: a5387baecb8c8d541b9621877382fdee, type: 3}
     - time: 0.6666667
-      value: {fileID: 21300000, guid: 627aeaec3bc99d94fa08c56e49fab325, type: 3}
+      value: {fileID: 21300000, guid: 2307411b9b9937f4cbd5c9d365061b24, type: 3}
     - time: 0.75
-      value: {fileID: 21300000, guid: bf75958c7d09e604498e8d1055024f6b, type: 3}
+      value: {fileID: 21300000, guid: 3f83b252c74664c41a6dadc1838b7043, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -62,16 +62,16 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: c1fa2bb90e2d6e14999cb5d48860c3bc, type: 3}
-    - {fileID: 21300000, guid: c50270ca617b8c84cae899babfe0f7cf, type: 3}
-    - {fileID: 21300000, guid: b2f07ee0c5d83524b979776dd9d83e0d, type: 3}
-    - {fileID: 21300000, guid: 8c57d691cff3c4946a8449c75e15d445, type: 3}
-    - {fileID: 21300000, guid: b14f55d6409ecbd4c8e416c6db0feaec, type: 3}
-    - {fileID: 21300000, guid: 52c312cd0ec04044d804f450f1ffc1c8, type: 3}
-    - {fileID: 21300000, guid: 749d6ed48f819254297b03817dfb44ad, type: 3}
-    - {fileID: 21300000, guid: 6386f7e525a46f5489b5e22cfa6f09f6, type: 3}
-    - {fileID: 21300000, guid: 627aeaec3bc99d94fa08c56e49fab325, type: 3}
-    - {fileID: 21300000, guid: bf75958c7d09e604498e8d1055024f6b, type: 3}
+    - {fileID: 21300000, guid: c53cf0e670224af44bf95ccaf2bf648b, type: 3}
+    - {fileID: 21300000, guid: 65a17acaee6f4904bb45ba38398976d4, type: 3}
+    - {fileID: 21300000, guid: 40f596502cccb0e4fb9008790a7001a1, type: 3}
+    - {fileID: 21300000, guid: f3aa016891b2d4f4f9266f0ceae4f050, type: 3}
+    - {fileID: 21300000, guid: f8f50fa742c8f584eb412d45b4fe8100, type: 3}
+    - {fileID: 21300000, guid: 08f2c0f3e6a0f044692d1b139d7191e3, type: 3}
+    - {fileID: 21300000, guid: a0fbd299d55fa9d4d8de4d5250adc3e0, type: 3}
+    - {fileID: 21300000, guid: a5387baecb8c8d541b9621877382fdee, type: 3}
+    - {fileID: 21300000, guid: 2307411b9b9937f4cbd5c9d365061b24, type: 3}
+    - {fileID: 21300000, guid: 3f83b252c74664c41a6dadc1838b7043, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
