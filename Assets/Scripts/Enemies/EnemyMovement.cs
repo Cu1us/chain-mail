@@ -401,8 +401,8 @@ public class EnemyMovement : MonoBehaviour
         EnemyList.Remove(this);
         if (EnemyList.Count == 0 )
         {
-            GameObject nextLevel = GameObject.Find("NextLevel");
-            nextLevel.GetComponent<DoorNextLevel>().OpenNextLevel();
+            // GameObject nextLevel = GameObject.Find("NextLevel");
+            // nextLevel.GetComponent<DoorNextLevel>().OpenNextLevel();
         }
     }
 }
