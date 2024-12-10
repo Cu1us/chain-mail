@@ -85,7 +85,7 @@ public class EnemyHealth : MonoBehaviour
             OldText.GetComponentInChildren<TextMeshPro>().text = newDamage.ToString();
 
             OldText.GetComponent<Animator>().Play("OldDamageText", 0, 0f);
-
+            OldText.GetComponentInChildren<TextMeshPro>().color = getDamageColor(damage);
             OldText.gameObject.transform.DOScale(1.2f, 1);
 
             // Resets timers
@@ -126,6 +126,11 @@ public class EnemyHealth : MonoBehaviour
 
     void DestroyEnemy()
     {
+        if (EnemyMovement.EnemyList.Count == 1)
+        {
+            GameObject nextLevel = GameObject.Find("NextLevel");
+            nextLevel.GetComponent<DoorNextLevel>().OpenNextLevel();
+        }
         Destroy(gameObject);
     }
 }
