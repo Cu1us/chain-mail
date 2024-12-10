@@ -99,7 +99,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 22
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f68932bbb22f2f04d8a16407a670347a, type: 2}
   m_sharedMaterial: {fileID: -7772158377788066562, guid: f68932bbb22f2f04d8a16407a670347a, type: 2}
@@ -239,3 +239,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfDestructTimer: 2
+  targetTransform: {fileID: 0}
+  timer: 0
