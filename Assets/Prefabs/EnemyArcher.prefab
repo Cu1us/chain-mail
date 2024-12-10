@@ -215,6 +215,7 @@ MonoBehaviour:
   damageStuckMultiplier: 2
   damageWallBounce: 10
   redTextDamage: 50
+  damageTextLifeTime: 1.4
   dead: {fileID: 21300000, guid: 58dc8f1575c907d448d04cb5a1d44288, type: 3}
   spriteRenderer: {fileID: 2423591872181807181}
   rigidbody: {fileID: 2007872311423679315}

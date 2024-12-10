@@ -11,6 +11,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] float damageStuckMultiplier;
     [SerializeField] float damageWallBounce;
     [SerializeField] float redTextDamage;
+    [SerializeField] float damageTextLifeTime;
 
     [Header("References")]
     [SerializeField] Sprite dead;
@@ -23,6 +24,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] GameObject DamageText;
 
     GameObject OldText;
+    float OldTextTimer;
 
     void Update()
     {
@@ -30,6 +32,8 @@ public class EnemyHealth : MonoBehaviour
         {
             DestroyEnemy();
         }
+
+        //TimeManager.Slowmo(1000, 0.2f);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -77,13 +81,16 @@ public class EnemyHealth : MonoBehaviour
         else
         {
             float newDamage = damage + Convert.ToInt32(OldText.GetComponentInChildren<TextMeshPro>().text);
+
             OldText.GetComponentInChildren<TextMeshPro>().text = newDamage.ToString();
 
             OldText.GetComponentInChildren<TextMeshPro>().color = getDamageColor(newDamage);
 
             OldText.GetComponent<Animator>().Play("DamageText", 0, 0f);
 
-            //transform.DOShakePosition(1, 1, 10, 90, true, false);
+            OldText.gameObject.transform.DOScale(1.2f, 1);
+
+            OldTextTimer = 0;
         }
     }
 
@@ -95,6 +102,16 @@ public class EnemyHealth : MonoBehaviour
         Color damageColor = Color.Lerp(Color.yellow, darkRed, gradientValue);
 
         return damageColor;
+    }
+
+    void ClearOldText()
+    {
+        OldTextTimer += Time.deltaTime;
+
+        if (OldTextTimer > damageTextLifeTime)
+        {
+            OldText = null;
+        }
     }
 
     void Death()
