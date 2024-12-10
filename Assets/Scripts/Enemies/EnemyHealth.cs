@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using Unity.Mathematics;
+using DG.Tweening;
 using System;
 
 public class EnemyHealth : MonoBehaviour
@@ -82,7 +83,7 @@ public class EnemyHealth : MonoBehaviour
 
             OldText.GetComponent<Animator>().Play("DamageText", 0, 0f);
 
-            LeanTween.moveX(OldText.gameObject, 10f, 0.5f).setEaseShake();
+            //transform.DOShakePosition(1, 1, 10, 90, true, false);
         }
     }
 
