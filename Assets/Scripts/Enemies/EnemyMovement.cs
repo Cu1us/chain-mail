@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -156,7 +157,7 @@ public class EnemyMovement : MonoBehaviour
             if (chain.rotationalVelocity != 0)
             {
                 nextState = EnemyState.INTERCEPT;
-               // StateChange(EnemyState.INTERCEPT);
+                // StateChange(EnemyState.INTERCEPT);
                 return;
 
             }
@@ -208,7 +209,7 @@ public class EnemyMovement : MonoBehaviour
                 currentMaxVelocity = 0;
                 break;
             case EnemyState.KEEPDISTANCE:
-            stateTimer = stateChangeCooldown -2;
+                stateTimer = stateChangeCooldown - 2;
                 break;
             case EnemyState.MOVECLOSETOATTACK:
 
@@ -320,7 +321,7 @@ public class EnemyMovement : MonoBehaviour
     }
 
     public void Stumble()
-    {   
+    {
         if (stumbleTimer > stumbleTimerCooldown)
         {
             animator.Play("Stumble");
@@ -348,7 +349,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Flip()
     {
-        if (state != EnemyState.STUCK && rb.velocity.sqrMagnitude < currentMaxVelocity*currentMaxVelocity )
+        if (state != EnemyState.STUCK && rb.velocity.sqrMagnitude < currentMaxVelocity * currentMaxVelocity)
         {
             float x = targetTransform1.position.x - transform.position.x;
             if (x < 0)
@@ -397,10 +398,11 @@ public class EnemyMovement : MonoBehaviour
     void OnDisable()
     {
         EnemyList.Remove(this);
-        if(EnemyList.Count == 0)
+        if (EnemyList.Count == 0)
         {
-            GameObject nextLevel = GameObject.Find("NextLevel");
-            nextLevel.GetComponent<DoorNextLevel>().OpenNextLevel();
+
+                 GameObject nextLevel = GameObject.Find("NextLevel");
+                 nextLevel.GetComponent<DoorNextLevel>().OpenNextLevel();
         }
     }
 }
