@@ -341,7 +341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: rotateKnockbackForce
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: knockbackSwapDamageMultiply
@@ -478,7 +478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 56475983521545747, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: rotateKnockbackForce
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 56475983521545747, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: knockbackSwapDamageMultiply
