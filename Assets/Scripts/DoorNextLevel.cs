@@ -3,11 +3,12 @@ using UnityEngine;
 public class DoorNextLevel : MonoBehaviour
 {
     BoxCollider2D coll;
-
+    Animator animator;
     void Start()
     {
         coll = GetComponent<BoxCollider2D>();
         coll.enabled = false;
+        animator = GetComponent<Animator>();
     }
 
     public void OpenNextLevel()
@@ -19,11 +20,11 @@ public class DoorNextLevel : MonoBehaviour
         Debug.Log("Door");
         if (other.CompareTag("Player"))
         {
-            Invoke(nameof(NextLevel), 1f);
+            animator.Play("DoorOpenAnimation");
         }
     }
 
-    void NextLevel()
+    public void NextLevel()
     {
         SceneLoadingManager.NextLevel();
     }
