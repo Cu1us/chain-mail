@@ -26,7 +26,9 @@ public class DoorNextLevel : MonoBehaviour
 
     public void NextLevel()
     {
-        SceneLoadingManager.NextLevel();
+        GameObject.Find("Fade").GetComponent<SceneHandler>().FadeOut();
+
+        //SceneLoadingManager.NextLevel();
     }
 
 
