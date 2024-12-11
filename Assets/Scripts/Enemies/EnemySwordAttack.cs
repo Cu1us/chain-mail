@@ -10,9 +10,9 @@ public class EnemySwordAttack : MonoBehaviour
     List<Collider2D> playersInsideTrigger = new List<Collider2D>();
 
     [SerializeField] EnemyMovement state;
-    [SerializeField] GameObject hitParticle;
     [SerializeField] Animator animator;
     [SerializeField] CollisionDetector collisionDetector;
+    [SerializeField] Transform impactPos;
 
     GameObject newParticle;
 
@@ -50,7 +50,6 @@ public class EnemySwordAttack : MonoBehaviour
     {
         AddKnockback();
         AddDamage();
-        InstantiateHitParticle();
     }
 
     void AddKnockback()
@@ -76,12 +75,6 @@ public class EnemySwordAttack : MonoBehaviour
 
     void InstantiateHitParticle()
     {
-        newParticle = Instantiate(hitParticle, transform.position, Quaternion.identity);
-        Invoke(nameof(DestroyParticle), 0.5f);
-    }
-
-    void DestroyParticle()
-    {
-        Destroy(newParticle);
+        VFX.Spawn(VFXType.GROUND_IMPACT, impactPos.position, 10);
     }
 }
