@@ -17,7 +17,7 @@ public class SceneHandler : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Tab))
         {
-            FadeOut();
+            //FadeOut();
         }
     }
 
