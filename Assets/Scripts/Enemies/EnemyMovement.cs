@@ -354,7 +354,7 @@ public class EnemyMovement : MonoBehaviour
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
         {
             float x = targetTransform1.position.x - transform.position.x;
-            if (x < 0)
+            if (x > 0)
             {
                 transform.rotation = Quaternion.Euler(0, 180, 0);
             }
