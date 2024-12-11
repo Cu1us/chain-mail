@@ -351,7 +351,7 @@ public class EnemyMovement : MonoBehaviour
     void Flip()
     {
 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walk") && state != EnemyState.STUCK)
         {
             float x = targetTransform1.position.x - transform.position.x;
             if (x > 0)
