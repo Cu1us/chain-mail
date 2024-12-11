@@ -1204,7 +1204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b69a05de458b8854c9540e84b917bedd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 569884204690992695, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
+  enemy: {fileID: 5725944337764825232, guid: 42e04b74ae149e24c9f052d58486c00b, type: 3}
   spawnEnemiesTimeDelay: 10
 --- !u!4 &425457475
 Transform:
@@ -16500,17 +16500,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
---- !u!114 &1155373419 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1971338446580476409, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-  m_PrefabInstance: {fileID: 1024466969}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e11c4f5dc371ddf48a80444e7c1b1108, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1162656972
 GameObject:
   m_ObjectHideFlags: 0
@@ -23581,10 +23570,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySledgeHammer
       objectReference: {fileID: 0}
-    - target: {fileID: 8974268052120001226, guid: 42e04b74ae149e24c9f052d58486c00b, type: 3}
-      propertyPath: state
-      value: 
-      objectReference: {fileID: 1155373419}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

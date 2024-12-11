@@ -5304,7 +5304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11c4f5dc371ddf48a80444e7c1b1108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTransform1: {fileID: 0}
+  targetTransform1: {fileID: 8856967382859542037, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
   animator: {fileID: 1127159391011199636}
   acceleration: 10
   knockbackDeceleration: 10
@@ -5347,7 +5347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockback: 60
   damage: 30
-  state: {fileID: 0}
+  state: {fileID: 9105643707331405968}
   animator: {fileID: 1127159391011199636}
   collisionDetector: {fileID: 9043113840402206230}
   impactPos: {fileID: 172269025958631235}
