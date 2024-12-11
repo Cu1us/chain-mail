@@ -16499,6 +16499,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+--- !u!114 &1141037317 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5824499410111606721, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
+  m_PrefabInstance: {fileID: 1024466969}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2275d3e25c996ba9c91820214e8a10a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1155373419 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1971338446580476409, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
+  m_PrefabInstance: {fileID: 1024466969}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e11c4f5dc371ddf48a80444e7c1b1108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1162656972
 GameObject:
   m_ObjectHideFlags: 0
@@ -23753,30 +23775,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4676118789663566114, guid: 42e04b74ae149e24c9f052d58486c00b, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4676118789663566114, guid: 42e04b74ae149e24c9f052d58486c00b, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4676118789663566114, guid: 42e04b74ae149e24c9f052d58486c00b, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5725944337764825232, guid: 42e04b74ae149e24c9f052d58486c00b, type: 3}
       propertyPath: m_Name
       value: EnemySledgeHammer
       objectReference: {fileID: 0}
-    - target: {fileID: 9105643707331405968, guid: 42e04b74ae149e24c9f052d58486c00b, type: 3}
-      propertyPath: isSentinel
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9105643707331405968, guid: 42e04b74ae149e24c9f052d58486c00b, type: 3}
-      propertyPath: isSwordman
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 8974268052120001226, guid: 42e04b74ae149e24c9f052d58486c00b, type: 3}
+      propertyPath: state
+      value: 
+      objectReference: {fileID: 1155373419}
+    - target: {fileID: 8974268052120001226, guid: 42e04b74ae149e24c9f052d58486c00b, type: 3}
+      propertyPath: collisionDetector
+      value: 
+      objectReference: {fileID: 1141037317}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
