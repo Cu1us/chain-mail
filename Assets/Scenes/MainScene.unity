@@ -23753,6 +23753,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4676118789663566114, guid: 42e04b74ae149e24c9f052d58486c00b, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676118789663566114, guid: 42e04b74ae149e24c9f052d58486c00b, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676118789663566114, guid: 42e04b74ae149e24c9f052d58486c00b, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5725944337764825232, guid: 42e04b74ae149e24c9f052d58486c00b, type: 3}
       propertyPath: m_Name
       value: EnemySledgeHammer
