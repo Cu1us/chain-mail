@@ -22,6 +22,10 @@ public class TutorialController : MonoBehaviour
     bool lButton;
 
     // Step 2
+    bool player1ChangedAnchor;
+    bool rockChangedAnchor;
+
+    // Step 3
     bool player1Swapped;
     bool rockSwapped;
     void Start()
@@ -40,7 +44,7 @@ public class TutorialController : MonoBehaviour
         {
             CheckIfStepCompleted();
 
-            if (currentStepComplete)
+            if (currentStepComplete && currentStep != tutorialSteps.Length - 1)
             {
                 currentStep++;
                 animationComplete = false;
@@ -54,11 +58,11 @@ public class TutorialController : MonoBehaviour
         if (currentStep != 0)
         {
             tutorialSteps[currentStep - 1].GetComponent<RectTransform>().DOAnchorPosX(-2100, 2).SetEase(Ease.InOutQuad).OnComplete(() => 
-                tutorialSteps[currentStep].GetComponent<RectTransform>().DOAnchorPosX(-800, 2).SetEase(Ease.InOutQuad).OnComplete(() => animationComplete = true));
+                tutorialSteps[currentStep].GetComponent<RectTransform>().DOAnchorPosX(-900, 2).SetEase(Ease.InOutQuad).OnComplete(() => animationComplete = true));
         }
         else
         {
-            tutorialSteps[currentStep].GetComponent<RectTransform>().DOAnchorPosX(-800, 2).SetEase(Ease.InOutQuad).OnComplete(() => animationComplete = true);
+            tutorialSteps[currentStep].GetComponent<RectTransform>().DOAnchorPosX(-900, 2).SetEase(Ease.InOutQuad).OnComplete(() => animationComplete = true);
         }
     }
 
@@ -71,6 +75,9 @@ public class TutorialController : MonoBehaviour
                 break;
             case 1:
                 CheckAnchorSwitch();
+                break;
+            case 2:
+                CheckSwapInput();
                 break;
         }
     }
@@ -105,9 +112,30 @@ public class TutorialController : MonoBehaviour
         {
             if (chain.anchorStatus == Chain.AnchorStatus.PLAYER && Mathf.Abs(rock.swingVelocity) > 4)
             {
-                player1Swapped = true;
+                player1ChangedAnchor = true;
             }
             if (chain.anchorStatus == Chain.AnchorStatus.ROCK && Mathf.Abs(player1.swingVelocity) > 4)
+            {
+                rockChangedAnchor = true;
+            }
+            if (player1ChangedAnchor && rockChangedAnchor)
+            {
+                Transform Button = tutorialSteps[currentStep].transform.GetChild(1);
+                Button.gameObject.GetComponent<Image>().color = Color.green;
+                currentStepComplete = true;
+            }
+        }
+    }
+
+    void CheckSwapInput()
+    {
+        if (animationComplete)
+        {
+            if (Time.time - player1.lastSwapTime < 1)
+            {
+                player1Swapped = true;
+            }
+            if (Time.time - rock.lastSwapTime < 1)
             {
                 rockSwapped = true;
             }
