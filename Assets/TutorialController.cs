@@ -26,8 +26,11 @@ public class TutorialController : MonoBehaviour
     bool rockChangedAnchor;
 
     // Step 3
-    bool player1Swapped;
-    bool rockSwapped;
+    bool swapped;
+
+    // Step 4
+    bool iButton;
+    bool kButton;
     void Start()
     {
         PlayTextAnimation();
@@ -78,6 +81,12 @@ public class TutorialController : MonoBehaviour
                 break;
             case 2:
                 CheckSwapInput();
+                break;
+            case 3:
+                CheckChainLenght();
+                break;
+            case 4:
+                currentStepComplete = true;
                 break;
         }
     }
@@ -131,18 +140,38 @@ public class TutorialController : MonoBehaviour
     {
         if (animationComplete)
         {
-            if (Time.time - player1.lastSwapTime < 1)
+            if (Time.time - player1.lastSwapTime < 1 || Time.time - rock.lastSwapTime < 1)
             {
-                player1Swapped = true;
+                swapped = true;
             }
-            if (Time.time - rock.lastSwapTime < 1)
-            {
-                rockSwapped = true;
-            }
-            if (player1Swapped && rockSwapped)
+            if (swapped)
             {
                 Transform Button = tutorialSteps[currentStep].transform.GetChild(1);
                 Button.gameObject.GetComponent<Image>().color = Color.green;
+                currentStepComplete = true;
+            }
+        }
+    }
+
+    void CheckChainLenght()
+    {
+        if (animationComplete)
+        {
+            if (playerInputData.chainExtendInput > 0)
+            {
+                iButton = true;
+                Transform IButton = tutorialSteps[currentStep].transform.GetChild(1);
+                IButton.gameObject.GetComponent<Image>().color = Color.green;
+
+            }
+            if (playerInputData.chainExtendInput < 0)
+            {
+                kButton = true;
+                Transform KButton = tutorialSteps[currentStep].transform.GetChild(3);
+                KButton.gameObject.GetComponent<Image>().color = Color.green;
+            }
+            if (iButton && kButton)
+            {
                 currentStepComplete = true;
             }
         }
