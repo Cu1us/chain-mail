@@ -97,3 +97,9 @@ MonoBehaviour:
       - {fileID: 8300000, guid: 7f017d5cb3d6fd34b9eef685bde85c1e, type: 3}
       pitchVariation: 0
       volume: 1
+  - name: ChainSwing
+    data:
+      clips:
+      - {fileID: 8300000, guid: 8aa74d6d7e37a60409fa320f125414f9, type: 3}
+      pitchVariation: 0.06
+      volume: 0.117
