@@ -22,6 +22,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] Collider2D coll2D;
     [SerializeField] Animator animator;
     [SerializeField] GameObject DamageText;
+    [SerializeField] bool isMale;
 
     GameObject OldText;
     float OldTextTimer;
@@ -55,8 +56,15 @@ public class EnemyHealth : MonoBehaviour
 
         damage = Mathf.Round(damage);
         enemyHealth -= damage;
-
-        AudioManager.Play("hurthuman");
+        if(isMale)
+        {
+            AudioManager.Play("hurthuman");
+        }
+        else
+        {
+            AudioManager.Play("HurtHumanFemale");
+        }
+        AudioManager.Play("SwingHitEnemies");
         CreateDamageText(damage);
 
         if (enemyHealth < 0)
@@ -115,12 +123,19 @@ public class EnemyHealth : MonoBehaviour
 
     void Death()
     {
+        if(isMale)
+        {
+            AudioManager.Play("MaleDeath");
+        }
+        else
+        {
+            AudioManager.Play("FemaleDeath");
+        }
+
         animator.SetBool("isDead", true);
         enemyMovement.StateChange(EnemyMovement.EnemyState.STUCK);
         enemyMovement.isAttackState = false;
         
-       // enemyMovement.enabled = false;
-       // coll2D.enabled = false;
         Invoke(nameof(DestroyEnemy), 2f);
     }
 

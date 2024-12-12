@@ -16,8 +16,11 @@ MonoBehaviour:
   - name: hurthuman
     data:
       clips:
-      - {fileID: 8300000, guid: 17b7c5b644ad64b77bdb516119ce302b, type: 3}
+      - {fileID: 8300000, guid: 5cdf724500addd54f9756a5945336bf7, type: 3}
+      - {fileID: 8300000, guid: 5396e1c714ff14d44b74367ae3c11452, type: 3}
+      - {fileID: 8300000, guid: 3fde1a451e6bbdf49a5a9adc1f6b7491, type: 3}
       - {fileID: 8300000, guid: ae32b377f5e304e2aaa767047a1b76ca, type: 3}
+      - {fileID: 8300000, guid: 17b7c5b644ad64b77bdb516119ce302b, type: 3}
       pitchVariation: 0
       volume: 1
   - name: hurtplayer
@@ -26,15 +29,71 @@ MonoBehaviour:
       - {fileID: 8300000, guid: ba2a35f3c824b4a60b28eba7655d93b4, type: 3}
       pitchVariation: 0
       volume: 1
-  - name: hit
+  - name: Hit
     data:
       clips:
-      - {fileID: 8300000, guid: 17b7c5b644ad64b77bdb516119ce302b, type: 3}
+      - {fileID: 8300000, guid: c3910e3d8edc49a469b531a8cedd10d0, type: 3}
+      - {fileID: 8300000, guid: ba4a1e523a85ff849a374ee49fef3707, type: 3}
+      - {fileID: 8300000, guid: 77ab366fde06da945919cadbe149bbe4, type: 3}
       pitchVariation: 0
       volume: 1
   - name: swordswing
     data:
       clips:
-      - {fileID: 8300000, guid: e8eb9e7a2b7104e079e1e9cfde8583ab, type: 3}
+      - {fileID: 8300000, guid: b1cde2d58523e3940be0952912a99e5d, type: 3}
+      - {fileID: 8300000, guid: d1e1ab4317ea6dc47bf8bfbbfdd29ba8, type: 3}
+      - {fileID: 8300000, guid: 129cf1ca2ca68e24ba060274a8f8a807, type: 3}
+      pitchVariation: 0
+      volume: 1
+  - name: SledgeHammerImpact
+    data:
+      clips:
+      - {fileID: 8300000, guid: d7121a8444f27ab449dc6a7e6ff5cc81, type: 3}
+      pitchVariation: 0
+      volume: 1
+  - name: HurtHumanFemale
+    data:
+      clips:
+      - {fileID: 8300000, guid: 19f0b51171087e24ebb994b2c17bc3bd, type: 3}
+      pitchVariation: 0
+      volume: 1
+  - name: BowDraw
+    data:
+      clips:
+      - {fileID: 8300000, guid: 99d5c7e8128a048cc829c7bfb1a5f569, type: 3}
+      pitchVariation: 0
+      volume: 1
+  - name: ArrowHit
+    data:
+      clips:
+      - {fileID: 8300000, guid: df592002ecdf066408efc5162878bea1, type: 3}
+      pitchVariation: 0
+      volume: 1
+  - name: MaleDeath
+    data:
+      clips:
+      - {fileID: 8300000, guid: b42c8f50951aa7c4496dd93b7356973f, type: 3}
+      - {fileID: 8300000, guid: f534032f1db473d408910f10c7b53ecd, type: 3}
+      - {fileID: 8300000, guid: 2bb5fd349884ccb4ea81b5c9d230f3d3, type: 3}
+      pitchVariation: 0
+      volume: 1
+  - name: FemaleDeath
+    data:
+      clips:
+      - {fileID: 8300000, guid: df592002ecdf066408efc5162878bea1, type: 3}
+      pitchVariation: 0
+      volume: 1
+  - name: SwingHitEnemies
+    data:
+      clips:
+      - {fileID: 8300000, guid: 6b3008b0f49670748905ed7071f361c2, type: 3}
+      - {fileID: 8300000, guid: 098d98cfce182bd409d2d1a1570170c8, type: 3}
+      - {fileID: 8300000, guid: d3d7a50f6b129dd40a67fd74bfa80a19, type: 3}
+      pitchVariation: 0
+      volume: 1
+  - name: ChainSwap
+    data:
+      clips:
+      - {fileID: 8300000, guid: 7f017d5cb3d6fd34b9eef685bde85c1e, type: 3}
       pitchVariation: 0
       volume: 1

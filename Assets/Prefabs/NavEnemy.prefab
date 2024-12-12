@@ -224,6 +224,7 @@ MonoBehaviour:
   coll2D: {fileID: 7269977404316147536}
   animator: {fileID: 3742826125167725315}
   DamageText: {fileID: 7880372099245737446, guid: cd889e5e751da994c92d6279be429bd1, type: 3}
+  isMale: 1
 --- !u!114 &1971338446580476409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,9 +281,10 @@ MonoBehaviour:
   knockback: 20
   damage: 20
   state: {fileID: 1971338446580476409}
-  hitParticle: {fileID: 769151494428062635, guid: c4db6dbbf742862128d70ed5c1aa54a9, type: 3}
   animator: {fileID: 3742826125167725315}
   collisionDetector: {fileID: 5824499410111606721}
+  impactPos: {fileID: 0}
+  isSwordMan: 1
 --- !u!1 &2190873294422252990
 GameObject:
   m_ObjectHideFlags: 0

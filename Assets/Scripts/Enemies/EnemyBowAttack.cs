@@ -39,6 +39,7 @@ public class EnemyBowAttack : MonoBehaviour
 
     void InstantiateArrow()
     {
+        AudioManager.Play("BowDraw");
         Vector2 targetDirection = transform.position - enemyMovement.targetTransform1.transform.position;
         targetDirection.Normalize();
 
