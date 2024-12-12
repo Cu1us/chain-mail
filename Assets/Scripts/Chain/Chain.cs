@@ -330,7 +330,8 @@ public class Chain : MonoBehaviour
             toSwap = faller;
             swapAnchor = dragger;
         }
-        else if (Player.velocity.sqrMagnitude > 20 || Rock.velocity.sqrMagnitude > 20) return;
+        else if (Vector2.Dot(toSwap.velocity, swapAnchor.position - toSwap.position) > (swapAnchor.position - toSwap.position).magnitude / 2) return;
+
 
         rotationalVelocity = 0;
         toSwap.lastSwapTime = Time.time;
