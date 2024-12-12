@@ -332,6 +332,7 @@ public class Chain : MonoBehaviour
         }
         else if (Vector2.Dot(toSwap.velocity, swapAnchor.position - toSwap.position) > (swapAnchor.position - toSwap.position).magnitude / 2) return;
 
+        AudioManager.Play("ChainSwap");
 
         rotationalVelocity = 0;
         toSwap.lastSwapTime = Time.time;
