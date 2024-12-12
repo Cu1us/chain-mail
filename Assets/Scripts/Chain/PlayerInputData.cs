@@ -7,7 +7,13 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerInputData : MonoBehaviour
 {
+    public enum InputType
+    {
+        Keyboard,
+        Gamepad
+    }
     public bool inputDisabled { get; private set; } = false;
+    public static InputType inputType { get { return Gamepad.current != null ? InputType.Gamepad : InputType.Keyboard; } }
 
     [Obsolete] public Vector2 aimDirection => Vector2.zero;
     [Obsolete] public bool isHoldingAttack { get => !inputDisabled && _isHoldingAttack; }
