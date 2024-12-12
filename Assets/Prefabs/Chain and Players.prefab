@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anchorStatus: 0
+  fallingIntoHole: 2
   rotationalVelocity: 0
   maxDistance: 6
   minDistance: 2
@@ -247,6 +248,7 @@ MonoBehaviour:
   rotationDeceleration: 1600
   swapPlacesForce: 30
   extendChainSpeed: 8
+  fallingIntoHoleDragSpeed: 2
   useSwapAimbot: 1
   aimbotTargetDistance: 3
   heldPivotOffset: 0.075

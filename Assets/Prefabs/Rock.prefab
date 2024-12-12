@@ -321,8 +321,10 @@ MonoBehaviour:
   lastSwapTime: 0
   swingVelocity: 0
   swingForwardDirection: {x: 0, y: 0}
+  fallingIntoHole: 0
   velocityDeceleration: 20
   maxSqrVelocity: 1000
+  maximumVelocityToFallInHole: 3
   canCollideWith: []
   localPointOfCollision: {x: 0, y: 0}
   trailRenderer: {fileID: 6635265128658752961}

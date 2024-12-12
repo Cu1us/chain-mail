@@ -7,6 +7,8 @@ public class Chain : MonoBehaviour
     #region Fields
     [Header("Status")]
     [ReadOnlyInspector] public AnchorStatus anchorStatus;
+    [ReadOnlyInspector] public AnchorStatus fallingIntoHole = AnchorStatus.NONE;
+
 
 
     [ReadOnlyInspector] public float rotationalVelocity;
@@ -21,6 +23,7 @@ public class Chain : MonoBehaviour
     [SerializeField] float rotationDeceleration;
     [SerializeField] float swapPlacesForce;
     [SerializeField] float extendChainSpeed;
+    [SerializeField] float fallingIntoHoleDragSpeed;
     [SerializeField] bool useSwapAimbot;
     [SerializeField] float aimbotTargetDistance;
 
@@ -57,6 +60,7 @@ public class Chain : MonoBehaviour
     void Start()
     {
         BindEvents();
+        fallingIntoHole = AnchorStatus.NONE;
     }
 
     #region Events
@@ -69,10 +73,41 @@ public class Chain : MonoBehaviour
         Rock.onKnockedChain += OnKnockedWhileSwung;
         Player.onSwingIntoWall += OnSwingIntoWall;
         Rock.onSwingIntoWall += OnSwingIntoWall;
+        Player.onFallIntoHole += OnPlayerFallIntoHole;
+        Rock.onFallIntoHole += OnRockFallIntoHole;
+    }
+    void OnPlayerFallIntoHole(bool fallingIn)
+    {
+        if (fallingIn)
+            FallIntoHole(AnchorStatus.PLAYER, Player);
+        else
+            StopFallingIntoHole();
+    }
+    void OnRockFallIntoHole(bool fallingIn)
+    {
+        if (fallingIn)
+            FallIntoHole(AnchorStatus.ROCK, Rock);
+        else
+            StopFallingIntoHole();
+    }
+    void FallIntoHole(AnchorStatus newFallingStatus, SwingableObject faller)
+    {
+        if (fallingIntoHole == AnchorStatus.NONE)
+        {
+            fallingIntoHole = newFallingStatus;
+            faller.fallingIntoHole = true;
+        }
+        else if (fallingIntoHole != newFallingStatus)
+        {
+            faller.fallingIntoHole = true;
+        }
+    }
+    void StopFallingIntoHole()
+    {
+        fallingIntoHole = AnchorStatus.NONE;
     }
     void OnChainRotate(int direction)
     {
-        Debug.Log("Switched dir! " + direction + " dir, rotvel: " + rotationalVelocity);
         if (direction == 0 || rotationalVelocity == 0) return;
         if (Mathf.Sign(direction) == Mathf.Sign(rotationalVelocity))
         {
@@ -108,6 +143,8 @@ public class Chain : MonoBehaviour
         currentChainLength = Vector2.Distance(Player.position, Rock.position);
 
         ApplyConstraint();
+        if (fallingIntoHole != AnchorStatus.NONE)
+            DragIntoHole();
 
         UpdatePivot();
 
@@ -149,11 +186,26 @@ public class Chain : MonoBehaviour
             }
         }
     }
+    void DragIntoHole()
+    {
+        if (fallingIntoHole == AnchorStatus.NONE) return;
+
+        SwingableObject faller = fallingIntoHole == AnchorStatus.PLAYER ? Player : Rock;
+        SwingableObject dragger = fallingIntoHole == AnchorStatus.PLAYER ? Rock : Player;
+
+        dragger.MoveTowards(faller.position, fallingIntoHoleDragSpeed * Time.deltaTime);
+
+        rotationalVelocity = Mathf.MoveTowards(rotationalVelocity, 0, rotationDeceleration * Time.deltaTime);
+    }
     void UpdatePivot()
     {
         if (anchorStatus == AnchorStatus.NONE && inputData.chainRotationalInput != 0)
         {
             SetAnchor(AnchorStatus.PLAYER);
+        }
+        if (fallingIntoHole != AnchorStatus.NONE && fallingIntoHole != anchorStatus)
+        {
+            SetAnchor(fallingIntoHole);
         }
 
         if (anchorStatus != AnchorStatus.NONE)
@@ -263,16 +315,22 @@ public class Chain : MonoBehaviour
     }
     public void SwapPlaces()
     {
-        if (Player.velocity.sqrMagnitude > 20 || Rock.velocity.sqrMagnitude > 20) return;
-        /*if (Mathf.Abs(rotationalVelocity) == 0)
-        {
-            Player.Launch((Rock.position - Player.position).normalized * swapPlacesForce);
-            Rock.Launch((Player.position - Rock.position).normalized * swapPlacesForce);
-            return;
-        }*/
-
         SwingableObject toSwap = Swingee;
         SwingableObject swapAnchor = Anchor;
+
+        if (fallingIntoHole != AnchorStatus.NONE)
+        {
+            SwingableObject faller = fallingIntoHole == AnchorStatus.PLAYER ? Player : Rock;
+            SwingableObject dragger = fallingIntoHole == AnchorStatus.PLAYER ? Rock : Player;
+
+            if (dragger.fallingIntoHole && faller.fallingIntoHole) return; // If both are stuck, too bad
+
+            faller.fallingIntoHole = false;
+            fallingIntoHole = AnchorStatus.NONE;
+            toSwap = faller;
+            swapAnchor = dragger;
+        }
+        else if (Player.velocity.sqrMagnitude > 20 || Rock.velocity.sqrMagnitude > 20) return;
 
         rotationalVelocity = 0;
         toSwap.lastSwapTime = Time.time;

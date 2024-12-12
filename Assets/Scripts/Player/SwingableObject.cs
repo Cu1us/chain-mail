@@ -12,10 +12,12 @@ public class SwingableObject : MonoBehaviour, IKnockable
     [ReadOnlyInspector] public float lastSwapTime;
     [ReadOnlyInspector] public float swingVelocity;
     [ReadOnlyInspector] public Vector2 swingForwardDirection;
+    [ReadOnlyInspector] public bool fallingIntoHole = false;
 
     [Header("Settings")]
     [SerializeField] protected float velocityDeceleration;
     [SerializeField] protected float maxSqrVelocity;
+    [SerializeField] protected float maximumVelocityToFallInHole;
 
     [SerializeField] Collider2D[] canCollideWith;
     [SerializeField] Vector2 localPointOfCollision;
@@ -23,9 +25,10 @@ public class SwingableObject : MonoBehaviour, IKnockable
     // Events
     public Action<float> onKnockedChain;
     public Action<Vector2> onSwingIntoWall;
+    public Action<bool> onFallIntoHole;
 
     // Properties
-    public Vector2 position { get { return transform.position; } set { SetPosition(value, transform.position); } }
+    public Vector2 position { get { return transform.position; } set { if (!fallingIntoHole) SetPosition(value, transform.position); } }
     public bool beingSwapped { get { return velocity.sqrMagnitude > 1f && Time.time - lastSwapTime < 0.75f; } }
 
     protected Vector2 translation;
@@ -86,6 +89,11 @@ public class SwingableObject : MonoBehaviour, IKnockable
     }
     public void Launch(Vector2 force)
     {
+        /*if (fallingIntoHole && force.magnitude > maximumVelocityToFallInHole * 1.1f)
+        {
+            fallingIntoHole = false;
+            onFallIntoHole?.Invoke(false);
+        }*/
         if (beingGrabbed)
         {
             float dot = Vector2.Dot(force.normalized, swingForwardDirection.normalized);
@@ -97,14 +105,34 @@ public class SwingableObject : MonoBehaviour, IKnockable
 
     protected virtual void Update()
     {
-        translation += velocity * Time.deltaTime;
-        if (velocity.sqrMagnitude > maxSqrVelocity)
+        if (fallingIntoHole && Time.time - lastSwapTime < 0.5f)
         {
-            velocity = velocity.normalized * Mathf.Sqrt(maxSqrVelocity);
+            velocity = Vector2.zero;
         }
-        velocity = Vector2.MoveTowards(velocity, Vector2.zero, velocityDeceleration * Time.deltaTime);
-        position += translation;
-        translation = Vector2.zero;
+        else
+        {
+            translation += velocity * Time.deltaTime;
+            if (velocity.sqrMagnitude > maxSqrVelocity)
+            {
+                velocity = velocity.normalized * Mathf.Sqrt(maxSqrVelocity);
+            }
+            velocity = Vector2.MoveTowards(velocity, Vector2.zero, velocityDeceleration * Time.deltaTime);
+            position += translation;
+            translation = Vector2.zero;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Trap") && !fallingIntoHole)
+        {
+            if (Mathf.Abs(((swingVelocity * swingForwardDirection) + velocity).sqrMagnitude) < maximumVelocityToFallInHole * maximumVelocityToFallInHole)
+            {
+                Vector2 collisionCheckPoint = position + localPointOfCollision;
+                if (other.OverlapPoint(collisionCheckPoint))
+                    onFallIntoHole?.Invoke(true);
+            }
+        }
     }
 }
 
