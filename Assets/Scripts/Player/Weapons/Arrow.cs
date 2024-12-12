@@ -48,6 +48,7 @@ public class Arrow : MonoBehaviour
         if (hit.collider != null && hit.collider.CompareTag("Player"))
         {
             target = hit;
+            AudioManager.Play("ArrowHit");
 
             ChangePos();
             DisableEnemyMovement();

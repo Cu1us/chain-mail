@@ -13,6 +13,7 @@ public class EnemySwordAttack : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] CollisionDetector collisionDetector;
     [SerializeField] Transform impactPos;
+    [SerializeField] bool isSwordMan;
 
     GameObject newParticle;
 
@@ -69,6 +70,10 @@ public class EnemySwordAttack : MonoBehaviour
             if (playersInsideTrigger[i].TryGetComponent<PlayerHealth>(out PlayerHealth component))
             {
                 playersInsideTrigger[i].GetComponent<PlayerHealth>().TakeDamage(damage);
+                if(isSwordMan)
+                {
+                    AudioManager.Play("Hit");
+                }
             }
         }
     }
@@ -76,5 +81,15 @@ public class EnemySwordAttack : MonoBehaviour
     void InstantiateHitParticle()
     {
         VFX.Spawn(VFXType.GROUND_IMPACT, impactPos.position, 1);
+    }
+
+    public void SlegeHammerImpact()
+    {
+        AudioManager.Play("SledgeHammerImpact");
+    }
+
+    public void SwordSwing()
+    {
+        AudioManager.Play("swordswing");
     }
 }
