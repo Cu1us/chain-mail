@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.SceneManagement;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -141,6 +140,7 @@ public class EnemyMovement : MonoBehaviour
         }
 
         CompareVelocity();
+        CheckIfAttacking();
         rb.velocity = Vector2.MoveTowards(rb.velocity, direction * currentMaxVelocity, accell * Time.deltaTime);
         agent.nextPosition = transform.position;
         Flip();
@@ -350,8 +350,8 @@ public class EnemyMovement : MonoBehaviour
 
     void Flip()
     {
-
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walk") && state != EnemyState.STUCK)
+        
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walk") && state != EnemyState.STUCK )
         {
             float x = targetTransform1.position.x - transform.position.x;
             if (x > 0)
@@ -401,4 +401,19 @@ public class EnemyMovement : MonoBehaviour
     {
         EnemyList.Remove(this);
     }
+
+    void CheckIfAttacking()
+    {
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") || state == EnemyState.STUCK)
+        {
+            currentMaxVelocity = 0;
+        }
+
+        else
+        {
+            currentMaxVelocity = maxVelocity;
+        }
+    }
+
+
 }
