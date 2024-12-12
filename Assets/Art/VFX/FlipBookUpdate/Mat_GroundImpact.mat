@@ -54,8 +54,8 @@ Material:
   - TransparentDepthPostpass
   - TransparentBackface
   - RayTracingPrepass
-  - DepthOnly
   - SHADOWCASTER
+  - DepthOnly
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -132,7 +132,7 @@ Material:
     - _BUILTIN_ZTest: 4
     - _BUILTIN_ZWrite: 0
     - _BUILTIN_ZWriteControl: 0
-    - _Blend: 2
+    - _Blend: 0
     - _BlendMode: 0
     - _BumpScale: 1
     - _CastShadows: 0
@@ -146,8 +146,8 @@ Material:
     - _DoubleSidedEnable: 0
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 2
-    - _DstBlend: 1
-    - _EmissionSaturation: 2
+    - _DstBlend: 10
+    - _EmissionSaturation: 1.65
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
     - _GlossMapScale: 1
@@ -156,7 +156,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OpacitySaturation: 1
+    - _OpacitySaturation: 1.98
     - _OpaqueCullMode: 2
     - _Parallax: 0.02
     - _QueueControl: 0
@@ -168,7 +168,7 @@ Material:
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
     - _SmoothnessTextureChannel: 0
-    - _SoftParticle: 0
+    - _SoftParticle: 0.63
     - _SpecularHighlights: 1
     - _SrcBlend: 5
     - _StencilRef: 0

@@ -132,7 +132,7 @@ Material:
     - _BUILTIN_ZTest: 4
     - _BUILTIN_ZWrite: 0
     - _BUILTIN_ZWriteControl: 0
-    - _Blend: 2
+    - _Blend: 0
     - _BlendMode: 0
     - _BumpScale: 1
     - _CastShadows: 0
@@ -146,7 +146,7 @@ Material:
     - _DoubleSidedEnable: 0
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 2
-    - _DstBlend: 1
+    - _DstBlend: 10
     - _EmissionSaturation: 2
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
@@ -184,7 +184,7 @@ Material:
     - _SupportDecals: 1
     - _Surface: 1
     - _SurfaceType: 0
-    - _Thickness: 0.002
+    - _Thickness: 0.0008
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
     - _TransparentDepthPostpassEnable: 0
