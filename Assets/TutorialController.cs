@@ -11,9 +11,10 @@ public class TutorialController : MonoBehaviour
 
     [Header("Reference")]
     [SerializeField] PlayerInputData playerInputData;
-    [SerializeField] Chain chain;
     [SerializeField] SwingableObject player1;
     [SerializeField] SwingableObject rock;
+    [SerializeField] Chain chain;
+    [SerializeField] DoorNextLevel doorNextLevel;
 
     GameObject[] tutorialSteps = new GameObject[5];
     bool animationComplete;
@@ -106,6 +107,7 @@ public class TutorialController : MonoBehaviour
                 break;
             case 4:
                 currentStepComplete = true;
+                doorNextLevel.OpenNextLevel();
                 break;
         }
     }
