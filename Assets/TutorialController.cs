@@ -15,7 +15,7 @@ public class TutorialController : MonoBehaviour
     [SerializeField] SwingableObject player1;
     [SerializeField] SwingableObject rock;
 
-    GameObject[] tutorialSteps;
+    GameObject[] tutorialSteps = new GameObject[5];
     bool animationComplete;
     bool currentStepComplete;
     int currentStep;
@@ -36,13 +36,13 @@ public class TutorialController : MonoBehaviour
     bool kButton;
     void Start()
     {
+        UpdateControllerInput();
         PlayTextAnimation();
     }
 
     void Update()
     {
         UpdateCurrentStep();
-        UpdateControllerInput();
     }
 
     void UpdateControllerInput()
@@ -76,7 +76,7 @@ public class TutorialController : MonoBehaviour
     {
         if (currentStep != 0)
         {
-            tutorialSteps[currentStep - 1].GetComponent<RectTransform>().DOAnchorPosX(-2100, 2).SetEase(Ease.InOutQuad).OnComplete(() => 
+            tutorialSteps[currentStep - 1].GetComponent<RectTransform>().DOAnchorPosX(-2100, 2).SetEase(Ease.InOutQuad).OnComplete(() =>
                 tutorialSteps[currentStep].GetComponent<RectTransform>().DOAnchorPosX(-900, 2).SetEase(Ease.InOutQuad).OnComplete(() => animationComplete = true));
         }
         else
