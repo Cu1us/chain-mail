@@ -1290,7 +1290,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 569884204690992695, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
+  enemy2: {fileID: 0}
   spawnEnemiesTimeDelay: 10
+  enemiesToSpawn: 0
 --- !u!4 &425457475
 Transform:
   m_ObjectHideFlags: 0
