@@ -5,7 +5,9 @@ using UnityEngine.UI;
 public class TutorialController : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] GameObject[] tutorialSteps;
+    [SerializeField] GameObject[] tutorialStepsKeyboard;
+    [SerializeField] GameObject[] tutorialStepsController;
+
 
     [Header("Reference")]
     [SerializeField] PlayerInputData playerInputData;
@@ -13,6 +15,7 @@ public class TutorialController : MonoBehaviour
     [SerializeField] SwingableObject player1;
     [SerializeField] SwingableObject rock;
 
+    GameObject[] tutorialSteps;
     bool animationComplete;
     bool currentStepComplete;
     int currentStep;
@@ -39,6 +42,19 @@ public class TutorialController : MonoBehaviour
     void Update()
     {
         UpdateCurrentStep();
+        UpdateControllerInput();
+    }
+
+    void UpdateControllerInput()
+    {
+        if (PlayerInputData.inputType == PlayerInputData.InputType.Keyboard)
+        {
+            tutorialSteps = tutorialStepsKeyboard;
+        }
+        else
+        {
+            tutorialSteps = tutorialStepsController;
+        }
     }
 
     void UpdateCurrentStep()
