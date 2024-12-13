@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,14 +16,15 @@ public class PlayerInputData : MonoBehaviour
 
     static List<(float, float, float)> RumbleData = new();
     static bool rumbling = false;
-    public static void Rumble(float duration, float frequencyDifference)
+    public static void Rumble(float duration, float FreqA, float FreqB)
     {
         if (Gamepad.current == null) return;
-        RumbleData.Add((Time.time + duration, 0.5f + frequencyDifference, 0.5f - frequencyDifference));
+        RumbleData.Add((Time.time + duration, FreqA, FreqB));
     }
     public static void StopRumble()
     {
         if (Gamepad.current == null) return;
+        rumbling = false;
         RumbleData.Clear();
         Gamepad.current.SetMotorSpeeds(0, 0);
     }
@@ -38,16 +40,10 @@ public class PlayerInputData : MonoBehaviour
             }
             else if (RumbleData.Count > 0)
             {
-                List<(float, float, float)> newRumbleData = new(RumbleData.Capacity);
-                foreach ((float, float, float) tuple in RumbleData)
-                {
-                    if (Time.time > tuple.Item1)
-                        newRumbleData.Remove(tuple);
-                }
-                if (RumbleData != newRumbleData)
-                    RumbleData = newRumbleData;
+                RumbleData.RemoveAll((a) => Time.time > a.Item1);
                 if (RumbleData.Count > 0)
                 {
+                    //Debug.Log("Rumble start: " + RumbleData[0].Item2 + " to " + RumbleData[0].Item3);
                     Gamepad.current.SetMotorSpeeds(RumbleData[0].Item2, RumbleData[0].Item3);
                     rumbling = true;
                 }
