@@ -50,7 +50,7 @@ public class EnemyMovement : MonoBehaviour
     [Header("Timers")]
     public float stumbleTimer = 2;
     public float stumbleTimerCooldown = 2;
-    float stateTimer;
+    public float stateTimer;
     float stateChangeCooldown = 3;
     [SerializeField] float stumbleTime = 3;
 
@@ -152,15 +152,11 @@ public class EnemyMovement : MonoBehaviour
     public void RandomState()
     {
         int random = Random.Range(0, 7);
-
         if (isSwordman || isSentinel)
         {
             if (chain.rotationalVelocity != 0)
             {
                 nextState = EnemyState.INTERCEPT;
-                // StateChange(EnemyState.INTERCEPT);
-                return;
-
             }
             if (nextState == state)
             {

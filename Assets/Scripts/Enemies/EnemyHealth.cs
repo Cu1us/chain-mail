@@ -135,7 +135,7 @@ public class EnemyHealth : MonoBehaviour
         animator.SetBool("isDead", true);
         enemyMovement.StateChange(EnemyMovement.EnemyState.STUCK);
         enemyMovement.isAttackState = false;
-        
+        coll2D.enabled = false;
         Invoke(nameof(DestroyEnemy), 2f);
     }
 
