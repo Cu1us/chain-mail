@@ -12,6 +12,49 @@ public class PlayerInputData : MonoBehaviour
         Keyboard,
         Gamepad
     }
+
+    static List<(float, float, float)> RumbleData = new();
+    static bool rumbling = false;
+    public static void Rumble(float duration, float frequencyDifference)
+    {
+        if (Gamepad.current == null) return;
+        RumbleData.Add((Time.time + duration, 0.5f + frequencyDifference, 0.5f - frequencyDifference));
+    }
+    public static void StopRumble()
+    {
+        if (Gamepad.current == null) return;
+        RumbleData.Clear();
+        Gamepad.current.SetMotorSpeeds(0, 0);
+    }
+
+    void Update()
+    {
+        if (Gamepad.current != null)
+        {
+            if (rumbling && RumbleData.Count == 0)
+            {
+                rumbling = false;
+                Gamepad.current.SetMotorSpeeds(0, 0);
+            }
+            else if (RumbleData.Count > 0)
+            {
+                List<(float, float, float)> newRumbleData = new(RumbleData.Capacity);
+                foreach ((float, float, float) tuple in RumbleData)
+                {
+                    if (Time.time > tuple.Item1)
+                        newRumbleData.Remove(tuple);
+                }
+                if (RumbleData != newRumbleData)
+                    RumbleData = newRumbleData;
+                if (RumbleData.Count > 0)
+                {
+                    Gamepad.current.SetMotorSpeeds(RumbleData[0].Item2, RumbleData[0].Item3);
+                    rumbling = true;
+                }
+            }
+        }
+    }
+
     public bool inputDisabled { get; private set; } = false;
     public static InputType inputType { get { return Gamepad.current != null ? InputType.Gamepad : InputType.Keyboard; } }
 
@@ -32,6 +75,8 @@ public class PlayerInputData : MonoBehaviour
     public Action<int> onChainRotate;
     public Action onChainSwap;
     public Action onSwitchAnchor;
+
+    public Action onDeviceChange;
 
 
     void OnMovement(InputValue value)
@@ -64,5 +109,33 @@ public class PlayerInputData : MonoBehaviour
     public void EnableInput()
     {
         inputDisabled = false;
+    }
+
+
+    void Start()
+    {
+        InputSystem.onDeviceChange += OnDeviceChanged;
+    }
+
+    void OnDeviceChanged(InputDevice device, InputDeviceChange change)
+    {
+        switch (change)
+        {
+            case InputDeviceChange.Added:
+                onDeviceChange?.Invoke();
+                break;
+            case InputDeviceChange.Disconnected:
+                onDeviceChange?.Invoke();
+                break;
+            case InputDeviceChange.Reconnected:
+                onDeviceChange?.Invoke();
+                break;
+            case InputDeviceChange.Removed:
+                // Remove from Input System entirely; by default, Devices stay in the system once discovered.
+                break;
+            default:
+
+                break;
+        }
     }
 }

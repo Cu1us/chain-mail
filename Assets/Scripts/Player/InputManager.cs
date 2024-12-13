@@ -15,34 +15,6 @@ public class InputManager : MonoBehaviour
     static InputDevice[] rangedPlayerDevices;
 
 
-    [RuntimeInitializeOnLoadMethod]
-    static void Initialize()
-    {
-        InputSystem.onDeviceChange += OnDeviceChanged;
-    }
-
-    static void OnDeviceChanged(InputDevice device, InputDeviceChange change)
-    {
-        switch (change)
-        {
-            case InputDeviceChange.Added:
-                DeviceAdded(device);
-                break;
-            case InputDeviceChange.Disconnected:
-                // Device got unplugged.
-                break;
-            case InputDeviceChange.Reconnected:
-                // Plugged back in.
-                break;
-            case InputDeviceChange.Removed:
-                // Remove from Input System entirely; by default, Devices stay in the system once discovered.
-                break;
-            default:
-
-                break;
-        }
-    }
-
     void Start()
     {
         if (!instance)
