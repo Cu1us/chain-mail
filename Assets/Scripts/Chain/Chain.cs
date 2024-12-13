@@ -258,11 +258,12 @@ public class Chain : MonoBehaviour
     }
     void ExtendChainByInput()
     {
+        if (fallingIntoHole != AnchorStatus.NONE) return;
         if (inputData.chainExtendInput == 0 || anchorStatus == AnchorStatus.NONE || rotationalVelocity == 0 || Player.velocity.sqrMagnitude > 1f || Anchor.velocity.sqrMagnitude > 1f) return;
         float pushDistance = inputData.chainExtendInput * extendChainSpeed * Time.deltaTime;
 
-        if (currentChainLength + pushDistance > maxDistance) pushDistance = maxDistance - currentChainLength;
-        if (currentChainLength + pushDistance < minDistance) pushDistance = minDistance - currentChainLength;
+        if (currentChainLength + pushDistance > maxDistance) pushDistance = Mathf.Min(maxDistance - currentChainLength, pushDistance);
+        if (currentChainLength + pushDistance < minDistance) pushDistance = Mathf.Max(minDistance - currentChainLength, pushDistance);
 
         Swingee.MoveTowards(Center, -pushDistance);
     }
