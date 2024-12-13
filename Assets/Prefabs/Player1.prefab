@@ -224,7 +224,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 10904c76f6aa8c5419b8ab635c3fe742, type: 3}
-  m_Color: {r: 0.95654917, g: 0.9829853, b: 0.38240623, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -303,7 +303,7 @@ MonoBehaviour:
   canCollideWith: []
   localPointOfCollision: {x: 0, y: 0}
   movementSpeed: 6
-  speedMultiplierWhenSwinging: 1
+  speedMultiplierWhenSwinging: 0
   Input: {fileID: 0}
   trailRenderer: {fileID: 5439516395281125458}
 --- !u!114 &6155310138716365543
