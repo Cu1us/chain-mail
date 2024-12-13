@@ -185,7 +185,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Gamepad",
+                    "name": "Gamepad triggers",
                     "id": "440dd416-45df-4957-93b2-c837dabb13ec",
                     "path": "1DAxis",
                     "interactions": "",
@@ -218,6 +218,39 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "Gamepad shoulders",
+                    "id": "59e7a15b-b33b-43b0-ad55-848168e2b98d",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateChain",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "c74b4556-3843-43dc-a691-a0613fc00406",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateChain",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "b2a14d26-99e6-4301-9db9-130e08cacfb9",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateChain",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "b8f20d0d-279f-4c43-b640-32e51cdc6ffa",
                     "path": "<Keyboard>/space",
@@ -232,17 +265,6 @@
                     "name": "",
                     "id": "b0e3c771-063d-4816-8125-2672dbc1c5ea",
                     "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchAnchor",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b711f598-5122-4468-9fd2-d5a017dc0f6b",
-                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -342,17 +364,6 @@
                     "name": "",
                     "id": "7910e1a6-fb3c-41c1-9182-28266a0db38c",
                     "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwapPlaces",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e7b22116-b7f8-49ba-a6cf-46df68ee433b",
-                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
