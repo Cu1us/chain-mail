@@ -38,6 +38,7 @@ public class TutorialController : MonoBehaviour
     {
         UpdateControllerInput();
         PlayTextAnimation();
+        playerInputData.onDeviceChange += UpdateControllerInput;
     }
 
     void Update()
@@ -47,6 +48,8 @@ public class TutorialController : MonoBehaviour
 
     void UpdateControllerInput()
     {
+        currentStep = 0;
+
         if (PlayerInputData.inputType == PlayerInputData.InputType.Keyboard)
         {
             tutorialSteps = tutorialStepsKeyboard;
