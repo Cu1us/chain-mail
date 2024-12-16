@@ -51,7 +51,6 @@ public class TutorialController : MonoBehaviour
     void Update()
     {
         UpdateCurrentStep();
-        Debug.Log(PlayerInputData.inputType);
     }
 
     void UpdateControllerInput()
