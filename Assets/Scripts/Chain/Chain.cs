@@ -44,6 +44,7 @@ public class Chain : MonoBehaviour
     [Header("References")]
     [ReadOnlyInspector][SerializeField] LineRenderer lineRenderer;
     [ReadOnlyInspector][SerializeField] EdgeCollider2D edgeCollider;
+    [SerializeField] Transform aimbotReticle;
 
     // Properties
     public Vector2 Pivot { get { return Vector2.Lerp(Player.position, Rock.position, localPivot); } }
@@ -316,8 +317,8 @@ public class Chain : MonoBehaviour
     }
     public void SwapPlaces()
     {
-        SwingableObject toSwap = Swingee;
-        SwingableObject swapAnchor = Anchor;
+        SwingableObject toSwap = Rock;
+        SwingableObject swapAnchor = Player;
 
         if (fallingIntoHole != AnchorStatus.NONE)
         {
@@ -338,27 +339,68 @@ public class Chain : MonoBehaviour
         rotationalVelocity = 0;
         toSwap.lastSwapTime = Time.time;
 
-        Vector2 swapToPos = swapAnchor.position + (swapAnchor.position - toSwap.position).normalized * maxDistance;
-        Debug.DrawLine(toSwap.position, swapToPos, Color.gray, 2f);
 
-        if (useSwapAimbot && EnemyMovement.EnemyList.Count > 0)
+        Vector2 swapTargetPos = GetSwapTargetPosition();
+
+        EnemyMovement aimbotTarget = GetAimbotTarget(swapTargetPos, swapAnchor);
+        if (aimbotTarget != null)
         {
-            Vector2 closestPos = Vector2.zero;
-            float closestDistance = aimbotTargetDistance * aimbotTargetDistance;
-            foreach (EnemyMovement enemy in EnemyMovement.EnemyList)
-            {
-                float distance = ((Vector2)enemy.transform.position - swapToPos).sqrMagnitude;
-                if (distance < closestDistance)
-                {
-                    closestDistance = distance;
-                    closestPos = enemy.transform.position;
-                }
-            }
-            if (closestPos != Vector2.zero) swapToPos = closestPos;
+            swapTargetPos = (Vector2)aimbotTarget.transform.position;
         }
-        Debug.DrawLine(toSwap.position, swapToPos, Color.green, 2f);
 
-        toSwap.Launch((swapToPos - toSwap.position).normalized * swapPlacesForce * 2);
+        toSwap.Launch((swapTargetPos - toSwap.position).normalized * swapPlacesForce * 2);
+    }
+
+    Vector2 GetSwapTargetPosition()
+    {
+        SwingableObject toSwap = Rock;
+        SwingableObject swapAnchor = Player;
+
+        return swapAnchor.position + (swapAnchor.position - toSwap.position).normalized * maxDistance;
+    }
+    EnemyMovement GetAimbotTarget(Vector2 swapTargetPosition, SwingableObject swapAnchor)
+    {
+        EnemyMovement closestEnemy = null;
+        float closestDistance = aimbotTargetDistance * aimbotTargetDistance;
+        foreach (EnemyMovement enemy in EnemyMovement.EnemyList)
+        {
+            float distanceToHitTarget = ((Vector2)enemy.transform.position - swapTargetPosition).sqrMagnitude;
+            if (distanceToHitTarget < closestDistance)
+            {
+                if (Vector2.Distance(swapAnchor.position, (Vector2)enemy.transform.position) > maxDistance + 1f)
+                    continue;
+                closestDistance = distanceToHitTarget;
+                closestEnemy = enemy;
+            }
+        }
+        return closestEnemy;
+    }
+
+    void FixedUpdate()
+    {
+        UpdateAimbotReticle();
+    }
+
+    void UpdateAimbotReticle()
+    {
+        if (rotationalVelocity == 0)
+        {
+            if (aimbotReticle.gameObject.activeSelf)
+                aimbotReticle.gameObject.SetActive(false);
+            return;
+        }
+        EnemyMovement aimbotTarget = GetAimbotTarget(GetSwapTargetPosition(), Player);
+        if (aimbotTarget)
+        {
+            if (!aimbotReticle.gameObject.activeSelf)
+                aimbotReticle.gameObject.SetActive(true);
+            aimbotReticle.position = aimbotTarget.transform.position;
+        }
+        else
+        {
+            if (aimbotReticle.gameObject.activeSelf)
+                aimbotReticle.gameObject.SetActive(false);
+        }
     }
 
     void Reset()
