@@ -8,7 +8,6 @@ public class TutorialController : MonoBehaviour
     [SerializeField] GameObject[] tutorialStepsKeyboard;
     [SerializeField] GameObject[] tutorialStepsController;
 
-
     [Header("Reference")]
     [SerializeField] PlayerInputData playerInputData;
     [SerializeField] SwingableObject player1;
@@ -19,7 +18,7 @@ public class TutorialController : MonoBehaviour
     GameObject[] tutorialSteps = new GameObject[5];
     bool animationComplete;
     bool currentStepComplete;
-    int currentStep;
+    int currentStep = 0;
 
     // Step 1
     bool jButton;
@@ -37,21 +36,7 @@ public class TutorialController : MonoBehaviour
     bool kButton;
     void Start()
     {
-        UpdateControllerInput();
-        PlayTextAnimation();
-        playerInputData.onDeviceChange += UpdateControllerInput;
-    }
-
-    void Update()
-    {
-        UpdateCurrentStep();
-    }
-
-    void UpdateControllerInput()
-    {
-        currentStep = 0;
-
-        if (PlayerInputData.inputType == PlayerInputData.InputType.Keyboard)
+        if (PlayerInputData.inputType == PlayerInputData.InputType.Keyboard || PlayerInputData.inputType == null)
         {
             tutorialSteps = tutorialStepsKeyboard;
         }
@@ -59,6 +44,49 @@ public class TutorialController : MonoBehaviour
         {
             tutorialSteps = tutorialStepsController;
         }
+        PlayTextAnimation();
+        playerInputData.onDeviceChange += UpdateControllerInput;
+    }
+
+    void Update()
+    {
+        UpdateCurrentStep();
+        Debug.Log(PlayerInputData.inputType);
+    }
+
+    void UpdateControllerInput()
+    {
+        if (PlayerInputData.inputType == PlayerInputData.InputType.Keyboard)
+        {
+            if (currentStep >= 0)
+            {
+                tutorialSteps[currentStep].GetComponent<RectTransform>().DOAnchorPosX(-2100, 2).SetEase(Ease.InOutQuad).OnComplete(() =>
+                ResetTutorial());
+            }
+            tutorialSteps = tutorialStepsKeyboard;
+        }
+        else if(PlayerInputData.inputType == PlayerInputData.InputType.Gamepad)
+        {
+            if (currentStep >= 0)
+            {
+                tutorialSteps[currentStep].GetComponent<RectTransform>().DOAnchorPosX(-2100, 2).SetEase(Ease.InOutQuad).OnComplete(() =>
+                ResetTutorial());
+            }
+            tutorialSteps = tutorialStepsController;
+        }
+    }
+
+    void ResetTutorial()
+    {
+        currentStep = 0;
+        jButton = false;
+        lButton = false;
+        player1ChangedAnchor = false;
+        rockChangedAnchor = false;
+        swapped = false;
+        iButton = false;
+        kButton = false;
+        PlayTextAnimation();
     }
 
     void UpdateCurrentStep()
