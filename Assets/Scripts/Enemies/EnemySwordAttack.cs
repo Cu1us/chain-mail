@@ -28,34 +28,38 @@ public class EnemySwordAttack : MonoBehaviour
 
     void Update()
     {
-        if(sentinelChargeUp && state.state != EnemyMovement.EnemyState.STUCK)
+        if (isSentinel)
         {
-            sentinelWaitTimer += Time.deltaTime;
-            animator.SetBool("isReady", true);
-            if(sentinelWaitTimer > sentinelChargeUpTime && playersInsideTrigger.Count > 0) //how long before he does attacks. instant after that time
+            if (sentinelChargeUp && state.state != EnemyMovement.EnemyState.STUCK)
             {
-                animator.Play("Attack");
-                sentinelWaitTimer = 0;
+                sentinelWaitTimer += Time.deltaTime;
+                animator.SetBool("isReady", true);
+                if (sentinelWaitTimer > sentinelChargeUpTime && playersInsideTrigger.Count > 0) //how long before he does attacks. instant after that time
+                {
+                    animator.Play("Attack");
+                    sentinelWaitTimer = 0;
+                }
+                else if (sentinelWaitTimer > 2) //how long he stands and waits
+                {
+                    sentinelWaitTimer = 0;
+                    sentinelChargeUp = false;
+                    animator.SetBool("isReady", false);
+                }
             }
-            else if (sentinelWaitTimer > 2) //how long he stands and waits
+            else
             {
-                sentinelWaitTimer = 0;
                 sentinelChargeUp = false;
-                animator.SetBool("isReady",false);
+                sentinelWaitTimer = 0;
+                animator.SetBool("isReady", false);
             }
         }
-        else
-        {
-            sentinelChargeUp = false;
-            sentinelWaitTimer = 0;
-            animator.SetBool("isReady",false);
-        }
+
 
         if (playersInsideTrigger.Count > 0 && state.state != EnemyMovement.EnemyState.STUCK && isSwordMan)
         {
             animator.Play("Attack");
         }
-        
+
     }
 
     void CollisionEnter(Collider2D collision)
@@ -63,7 +67,7 @@ public class EnemySwordAttack : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             playersInsideTrigger.Add(collision);
-            if(isSentinel)
+            if (isSentinel)
             {
                 sentinelChargeUp = true;
             }
@@ -101,7 +105,7 @@ public class EnemySwordAttack : MonoBehaviour
             if (playersInsideTrigger[i].TryGetComponent<PlayerHealth>(out PlayerHealth component))
             {
                 playersInsideTrigger[i].GetComponent<PlayerHealth>().TakeDamage(damage);
-                if(isSwordMan)
+                if (isSwordMan)
                 {
                     AudioManager.Play("Hit");
                 }
