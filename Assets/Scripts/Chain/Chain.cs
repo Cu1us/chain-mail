@@ -343,17 +343,20 @@ public class Chain : MonoBehaviour
 
         AudioManager.Play("ChainSwap");
 
-        rotationalVelocity = 0;
         toSwap.lastSwapTime = Time.time;
 
 
         Vector2 swapTargetPos = GetSwapTargetPosition();
 
-        EnemyMovement aimbotTarget = GetAimbotTarget(swapTargetPos, swapAnchor);
-        if (aimbotTarget != null)
+        if (rotationalVelocity != 0)
         {
-            swapTargetPos = (Vector2)aimbotTarget.transform.position;
+            EnemyMovement aimbotTarget = GetAimbotTarget(swapTargetPos, swapAnchor);
+            if (aimbotTarget != null)
+            {
+                swapTargetPos = (Vector2)aimbotTarget.transform.position;
+            }
         }
+        rotationalVelocity = 0;
 
         toSwap.Launch((swapTargetPos - toSwap.position).normalized * swapPlacesForce * 2);
         lastSwapTime = Time.time;
