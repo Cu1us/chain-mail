@@ -15,8 +15,10 @@ public class EnemySwordAttack : MonoBehaviour
     [SerializeField] Transform impactPos;
     [SerializeField] bool isSwordMan;
     [SerializeField] bool isSentinel;
-    float sentinelWaitTimer;
+    [SerializeField] float sentinelWaitTimer;
+    float chargeUpTimer;
     float sentinelChargeUpTime = 0.8f;
+    float sentinelFollowUpAttackTime = 3f;
     bool sentinelChargeUp;
     GameObject newParticle;
 
@@ -30,14 +32,17 @@ public class EnemySwordAttack : MonoBehaviour
     {
         if (isSentinel)
         {
-            if (sentinelChargeUp && state.state != EnemyMovement.EnemyState.STUCK)
+            sentinelWaitTimer += Time.deltaTime;
+            if (sentinelChargeUp && state.state != EnemyMovement.EnemyState.STUCK && sentinelWaitTimer > 0)
             {
-                sentinelWaitTimer += Time.deltaTime;
+                chargeUpTimer += Time.deltaTime;
+                //sentinelWaitTimer += Time.deltaTime;
                 animator.SetBool("isReady", true);
-                if (sentinelWaitTimer > sentinelChargeUpTime && playersInsideTrigger.Count > 0) //how long before he does attacks. instant after that time
+                if (chargeUpTimer > sentinelChargeUpTime && playersInsideTrigger.Count > 0) //how long before he does attacks. instant after that time
                 {
                     animator.Play("Attack");
-                    sentinelWaitTimer = 0;
+                    sentinelWaitTimer = 0 - sentinelFollowUpAttackTime;
+                    animator.SetBool("isReady", false);
                 }
                 else if (sentinelWaitTimer > 2) //how long he stands and waits
                 {
@@ -49,7 +54,7 @@ public class EnemySwordAttack : MonoBehaviour
             else
             {
                 sentinelChargeUp = false;
-                sentinelWaitTimer = 0;
+                chargeUpTimer = 0;
                 animator.SetBool("isReady", false);
             }
         }
@@ -109,6 +114,10 @@ public class EnemySwordAttack : MonoBehaviour
                 {
                     AudioManager.Play("Hit");
                 }
+            }
+            else if(playersInsideTrigger[i].TryGetComponent<BagTakeDamage>(out BagTakeDamage component1))
+            {
+                playersInsideTrigger[i].GetComponent<BagTakeDamage>().TakeDamage();
             }
         }
     }
