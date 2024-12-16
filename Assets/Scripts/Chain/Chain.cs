@@ -35,6 +35,8 @@ public class Chain : MonoBehaviour
     [SerializeField] AnimationCurve pivotReadjustToCenterCurve;
     [SerializeField] float knockbackWhenHittingWall;
     [SerializeField][Range(0, 1)] float speedMultiplierWhenSwitchDir;
+    [SerializeField] float chainElongationFromSwap;
+    [SerializeField] float chainElongationResetDuration;
 
     [Header("Connections")]
     public SwingableObject Player;
@@ -51,11 +53,13 @@ public class Chain : MonoBehaviour
     public Vector2 Center { get { return (Player.position + Rock.position) / 2; } }
     public SwingableObject Anchor { get { return anchorStatus switch { AnchorStatus.PLAYER => Player, AnchorStatus.ROCK => Rock, _ => null }; } }
     public SwingableObject Swingee { get { return anchorStatus switch { AnchorStatus.PLAYER => Rock, AnchorStatus.ROCK => Player, _ => null }; } }
+    public float effectiveMaxDistance { get { return maxDistance + Mathf.Max(0, 1 - ((Time.time - lastSwapTime) / chainElongationResetDuration)) * chainElongationFromSwap; } }
 
     // Local variables
     float localPivot;
     public float currentChainLength { get; private set; }
     float lastChainHeldTime;
+    float lastSwapTime;
     #endregion
 
     void Start()
@@ -158,6 +162,8 @@ public class Chain : MonoBehaviour
         Render();
 
         PositionHitbox();
+
+        Anchor.velocity *= 1 - (0.5f * Time.deltaTime);
     }
 
     // void ExtendChainBySpeed()
@@ -169,9 +175,9 @@ public class Chain : MonoBehaviour
 
     void ApplyConstraint()
     {
-        if (currentChainLength > maxDistance)
+        if (currentChainLength > effectiveMaxDistance)
         {
-            float stretchedDistance = (currentChainLength - maxDistance) / 2;
+            float stretchedDistance = (currentChainLength - effectiveMaxDistance) / 2;
             Vector2 center = Center;
             Player.MoveTowards(center, stretchedDistance);
             Rock.MoveTowards(center, stretchedDistance);
@@ -263,8 +269,8 @@ public class Chain : MonoBehaviour
         if (inputData.chainExtendInput == 0 || anchorStatus == AnchorStatus.NONE || rotationalVelocity == 0 || Player.velocity.sqrMagnitude > 1f || Anchor.velocity.sqrMagnitude > 1f) return;
         float pushDistance = inputData.chainExtendInput * extendChainSpeed * Time.deltaTime;
 
-        if (currentChainLength + pushDistance > maxDistance) pushDistance = Mathf.Min(maxDistance - currentChainLength, pushDistance);
-        if (currentChainLength + pushDistance < minDistance) pushDistance = Mathf.Max(minDistance - currentChainLength, pushDistance);
+        if (currentChainLength + pushDistance > effectiveMaxDistance) pushDistance = Mathf.Min(effectiveMaxDistance - currentChainLength, pushDistance);
+        if (currentChainLength + pushDistance < minDistance && Swingee.velocity.sqrMagnitude < 10f) pushDistance = Mathf.Max(minDistance - currentChainLength, pushDistance);
 
         Swingee.MoveTowards(Center, -pushDistance);
     }
@@ -307,6 +313,7 @@ public class Chain : MonoBehaviour
     void SetAnchor(AnchorStatus anchor)
     {
         anchorStatus = anchor;
+        Anchor.velocity = Vector2.zero;
     }
     void SwitchAnchor()
     {
@@ -349,6 +356,12 @@ public class Chain : MonoBehaviour
         }
 
         toSwap.Launch((swapTargetPos - toSwap.position).normalized * swapPlacesForce * 2);
+        lastSwapTime = Time.time;
+
+        if (anchorStatus == AnchorStatus.ROCK)
+        {
+            SwitchAnchor();
+        }
     }
 
     Vector2 GetSwapTargetPosition()
@@ -367,7 +380,7 @@ public class Chain : MonoBehaviour
             float distanceToHitTarget = ((Vector2)enemy.transform.position - swapTargetPosition).sqrMagnitude;
             if (distanceToHitTarget < closestDistance)
             {
-                if (Vector2.Distance(swapAnchor.position, (Vector2)enemy.transform.position) > maxDistance + 1f)
+                if (Vector2.Distance(swapAnchor.position, (Vector2)enemy.transform.position) > maxDistance + chainElongationFromSwap)
                     continue;
                 closestDistance = distanceToHitTarget;
                 closestEnemy = enemy;
