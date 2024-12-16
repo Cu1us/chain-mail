@@ -5198,7 +5198,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDrag: 2
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -5356,6 +5356,7 @@ MonoBehaviour:
   impactPos: {fileID: 172269025958631235}
   isSwordMan: 0
   isSentinel: 1
+  sentinelWaitTimer: 0
 --- !u!1 &6413601384356171058
 GameObject:
   m_ObjectHideFlags: 0
