@@ -115,7 +115,7 @@ public class EnemySwordAttack : MonoBehaviour
 
     void InstantiateHitParticle()
     {
-        VFX.Spawn(VFXType.GROUND_IMPACT, impactPos.position, 1);
+        VFX.Spawn(VFXType.GROUND_IMPACT, impactPos.position, 1.7f);
     }
 
     public void SlegeHammerImpact()
