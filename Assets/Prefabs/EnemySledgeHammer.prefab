@@ -5320,6 +5320,7 @@ MonoBehaviour:
   isSwordman: 0
   stumbleTimer: 2
   stumbleTimerCooldown: 2
+  stateTimer: 0
   stumbleTime: 3
   state: 1
 --- !u!114 &1939789780846232321
@@ -5354,6 +5355,7 @@ MonoBehaviour:
   collisionDetector: {fileID: 9043113840402206230}
   impactPos: {fileID: 172269025958631235}
   isSwordMan: 0
+  isSentinel: 1
 --- !u!1 &6413601384356171058
 GameObject:
   m_ObjectHideFlags: 0

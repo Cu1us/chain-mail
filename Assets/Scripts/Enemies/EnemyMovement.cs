@@ -68,7 +68,7 @@ public class EnemyMovement : MonoBehaviour
         LEFT, RIGHT
     }
     FlankDir flankDir;
-    
+
 
     void Start()
     {
@@ -346,8 +346,8 @@ public class EnemyMovement : MonoBehaviour
 
     void Flip()
     {
-        
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walk") && state != EnemyState.STUCK )
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walk") && state != EnemyState.STUCK)
         {
             float x = targetTransform1.position.x - transform.position.x;
             if (x > 0)
@@ -400,7 +400,21 @@ public class EnemyMovement : MonoBehaviour
 
     void CheckIfAttacking()
     {
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") || state == EnemyState.STUCK)
+        if (isSentinel)
+        {
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("ChargeUp") || state == EnemyState.STUCK)
+            {
+                currentMaxVelocity = 0;
+            }
+            else
+            {
+                currentMaxVelocity = maxVelocity;
+            }
+        }
+
+
+
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") || state == EnemyState.STUCK)
         {
             currentMaxVelocity = 0;
         }

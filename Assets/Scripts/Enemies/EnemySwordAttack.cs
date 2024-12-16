@@ -14,7 +14,10 @@ public class EnemySwordAttack : MonoBehaviour
     [SerializeField] CollisionDetector collisionDetector;
     [SerializeField] Transform impactPos;
     [SerializeField] bool isSwordMan;
-
+    [SerializeField] bool isSentinel;
+    float sentinelWaitTimer;
+    float sentinelChargeUpTime = 0.8f;
+    bool sentinelChargeUp;
     GameObject newParticle;
 
     private void Start()
@@ -25,10 +28,34 @@ public class EnemySwordAttack : MonoBehaviour
 
     void Update()
     {
-        if (playersInsideTrigger.Count > 0 && state.state != EnemyMovement.EnemyState.STUCK)
+        if(sentinelChargeUp && state.state != EnemyMovement.EnemyState.STUCK)
+        {
+            sentinelWaitTimer += Time.deltaTime;
+            animator.SetBool("isReady", true);
+            if(sentinelWaitTimer > sentinelChargeUpTime && playersInsideTrigger.Count > 0) //how long before he does attacks. instant after that time
+            {
+                animator.Play("Attack");
+                sentinelWaitTimer = 0;
+            }
+            else if (sentinelWaitTimer > 2) //how long he stands and waits
+            {
+                sentinelWaitTimer = 0;
+                sentinelChargeUp = false;
+                animator.SetBool("isReady",false);
+            }
+        }
+        else
+        {
+            sentinelChargeUp = false;
+            sentinelWaitTimer = 0;
+            animator.SetBool("isReady",false);
+        }
+
+        if (playersInsideTrigger.Count > 0 && state.state != EnemyMovement.EnemyState.STUCK && isSwordMan)
         {
             animator.Play("Attack");
         }
+        
     }
 
     void CollisionEnter(Collider2D collision)
@@ -36,6 +63,10 @@ public class EnemySwordAttack : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             playersInsideTrigger.Add(collision);
+            if(isSentinel)
+            {
+                sentinelChargeUp = true;
+            }
         }
     }
 
