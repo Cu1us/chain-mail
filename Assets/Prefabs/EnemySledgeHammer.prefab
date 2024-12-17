@@ -5294,6 +5294,7 @@ MonoBehaviour:
   animator: {fileID: 1127159391011199636}
   DamageText: {fileID: 7880372099245737446, guid: cd889e5e751da994c92d6279be429bd1, type: 3}
   isMale: 1
+  isSentinel: 1
 --- !u!114 &9105643707331405968
 MonoBehaviour:
   m_ObjectHideFlags: 0
