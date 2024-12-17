@@ -12,6 +12,7 @@ public class EnemyBowAttack : MonoBehaviour
     [Header("References")]
     [SerializeField] Arrow arrowPrefab;
     [SerializeField] EnemyMovement enemyMovement;
+    [SerializeField] Animator animator;
 
     float shootTimer;
     float randomInterval;
@@ -31,7 +32,7 @@ public class EnemyBowAttack : MonoBehaviour
         shootTimer += Time.deltaTime;
         if (shootTimer > randomInterval && enemyMovement.isAttackState)
         {
-            InstantiateArrow();
+            animator.Play("Attack");
             shootTimer = 0;
             randomInterval = Random.Range(shootInterval - 1, shootInterval + 1);
         }

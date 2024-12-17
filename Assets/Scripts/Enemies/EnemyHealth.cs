@@ -3,6 +3,7 @@ using TMPro;
 using Unity.Mathematics;
 using DG.Tweening;
 using System;
+using UnityEditorInternal;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] GameObject DamageText;
     [SerializeField] bool isMale;
+    [SerializeField] bool isSentinel;
 
     GameObject OldText;
     float OldTextTimer;
@@ -31,7 +33,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-           TakeDamage(1000);
+            TakeDamage(1000);
         }
     }
 
@@ -50,13 +52,16 @@ public class EnemyHealth : MonoBehaviour
         {
             damage *= damageStuckMultiplier;
         }
-
         enemyMovement.stumbleTimer = enemyMovement.stumbleTimerCooldown - 0.3f;
 
 
+        if (isSentinel && enemyMovement.state != EnemyMovement.EnemyState.STUCK)
+        {
+            damage *= 0.5f;
+        }
         damage = Mathf.Round(damage);
         enemyHealth -= damage;
-        if(isMale)
+        if (isMale)
         {
             AudioManager.Play("hurthuman");
         }
@@ -123,7 +128,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Death()
     {
-        if(isMale)
+        if (isMale)
         {
             AudioManager.Play("MaleDeath");
         }

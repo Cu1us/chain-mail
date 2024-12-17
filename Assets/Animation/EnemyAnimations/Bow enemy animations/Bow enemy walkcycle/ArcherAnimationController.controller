@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e4dddadbfb9672a48b0cb9a0aab28af7, type: 2}
+  m_Motion: {fileID: 7400000, guid: 42e8d4ad8f763654f8304ea7383c0a53, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -76,7 +76,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 5c0416246e33d3b4499df26e7c535a2a, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2d3ac18f6132f0f4db9af86d54137164, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -339,7 +339,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EnemyAnimationController
+  m_Name: ArcherAnimationController
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Velocity

@@ -273,7 +273,7 @@ Animator:
   m_GameObject: {fileID: 2194492424679235516}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2ca8abba2079fe141b486f1e1c5cc858, type: 2}
+  m_Controller: {fileID: 9100000, guid: 872aa1e1f0889a04783531198aaf36a6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -335,6 +335,7 @@ MonoBehaviour:
   isSwordman: 0
   stumbleTimer: 2
   stumbleTimerCooldown: 2
+  stateTimer: 0
   stumbleTime: 3
   state: 5
 --- !u!114 &4786619486166987476
@@ -366,6 +367,7 @@ MonoBehaviour:
   shootInterval: 3
   arrowPrefab: {fileID: -8737842409984295196, guid: c5db3965d5b4f084bb6c54cb878a269b, type: 3}
   enemyMovement: {fileID: 2373808877317278814}
+  animator: {fileID: 3977747035520267468}
 --- !u!1 &6574501345191673496
 GameObject:
   m_ObjectHideFlags: 0
