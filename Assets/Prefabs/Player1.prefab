@@ -159,6 +159,7 @@ GameObject:
   - component: {fileID: 9157047647374926665}
   - component: {fileID: 6155310138716365543}
   - component: {fileID: 1702534065677974400}
+  - component: {fileID: 5216481906138868071}
   m_Layer: 7
   m_Name: Player1
   m_TagString: Player
@@ -303,9 +304,9 @@ MonoBehaviour:
   canCollideWith: []
   localPointOfCollision: {x: 0, y: 0}
   movementSpeed: 6
-  speedMultiplierWhenSwinging: 0
   Input: {fileID: 0}
   trailRenderer: {fileID: 5439516395281125458}
+  animator: {fileID: 5216481906138868071}
 --- !u!114 &6155310138716365543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,3 +349,24 @@ MonoBehaviour:
   chain: {fileID: 0}
   player1: {fileID: 8856967382859542037}
   player2: {fileID: 0}
+--- !u!95 &5216481906138868071
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8851130757255043613}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 466639a79b0f390f29858adc3c5b9ed0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

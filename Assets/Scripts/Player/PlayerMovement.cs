@@ -9,6 +9,7 @@ public class PlayerMovement : SwingableObject
 
     [SerializeField] PlayerInputData Input;
     [SerializeField] TrailRenderer trailRenderer;
+    [SerializeField] Animator animator;
 
 
     void Reset()
@@ -22,7 +23,15 @@ public class PlayerMovement : SwingableObject
         if (!beingSwapped && !beingGrabbed && Input.chainRotationalInput == 0)
         {
             translation += movement;
+            animator.SetBool("Walking", Input.movementInput != default);
         }
+        else
+        {
+            animator.SetBool("Walking", false);
+        }
+        animator.SetBool("Flying", beingGrabbed || (beingSwapped && velocity.sqrMagnitude > 1f));
+        animator.SetBool("FallingInHole", fallingIntoHole);
+
 
         if (trailRenderer)
             trailRenderer.emitting = beingGrabbed;
