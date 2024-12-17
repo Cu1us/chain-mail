@@ -38,15 +38,16 @@ public class EnemySwordAttack : MonoBehaviour
                 chargeUpTimer += Time.deltaTime;
                 //sentinelWaitTimer += Time.deltaTime;
                 animator.SetBool("isReady", true);
-                if (chargeUpTimer > sentinelChargeUpTime && playersInsideTrigger.Count > 0) //how long before he does attacks. instant after that time
+                if (chargeUpTimer > sentinelChargeUpTime && playersInsideTrigger.Count > 0) 
                 {
                     animator.Play("Attack");
                     sentinelWaitTimer = 0 - sentinelFollowUpAttackTime;
                     animator.SetBool("isReady", false);
                 }
-                else if (sentinelWaitTimer > 2) //how long he stands and waits
+                else if (chargeUpTimer > 2) //Give this its own counter
                 {
                     sentinelWaitTimer = 0;
+                    chargeUpTimer = 0;
                     sentinelChargeUp = false;
                     animator.SetBool("isReady", false);
                 }
