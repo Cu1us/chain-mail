@@ -97,13 +97,13 @@ public class PlayerKnockback : MonoBehaviour
         if (swingableObject.beingSwapped)
         {
             damage = knockbackBaseDamage * swingableObject.velocity.magnitude * knockbackSwapDamageMultiply;
+            enemy.GetComponent<EnemyHealth>().TakeDamage(Mathf.Abs(damage));
         }
         else
         {
             damage = knockbackBaseDamage * swingableObject.swingVelocity * knockbackSwingDamageMultiply;
+            enemy.GetComponent<EnemyHealth>().TakeDamage(Mathf.Abs(damage), true);
         }
-
-        enemy.GetComponent<EnemyHealth>().TakeDamage(Mathf.Abs(damage));
     }
 
     void ClearEnemies()
