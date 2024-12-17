@@ -2460,6 +2460,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1683632477157957467, guid: 668963442f0cc174491493de8d80f496, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 1455792686}
     - target: {fileID: 2194492424679235516, guid: 668963442f0cc174491493de8d80f496, type: 3}
       propertyPath: m_Name
       value: EnemyArcher
@@ -20423,6 +20427,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1436669956}
   m_CullTransparentMesh: 1
+--- !u!4 &1455792686 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7969500359791862618, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+  m_PrefabInstance: {fileID: 1125270394}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1492054664
 GameObject:
   m_ObjectHideFlags: 0

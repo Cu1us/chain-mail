@@ -367,6 +367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bowCharge: 0.5
   shootInterval: 3
+  playerTransform: {fileID: 8856967382859542037, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
   arrowPrefab: {fileID: -8737842409984295196, guid: c5db3965d5b4f084bb6c54cb878a269b, type: 3}
   enemyMovement: {fileID: 2373808877317278814}
   animator: {fileID: 3977747035520267468}
