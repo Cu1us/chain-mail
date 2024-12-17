@@ -491,6 +491,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5789651416746514506}
     - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: coolDown
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702534065677974400, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: maxAttackTime
       value: 0.5
       objectReference: {fileID: 0}
@@ -685,6 +689,22 @@ PrefabInstance:
     - target: {fileID: 2612734432615552725, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: canCollideWith.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195899166019651132, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5838791
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195899166019651132, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3836498
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195899166019651132, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.06358558
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195899166019651132, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.036414146
       objectReference: {fileID: 0}
     - target: {fileID: 6635265128658752961, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: m_Enabled
