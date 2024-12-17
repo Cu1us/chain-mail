@@ -52,9 +52,12 @@ public class EnemyHealth : MonoBehaviour
         {
             damage *= damageStuckMultiplier;
         }
-        
 
-        enemyMovement.stumbleTimer = enemyMovement.stumbleTimerCooldown - 0.3f;
+        if (!isSwinging)
+        {
+            enemyMovement.stumbleTimer = enemyMovement.stumbleTimerCooldown - 0.3f;
+        }
+
 
 
         if (isSentinel && enemyMovement.state != EnemyMovement.EnemyState.STUCK)
