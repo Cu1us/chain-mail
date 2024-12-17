@@ -33,6 +33,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float keepDistanceDistance;
     [SerializeField] float attackDistance;
     float currentChainLength;
+    [SerializeField] float sentinelMass;
 
 
     Vector2 target;
@@ -195,6 +196,10 @@ public class EnemyMovement : MonoBehaviour
         state = _state;
         currentMaxVelocity = maxVelocity;
         isAttackState = true;
+        if (isSentinel)
+        {
+            rb.mass = sentinelMass;
+        }
         if (isArcher && _state != EnemyState.STUCK)
         {
             state = EnemyState.ARCHER;
@@ -321,10 +326,12 @@ public class EnemyMovement : MonoBehaviour
     {
         if (stumbleTimer > stumbleTimerCooldown)
         {
+
             animator.Play("Stumble");
             Invoke(nameof(Stand), stumbleTime);
             stateTimer += stumbleTime;
             StateChange(EnemyState.STUCK);
+            rb.mass = 1;
         }
     }
 
@@ -411,8 +418,6 @@ public class EnemyMovement : MonoBehaviour
                 currentMaxVelocity = maxVelocity;
             }
         }
-
-
 
         else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") || state == EnemyState.STUCK)
         {

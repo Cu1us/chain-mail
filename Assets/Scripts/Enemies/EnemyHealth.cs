@@ -52,8 +52,7 @@ public class EnemyHealth : MonoBehaviour
         {
             damage *= damageStuckMultiplier;
         }
-            enemyMovement.stumbleTimer = enemyMovement.stumbleTimerCooldown - 0.3f;
-        
+        enemyMovement.stumbleTimer = enemyMovement.stumbleTimerCooldown - 0.3f;
 
         damage = Mathf.Round(damage);
         if (isSentinel && enemyMovement.state != EnemyMovement.EnemyState.STUCK)

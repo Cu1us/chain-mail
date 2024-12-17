@@ -5315,6 +5315,7 @@ MonoBehaviour:
   flankExtraDistance: 5
   keepDistanceDistance: 6
   attackDistance: 2
+  sentinelMass: 3
   isAttackState: 0
   isArcher: 0
   isSentinel: 1
