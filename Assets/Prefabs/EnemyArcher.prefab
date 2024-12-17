@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: eb36fd61a3b30418095d9db657ac4404, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.81960785}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -309,6 +309,7 @@ MonoBehaviour:
   animator: {fileID: 3977747035520267468}
   DamageText: {fileID: 7880372099245737446, guid: cd889e5e751da994c92d6279be429bd1, type: 3}
   isMale: 0
+  isSentinel: 0
 --- !u!114 &2373808877317278814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +330,7 @@ MonoBehaviour:
   flankExtraDistance: 5
   keepDistanceDistance: 6
   attackDistance: 2
+  sentinelMass: 0
   isAttackState: 0
   isArcher: 1
   isSentinel: 0
@@ -365,6 +367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bowCharge: 0.5
   shootInterval: 3
+  playerTransform: {fileID: 8856967382859542037, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
   arrowPrefab: {fileID: -8737842409984295196, guid: c5db3965d5b4f084bb6c54cb878a269b, type: 3}
   enemyMovement: {fileID: 2373808877317278814}
   animator: {fileID: 3977747035520267468}

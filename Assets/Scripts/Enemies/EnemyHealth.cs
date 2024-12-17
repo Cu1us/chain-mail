@@ -46,13 +46,18 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool isSwinging = false)
     {
         if (enemyMovement.state == EnemyMovement.EnemyState.STUCK)
         {
             damage *= damageStuckMultiplier;
         }
-        enemyMovement.stumbleTimer = enemyMovement.stumbleTimerCooldown - 0.3f;
+
+        if (!isSwinging)
+        {
+            enemyMovement.stumbleTimer = enemyMovement.stumbleTimerCooldown - 0.3f;
+        }
+
 
 
         if (isSentinel && enemyMovement.state != EnemyMovement.EnemyState.STUCK)
