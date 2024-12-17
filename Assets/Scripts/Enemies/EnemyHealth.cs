@@ -54,11 +54,12 @@ public class EnemyHealth : MonoBehaviour
         }
         enemyMovement.stumbleTimer = enemyMovement.stumbleTimerCooldown - 0.3f;
 
-        damage = Mathf.Round(damage);
+
         if (isSentinel && enemyMovement.state != EnemyMovement.EnemyState.STUCK)
         {
             damage *= 0.5f;
         }
+        damage = Mathf.Round(damage);
         enemyHealth -= damage;
         if (isMale)
         {
