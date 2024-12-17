@@ -60,6 +60,7 @@ public class PlayerKnockback : MonoBehaviour
             enemy.GetComponent<Rigidbody2D>().AddForce(forceDirection * swapKnockbackForce, ForceMode2D.Impulse);
 
             PlayerInputData.Rumble(0.05f, 0.3f, 0.8f);
+            CameraMovement.Shake(0.25f);
         }
         else
         {
@@ -75,6 +76,8 @@ public class PlayerKnockback : MonoBehaviour
             }
 
             PlayerInputData.Rumble(0.02f, 0.1f, 0.2f);
+            CameraMovement.Shake(0.1f);
+
             Vector2 forceDirection = perpendicular + enemyDirection;
             forceDirection.Normalize();
 
