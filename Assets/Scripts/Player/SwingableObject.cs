@@ -21,6 +21,7 @@ public class SwingableObject : MonoBehaviour, IKnockable
 
     [SerializeField] Collider2D[] canCollideWith;
     [SerializeField] Vector2 localPointOfCollision;
+    [SerializeField] SpriteRenderer dragOutOfHoleButton;
 
     // Events
     public Action<float> onKnockedChain;
@@ -32,6 +33,7 @@ public class SwingableObject : MonoBehaviour, IKnockable
     public bool beingSwapped { get { return velocity.sqrMagnitude > 1f && Time.time - lastSwapTime < 0.75f; } }
 
     protected Vector2 translation;
+    Vector2 dragOutOfHoleButtonDefaultScale;
 
     bool IsPointInACollider(Vector2 position)
     {
@@ -41,6 +43,11 @@ public class SwingableObject : MonoBehaviour, IKnockable
                 return true;
         }
         return false;
+    }
+
+    protected virtual void Start()
+    {
+        if (dragOutOfHoleButton) dragOutOfHoleButtonDefaultScale = dragOutOfHoleButton.transform.localScale;
     }
 
     public void SetPosition(Vector2 newPos, Vector2 oldPos)
@@ -105,6 +112,14 @@ public class SwingableObject : MonoBehaviour, IKnockable
 
     protected virtual void Update()
     {
+        if (dragOutOfHoleButton)
+        {
+            dragOutOfHoleButton.enabled = fallingIntoHole;
+            if (fallingIntoHole)
+            {
+                dragOutOfHoleButton.transform.localScale = dragOutOfHoleButtonDefaultScale * (1 + (Mathf.Sin(Time.time * 10) / 4));
+            }
+        }
         if (fallingIntoHole && Time.time - lastSwapTime < 0.5f)
         {
             velocity = Vector2.zero;
