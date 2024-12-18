@@ -54,15 +54,7 @@ public class PlayerInputData : MonoBehaviour
     }
 
     public bool inputDisabled { get; private set; } = false;
-    public static InputType inputType
-    {
-        get
-        {
-            if (Gamepad.all.Count == 0 || Gamepad.current == null) return InputType.Keyboard;
-            if (Gamepad.current is XInputController) return InputType.Xbox;
-            return InputType.PS4;
-        }
-    }
+    public static InputType inputType { get; private set; } = InputType.Keyboard;
 
     [Obsolete] public Vector2 aimDirection => Vector2.zero;
     [Obsolete] public bool isHoldingAttack { get => !inputDisabled && _isHoldingAttack; }
@@ -125,6 +117,10 @@ public class PlayerInputData : MonoBehaviour
 
     void OnDeviceChanged(InputDevice device, InputDeviceChange change)
     {
+        if (Gamepad.all.Count == 0 || Gamepad.current == null) inputType = InputType.Keyboard;
+        else if (Gamepad.current is XInputController) inputType = InputType.Xbox;
+        else inputType = InputType.PS4;
+
         switch (change)
         {
             case InputDeviceChange.Added:
