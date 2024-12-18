@@ -3,7 +3,6 @@ using TMPro;
 using Unity.Mathematics;
 using DG.Tweening;
 using System;
-using UnityEditorInternal;
 
 public class EnemyHealth : MonoBehaviour
 {
