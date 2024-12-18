@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5102155550405956670}
   - component: {fileID: 4703668907687477313}
   m_Layer: 0
-  m_Name: NextLevel
+  m_Name: NextLevel - Copy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
