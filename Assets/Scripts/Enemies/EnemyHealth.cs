@@ -24,10 +24,18 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] GameObject DamageText;
     [SerializeField] bool isMale;
     [SerializeField] bool isSentinel;
+    GameObject nextLevel;
 
     GameObject OldText;
     float OldTextTimer;
+    void Start()
+    {
+        if (GameObject.Find("NextLevel") != null)
+        {
+            nextLevel = GameObject.Find("NextLevel");
+        }
 
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Keypad1))
@@ -146,19 +154,19 @@ public class EnemyHealth : MonoBehaviour
         enemyMovement.isAttackState = false;
         coll2D.enabled = false;
         Invoke(nameof(DestroyEnemy), 2f);
+
     }
 
     void DestroyEnemy()
     {
-        if (EnemyMovement.EnemyList.Count == 1)
+        if (EnemyMovement.EnemyList.Count == 1 && nextLevel != null)
         {
-            GameObject nextLevel = GameObject.Find("NextLevel");
             nextLevel.GetComponent<DoorNextLevel>().OpenNextLevel();
         }
         Destroy(gameObject);
     }
 
-        public void FallToDeath()
+    public void FallToDeath()
     {
         Invoke(nameof(DestroyEnemy), 2);
     }
