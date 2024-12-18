@@ -21,6 +21,7 @@ public class SwingableObject : MonoBehaviour, IKnockable
 
     [SerializeField] Collider2D[] canCollideWith;
     [SerializeField] Vector2 localPointOfCollision;
+    [SerializeField] SpriteRenderer dragOutOfHoleButton;
 
     // Events
     public Action<float> onKnockedChain;
@@ -105,6 +106,7 @@ public class SwingableObject : MonoBehaviour, IKnockable
 
     protected virtual void Update()
     {
+        if (dragOutOfHoleButton) dragOutOfHoleButton.enabled = fallingIntoHole;
         if (fallingIntoHole && Time.time - lastSwapTime < 0.5f)
         {
             velocity = Vector2.zero;
