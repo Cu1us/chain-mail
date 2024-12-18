@@ -58,7 +58,7 @@ public class EnemyMovement : MonoBehaviour
 
     public enum EnemyState
     {
-        STUCK, MOVECLOSETOATTACK, FLANK, KEEPDISTANCE, INTERCEPT, ARCHER, IDLE
+        STUCK, MOVECLOSETOATTACK, FLANK, KEEPDISTANCE, INTERCEPT, ARCHER, IDLE, FALLING
 
     }
     public EnemyState state;
@@ -93,6 +93,7 @@ public class EnemyMovement : MonoBehaviour
         currentMaxVelocity = maxVelocity;
         accell = acceleration;
         agent.speed = currentMaxVelocity;
+
     }
 
 
@@ -196,6 +197,13 @@ public class EnemyMovement : MonoBehaviour
         state = _state;
         currentMaxVelocity = maxVelocity;
         isAttackState = true;
+        if(state == EnemyState.FALLING)
+        {
+            stateTimer = -100;
+            rb.gravityScale = 5;
+            isAttackState = false;
+            return;
+        }
         if (isSentinel)
         {
             rb.mass = sentinelMass;
@@ -212,9 +220,10 @@ public class EnemyMovement : MonoBehaviour
                 break;
             case EnemyState.KEEPDISTANCE:
                 stateTimer = stateChangeCooldown - 2;
+                keepDistanceDistance = Random.Range(7, 12);
                 break;
             case EnemyState.MOVECLOSETOATTACK:
-
+                currentMaxVelocity = 10;
                 break;
             case EnemyState.FLANK:
                 if (Random.Range(0, 2) == 0)
@@ -225,6 +234,7 @@ public class EnemyMovement : MonoBehaviour
                 {
                     flankDir = FlankDir.RIGHT;
                 }
+                flankExtraDistance = Random.Range(10, 15);
                 nextState = EnemyState.MOVECLOSETOATTACK;
                 break;
             case EnemyState.INTERCEPT:
@@ -307,6 +317,12 @@ public class EnemyMovement : MonoBehaviour
     void KeepDistance()
     {
         target = targetTransform1.position + (transform.position - targetTransform1.position).normalized * keepDistanceDistance;
+        Vector2 distToTarget;
+        distToTarget = target - (Vector2)transform.position;
+        if (distToTarget.sqrMagnitude < 4)
+        {
+            StateChange(EnemyState.INTERCEPT);
+        }
     }
 
     void MoveCloseToAttack()
