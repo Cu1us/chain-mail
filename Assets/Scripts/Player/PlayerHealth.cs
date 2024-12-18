@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -12,50 +13,47 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] GameObject gameoverText;
     [SerializeField] Image HealthBar;
     [SerializeField] PlayerInputData playerInput;
+    [SerializeField] Volume hurtVignette;
 
     float playerHealth;
-    bool death;
-
-    void Start()
-    {
-        playerHealth = maxPlayerHealth;
-    }
+    float vignetteStrength;
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Keypad0))
+        if (vignetteStrength > 0)
         {
-            PlayerRevive();
+            hurtVignette.weight = vignetteStrength / (vignetteStrength + 1);
+            vignetteStrength -= Time.deltaTime;
         }
-
-        if (death)
+        else
         {
-            Death();
+            hurtVignette.weight = 0;
         }
+    }
+    void Start()
+    {
+        playerHealth = maxPlayerHealth;
     }
 
     public void TakeDamage(float damage)
     {
         AudioManager.Play("hurtplayer");
         playerHealth -= damage;
+        vignetteStrength += damage;
         UpdateHealthBar();
-        if(playerHealth <= 0)
+        if (playerHealth <= 0)
         {
-            death = true;
+            playerHealth = 0;
+            Death();
         }
     }
 
     void UpdateHealthBar()
     {
-        HealthBar.fillAmount =  1 - playerHealth/maxPlayerHealth;
+        HealthBar.fillAmount = 1 - playerHealth / maxPlayerHealth;
     }
 
-    void PlayerRevive()
-    {
-        playerHealth = maxPlayerHealth;
-    }
-
-    void Death()
+    public void Death()
     {
         gameoverText.SetActive(true);
         playerInput.DisableInput();
