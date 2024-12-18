@@ -109,6 +109,13 @@ public class PlayerInputData : MonoBehaviour
         inputDisabled = false;
     }
 
+    [RuntimeInitializeOnLoadMethod]
+    public static void UpdateInputType()
+    {
+        if (Gamepad.all.Count == 0 || Gamepad.current == null) inputType = InputType.Keyboard;
+        else if (Gamepad.current is XInputController) inputType = InputType.Xbox;
+        else inputType = InputType.PS4;
+    }
 
     void Start()
     {
@@ -117,9 +124,7 @@ public class PlayerInputData : MonoBehaviour
 
     void OnDeviceChanged(InputDevice device, InputDeviceChange change)
     {
-        if (Gamepad.all.Count == 0 || Gamepad.current == null) inputType = InputType.Keyboard;
-        else if (Gamepad.current is XInputController) inputType = InputType.Xbox;
-        else inputType = InputType.PS4;
+        UpdateInputType();
 
         switch (change)
         {
