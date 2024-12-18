@@ -24,7 +24,7 @@ public class FallOfEdge : MonoBehaviour
             other.GetComponent<EnemyMovement>().StateChange(EnemyMovement.EnemyState.FALLING);
             other.GetComponent<SpriteRenderer>().sortingOrder = orderInLayer;
             other.GetComponent<EnemyHealth>().FallToDeath();
-            other.GetComponent<Collider2D>().enabled = false;
+            other.GetComponent<CapsuleCollider2D>().enabled = false;
         }
     }
 }
