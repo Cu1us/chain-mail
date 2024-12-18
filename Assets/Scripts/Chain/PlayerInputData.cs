@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XInput;
 
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerInputData : MonoBehaviour
@@ -11,7 +12,8 @@ public class PlayerInputData : MonoBehaviour
     public enum InputType
     {
         Keyboard,
-        Gamepad
+        PS4,
+        Xbox
     }
 
     static List<(float, float, float)> RumbleData = new();
@@ -52,7 +54,15 @@ public class PlayerInputData : MonoBehaviour
     }
 
     public bool inputDisabled { get; private set; } = false;
-    public static InputType inputType { get { return Gamepad.current != null ? InputType.Gamepad : InputType.Keyboard; } }
+    public static InputType inputType
+    {
+        get
+        {
+            if (Gamepad.all.Count == 0 || Gamepad.current == null) return InputType.Keyboard;
+            if (Gamepad.current is XInputController) return InputType.Xbox;
+            return InputType.PS4;
+        }
+    }
 
     [Obsolete] public Vector2 aimDirection => Vector2.zero;
     [Obsolete] public bool isHoldingAttack { get => !inputDisabled && _isHoldingAttack; }

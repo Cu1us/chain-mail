@@ -64,7 +64,7 @@ public class TutorialController : MonoBehaviour
             }
             tutorialSteps = tutorialStepsKeyboard;
         }
-        else if(PlayerInputData.inputType == PlayerInputData.InputType.Gamepad)
+        else if (PlayerInputData.inputType == PlayerInputData.InputType.PS4 || PlayerInputData.inputType == PlayerInputData.InputType.Xbox)
         {
             if (currentStep >= 0)
             {
