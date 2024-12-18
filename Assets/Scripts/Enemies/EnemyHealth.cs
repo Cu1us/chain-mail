@@ -157,4 +157,9 @@ public class EnemyHealth : MonoBehaviour
         }
         Destroy(gameObject);
     }
+
+        public void FallToDeath()
+    {
+        Invoke(nameof(DestroyEnemy), 2);
+    }
 }
