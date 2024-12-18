@@ -542,6 +542,14 @@ PrefabInstance:
       propertyPath: knockbackSwingDamageMultiply
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 4265511886869054383, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: m_Size.y
+      value: 1.6128798
+      objectReference: {fileID: 0}
+    - target: {fileID: 4265511886869054383, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.04781866
+      objectReference: {fileID: 0}
     - target: {fileID: 6155310138716365543, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: playerInput
       value: 
@@ -556,11 +564,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8856967382859542037, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.6
+      value: -9.9
       objectReference: {fileID: 0}
     - target: {fileID: 8856967382859542037, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -19.4
+      value: -4.2
       objectReference: {fileID: 0}
     - target: {fileID: 8856967382859542037, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -712,11 +720,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7891007783511305094, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.8
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 7891007783511305094, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -16.8
+      value: -4.3
       objectReference: {fileID: 0}
     - target: {fileID: 7891007783511305094, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: m_LocalPosition.z
