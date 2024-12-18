@@ -682,6 +682,7 @@ GameObject:
   - component: {fileID: 138377295}
   - component: {fileID: 138377297}
   - component: {fileID: 138377296}
+  - component: {fileID: 138377298}
   m_Layer: 5
   m_Name: iButton
   m_TagString: Untagged
@@ -746,6 +747,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 138377294}
   m_CullTransparentMesh: 1
+--- !u!114 &138377298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138377294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c508ecf80e6cd0c9607888c10ed5b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visible: 1
+  spriteRenderer: {fileID: 0}
+  image: {fileID: 997333708}
+  OscillateSpeed: 0
+  OscillateStrength: 0
+  Keyboard: {fileID: 0}
+  PS4: {fileID: 21300000, guid: 68c1dfb22e92d7c40a006a7d8ecb96c9, type: 3}
+  Xbox: {fileID: 21300000, guid: 9119a899dfc5e864f8f69b61089d29c0, type: 3}
 --- !u!1 &146922891
 GameObject:
   m_ObjectHideFlags: 0
@@ -2329,6 +2350,7 @@ GameObject:
   - component: {fileID: 465161216}
   - component: {fileID: 465161218}
   - component: {fileID: 465161217}
+  - component: {fileID: 465161219}
   m_Layer: 5
   m_Name: Button1
   m_TagString: Untagged
@@ -2393,6 +2415,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465161215}
   m_CullTransparentMesh: 1
+--- !u!114 &465161219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465161215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c508ecf80e6cd0c9607888c10ed5b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visible: 1
+  spriteRenderer: {fileID: 0}
+  image: {fileID: 997333708}
+  OscillateSpeed: 0
+  OscillateStrength: 0
+  Keyboard: {fileID: 0}
+  PS4: {fileID: 21300000, guid: 2e0a67a4e86fc7d43a7d2f7a9c05dc45, type: 3}
+  Xbox: {fileID: 21300000, guid: 8057026777a3b5849971aec948c49533, type: 3}
 --- !u!1001 &482999851
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4405,6 +4447,7 @@ GameObject:
   - component: {fileID: 997333707}
   - component: {fileID: 997333709}
   - component: {fileID: 997333708}
+  - component: {fileID: 997333710}
   m_Layer: 5
   m_Name: jButton
   m_TagString: Untagged
@@ -4469,6 +4512,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997333706}
   m_CullTransparentMesh: 1
+--- !u!114 &997333710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997333706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c508ecf80e6cd0c9607888c10ed5b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visible: 1
+  spriteRenderer: {fileID: 0}
+  image: {fileID: 997333708}
+  OscillateSpeed: 0
+  OscillateStrength: 0
+  Keyboard: {fileID: 0}
+  PS4: {fileID: 21300000, guid: 3f3e7bda081b7eb4cb7b9d994acad0fe, type: 3}
+  Xbox: {fileID: 21300000, guid: 7ff54795dd0c9a645bddf480880b3f6b, type: 3}
 --- !u!1 &1005321546
 GameObject:
   m_ObjectHideFlags: 0
@@ -4614,6 +4677,7 @@ GameObject:
   - component: {fileID: 1005353277}
   - component: {fileID: 1005353279}
   - component: {fileID: 1005353278}
+  - component: {fileID: 1005353280}
   m_Layer: 5
   m_Name: kButton
   m_TagString: Untagged
@@ -4678,6 +4742,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1005353276}
   m_CullTransparentMesh: 1
+--- !u!114 &1005353280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005353276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c508ecf80e6cd0c9607888c10ed5b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visible: 1
+  spriteRenderer: {fileID: 0}
+  image: {fileID: 997333708}
+  OscillateSpeed: 0
+  OscillateStrength: 0
+  Keyboard: {fileID: 0}
+  PS4: {fileID: 21300000, guid: 68c1dfb22e92d7c40a006a7d8ecb96c9, type: 3}
+  Xbox: {fileID: 21300000, guid: 57457166970c2064db00d53e89f753ec, type: 3}
 --- !u!1 &1018487424
 GameObject:
   m_ObjectHideFlags: 0
@@ -5429,6 +5513,7 @@ GameObject:
   - component: {fileID: 1163002076}
   - component: {fileID: 1163002078}
   - component: {fileID: 1163002077}
+  - component: {fileID: 1163002079}
   m_Layer: 5
   m_Name: lButton
   m_TagString: Untagged
@@ -5493,6 +5578,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163002075}
   m_CullTransparentMesh: 1
+--- !u!114 &1163002079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163002075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c508ecf80e6cd0c9607888c10ed5b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visible: 1
+  spriteRenderer: {fileID: 0}
+  image: {fileID: 997333708}
+  OscillateSpeed: 0
+  OscillateStrength: 0
+  Keyboard: {fileID: 0}
+  PS4: {fileID: 21300000, guid: 48da705ad7ed51249b2537f5d3fd8d5f, type: 3}
+  Xbox: {fileID: 21300000, guid: aa31f2f41c1d6d1459af81ee2e1e3145, type: 3}
 --- !u!1 &1188905742
 GameObject:
   m_ObjectHideFlags: 0
@@ -10624,6 +10729,7 @@ GameObject:
   - component: {fileID: 1569548885}
   - component: {fileID: 1569548887}
   - component: {fileID: 1569548886}
+  - component: {fileID: 1569548888}
   m_Layer: 5
   m_Name: Button1
   m_TagString: Untagged
@@ -10688,6 +10794,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1569548884}
   m_CullTransparentMesh: 1
+--- !u!114 &1569548888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569548884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c508ecf80e6cd0c9607888c10ed5b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visible: 1
+  spriteRenderer: {fileID: 0}
+  image: {fileID: 997333708}
+  OscillateSpeed: 0
+  OscillateStrength: 0
+  Keyboard: {fileID: 0}
+  PS4: {fileID: 21300000, guid: 53e00a8c53011194a937dad11740869b, type: 3}
+  Xbox: {fileID: 21300000, guid: e6f18c13ed2af1049aba97ba40a80ae0, type: 3}
 --- !u!1 &1578341878
 GameObject:
   m_ObjectHideFlags: 0
