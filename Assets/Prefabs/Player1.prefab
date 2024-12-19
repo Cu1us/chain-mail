@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 6155310138716365543}
   - component: {fileID: 1702534065677974400}
   - component: {fileID: 5216481906138868071}
+  - component: {fileID: 4899468910705586354}
   m_Layer: 7
   m_Name: Player1
   m_TagString: Player
@@ -204,7 +205,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: a0f6c3a223019474aae60dbaefddbe70, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -305,6 +306,7 @@ MonoBehaviour:
   canCollideWith: []
   localPointOfCollision: {x: 0, y: 0}
   dragOutOfHoleButton: {fileID: 5443444664109479544}
+  spriteRenderer: {fileID: 1190040144926794882}
   movementSpeed: 6
   Input: {fileID: 0}
   trailRenderer: {fileID: 5439516395281125458}
@@ -325,6 +327,8 @@ MonoBehaviour:
   gameoverText: {fileID: 0}
   HealthBar: {fileID: 0}
   playerInput: {fileID: 0}
+  hurtVignette: {fileID: 0}
+  spriteBlink: {fileID: 4899468910705586354}
 --- !u!114 &1702534065677974400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,6 +376,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4899468910705586354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8851130757255043613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad7b4af4ada74e23b47d5ed80bdcf16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 1190040144926794882}
 --- !u!1001 &3018172420521690522
 PrefabInstance:
   m_ObjectHideFlags: 0

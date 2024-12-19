@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] Image HealthBar;
     [SerializeField] PlayerInputData playerInput;
     [SerializeField] Volume hurtVignette;
+    [SerializeField] SpriteBlink spriteBlink;
 
     float playerHealth;
     float vignetteHurtBoost;
@@ -50,6 +51,7 @@ public class PlayerHealth : MonoBehaviour
         AudioManager.Play("hurtplayer");
         playerHealth -= damage;
         vignetteHurtBoost += (damage - (maxPlayerHealth / 10)) / maxPlayerHealth;
+        spriteBlink.Blink(0.15f);
         UpdateHealthBar();
         if (playerHealth <= 0)
         {
