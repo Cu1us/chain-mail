@@ -5308,6 +5308,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTransform1: {fileID: 8856967382859542037, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+  shadow: {fileID: 6413601384356171058}
+  trappDetection: {fileID: 4322960784902287191}
   animator: {fileID: 1127159391011199636}
   acceleration: 10
   knockbackDeceleration: 10
