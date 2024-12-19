@@ -51,7 +51,7 @@ public class PlayerHealth : MonoBehaviour
         AudioManager.Play("hurtplayer");
         playerHealth -= damage;
         vignetteHurtBoost += (damage - (maxPlayerHealth / 10)) / maxPlayerHealth;
-        spriteBlink.Blink(0.15f);
+        spriteBlink.Blink(0.15f, color: Color.red);
         UpdateHealthBar();
         if (playerHealth <= 0)
         {
