@@ -58,6 +58,10 @@ public class PlayerHealth : MonoBehaviour
         gameoverText.SetActive(true);
         playerInput.DisableInput();
         Invoke(nameof(ResetScene), 2);
+        if (TryGetComponent(out Animator animator))
+        {
+            animator.SetBool("Dead", true);
+        }
     }
 
     void ResetScene()
