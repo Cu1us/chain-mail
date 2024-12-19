@@ -199,14 +199,14 @@ public class EnemyMovement : MonoBehaviour
         state = _state;
         currentMaxVelocity = maxVelocity;
         isAttackState = true;
-        if(state == EnemyState.FALLING)
+        if (state == EnemyState.FALLING)
         {
             stateTimer = -100;
             rb.gravityScale = 5;
             isAttackState = false;
             shadow.GetComponent<SpriteRenderer>().enabled = false;
-            trappDetection.GetComponent<BoxCollider2D>().enabled=false;
-            
+            trappDetection.GetComponent<BoxCollider2D>().enabled = false;
+
             return;
         }
         if (isSentinel)
@@ -358,17 +358,21 @@ public class EnemyMovement : MonoBehaviour
 
     void Stand()
     {
-        stumbleTimer = 0;
-        animator.Play("Walk");
-        Vector2 dist = targetTransform1.position - transform.position;
-        if (dist.sqrMagnitude > 16)
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Stumble") || animator.GetCurrentAnimatorStateInfo(0).IsName("Tumble"))
         {
-            StateChange(EnemyState.FLANK);
+            stumbleTimer = 0;
+            animator.Play("Walk");
+            Vector2 dist = targetTransform1.position - transform.position;
+            if (dist.sqrMagnitude > 16)
+            {
+                StateChange(EnemyState.FLANK);
+            }
+            else
+            {
+                StateChange(EnemyState.MOVECLOSETOATTACK);
+            }
         }
-        else
-        {
-            StateChange(EnemyState.MOVECLOSETOATTACK);
-        }
+
 
     }
 
