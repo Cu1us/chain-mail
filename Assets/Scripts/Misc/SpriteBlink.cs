@@ -9,6 +9,7 @@ public class SpriteBlink : MonoBehaviour
     [ReadOnlyInspector][SerializeField] new Renderer renderer;
     float blinkUntil;
     bool blinking = false;
+    Color? blinkColor = null;
 
     void Update()
     {
@@ -24,8 +25,9 @@ public class SpriteBlink : MonoBehaviour
         }
     }
 
-    public void Blink(float duration, bool additive = false)
+    public void Blink(float duration, bool additive = false, Color? color = null)
     {
+        blinkColor = color;
         if (additive)
             blinkUntil = Mathf.Max(blinkUntil, Time.time) + duration;
         else
@@ -35,6 +37,9 @@ public class SpriteBlink : MonoBehaviour
     public void SetBlinkState(bool blinking)
     {
         renderer.material.SetInt("_Blink", blinking ? 1 : 0);
+
+        Color color = blinkColor ?? Color.white;
+        renderer.material.SetColor("_BlinkColor", blinking ? color : Color.white);
     }
 
     void Reset()
