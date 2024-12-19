@@ -16,14 +16,24 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] Volume hurtVignette;
 
     float playerHealth;
-    float vignetteStrength;
+    float vignetteHurtBoost;
 
     void Update()
     {
-        if (vignetteStrength > 0)
+        if (playerHealth > 0)
         {
-            hurtVignette.weight = vignetteStrength / (vignetteStrength + 1);
-            vignetteStrength -= Time.deltaTime;
+            float vignetteWeight = 0;
+            float healthFraction = playerHealth / maxPlayerHealth;
+            if (healthFraction < 0.6f)
+            {
+                vignetteWeight += 1 - (healthFraction / 0.6f);
+            }
+            if (vignetteHurtBoost > 0)
+            {
+                vignetteHurtBoost = Mathf.Clamp(vignetteHurtBoost, 0, 1) * (1 - (0.4f * Time.deltaTime));
+                vignetteWeight += vignetteHurtBoost * 5 * (1.5f - (healthFraction * 0.6f));
+            }
+            hurtVignette.weight = Mathf.Clamp(vignetteWeight, 0, Mathf.Max(1f, 1.333f - healthFraction));
         }
         else
         {
@@ -39,7 +49,7 @@ public class PlayerHealth : MonoBehaviour
     {
         AudioManager.Play("hurtplayer");
         playerHealth -= damage;
-        vignetteStrength += damage;
+        vignetteHurtBoost += (damage - (maxPlayerHealth / 10)) / maxPlayerHealth;
         UpdateHealthBar();
         if (playerHealth <= 0)
         {
