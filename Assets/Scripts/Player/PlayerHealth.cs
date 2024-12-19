@@ -52,6 +52,7 @@ public class PlayerHealth : MonoBehaviour
         playerHealth -= damage;
         vignetteHurtBoost += (damage - (maxPlayerHealth / 10)) / maxPlayerHealth;
         spriteBlink.Blink(0.15f, color: Color.red);
+        CameraMovement.Shake(0.1f);
         UpdateHealthBar();
         if (playerHealth <= 0)
         {
