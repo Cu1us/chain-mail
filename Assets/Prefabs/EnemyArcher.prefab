@@ -323,6 +323,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTransform1: {fileID: 0}
+  shadow: {fileID: 458076579614946766}
+  trappDetection: {fileID: 8317285168731712131}
   animator: {fileID: 3977747035520267468}
   acceleration: 10
   knockbackDeceleration: 10
