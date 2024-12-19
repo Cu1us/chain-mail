@@ -13,6 +13,8 @@ public class EnemyMovement : MonoBehaviour
     public Transform targetTransform1;
     Transform targetTransform2;
     GameObject chainAndPlayers;
+    [SerializeField] GameObject shadow;
+    [SerializeField] GameObject trappDetection;
 
     [Header("Referenses")]
     NavMeshAgent agent;
@@ -202,6 +204,9 @@ public class EnemyMovement : MonoBehaviour
             stateTimer = -100;
             rb.gravityScale = 5;
             isAttackState = false;
+            shadow.GetComponent<SpriteRenderer>().enabled = false;
+            trappDetection.GetComponent<BoxCollider2D>().enabled=false;
+            
             return;
         }
         if (isSentinel)
