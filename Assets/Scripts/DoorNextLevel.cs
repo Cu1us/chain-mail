@@ -6,6 +6,8 @@ public class DoorNextLevel : MonoBehaviour
     [SerializeField] TempSpawnEnemies spawner;
     BoxCollider2D coll;
     Animator animator;
+    [SerializeField] bool isDoor;
+    [SerializeField] Animator chainLockAnimator;
 
     public bool isLevelCleared = true;
     void Start()
@@ -18,6 +20,11 @@ public class DoorNextLevel : MonoBehaviour
     public void OpenNextLevel()
     {
         coll.enabled = true;
+        if (isDoor && isLevelCleared)
+        {
+           chainLockAnimator.SetTrigger("Unlock");
+           Debug.Log("Unlock");
+        }
     }
     void OnTriggerEnter2D(Collider2D other)
     {
