@@ -29,7 +29,7 @@ public class PlayerMovement : SwingableObject
         {
             animator.SetBool("Walking", false);
         }
-        animator.SetBool("Flying", beingGrabbed || (beingSwapped && velocity.sqrMagnitude > 1f));
+        animator.SetBool("Flying", beingGrabbed || (beingSwapped && velocity.sqrMagnitude > 1f) || velocity.sqrMagnitude > 20f);
         animator.SetBool("FallingInHole", fallingIntoHole);
 
 
