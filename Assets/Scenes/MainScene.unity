@@ -18152,6 +18152,10 @@ PrefabInstance:
       propertyPath: aimbotReticle
       value: 
       objectReference: {fileID: 501818676}
+    - target: {fileID: 2505282835149810871, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: heldPivotOffset
+      value: 0.0045
+      objectReference: {fileID: 0}
     - target: {fileID: 4692490535370305448, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: HealthBar
       value: 
