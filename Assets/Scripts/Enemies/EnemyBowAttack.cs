@@ -10,7 +10,6 @@ public class EnemyBowAttack : MonoBehaviour
     [SerializeField] float shootInterval;
 
     [Header("References")]
-    [SerializeField] Transform playerTransform;
     [SerializeField] Arrow arrowPrefab;
     [SerializeField] EnemyMovement enemyMovement;
     [SerializeField] Animator animator;
@@ -20,7 +19,7 @@ public class EnemyBowAttack : MonoBehaviour
 
     void Start()
     {
-        randomInterval = shootInterval;    
+        randomInterval = shootInterval;
     }
 
     void Update()
@@ -42,7 +41,7 @@ public class EnemyBowAttack : MonoBehaviour
     void InstantiateArrow()
     {
         AudioManager.Play("BowDraw");
-        Vector2 targetDirection = transform.position - playerTransform.position;
+        Vector2 targetDirection = transform.position - enemyMovement.player1.position;
         targetDirection.Normalize();
 
         float targetAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
