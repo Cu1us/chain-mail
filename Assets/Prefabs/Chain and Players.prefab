@@ -336,7 +336,7 @@ MonoBehaviour:
   fallingIntoHoleDragSpeed: 2
   useSwapAimbot: 1
   aimbotTargetDistance: 10
-  heldPivotOffset: 0.075
+  heldPivotOffset: 0.0045
   forcePreserveMomentumThreshold: 0.25
   pivotReadjustToCenterTime: 0.25
   pivotReadjustToCenterCurve:
@@ -607,6 +607,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7485948357042832565}
     - target: {fileID: 9157047647374926665, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 355997152486189517}
+    - target: {fileID: 9157047647374926665, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: canCollideWith.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -622,6 +626,11 @@ PrefabInstance:
       addedObject: {fileID: 1606355999726843837}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+--- !u!212 &355997152486189517 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1190040144926794882, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+  m_PrefabInstance: {fileID: 1473555256358833487}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7739225830394850822 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9157047647374926665, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
