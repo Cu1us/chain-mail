@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour
     public static readonly List<EnemyMovement> EnemyList = new();
 
     [Header("Players")]
-    Transform player1;
+    public Transform player1;
     Transform playerRock;
     public Transform targetTransform1;
     Transform targetTransform2;
