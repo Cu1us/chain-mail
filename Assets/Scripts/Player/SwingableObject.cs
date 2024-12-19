@@ -22,6 +22,7 @@ public class SwingableObject : MonoBehaviour, IKnockable
     [SerializeField] Collider2D[] canCollideWith;
     [SerializeField] Vector2 localPointOfCollision;
     [SerializeField] ButtonPrompt dragOutOfHoleButton;
+    [SerializeField] SpriteRenderer spriteRenderer;
 
     // Events
     public Action<float> onKnockedChain;
@@ -31,6 +32,8 @@ public class SwingableObject : MonoBehaviour, IKnockable
     // Properties
     public Vector2 position { get { return transform.position; } set { if (!fallingIntoHole) SetPosition(value, transform.position); } }
     public bool beingSwapped { get { return velocity.sqrMagnitude > 1f && Time.time - lastSwapTime < 0.75f; } }
+
+    protected bool facingRight = true;
 
     protected Vector2 translation;
 
@@ -123,7 +126,38 @@ public class SwingableObject : MonoBehaviour, IKnockable
             }
             velocity = Vector2.MoveTowards(velocity, Vector2.zero, velocityDeceleration * Time.deltaTime);
             position += translation;
+            UpdateFacingDir();
             translation = Vector2.zero;
+        }
+    }
+
+    void UpdateFacingDir()
+    {
+        if (spriteRenderer)
+        {
+            if (Mathf.Abs(swingVelocity) < 10f)
+            {
+                if (translation.x > 0)
+                {
+                    facingRight = true;
+                }
+                else if (translation.x < 0)
+                {
+                    facingRight = false;
+                }
+            }
+            else
+            {
+                if (swingForwardDirection.x > 0)
+                {
+                    facingRight = true;
+                }
+                else if (swingForwardDirection.x < 0)
+                {
+                    facingRight = false;
+                }
+            }
+            spriteRenderer.flipX = facingRight;
         }
     }
 

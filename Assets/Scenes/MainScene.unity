@@ -18213,6 +18213,10 @@ PrefabInstance:
       value: Chain and Players
       objectReference: {fileID: 0}
     - target: {fileID: 7739225830394850822, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 1455792692}
+    - target: {fileID: 7739225830394850822, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: canCollideWith.Array.data[0]
       value: 
       objectReference: {fileID: 1393189116}
@@ -22604,6 +22608,11 @@ CanvasRenderer:
 --- !u!4 &1455792686 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7969500359791862618, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+  m_PrefabInstance: {fileID: 1125270394}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1455792692 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 355997152486189517, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
   m_PrefabInstance: {fileID: 1125270394}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1492054664
