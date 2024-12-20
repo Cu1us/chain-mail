@@ -5,19 +5,21 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
+    static PauseMenu instance;
+
     bool isGamePaused;
     [SerializeField] GameObject pauseMenu;
     void Start()
     {
-        
+        instance = this;
     }
 
-    void Update()
+    /*void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("EscPressed");
-            if(isGamePaused)
+            if (isGamePaused)
             {
                 ResumeGame();
             }
@@ -26,9 +28,22 @@ public class PauseMenu : MonoBehaviour
                 PauseGame();
             }
         }
+    }*/
+
+    public static void TogglePause()
+    {
+        if (instance == null) return;
+        if (instance.isGamePaused)
+        {
+            instance.ResumeGame();
+        }
+        else
+        {
+            instance.PauseGame();
+        }
     }
 
-   public void ResumeGame()
+    public void ResumeGame()
     {
         pauseMenu.SetActive(false);
         Debug.Log("Resume");

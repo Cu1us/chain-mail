@@ -98,6 +98,10 @@ public class PlayerInputData : MonoBehaviour
     {
         if (!inputDisabled) onChainSwap?.Invoke();
     }
+    void OnPause()
+    {
+        PauseMenu.TogglePause();
+    }
 
 
     public void DisableInput()
