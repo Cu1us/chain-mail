@@ -18,14 +18,14 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: b92dec001a43675bc9ea93c355b8f501
   - enabled: 1
+    path: Assets/Scenes/TowerRoom.unity
+    guid: 0c992d77aa5294c6b889af0c6e5a2b7c
+  - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: 302e936b9661f2a43b4ca4d77fc79296
   - enabled: 1
     path: Assets/Scenes/Tower Room 2.unity
     guid: c6ecadcaf087197449108b8ce849021a
-  - enabled: 1
-    path: Assets/Scenes/TowerRoom.unity
-    guid: 0c992d77aa5294c6b889af0c6e5a2b7c
   - enabled: 1
     path: Assets/Scenes/Throne room.unity
     guid: 6a67fabb3b2658d45a2e6b3ea2392810
