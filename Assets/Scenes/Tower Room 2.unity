@@ -26812,11 +26812,11 @@ PrefabInstance:
       objectReference: {fileID: 1403922792}
     - target: {fileID: 5769951615074734439, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 74
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5769951615074734439, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 38
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5769951615074734439, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: m_LocalPosition.z
@@ -26852,11 +26852,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5789651416746514506, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.44
+      value: 66.2
       objectReference: {fileID: 0}
     - target: {fileID: 5789651416746514506, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.62
+      value: 39.5
       objectReference: {fileID: 0}
     - target: {fileID: 6171870962561635606, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: canCollideWith.Array.data[0]
@@ -26884,11 +26884,11 @@ PrefabInstance:
       objectReference: {fileID: 1003462499}
     - target: {fileID: 7969500359791862618, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.28
+      value: 69.6
       objectReference: {fileID: 0}
     - target: {fileID: 7969500359791862618, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.93
+      value: 38.8
       objectReference: {fileID: 0}
     - target: {fileID: 9213995762648585400, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: HealthBar
