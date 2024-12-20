@@ -104,7 +104,10 @@ public class Chain : MonoBehaviour
         }
         else if (fallingIntoHole != newFallingStatus)
         {
-            faller.fallingIntoHole = true;
+            Player.fallingIntoHole = false;
+            Rock.fallingIntoHole = false;
+            Player.SendMessage("Death");
+            Rock.gameObject.SetActive(false);
         }
     }
     void StopFallingIntoHole()
