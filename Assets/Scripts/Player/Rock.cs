@@ -23,7 +23,7 @@ public class Rock : SwingableObject
 
         if (spriteRenderer)
         {
-            spriteRenderer.flipX = !facingRight;
+            //spriteRenderer.flipX = !facingRight;
         }
     }
 }
