@@ -22,7 +22,7 @@ public class SwingableObject : MonoBehaviour, IKnockable
     [SerializeField] Collider2D[] canCollideWith;
     [SerializeField] Vector2 localPointOfCollision;
     [SerializeField] ButtonPrompt dragOutOfHoleButton;
-    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] protected SpriteRenderer spriteRenderer;
 
     // Events
     public Action<float> onKnockedChain;
@@ -133,31 +133,27 @@ public class SwingableObject : MonoBehaviour, IKnockable
 
     void UpdateFacingDir()
     {
-        if (spriteRenderer)
+        if (Mathf.Abs(swingVelocity) < 10f)
         {
-            if (Mathf.Abs(swingVelocity) < 10f)
+            if (translation.x > 0)
             {
-                if (translation.x > 0)
-                {
-                    facingRight = true;
-                }
-                else if (translation.x < 0)
-                {
-                    facingRight = false;
-                }
+                facingRight = true;
             }
-            else
+            else if (translation.x < 0)
             {
-                if (swingForwardDirection.x > 0)
-                {
-                    facingRight = true;
-                }
-                else if (swingForwardDirection.x < 0)
-                {
-                    facingRight = false;
-                }
+                facingRight = false;
             }
-            spriteRenderer.flipX = facingRight;
+        }
+        else
+        {
+            if (swingForwardDirection.x > 0)
+            {
+                facingRight = true;
+            }
+            else if (swingForwardDirection.x < 0)
+            {
+                facingRight = false;
+            }
         }
     }
 
