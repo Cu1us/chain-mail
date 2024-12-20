@@ -16428,7 +16428,7 @@ PrefabInstance:
     - target: {fileID: 915413065151834842, guid: 4a5347251986523449bccdb34aee4ef6, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: 63d586f326589054ea91233cda0cf170, type: 2}
+      objectReference: {fileID: 23800000, guid: 0ae0bc7099279ae459051dce4f9f31fa, type: 2}
     - target: {fileID: 5762071513925406466, guid: 4a5347251986523449bccdb34aee4ef6, type: 3}
       propertyPath: m_Name
       value: Navmesh
@@ -21002,7 +21002,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1794385513
 SpriteRenderer:
   m_ObjectHideFlags: 0
