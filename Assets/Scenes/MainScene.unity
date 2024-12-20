@@ -1921,6 +1921,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!212 &588029025 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4193241122778370781, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+  m_PrefabInstance: {fileID: 1125270394}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &642261528
 GameObject:
   m_ObjectHideFlags: 0
@@ -16468,6 +16473,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1844444581378172185, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 588029020}
+    - target: {fileID: 1844444581378172185, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 588029025}
     - target: {fileID: 1844444581378172185, guid: 93e03e6044fd53f04b2595785512a233, type: 3}
       propertyPath: canCollideWith.Array.data[0]
       value: 

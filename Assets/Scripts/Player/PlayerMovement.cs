@@ -37,5 +37,10 @@ public class PlayerMovement : SwingableObject
             trailRenderer.emitting = beingGrabbed;
 
         base.Update();
+
+        if (spriteRenderer)
+        {
+            spriteRenderer.flipX = facingRight;
+        }
     }
 }
