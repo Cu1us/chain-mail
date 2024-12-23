@@ -14,6 +14,7 @@ public class TutorialController : MonoBehaviour
     [SerializeField] SwingableObject rock;
     [SerializeField] Chain chain;
     [SerializeField] DoorNextLevel doorNextLevel;
+    [SerializeField] GameObject dummy;
 
     GameObject[] tutorialSteps = new GameObject[5];
     bool animationComplete;
@@ -34,6 +35,11 @@ public class TutorialController : MonoBehaviour
     // Step 4
     bool iButton;
     bool kButton;
+
+    // Step 5
+    GameObject newDummy = null;
+    bool dummySpawned = false;
+
     void Start()
     {
         if (PlayerInputData.inputType == PlayerInputData.InputType.Keyboard || PlayerInputData.inputType == null)
@@ -133,6 +139,9 @@ public class TutorialController : MonoBehaviour
                 CheckChainLenght();
                 break;
             case 4:
+                CheckDummyKilled();
+                break;
+            case 5:
                 currentStepComplete = true;
                 doorNextLevel.OpenNextLevel();
                 break;
@@ -222,6 +231,19 @@ public class TutorialController : MonoBehaviour
             {
                 currentStepComplete = true;
             }
+        }
+    }
+
+    void CheckDummyKilled()
+    {
+        if (newDummy == null && dummySpawned == false)
+        {
+            newDummy = Instantiate(dummy, new Vector3(0, 0, 0), Quaternion.identity);
+            dummySpawned = true;
+        }
+        else if (dummySpawned && newDummy == null)
+        {
+            currentStepComplete = true;
         }
     }
 }
