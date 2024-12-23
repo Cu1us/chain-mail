@@ -24,6 +24,8 @@ public class TutorialController : MonoBehaviour
     // Step 1
     bool jButton;
     bool lButton;
+    float rotationTimer1;
+    float rotationTimer2;
 
     // Step 2
     bool player1ChangedAnchor;
@@ -152,19 +154,28 @@ public class TutorialController : MonoBehaviour
     {
         if (animationComplete)
         {
-            if (player1.swingVelocity > 4 || rock.swingVelocity > 4)
+            if (player1.swingVelocity > 5 || rock.swingVelocity > 5)
+            {
+                rotationTimer1 += Time.deltaTime;
+            }
+            if (rotationTimer1 > 0.8f)
             {
                 jButton = true;
                 Transform JButton = tutorialSteps[currentStep].transform.GetChild(1);
                 JButton.gameObject.GetComponent<Image>().color = Color.green;
-
             }
-            if (player1.swingVelocity < -4 || rock.swingVelocity < -4)
+
+            if (player1.swingVelocity < -5 || rock.swingVelocity < -5)
+            {
+                rotationTimer2 += Time.deltaTime;
+            }
+            if (rotationTimer2 > 0.8f)
             {
                 lButton = true;
                 Transform LButton = tutorialSteps[currentStep].transform.GetChild(3);
                 LButton.gameObject.GetComponent<Image>().color = Color.green;
             }
+
             if (jButton && lButton)
             {
                 currentStepComplete = true;
