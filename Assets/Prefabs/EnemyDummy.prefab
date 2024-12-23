@@ -237,9 +237,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11c4f5dc371ddf48a80444e7c1b1108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1: {fileID: 0}
   targetTransform1: {fileID: 0}
+  shadow: {fileID: 0}
+  trappDetection: {fileID: 0}
   animator: {fileID: 7054522616947710790}
-  acceleration: 10
+  acceleration: 0
   knockbackDeceleration: 10
   maxVelocity: 5
   flankExtraDistance: 5
@@ -247,7 +250,7 @@ MonoBehaviour:
   attackDistance: 2
   sentinelMass: 0
   isAttackState: 0
-  isArcher: 1
+  isArcher: 0
   isSentinel: 0
   isSwordman: 0
   stumbleTimer: 2
