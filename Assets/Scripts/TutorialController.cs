@@ -1,6 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TutorialController : MonoBehaviour
 {
@@ -30,9 +31,11 @@ public class TutorialController : MonoBehaviour
     // Step 2
     bool player1ChangedAnchor;
     bool rockChangedAnchor;
+    float switchedAnchorCounter;
 
     // Step 3
-    bool swapped;
+    bool rockBeingSwapped;
+    float swappedCounter;
 
     // Step 4
     bool iButton;
@@ -90,7 +93,6 @@ public class TutorialController : MonoBehaviour
         lButton = false;
         player1ChangedAnchor = false;
         rockChangedAnchor = false;
-        swapped = false;
         iButton = false;
         kButton = false;
         PlayTextAnimation();
@@ -116,11 +118,11 @@ public class TutorialController : MonoBehaviour
         if (currentStep != 0)
         {
             tutorialSteps[currentStep - 1].GetComponent<RectTransform>().DOAnchorPosX(-2100, 2).SetEase(Ease.InOutQuad).OnComplete(() =>
-                tutorialSteps[currentStep].GetComponent<RectTransform>().DOAnchorPosX(-900, 2).SetEase(Ease.InOutQuad).OnComplete(() => animationComplete = true));
+                tutorialSteps[currentStep].GetComponent<RectTransform>().DOAnchorPosX(-800, 2).SetEase(Ease.InOutQuad).OnComplete(() => animationComplete = true));
         }
         else
         {
-            tutorialSteps[currentStep].GetComponent<RectTransform>().DOAnchorPosX(-900, 2).SetEase(Ease.InOutQuad).OnComplete(() => animationComplete = true);
+            tutorialSteps[currentStep].GetComponent<RectTransform>().DOAnchorPosX(-800, 2).SetEase(Ease.InOutQuad).OnComplete(() => animationComplete = true);
         }
     }
 
@@ -187,15 +189,21 @@ public class TutorialController : MonoBehaviour
     {
         if (animationComplete)
         {
-            if (chain.anchorStatus == Chain.AnchorStatus.PLAYER && Mathf.Abs(rock.swingVelocity) > 4)
+            if (chain.anchorStatus == Chain.AnchorStatus.PLAYER && Mathf.Abs(rock.swingVelocity) > 4 && !player1ChangedAnchor)
             {
                 player1ChangedAnchor = true;
+                rockChangedAnchor = false;
+                switchedAnchorCounter++;
+                tutorialSteps[currentStep].transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = (switchedAnchorCounter - 1).ToString();
             }
-            if (chain.anchorStatus == Chain.AnchorStatus.ROCK && Mathf.Abs(player1.swingVelocity) > 4)
+            if (chain.anchorStatus == Chain.AnchorStatus.ROCK && Mathf.Abs(player1.swingVelocity) > 4 && !rockChangedAnchor)
             {
                 rockChangedAnchor = true;
+                player1ChangedAnchor = false;
+                switchedAnchorCounter++;
+                tutorialSteps[currentStep].transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = (switchedAnchorCounter - 1).ToString();
             }
-            if (player1ChangedAnchor && rockChangedAnchor)
+            if (switchedAnchorCounter > 3)
             {
                 Transform Button = tutorialSteps[currentStep].transform.GetChild(1);
                 Button.gameObject.GetComponent<Image>().color = Color.green;
@@ -208,11 +216,18 @@ public class TutorialController : MonoBehaviour
     {
         if (animationComplete)
         {
-            if (Time.time - player1.lastSwapTime < 1 || Time.time - rock.lastSwapTime < 1)
+            if (rock.beingSwapped && !rockBeingSwapped)
             {
-                swapped = true;
+                rockBeingSwapped = true;
+                swappedCounter++;
+                tutorialSteps[currentStep].transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = (swappedCounter).ToString();
             }
-            if (swapped)
+            if (rock.beingSwapped == false)
+            {
+                rockBeingSwapped = false;
+            }
+
+            if (swappedCounter >= 3)
             {
                 Transform Button = tutorialSteps[currentStep].transform.GetChild(1);
                 Button.gameObject.GetComponent<Image>().color = Color.green;
@@ -247,14 +262,17 @@ public class TutorialController : MonoBehaviour
 
     void CheckDummyKilled()
     {
-        if (newDummy == null && dummySpawned == false)
+        if (animationComplete)
         {
-            newDummy = Instantiate(dummy, new Vector3(0, 0, 0), Quaternion.identity);
-            dummySpawned = true;
-        }
-        else if (dummySpawned && newDummy == null)
-        {
-            currentStepComplete = true;
+            if (newDummy == null && dummySpawned == false)
+            {
+                newDummy = Instantiate(dummy, new Vector3(0, 10, 0), Quaternion.identity);
+                dummySpawned = true;
+            }
+            else if (dummySpawned && newDummy == null)
+            {
+                currentStepComplete = true;
+            }
         }
     }
 }
