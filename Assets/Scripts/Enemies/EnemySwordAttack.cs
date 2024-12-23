@@ -21,11 +21,14 @@ public class EnemySwordAttack : MonoBehaviour
     float sentinelFollowUpAttackTime = 3f;
     bool sentinelChargeUp;
     GameObject newParticle;
+    [SerializeField] bool playerInRange = false;
+    Transform player;
 
     private void Start()
     {
         collisionDetector.onTriggerEnter += CollisionEnter;
         collisionDetector.onTriggerExit += CollisionExit;
+        player = GameObject.Find("Player1").GetComponent<Transform>();
     }
 
     void Update()
@@ -38,7 +41,7 @@ public class EnemySwordAttack : MonoBehaviour
                 chargeUpTimer += Time.deltaTime;
                 //sentinelWaitTimer += Time.deltaTime;
                 animator.SetBool("isReady", true);
-                if (chargeUpTimer > sentinelChargeUpTime && playersInsideTrigger.Count > 0) 
+                if (chargeUpTimer > sentinelChargeUpTime && playersInsideTrigger.Count > 0 && playerInRange) 
                 {
                     animator.Play("Attack");
                     sentinelWaitTimer = 0 - sentinelFollowUpAttackTime;
@@ -61,7 +64,7 @@ public class EnemySwordAttack : MonoBehaviour
         }
 
 
-        if (playersInsideTrigger.Count > 0 && state.state != EnemyMovement.EnemyState.STUCK && isSwordMan)
+        if (playerInRange && state.state != EnemyMovement.EnemyState.STUCK && isSwordMan) //playersInsideTrigger.Count > 0 
         {
             animator.Play("Attack");
         }
@@ -73,10 +76,20 @@ public class EnemySwordAttack : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             playersInsideTrigger.Add(collision);
-            if (isSentinel)
+            if (collision.transform.position == player.position)
             {
+                playerInRange = true;
                 sentinelChargeUp = true;
             }
+
+            else if(state.state != EnemyMovement.EnemyState.STUCK)
+            {
+                state.StateChange(EnemyMovement.EnemyState.MOVECLOSETOATTACK);
+            }
+            // if (isSentinel)
+            // {
+            //     sentinelChargeUp = true;
+            // }
         }
     }
 
@@ -84,6 +97,10 @@ public class EnemySwordAttack : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            if (collision.transform.position == player.position)
+            {
+                playerInRange = false;
+            }
             playersInsideTrigger.Remove(collision);
         }
     }

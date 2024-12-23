@@ -30,6 +30,7 @@ public class EnemyMovement : MonoBehaviour
     float accell;
     [SerializeField] float knockbackDeceleration = 10;
     [SerializeField] float maxVelocity;
+    float activeMaxVelocity;
     float currentMaxVelocity;
     [SerializeField] float flankExtraDistance;
     [SerializeField] float keepDistanceDistance;
@@ -72,6 +73,8 @@ public class EnemyMovement : MonoBehaviour
     }
     FlankDir flankDir;
 
+    public float speed;
+
 
     void Start()
     {
@@ -92,15 +95,20 @@ public class EnemyMovement : MonoBehaviour
         targetTransform2 = playerRock;
         nextState = state;
         grabber = chain.Anchor.transform;
-        currentMaxVelocity = maxVelocity;
+        activeMaxVelocity = maxVelocity;
         accell = acceleration;
-        agent.speed = currentMaxVelocity;
+        agent.speed = activeMaxVelocity;
+        targetTransform1 = player1;
+
+        agent.acceleration = 20;
+
 
     }
 
 
     void Update()
     {
+        speed = rb.velocity.magnitude;
 
         stumbleTimer += Time.deltaTime;
         stateTimer += Time.deltaTime;
@@ -108,7 +116,7 @@ public class EnemyMovement : MonoBehaviour
         {
             RandomState();
         }
-        ClosestEnemy();
+        // ClosestEnemy();
 
         switch (state)
         {
@@ -145,7 +153,7 @@ public class EnemyMovement : MonoBehaviour
 
         CompareVelocity();
         CheckIfAttacking();
-        rb.velocity = Vector2.MoveTowards(rb.velocity, direction * currentMaxVelocity, accell * Time.deltaTime);
+        rb.velocity = Vector2.MoveTowards(rb.velocity, direction * activeMaxVelocity, accell * Time.deltaTime);
         agent.nextPosition = transform.position;
         Flip();
     }
@@ -197,8 +205,11 @@ public class EnemyMovement : MonoBehaviour
     {
         stateTimer = 0;
         state = _state;
-        currentMaxVelocity = maxVelocity;
+        activeMaxVelocity = maxVelocity;
         isAttackState = true;
+        accell = 10;
+
+
         if (state == EnemyState.FALLING)
         {
             stateTimer = -100;
@@ -206,29 +217,32 @@ public class EnemyMovement : MonoBehaviour
             isAttackState = false;
             shadow.GetComponent<SpriteRenderer>().enabled = false;
             trappDetection.GetComponent<BoxCollider2D>().enabled = false;
-
             return;
         }
+
         if (isSentinel)
         {
             rb.mass = sentinelMass;
         }
+
         if (isArcher && _state != EnemyState.STUCK)
         {
             state = EnemyState.ARCHER;
         }
+
         switch (state)
         {
             case EnemyState.STUCK:
                 isAttackState = false;
-                currentMaxVelocity = 0;
+                activeMaxVelocity = 0;
                 break;
             case EnemyState.KEEPDISTANCE:
                 stateTimer = stateChangeCooldown - 2;
                 keepDistanceDistance = Random.Range(7, 12);
                 break;
             case EnemyState.MOVECLOSETOATTACK:
-                currentMaxVelocity = 10;
+                activeMaxVelocity = 20;
+                accell = 20;
                 break;
             case EnemyState.FLANK:
                 if (Random.Range(0, 2) == 0)
@@ -249,7 +263,8 @@ public class EnemyMovement : MonoBehaviour
                 break;
 
         }
-        agent.speed = currentMaxVelocity;
+        agent.speed = activeMaxVelocity;
+        currentMaxVelocity = activeMaxVelocity;
     }
 
     void ClosestEnemy()
@@ -344,10 +359,9 @@ public class EnemyMovement : MonoBehaviour
     }
 
     public void Stumble()
-    {
-        if (stumbleTimer > stumbleTimerCooldown)
+    { 
+        if (stumbleTimer > stumbleTimerCooldown && Mathf.Abs(chain.rotationalVelocity) > 300)
         {
-
             animator.Play("Stumble");
             Invoke(nameof(Stand), stumbleTime);
             stateTimer += stumbleTime;
@@ -395,25 +409,27 @@ public class EnemyMovement : MonoBehaviour
 
     void CompareVelocity()
     {
-        animator.SetFloat("Velocity", rb.velocity.sqrMagnitude);
-        if (rb.velocity.sqrMagnitude > maxVelocity * maxVelocity)
-        {
-            accell = knockbackDeceleration;
-        }
-        else
-        {
-            accell = acceleration;
-        }
+        float factor = maxVelocity/currentMaxVelocity;
+
+        animator.SetFloat("Velocity", rb.velocity.sqrMagnitude * factor);
+         if (rb.velocity.sqrMagnitude > currentMaxVelocity * currentMaxVelocity)
+         {
+             accell = knockbackDeceleration;
+         }
+         else
+         {
+             accell = acceleration;
+         }
     }
 
     void StoppMoving()
     {
         Debug.Log("StopMoving");
-        currentMaxVelocity = 0;
+        activeMaxVelocity = 0;
     }
     void ContinueMoving()
     {
-        currentMaxVelocity = maxVelocity;
+        activeMaxVelocity = maxVelocity;
         Debug.Log("ContinueMoving");
     }
 
@@ -436,22 +452,22 @@ public class EnemyMovement : MonoBehaviour
         {
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("ChargeUp") || state == EnemyState.STUCK)
             {
-                currentMaxVelocity = 0;
+                activeMaxVelocity = 0;
             }
             else
             {
-                currentMaxVelocity = maxVelocity;
+                activeMaxVelocity = currentMaxVelocity;
             }
         }
 
         else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") || state == EnemyState.STUCK)
         {
-            currentMaxVelocity = 0;
+            activeMaxVelocity = 0;
         }
 
         else
         {
-            currentMaxVelocity = maxVelocity;
+            activeMaxVelocity = currentMaxVelocity;
         }
     }
 

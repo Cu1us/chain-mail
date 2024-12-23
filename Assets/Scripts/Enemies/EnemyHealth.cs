@@ -69,7 +69,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (isSentinel && enemyMovement.state != EnemyMovement.EnemyState.STUCK)
         {
-            damage *= 0.5f;
+            damage *= 0;
         }
         damage = Mathf.Round(damage);
         enemyHealth -= damage;
