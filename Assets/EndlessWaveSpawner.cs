@@ -18,12 +18,14 @@ public class EndlessWaveSpawner : MonoBehaviour
     [SerializeField] TextMeshProUGUI waveCounter;
     [SerializeField] GameObject waveText;
 
+    [Header("Settings")]
+    [SerializeField] int swordCost;
+    [SerializeField] int hammerCost;
+    [SerializeField] int archerCost;
+
     float totalScore;
     int currentWave;
 
-    int swordCost = 10;
-    int hammerCost = 20;
-    int archerCost = 20;
     Vector2 pos;
 
     List<GameObject> spawnList = new List<GameObject>();
@@ -44,9 +46,18 @@ public class EndlessWaveSpawner : MonoBehaviour
 
     void Update()
     {
-        if(EnemyMovement.EnemyList.Count == 0)
+        SpawnNewWave();
+    }
+
+    void SpawnNewWave()
+    {
+        if (EnemyMovement.EnemyList.Count == 0)
         {
             SpawnList();
+            AddWaveCost();
+            SpawnPosition();
+            InstantiateNewWave();
+            NewWaveText();
         }
     }
 
@@ -81,13 +92,7 @@ public class EndlessWaveSpawner : MonoBehaviour
                     break;
             }
         }
-
-        AddWaveCost();
-        SpawnPosition();
-        SpawnWave();
-        WaveText();
     }
-
     void AddWaveCost()
     {
         WaveCost += 50;
@@ -106,7 +111,7 @@ public class EndlessWaveSpawner : MonoBehaviour
             }
         }
     }
-    void SpawnWave()
+    void InstantiateNewWave()
     {
         while(spawnList.Count != 0)
         {
@@ -115,13 +120,7 @@ public class EndlessWaveSpawner : MonoBehaviour
         }
     }
 
-    public void AddScore(float newScore)
-    {
-        totalScore += newScore;
-        scoreCounter.text = totalScore.ToString();
-    }
-
-    void WaveText()
+    void NewWaveText()
     {
         currentWave++;
         waveCounter.text = currentWave.ToString();
@@ -129,5 +128,10 @@ public class EndlessWaveSpawner : MonoBehaviour
         waveText.GetComponent<RectTransform>().DOAnchorPosX(0, 2).SetEase(Ease.InOutQuad).OnComplete(() =>
         waveText.GetComponent<RectTransform>().DOAnchorPosX(1100, 2).SetEase(Ease.InOutQuad).OnComplete(() =>
         waveText.GetComponent<RectTransform>().anchoredPosition = new Vector2(-1100, 0)));
+    }
+    public void AddScore(float newScore)
+    {
+        totalScore += newScore;
+        scoreCounter.text = totalScore.ToString();
     }
 }
