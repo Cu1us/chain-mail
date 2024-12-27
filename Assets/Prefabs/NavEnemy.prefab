@@ -323,6 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11c4f5dc371ddf48a80444e7c1b1108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1: {fileID: 0}
   targetTransform1: {fileID: 0}
   shadow: {fileID: 524826816112989474}
   trappDetection: {fileID: 4818969038544234171}
@@ -334,6 +335,7 @@ MonoBehaviour:
   keepDistanceDistance: 6
   attackDistance: 2
   sentinelMass: 0
+  idleSetDistance: 45
   isAttackState: 0
   isArcher: 0
   isSentinel: 0
@@ -343,6 +345,7 @@ MonoBehaviour:
   stateTimer: 0
   stumbleTime: 3
   state: 1
+  speed: 0
 --- !u!114 &-7956447530525605050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,6 +380,7 @@ MonoBehaviour:
   isSwordMan: 1
   isSentinel: 0
   sentinelWaitTimer: 0
+  playerInRange: 0
 --- !u!1 &2190873294422252990
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class EnemySwordAttack : MonoBehaviour
     [SerializeField] float sentinelWaitTimer;
     float chargeUpTimer;
     float sentinelChargeUpTime = 0.8f;
-    float sentinelFollowUpAttackTime = 3f;
+    float sentinelFollowUpAttackTime = 1f;
     bool sentinelChargeUp;
     GameObject newParticle;
     [SerializeField] bool playerInRange = false;
@@ -36,6 +36,7 @@ public class EnemySwordAttack : MonoBehaviour
         if (isSentinel)
         {
             sentinelWaitTimer += Time.deltaTime;
+
             if (sentinelChargeUp && state.state != EnemyMovement.EnemyState.STUCK && sentinelWaitTimer > 0)
             {
                 chargeUpTimer += Time.deltaTime;
@@ -57,7 +58,6 @@ public class EnemySwordAttack : MonoBehaviour
             }
             else
             {
-                sentinelChargeUp = false;
                 chargeUpTimer = 0;
                 animator.SetBool("isReady", false);
             }
@@ -86,10 +86,6 @@ public class EnemySwordAttack : MonoBehaviour
             {
                 state.StateChange(EnemyMovement.EnemyState.MOVECLOSETOATTACK);
             }
-            // if (isSentinel)
-            // {
-            //     sentinelChargeUp = true;
-            // }
         }
     }
 
@@ -100,6 +96,7 @@ public class EnemySwordAttack : MonoBehaviour
             if (collision.transform.position == player.position)
             {
                 playerInRange = false;
+                sentinelChargeUp = false;
             }
             playersInsideTrigger.Remove(collision);
         }
@@ -122,7 +119,7 @@ public class EnemySwordAttack : MonoBehaviour
     }
 
     void AddDamage()
-    {
+    {   
         for (int i = 0; i < playersInsideTrigger.Count; i++)
         {
             if (playersInsideTrigger[i].TryGetComponent<PlayerHealth>(out PlayerHealth component))

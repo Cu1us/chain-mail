@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -37,6 +38,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float attackDistance;
     float currentChainLength;
     [SerializeField] float sentinelMass;
+    [SerializeField] float idleSetDistance;
 
 
     Vector2 target;
@@ -209,7 +211,6 @@ public class EnemyMovement : MonoBehaviour
         isAttackState = true;
         accell = 10;
 
-
         if (state == EnemyState.FALLING)
         {
             stateTimer = -100;
@@ -220,15 +221,23 @@ public class EnemyMovement : MonoBehaviour
             return;
         }
 
+        if (isArcher && _state != EnemyState.STUCK)
+        {
+            state = EnemyState.ARCHER;
+        }
+
+        if(Vector2.Distance(transform.position, player1.position) > idleSetDistance)
+        {
+            state = EnemyState.IDLE;
+            target = transform.position;
+        }
+
         if (isSentinel)
         {
             rb.mass = sentinelMass;
         }
 
-        if (isArcher && _state != EnemyState.STUCK)
-        {
-            state = EnemyState.ARCHER;
-        }
+
 
         switch (state)
         {
@@ -344,6 +353,7 @@ public class EnemyMovement : MonoBehaviour
             StateChange(EnemyState.INTERCEPT);
         }
     }
+
 
     void MoveCloseToAttack()
     {
