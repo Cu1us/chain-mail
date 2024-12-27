@@ -24,6 +24,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] GameObject DamageText;
     [SerializeField] bool isMale;
     [SerializeField] bool isSentinel;
+    EndlessWaveSpawner endlessWaveSpawner;
     GameObject nextLevel;
 
     GameObject OldText;
@@ -34,8 +35,12 @@ public class EnemyHealth : MonoBehaviour
         {
             nextLevel = GameObject.Find("NextLevel");
         }
-
+        if (GameObject.Find("EndlessManager") != null)
+        {
+            endlessWaveSpawner = GameObject.Find("EndlessManager").GetComponent<EndlessWaveSpawner>();
+        }
     }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Keypad1))
@@ -65,14 +70,18 @@ public class EnemyHealth : MonoBehaviour
             enemyMovement.stumbleTimer = enemyMovement.stumbleTimerCooldown - 0.3f;
         }
 
-
-
         if (isSentinel && enemyMovement.state != EnemyMovement.EnemyState.STUCK)
         {
             damage *= 0;
         }
         damage = Mathf.Round(damage);
         enemyHealth -= damage;
+
+        if (endlessWaveSpawner != null)
+        {
+            endlessWaveSpawner.AddScore(damage);
+        }
+
         if (isMale)
         {
             AudioManager.Play("hurthuman");
@@ -154,7 +163,6 @@ public class EnemyHealth : MonoBehaviour
         enemyMovement.isAttackState = false;
         coll2D.enabled = false;
         Invoke(nameof(DestroyEnemy), 2f);
-
     }
 
     void DestroyEnemy()

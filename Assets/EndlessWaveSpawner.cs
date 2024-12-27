@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.Mathematics;
-using UnityEditor.Rendering;
+using TMPro;
+using DG.Tweening;
 using UnityEngine;
 
 public class EndlessWaveSpawner : MonoBehaviour
@@ -9,8 +10,16 @@ public class EndlessWaveSpawner : MonoBehaviour
     [SerializeField] GameObject sword;
     [SerializeField] GameObject archer;
     [SerializeField] GameObject hammer;
-    Transform player1;
     [SerializeField] Transform[] spawnPositions;
+    Transform player1;
+
+    [Header("UI")]
+    [SerializeField] TextMeshProUGUI scoreCounter;
+    [SerializeField] TextMeshProUGUI waveCounter;
+    [SerializeField] GameObject waveText;
+
+    float totalScore;
+    int currentWave;
 
     int swordCost = 10;
     int hammerCost = 20;
@@ -71,12 +80,12 @@ public class EndlessWaveSpawner : MonoBehaviour
                     }
                     break;
             }
-
         }
 
         AddWaveCost();
         SpawnPosition();
         SpawnWave();
+        WaveText();
     }
 
     void AddWaveCost()
@@ -104,5 +113,21 @@ public class EndlessWaveSpawner : MonoBehaviour
             Instantiate(spawnList[0], pos, quaternion.identity);
             spawnList.RemoveAt(0);
         }
+    }
+
+    public void AddScore(float newScore)
+    {
+        totalScore += newScore;
+        scoreCounter.text = totalScore.ToString();
+    }
+
+    void WaveText()
+    {
+        currentWave++;
+        waveCounter.text = currentWave.ToString();
+
+        waveText.GetComponent<RectTransform>().DOAnchorPosX(0, 2).SetEase(Ease.InOutQuad).OnComplete(() =>
+        waveText.GetComponent<RectTransform>().DOAnchorPosX(1100, 2).SetEase(Ease.InOutQuad).OnComplete(() =>
+        waveText.GetComponent<RectTransform>().anchoredPosition = new Vector2(-1100, 0)));
     }
 }
