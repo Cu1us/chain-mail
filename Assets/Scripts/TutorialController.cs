@@ -89,12 +89,34 @@ public class TutorialController : MonoBehaviour
     void ResetTutorial()
     {
         currentStep = 0;
+
+        // Step 1
         jButton = false;
         lButton = false;
+        rotationTimer1 = 0;
+        rotationTimer2 = 0;
+
+        // Step 2
         player1ChangedAnchor = false;
         rockChangedAnchor = false;
+        switchedAnchorCounter = 0;
+
+        // Step 3
+        rockBeingSwapped = false;
+        swappedCounter = 0;
+
+        // Step 4
         iButton = false;
         kButton = false;
+
+        // Step 5
+        if (newDummy != null)
+        {
+            Destroy(newDummy);
+        }
+        newDummy = null;
+        dummySpawned = false;
+
         PlayTextAnimation();
     }
 
