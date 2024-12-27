@@ -68,9 +68,18 @@ public class PlayerHealth : MonoBehaviour
 
     public void Death()
     {
+        if (GameObject.Find("EndlessManager") != null)
+        {
+            GameObject.Find("EndlessManager").GetComponent<EndlessWaveSpawner>().DeathText();
+            Invoke(nameof(ResetScene), 10);
+        }
+        else
+        {
+            Invoke(nameof(ResetScene), 2);
+        }
+
         gameoverText.SetActive(true);
         playerInput.DisableInput();
-        Invoke(nameof(ResetScene), 2);
         if (TryGetComponent(out Animator animator))
         {
             animator.SetBool("Dead", true);

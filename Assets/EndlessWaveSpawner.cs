@@ -17,6 +17,8 @@ public class EndlessWaveSpawner : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreCounter;
     [SerializeField] TextMeshProUGUI waveCounter;
     [SerializeField] GameObject waveText;
+    [SerializeField] GameObject gameOverText;
+    [SerializeField] TextMeshProUGUI gameOverScore;
 
     [Header("Settings")]
     [SerializeField] int swordCost;
@@ -132,9 +134,16 @@ public class EndlessWaveSpawner : MonoBehaviour
         waveText.GetComponent<RectTransform>().DOAnchorPosX(1100, 2).SetEase(Ease.InOutQuad).OnComplete(() =>
         waveText.GetComponent<RectTransform>().anchoredPosition = new Vector2(-1100, 0)));
     }
+
     public void AddScore(float newScore)
     {
         totalScore += newScore;
         scoreCounter.text = totalScore.ToString();
+    }
+
+    public void DeathText()
+    {
+        gameOverText.SetActive(true);
+        gameOverScore.text = totalScore.ToString();
     }
 }
