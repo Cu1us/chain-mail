@@ -5319,6 +5319,7 @@ MonoBehaviour:
   keepDistanceDistance: 6
   attackDistance: 2
   sentinelMass: 10
+  idleSetDistance: 45
   isAttackState: 0
   isArcher: 0
   isSentinel: 1
