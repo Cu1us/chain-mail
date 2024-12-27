@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] Volume hurtVignette;
     [SerializeField] SpriteBlink spriteBlink;
 
-    float playerHealth;
+    [HideInInspector] public float playerHealth;
     float vignetteHurtBoost;
 
     void Update()
@@ -61,7 +61,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void UpdateHealthBar()
+    public void UpdateHealthBar()
     {
         HealthBar.fillAmount = 1 - playerHealth / maxPlayerHealth;
     }

@@ -58,6 +58,9 @@ public class EndlessWaveSpawner : MonoBehaviour
             SpawnPosition();
             InstantiateNewWave();
             NewWaveText();
+
+            player1.GetComponent<PlayerHealth>().playerHealth = 150;
+            player1.GetComponent<PlayerHealth>().UpdateHealthBar();
         }
     }
 
