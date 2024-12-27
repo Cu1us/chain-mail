@@ -103,7 +103,7 @@ public class EnemyMovement : MonoBehaviour
         targetTransform1 = player1;
 
         agent.acceleration = 20;
-
+        RandomState();
 
     }
 
