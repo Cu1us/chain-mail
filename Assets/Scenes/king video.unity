@@ -15987,7 +15987,7 @@ GameObject:
   - component: {fileID: 1044114027}
   - component: {fileID: 1044114026}
   m_Layer: 0
-  m_Name: snot to isabell-animation_1
+  m_Name: Snot animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21327,7 +21327,7 @@ GameObject:
   - component: {fileID: 1885076170}
   - component: {fileID: 1885076169}
   m_Layer: 0
-  m_Name: kung ner
+  m_Name: King animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21415,8 +21415,8 @@ Transform:
   m_GameObject: {fileID: 1885076168}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.439, y: 23.254, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_LocalPosition: {x: 0.378, y: 23.226, z: 0}
+  m_LocalScale: {x: 0.90200007, y: 0.90200007, z: 0.90200007}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
