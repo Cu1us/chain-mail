@@ -3,6 +3,7 @@ using Unity.Mathematics;
 using TMPro;
 using DG.Tweening;
 using UnityEngine;
+using System.Linq;
 
 public class EndlessWaveSpawner : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class EndlessWaveSpawner : MonoBehaviour
     Vector2 pos;
 
     List<GameObject> spawnList = new List<GameObject>();
+    List<float> spawnListDistance = new List<float>();
 
     public enum PrefabToSpawn
     {
@@ -38,6 +40,7 @@ public class EndlessWaveSpawner : MonoBehaviour
     }
     public PrefabToSpawn prefab;
     int WaveCost;
+     int x;
 
     void Start()
     {
@@ -102,26 +105,34 @@ public class EndlessWaveSpawner : MonoBehaviour
     {
         WaveCost += 50;
     }
-    void SpawnPosition()
+   void SpawnPosition()
     {
-        pos = Vector2.zero;
-        float highestDistToTarget = 0;
-        foreach(Transform i in spawnPositions)
+        spawnListDistance.Clear();
+        foreach (Transform i in spawnPositions)
         {
-            float distToTarget = Vector2.Distance(i.position ,player1.position);
-            if(distToTarget > highestDistToTarget)
-            {
-                pos = i.position;
-                highestDistToTarget = distToTarget;
-            }
+            spawnListDistance.Add(Vector2.Distance(i.position, player1.position));
         }
+        spawnListDistance.Sort();
+
     }
     void InstantiateNewWave()
     {
-        while(spawnList.Count != 0)
+        while (spawnList.Count != 0)
         {
-            Instantiate(spawnList[0], pos, quaternion.identity);
-            spawnList.RemoveAt(0);
+            x++;
+
+            if (x == spawnPositions.Count())
+            {
+                x=0;
+            }
+
+            if (Vector2.Distance(spawnPositions[x].position, player1.position) != spawnListDistance[0])
+            {
+                Instantiate(spawnList[0], spawnPositions[x].position, quaternion.identity);
+                spawnList.RemoveAt(0);
+            }
+
+
         }
     }
 
