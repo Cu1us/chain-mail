@@ -348,7 +348,7 @@ public class Chain : MonoBehaviour
         toSwap.lastSwapTime = Time.time;
 
 
-        Vector2 swapTargetPos = GetSwapTargetPosition();
+        Vector2 swapTargetPos = GetSwapTargetPosition(toSwap, swapAnchor);
 
         if (rotationalVelocity != 0)
         {
@@ -369,11 +369,8 @@ public class Chain : MonoBehaviour
         }
     }
 
-    Vector2 GetSwapTargetPosition()
+    Vector2 GetSwapTargetPosition(SwingableObject toSwap, SwingableObject swapAnchor)
     {
-        SwingableObject toSwap = Rock;
-        SwingableObject swapAnchor = Player;
-
         return swapAnchor.position + (swapAnchor.position - toSwap.position).normalized * maxDistance;
     }
     EnemyMovement GetAimbotTarget(Vector2 swapTargetPosition, SwingableObject swapAnchor)
@@ -407,7 +404,7 @@ public class Chain : MonoBehaviour
                 aimbotReticle.gameObject.SetActive(false);
             return;
         }
-        EnemyMovement aimbotTarget = GetAimbotTarget(GetSwapTargetPosition(), Player);
+        EnemyMovement aimbotTarget = GetAimbotTarget(GetSwapTargetPosition(Rock, Player), Player);
         if (aimbotTarget)
         {
             if (!aimbotReticle.gameObject.activeSelf)
