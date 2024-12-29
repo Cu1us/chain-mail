@@ -67,8 +67,11 @@ public class PlayerInputData : MonoBehaviour
     public float chainExtendInput { get => inputDisabled ? default : _chainExtendInput; }
 
     Vector2 _movementInput;
-    float _chainRotationalInput;
+    int _chainRotationalInput;
     float _chainExtendInput;
+
+    bool _rotateClockwise;
+    bool _rotateCounterclockwise;
 
     public Action<int> onChainRotate;
     public Action onChainSwap;
@@ -81,10 +84,34 @@ public class PlayerInputData : MonoBehaviour
     {
         _movementInput = value.Get<Vector2>();
     }
-    void OnRotateChain(InputValue value)
+    void OnRotateClockwise(InputValue value)
     {
-        _chainRotationalInput = Mathf.Round(value.Get<float>());
-        if (!inputDisabled) onChainRotate?.Invoke(Mathf.RoundToInt(value.Get<float>()));
+        _rotateClockwise = Mathf.RoundToInt(value.Get<float>()) == 1;
+        _chainRotationalInput = 1;
+        UpdateRotation();
+    }
+    void OnRotateCounterclockwise(InputValue value)
+    {
+        _rotateCounterclockwise = Mathf.RoundToInt(value.Get<float>()) == 1;
+        _chainRotationalInput = -1;
+        UpdateRotation();
+    }
+    void UpdateRotation()
+    {
+        if (_rotateClockwise && !_rotateCounterclockwise)
+        {
+            _chainRotationalInput = 1;
+        }
+        else if (!_rotateClockwise && _rotateCounterclockwise)
+        {
+            _chainRotationalInput = -1;
+        }
+        else if (!_rotateClockwise && !_rotateCounterclockwise)
+        {
+            _chainRotationalInput = 0;
+        }
+        if (!inputDisabled)
+            onChainRotate.Invoke(_chainRotationalInput);
     }
     void OnExtendChain(InputValue value)
     {
