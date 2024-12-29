@@ -103,10 +103,12 @@ public class Chain : MonoBehaviour
         }
         else if (fallingIntoHole != newFallingStatus)
         {
-            Player.fallingIntoHole = false;
-            Rock.fallingIntoHole = false;
+            Player.fallingIntoHole = true;
+            Rock.fallingIntoHole = true;
             Player.SendMessage("Death");
             Rock.gameObject.SetActive(false);
+            Player.gameObject.SetActive(false);
+            lineRenderer.enabled = false;
         }
     }
     void StopFallingIntoHole()
@@ -204,7 +206,8 @@ public class Chain : MonoBehaviour
 
         dragger.MoveTowards(faller.position, fallingIntoHoleDragSpeed * Time.deltaTime);
 
-        rotationalVelocity = Mathf.MoveTowards(rotationalVelocity, 0, rotationDeceleration * Time.deltaTime);
+        rotationalVelocity = 0;//Mathf.MoveTowards(rotationalVelocity, 0, rotationDeceleration * Time.deltaTime);
+        dragger.velocity = Vector2.zero;
     }
     void UpdatePivot()
     {
