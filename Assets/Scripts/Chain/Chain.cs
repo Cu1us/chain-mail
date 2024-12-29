@@ -34,7 +34,6 @@ public class Chain : MonoBehaviour
     [SerializeField][Min(0)] float pivotReadjustToCenterTime;
     [SerializeField] AnimationCurve pivotReadjustToCenterCurve;
     [SerializeField] float knockbackWhenHittingWall;
-    [SerializeField][Range(0, 1)] float speedMultiplierWhenSwitchDir;
     [SerializeField] float chainElongationFromSwap;
     [SerializeField] float chainElongationResetDuration;
 
@@ -119,7 +118,7 @@ public class Chain : MonoBehaviour
         if (direction == 0 || rotationalVelocity == 0) return;
         if (Mathf.Sign(direction) == Mathf.Sign(rotationalVelocity))
         {
-            rotationalVelocity = -rotationalVelocity * speedMultiplierWhenSwitchDir;
+            rotationalVelocity = -rotationalVelocity;
             //SwitchAnchor();
         }
     }
