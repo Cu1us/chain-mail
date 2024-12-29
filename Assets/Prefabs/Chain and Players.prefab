@@ -364,7 +364,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   knockbackWhenHittingWall: 1
-  speedMultiplierWhenSwitchDir: 0.4
   chainElongationFromSwap: 4
   chainElongationResetDuration: 0.75
   Player: {fileID: 7739225830394850822}
@@ -564,11 +563,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8856967382859542037, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28.63
+      value: 7.3
       objectReference: {fileID: 0}
     - target: {fileID: 8856967382859542037, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 17.18
+      value: -13.2
       objectReference: {fileID: 0}
     - target: {fileID: 8856967382859542037, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -737,11 +736,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7891007783511305094, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.12
+      value: 11.200001
       objectReference: {fileID: 0}
     - target: {fileID: 7891007783511305094, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.18
+      value: -13.3
       objectReference: {fileID: 0}
     - target: {fileID: 7891007783511305094, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: m_LocalPosition.z
