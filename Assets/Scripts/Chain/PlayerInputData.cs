@@ -82,7 +82,7 @@ public class PlayerInputData : MonoBehaviour
 
     void OnMovement(InputValue value)
     {
-        _movementInput = value.Get<Vector2>();
+        _movementInput = Vector2.zero; //value.Get<Vector2>();
     }
     void OnRotateClockwise(InputValue value)
     {
