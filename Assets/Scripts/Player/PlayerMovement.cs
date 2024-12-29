@@ -19,17 +19,9 @@ public class PlayerMovement : SwingableObject
 
     protected override void Update()
     {
-        Vector2 movement = movementSpeed * Time.deltaTime * Input.movementInput;
-        if (!beingSwapped && !beingGrabbed && Input.chainRotationalInput == 0)
-        {
-            translation += movement;
-            animator.SetBool("Walking", Input.movementInput != default);
-        }
-        else
-        {
-            animator.SetBool("Walking", false);
-        }
-        animator.SetBool("Flying", beingGrabbed || (beingSwapped && velocity.sqrMagnitude > 1f) || velocity.sqrMagnitude > 20f);
+        animator.SetBool("Walking", beingGrabbed);
+        animator.SetFloat("SwingSpeed", Mathf.Abs(swingVelocity) / 30);
+        animator.SetBool("Flying", beingGrabbed && Mathf.Abs(swingVelocity) > 65 || (beingSwapped && velocity.sqrMagnitude > 1f) || velocity.sqrMagnitude > 20f);
         animator.SetBool("FallingInHole", fallingIntoHole);
 
 
