@@ -23,6 +23,8 @@ public class SwingableObject : MonoBehaviour, IKnockable
     [SerializeField] Vector2 localPointOfCollision;
     [SerializeField] ButtonPrompt dragOutOfHoleButton;
     [SerializeField] protected SpriteRenderer spriteRenderer;
+    [SerializeField] protected SpriteRenderer shadow;
+
 
     // Events
     public Action<float> onKnockedChain;
@@ -112,6 +114,10 @@ public class SwingableObject : MonoBehaviour, IKnockable
         if (dragOutOfHoleButton)
         {
             dragOutOfHoleButton.visible = fallingIntoHole;
+        }
+        if (shadow)
+        {
+            shadow.enabled = !fallingIntoHole;
         }
         if (fallingIntoHole && Time.time - lastSwapTime < 0.5f)
         {

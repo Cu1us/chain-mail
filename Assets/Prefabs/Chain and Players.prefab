@@ -606,6 +606,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7485948357042832565}
     - target: {fileID: 9157047647374926665, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
+      propertyPath: shadow
+      value: 
+      objectReference: {fileID: 2461435031881763078}
+    - target: {fileID: 9157047647374926665, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: spriteRenderer
       value: 
       objectReference: {fileID: 355997152486189517}
@@ -702,6 +706,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2612734432615552725, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
+      propertyPath: shadow
+      value: 
+      objectReference: {fileID: 8213255265755413463}
     - target: {fileID: 2612734432615552725, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: animator
       value: 
