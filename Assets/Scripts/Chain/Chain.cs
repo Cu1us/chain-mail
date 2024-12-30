@@ -20,6 +20,7 @@ public class Chain : MonoBehaviour
     [SerializeField] float maxRotationSpeed;
     [SerializeField] float rotationSpeedCap;
     [SerializeField] float rotationAcceleration;
+    [SerializeField] AnimationCurve accelerationCurve;
     [SerializeField] float rotationDeceleration;
     [SerializeField] float swapPlacesForce;
     [SerializeField] float extendChainSpeed;
@@ -248,7 +249,7 @@ public class Chain : MonoBehaviour
         if (anchorStatus != AnchorStatus.NONE && inputData.chainRotationalInput != 0)
         {
             float targetRotVelocity = -inputData.chainRotationalInput * maxRotationSpeed;
-            float acceleration = rotationAcceleration * Time.deltaTime * (1 - rotationalVelocity / maxRotationSpeed);
+            float acceleration = rotationAcceleration * Time.deltaTime * accelerationCurve.Evaluate(Mathf.Abs(rotationalVelocity) / maxRotationSpeed);
 
             if (Mathf.Sign(rotationalVelocity) != Mathf.Sign(targetRotVelocity))
             {

@@ -327,9 +327,60 @@ MonoBehaviour:
   rotationalVelocity: 0
   maxDistance: 6
   minDistance: 2
-  maxRotationSpeed: 1420
-  rotationSpeedCap: 2500
+  maxRotationSpeed: 3000
+  rotationSpeedCap: 4000
   rotationAcceleration: 1000
+  accelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.023745473
+      value: 5.333415
+      inSlope: -0.35855696
+      outSlope: -0.35855696
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.17631383
+      value: 1.0111401
+      inSlope: 0.016461022
+      outSlope: 0.016461022
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.20654225
+      value: 0.99556446
+      inSlope: -3.3559391
+      outSlope: -3.3559391
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.09978244
+    - serializedVersion: 3
+      time: 0.48189813
+      value: 0.2697211
+      inSlope: -1.6702175
+      outSlope: -1.6702175
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9935574
+      value: 0.02963287
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   rotationDeceleration: 1600
   swapPlacesForce: 100
   extendChainSpeed: 8
@@ -563,11 +614,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8856967382859542037, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.3
+      value: 69.6
       objectReference: {fileID: 0}
     - target: {fileID: 8856967382859542037, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -13.2
+      value: 38.8
       objectReference: {fileID: 0}
     - target: {fileID: 8856967382859542037, guid: b6781432404871e74b7b14d6c74091a0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -744,11 +795,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7891007783511305094, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.200001
+      value: 66.2
       objectReference: {fileID: 0}
     - target: {fileID: 7891007783511305094, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -13.3
+      value: 39.5
       objectReference: {fileID: 0}
     - target: {fileID: 7891007783511305094, guid: 7fb7a606f26a4d93ab0506d670f1cc89, type: 3}
       propertyPath: m_LocalPosition.z
