@@ -211,6 +211,13 @@ public class EnemyMovement : MonoBehaviour
         isAttackState = true;
         accell = 10;
 
+        if (state == EnemyState.DEAD)
+        {
+            stateTimer = -100;
+            isAttackState = false;
+            activeMaxVelocity = 0;
+            return;
+        }
         if (state == EnemyState.FALLING)
         {
             stateTimer = -100;
