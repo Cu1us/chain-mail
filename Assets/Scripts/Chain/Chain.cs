@@ -383,6 +383,7 @@ public class Chain : MonoBehaviour
         float closestDistance = aimbotTargetDistance * aimbotTargetDistance;
         foreach (EnemyMovement enemy in EnemyMovement.EnemyList)
         {
+            if (enemy.state == EnemyMovement.EnemyState.DEAD) continue;
             float distanceToHitTarget = ((Vector2)enemy.transform.position - swapTargetPosition).sqrMagnitude;
             if (distanceToHitTarget < closestDistance)
             {
