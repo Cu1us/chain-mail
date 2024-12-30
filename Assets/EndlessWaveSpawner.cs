@@ -72,7 +72,7 @@ public class EndlessWaveSpawner : MonoBehaviour
     void SpawnList()
     {
         int cost = WaveCost;
-        while (cost > 0)
+        while (cost >= swordCost)
         {
             int rnd = UnityEngine.Random.Range(0, 3);
             switch (rnd)
