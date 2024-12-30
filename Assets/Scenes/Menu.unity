@@ -150,7 +150,7 @@ RectTransform:
   m_GameObject: {fileID: 166734340}
   m_LocalRotation: {x: 0, y: 0, z: 0.14720519, w: 0.989106}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1773533792}
@@ -237,8 +237,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 343740dd4d800e84cbab6eae60f212d6, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: f7c101b424f71454baf5f193a6b1c5a8, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -417,7 +417,7 @@ RectTransform:
   m_GameObject: {fileID: 427169295}
   m_LocalRotation: {x: 0, y: 0, z: 0.23929606, w: 0.9709466}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 480490182}
@@ -504,8 +504,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f7c101b424f71454baf5f193a6b1c5a8, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: ee27db9e9b7c24d4c91afc099b5eb052, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1425,7 +1425,7 @@ RectTransform:
   m_GameObject: {fileID: 1559948887}
   m_LocalRotation: {x: 0, y: 0, z: 0.15255454, w: 0.988295}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 226634404}
@@ -1513,7 +1513,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 343740dd4d800e84cbab6eae60f212d6, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1521,7 +1521,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 5.43
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1559948891
 CanvasRenderer:
   m_ObjectHideFlags: 0
