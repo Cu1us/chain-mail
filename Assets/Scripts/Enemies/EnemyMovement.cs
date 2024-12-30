@@ -39,6 +39,7 @@ public class EnemyMovement : MonoBehaviour
     float currentChainLength;
     [SerializeField] float sentinelMass;
     [SerializeField] float idleSetDistance;
+    [SerializeField] float archerShootMaxDistance;
 
 
     Vector2 target;
@@ -300,7 +301,7 @@ public class EnemyMovement : MonoBehaviour
         Vector2 perpendicular = Vector2.Perpendicular(targetTransform1.position).normalized;
 
         Vector2 dist1 = targetTransform1.position - transform.position;
-        if (dist1.sqrMagnitude < 64)
+        if (dist1.sqrMagnitude < 64 || dist1.sqrMagnitude > archerShootMaxDistance*archerShootMaxDistance)
         {
             isAttackState = false;
         }
