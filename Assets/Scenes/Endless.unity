@@ -13401,9 +13401,9 @@ MonoBehaviour:
   waveText: {fileID: 1436426067}
   gameOverText: {fileID: 887224808}
   gameOverScore: {fileID: 190218549}
-  swordCost: 10
-  hammerCost: 20
-  archerCost: 20
+  swordCost: 80
+  hammerCost: 200
+  archerCost: 160
   prefab: 0
 --- !u!4 &537088497
 Transform:
