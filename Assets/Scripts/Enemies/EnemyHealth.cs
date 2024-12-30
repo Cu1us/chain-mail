@@ -12,6 +12,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] float damageWallBounce;
     [SerializeField] float redTextDamage;
     [SerializeField] float damageTextLifeTime;
+    [SerializeField] float scoreValue;
 
     [Header("References")]
     [SerializeField] Sprite dead;
@@ -76,11 +77,6 @@ public class EnemyHealth : MonoBehaviour
         }
         damage = Mathf.Round(damage);
         enemyHealth -= damage;
-
-        if (endlessWaveSpawner != null)
-        {
-            endlessWaveSpawner.AddScore(damage);
-        }
 
         if (isMale)
         {
@@ -171,6 +167,12 @@ public class EnemyHealth : MonoBehaviour
         {
             nextLevel.GetComponent<DoorNextLevel>().OpenNextLevel();
         }
+
+        if (endlessWaveSpawner != null)
+        {
+            endlessWaveSpawner.AddScore(scoreValue);
+        }
+
         Destroy(gameObject);
     }
 
