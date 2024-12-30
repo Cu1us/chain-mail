@@ -302,6 +302,7 @@ MonoBehaviour:
   damageWallBounce: 10
   redTextDamage: 50
   damageTextLifeTime: 1.2
+  scoreValue: 80
   dead: {fileID: 21300000, guid: 58dc8f1575c907d448d04cb5a1d44288, type: 3}
   spriteRenderer: {fileID: 3911203691474585884}
   rigidbody: {fileID: 4983113987866911296}
