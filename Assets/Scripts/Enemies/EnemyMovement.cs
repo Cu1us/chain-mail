@@ -224,6 +224,7 @@ public class EnemyMovement : MonoBehaviour
             isAttackState = false;
             shadow.GetComponent<SpriteRenderer>().enabled = false;
             trappDetection.GetComponent<BoxCollider2D>().enabled = false;
+            StateChange(EnemyState.DEAD);
             return;
         }
 
