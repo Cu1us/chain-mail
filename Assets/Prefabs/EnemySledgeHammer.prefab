@@ -5325,7 +5325,7 @@ MonoBehaviour:
   isSentinel: 1
   isSwordman: 0
   stumbleTimer: 2
-  stumbleTimerCooldown: 2
+  stumbleTimerCooldown: 0.2
   stateTimer: 0
   stumbleTime: 3
   state: 1
