@@ -82,7 +82,7 @@ public class EnemySwordAttack : MonoBehaviour
                 sentinelChargeUp = true;
             }
 
-            else if (state.state != EnemyMovement.EnemyState.STUCK)
+            else if (state.state != EnemyMovement.EnemyState.STUCK && state.state != EnemyMovement.EnemyState.DEAD)
             {
                 state.StateChange(EnemyMovement.EnemyState.MOVECLOSETOATTACK);
             }

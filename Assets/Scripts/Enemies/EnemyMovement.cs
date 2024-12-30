@@ -216,7 +216,6 @@ public class EnemyMovement : MonoBehaviour
             stateTimer = -100;
             isAttackState = false;
             activeMaxVelocity = 0;
-            return;
         }
         if (state == EnemyState.FALLING)
         {
@@ -228,7 +227,7 @@ public class EnemyMovement : MonoBehaviour
             return;
         }
 
-        if (isArcher && _state != EnemyState.STUCK)
+        if (isArcher && _state != EnemyState.STUCK && state != EnemyState.DEAD)
         {
             state = EnemyState.ARCHER;
         }
