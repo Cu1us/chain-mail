@@ -8,6 +8,7 @@ public class DoorNextLevel : MonoBehaviour
     Animator animator;
     [SerializeField] bool isDoor;
     [SerializeField] Animator chainLockAnimator;
+    [SerializeField] bool isNoAnimation = false;
 
     public bool isLevelCleared = true;
     void Start()
@@ -22,8 +23,8 @@ public class DoorNextLevel : MonoBehaviour
         coll.enabled = true;
         if (isDoor && isLevelCleared)
         {
-           chainLockAnimator.SetTrigger("Unlock");
-           Debug.Log("Unlock");
+            chainLockAnimator.SetTrigger("Unlock");
+            Debug.Log("Unlock");
         }
     }
     void OnTriggerEnter2D(Collider2D other)
@@ -31,7 +32,15 @@ public class DoorNextLevel : MonoBehaviour
         Debug.Log("Door");
         if (other.CompareTag("Player") && isLevelCleared)
         {
-            animator.Play("DoorOpenAnimation");
+            if (isNoAnimation)
+            {
+                NextLevel();
+            }
+            else
+            {
+                animator.Play("DoorOpenAnimation");
+            }
+
         }
     }
 
