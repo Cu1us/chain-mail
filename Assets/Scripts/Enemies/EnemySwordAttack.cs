@@ -37,7 +37,7 @@ public class EnemySwordAttack : MonoBehaviour
         {
             sentinelWaitTimer += Time.deltaTime;
 
-            if (sentinelChargeUp && state.state != EnemyMovement.EnemyState.STUCK && sentinelWaitTimer > 0)
+            if (sentinelChargeUp && state.state != EnemyMovement.EnemyState.STUCK && state.state != EnemyMovement.EnemyState.DEAD && sentinelWaitTimer > 0)
             {
                 chargeUpTimer += Time.deltaTime;
                 //sentinelWaitTimer += Time.deltaTime;
@@ -64,7 +64,7 @@ public class EnemySwordAttack : MonoBehaviour
         }
 
 
-        if (playerInRange && state.state != EnemyMovement.EnemyState.STUCK && isSwordMan) //playersInsideTrigger.Count > 0 
+        if (playerInRange && state.state != EnemyMovement.EnemyState.STUCK && isSwordMan && state.state != EnemyMovement.EnemyState.DEAD) //playersInsideTrigger.Count > 0 
         {
             animator.Play("Attack");
         }
