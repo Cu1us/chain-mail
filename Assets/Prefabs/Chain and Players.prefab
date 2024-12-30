@@ -327,9 +327,9 @@ MonoBehaviour:
   rotationalVelocity: 0
   maxDistance: 6
   minDistance: 2
-  maxRotationSpeed: 3000
+  maxRotationSpeed: 2250
   rotationSpeedCap: 4000
-  rotationAcceleration: 1000
+  rotationAcceleration: 1250
   accelerationCurve:
     serializedVersion: 2
     m_Curve:
