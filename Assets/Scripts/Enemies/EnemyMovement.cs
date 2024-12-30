@@ -63,7 +63,7 @@ public class EnemyMovement : MonoBehaviour
 
     public enum EnemyState
     {
-        STUCK, MOVECLOSETOATTACK, FLANK, KEEPDISTANCE, INTERCEPT, ARCHER, IDLE, FALLING
+        STUCK, MOVECLOSETOATTACK, FLANK, KEEPDISTANCE, INTERCEPT, ARCHER, IDLE, FALLING, DEAD
 
     }
     public EnemyState state;
@@ -226,7 +226,7 @@ public class EnemyMovement : MonoBehaviour
             state = EnemyState.ARCHER;
         }
 
-        if(Vector2.Distance(transform.position, player1.position) > idleSetDistance)
+        if (Vector2.Distance(transform.position, player1.position) > idleSetDistance)
         {
             state = EnemyState.IDLE;
             target = transform.position;
@@ -300,7 +300,7 @@ public class EnemyMovement : MonoBehaviour
         Vector2 perpendicular = Vector2.Perpendicular(targetTransform1.position).normalized;
 
         Vector2 dist1 = targetTransform1.position - transform.position;
-        if (dist1.sqrMagnitude < 64 || dist1.sqrMagnitude > archerShootMaxDistance*archerShootMaxDistance)
+        if (dist1.sqrMagnitude < 64 || dist1.sqrMagnitude > archerShootMaxDistance * archerShootMaxDistance)
         {
             isAttackState = false;
         }
@@ -369,7 +369,7 @@ public class EnemyMovement : MonoBehaviour
     }
 
     public void Stumble()
-    { 
+    {
         if (stumbleTimer > stumbleTimerCooldown && Mathf.Abs(chain.rotationalVelocity) > 300)
         {
             animator.Play("Stumble");
@@ -419,17 +419,17 @@ public class EnemyMovement : MonoBehaviour
 
     void CompareVelocity()
     {
-        float factor = maxVelocity/currentMaxVelocity;
+        float factor = maxVelocity / currentMaxVelocity;
 
         animator.SetFloat("Velocity", rb.velocity.sqrMagnitude * factor);
-         if (rb.velocity.sqrMagnitude > currentMaxVelocity * currentMaxVelocity)
-         {
-             accell = knockbackDeceleration;
-         }
-         else
-         {
-             accell = acceleration;
-         }
+        if (rb.velocity.sqrMagnitude > currentMaxVelocity * currentMaxVelocity)
+        {
+            accell = knockbackDeceleration;
+        }
+        else
+        {
+            accell = acceleration;
+        }
     }
 
     void StoppMoving()
