@@ -304,9 +304,10 @@ MonoBehaviour:
   maxSqrVelocity: 1000
   maximumVelocityToFallInHole: 3
   canCollideWith: []
-  localPointOfCollision: {x: 0, y: 0}
+  localPointOfCollision: {x: 0, y: -0.5}
   dragOutOfHoleButton: {fileID: 5443444664109479544}
   spriteRenderer: {fileID: 1190040144926794882}
+  shadow: {fileID: 0}
   movementSpeed: 6
   Input: {fileID: 0}
   trailRenderer: {fileID: 5439516395281125458}
@@ -329,6 +330,7 @@ MonoBehaviour:
   playerInput: {fileID: 0}
   hurtVignette: {fileID: 0}
   spriteBlink: {fileID: 4899468910705586354}
+  playerHealth: 0
 --- !u!114 &1702534065677974400
 MonoBehaviour:
   m_ObjectHideFlags: 0

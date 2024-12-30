@@ -53,20 +53,21 @@ public class SwingableObject : MonoBehaviour, IKnockable
     {
         if (newPos == oldPos) return;
         Vector2 collisionCheckPoint = newPos + localPointOfCollision;
-        if (!IsPointInACollider(newPos))
+        Vector2 collisionPointOld = oldPos + localPointOfCollision;
+        if (!IsPointInACollider(collisionCheckPoint))
         {
             transform.position = newPos;
         }
         else
         {
-            Vector2 toWall = newPos - oldPos;
+            Vector2 toWall = collisionCheckPoint - collisionPointOld;
             Vector2 dirToWall = toWall.normalized;
-            RaycastHit2D hit = Physics2D.Raycast(oldPos, dirToWall, 2f, LayerMask.GetMask("Environment"));
-            Debug.DrawRay(oldPos, dirToWall, Color.blue, 2f);
+            RaycastHit2D hit = Physics2D.Raycast(collisionPointOld, dirToWall, 2f, LayerMask.GetMask("Environment"));
+            Debug.DrawRay(collisionPointOld, dirToWall, Color.blue, 2f);
             if (hit.collider == null) return;
             float dot = Vector2.Dot(dirToWall, -hit.normal);
-            newPos += hit.normal * dot * toWall.magnitude;
-            transform.position = newPos;
+            collisionCheckPoint += hit.normal * dot * toWall.magnitude;
+            transform.position = collisionCheckPoint - localPointOfCollision;
 
             float velocityDot = Vector2.Dot(velocity.normalized, -hit.normal);
             velocity += hit.normal * dot * velocity.magnitude;
