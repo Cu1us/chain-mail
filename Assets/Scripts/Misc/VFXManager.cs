@@ -10,7 +10,7 @@ public class VFXManager : MonoBehaviour
     [SerializeField] VFX CircleImpact;
     [SerializeField] VFX DirectionalImpact;
     [SerializeField] VFX GroundImpact;
-
+    [SerializeField] VFX[] CrackVFXs;
 
     void Awake()
     {
@@ -25,6 +25,7 @@ public class VFXManager : MonoBehaviour
             VFXType.CIRCLE_IMPACT => instance.CircleImpact,
             VFXType.DIRECTIONAL_IMPACT => instance.DirectionalImpact,
             VFXType.GROUND_IMPACT => instance.GroundImpact,
+            VFXType.CRACK => instance.CrackVFXs[UnityEngine.Random.Range(0, instance.CrackVFXs.Length)],
             _ => null
         };
         if (vfx == null)
@@ -37,5 +38,6 @@ public enum VFXType
 {
     CIRCLE_IMPACT,
     DIRECTIONAL_IMPACT,
-    GROUND_IMPACT
+    GROUND_IMPACT,
+    CRACK
 }

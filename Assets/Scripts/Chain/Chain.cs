@@ -248,7 +248,7 @@ public class Chain : MonoBehaviour
         if (anchorStatus != AnchorStatus.NONE && inputData.chainRotationalInput != 0)
         {
             float targetRotVelocity = -inputData.chainRotationalInput * maxRotationSpeed;
-            float acceleration = rotationAcceleration * Time.deltaTime;
+            float acceleration = rotationAcceleration * Time.deltaTime * (1 - rotationalVelocity / maxRotationSpeed);
 
             if (Mathf.Sign(rotationalVelocity) != Mathf.Sign(targetRotVelocity))
             {

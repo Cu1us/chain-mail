@@ -16947,6 +16947,10 @@ MonoBehaviour:
   CircleImpact: {fileID: 8301040361922311825, guid: 3a51dfa901d7d5d9689036f0d8284642, type: 3}
   DirectionalImpact: {fileID: 6260949521140913571, guid: 8d9a7a0fcf455aff68979235d893f61f, type: 3}
   GroundImpact: {fileID: -6540145752894409085, guid: 3a2556a2e4a10b49e9c27ecf853efb67, type: 3}
+  CrackVFXs:
+  - {fileID: -6540145752894409085, guid: 22af3fbe9d1beed1fb00c60e9a77627d, type: 3}
+  - {fileID: -6540145752894409085, guid: 6cc2f9e3517d3932abb17b36228c38dc, type: 3}
+  - {fileID: -6540145752894409085, guid: f85ed9df4cdaaf22a8a2ed1992e7b65f, type: 3}
 --- !u!1 &1393189111
 GameObject:
   m_ObjectHideFlags: 0
