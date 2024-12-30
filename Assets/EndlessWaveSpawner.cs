@@ -45,7 +45,7 @@ public class EndlessWaveSpawner : MonoBehaviour
     void Start()
     {
         player1 = GameObject.Find("Player1").GetComponent<Transform>();
-        WaveCost = 10;
+        AddWaveCost();
         SpawnList();
     }
 
@@ -103,7 +103,7 @@ public class EndlessWaveSpawner : MonoBehaviour
     }
     void AddWaveCost()
     {
-        WaveCost += 150;
+        WaveCost += 500;
     }
    void SpawnPosition()
     {
