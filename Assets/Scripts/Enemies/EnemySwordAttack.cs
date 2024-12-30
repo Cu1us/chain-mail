@@ -42,7 +42,7 @@ public class EnemySwordAttack : MonoBehaviour
                 chargeUpTimer += Time.deltaTime;
                 //sentinelWaitTimer += Time.deltaTime;
                 animator.SetBool("isReady", true);
-                if (chargeUpTimer > sentinelChargeUpTime && playersInsideTrigger.Count > 0 && playerInRange) 
+                if (chargeUpTimer > sentinelChargeUpTime && playersInsideTrigger.Count > 0 && playerInRange)
                 {
                     animator.Play("Attack");
                     sentinelWaitTimer = 0 - sentinelFollowUpAttackTime;
@@ -82,7 +82,7 @@ public class EnemySwordAttack : MonoBehaviour
                 sentinelChargeUp = true;
             }
 
-            else if(state.state != EnemyMovement.EnemyState.STUCK)
+            else if (state.state != EnemyMovement.EnemyState.STUCK)
             {
                 state.StateChange(EnemyMovement.EnemyState.MOVECLOSETOATTACK);
             }
@@ -119,7 +119,7 @@ public class EnemySwordAttack : MonoBehaviour
     }
 
     void AddDamage()
-    {   
+    {
         for (int i = 0; i < playersInsideTrigger.Count; i++)
         {
             if (playersInsideTrigger[i].TryGetComponent<PlayerHealth>(out PlayerHealth component))
@@ -130,7 +130,7 @@ public class EnemySwordAttack : MonoBehaviour
                     AudioManager.Play("Hit");
                 }
             }
-            else if(playersInsideTrigger[i].TryGetComponent<BagTakeDamage>(out BagTakeDamage component1))
+            else if (playersInsideTrigger[i].TryGetComponent<BagTakeDamage>(out BagTakeDamage component1))
             {
                 playersInsideTrigger[i].GetComponent<BagTakeDamage>().TakeDamage();
             }
@@ -140,6 +140,7 @@ public class EnemySwordAttack : MonoBehaviour
     void InstantiateHitParticle()
     {
         VFX.Spawn(VFXType.GROUND_IMPACT, impactPos.position, 1.7f);
+        VFX.Spawn(VFXType.CRACK, impactPos.position);
     }
 
     public void SlegeHammerImpact()
