@@ -45,7 +45,7 @@ public class EndlessWaveSpawner : MonoBehaviour
     void Start()
     {
         player1 = GameObject.Find("Player1").GetComponent<Transform>();
-        WaveCost = 10;
+        AddWaveCost();
         SpawnList();
     }
 
@@ -72,7 +72,7 @@ public class EndlessWaveSpawner : MonoBehaviour
     void SpawnList()
     {
         int cost = WaveCost;
-        while (cost > 0)
+        while (cost >= swordCost)
         {
             int rnd = UnityEngine.Random.Range(0, 3);
             switch (rnd)
@@ -103,7 +103,7 @@ public class EndlessWaveSpawner : MonoBehaviour
     }
     void AddWaveCost()
     {
-        WaveCost += 50;
+        WaveCost += 500;
     }
    void SpawnPosition()
     {

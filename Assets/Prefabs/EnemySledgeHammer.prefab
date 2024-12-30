@@ -5286,7 +5286,7 @@ MonoBehaviour:
   damageWallBounce: 10
   redTextDamage: 50
   damageTextLifeTime: 1.2
-  scoreValue: 150
+  scoreValue: 200
   dead: {fileID: 21300000, guid: 58dc8f1575c907d448d04cb5a1d44288, type: 3}
   spriteRenderer: {fileID: 4676118789663566114}
   rigidbody: {fileID: 6873798443228068978}
@@ -5321,6 +5321,7 @@ MonoBehaviour:
   attackDistance: 2
   sentinelMass: 10
   idleSetDistance: 45
+  archerShootMaxDistance: 0
   isAttackState: 0
   isArcher: 0
   isSentinel: 1
