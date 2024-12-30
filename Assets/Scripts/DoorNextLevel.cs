@@ -24,6 +24,7 @@ public class DoorNextLevel : MonoBehaviour
         if (isDoor && isLevelCleared)
         {
             chainLockAnimator.SetTrigger("Unlock");
+            Invoke(nameof(UnlockSound) , 1f);
             Debug.Log("Unlock");
         }
     }
@@ -59,5 +60,10 @@ public class DoorNextLevel : MonoBehaviour
         {
             SceneLoadingManager.LoadLevel("TutorialScene");
         }
+    }
+
+    void UnlockSound()
+    {
+        AudioManager.Play("Unlock");
     }
 }
