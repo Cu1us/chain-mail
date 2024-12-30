@@ -336,6 +336,7 @@ MonoBehaviour:
   attackDistance: 2
   sentinelMass: 0
   idleSetDistance: 60
+  archerShootMaxDistance: 30
   isAttackState: 0
   isArcher: 1
   isSentinel: 0
