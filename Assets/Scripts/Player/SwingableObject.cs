@@ -25,6 +25,8 @@ public class SwingableObject : MonoBehaviour, IKnockable
     [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] protected SpriteRenderer shadow;
 
+    [SerializeField] protected TrailRenderer swapTrail;
+
 
     // Events
     public Action<float> onKnockedChain;
@@ -112,6 +114,7 @@ public class SwingableObject : MonoBehaviour, IKnockable
 
     protected virtual void Update()
     {
+        if (swapTrail) swapTrail.emitting = beingSwapped;
         if (dragOutOfHoleButton)
         {
             dragOutOfHoleButton.visible = fallingIntoHole;
