@@ -1157,8 +1157,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99d37fdc91915b459a11bfc8a8e3745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxVolume: 0.8
-  fadeInSpeed: 0.2
+  maxVolume: 0.75
+  fadeInSpeed: 0.3
+  fadeOutspeed: 0.6
   musicSource: {fileID: 1023625811}
 --- !u!1 &1087378727
 GameObject:

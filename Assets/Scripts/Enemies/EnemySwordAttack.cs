@@ -48,7 +48,7 @@ public class EnemySwordAttack : MonoBehaviour
                     sentinelWaitTimer = 0 - sentinelFollowUpAttackTime;
                     animator.SetBool("isReady", false);
                 }
-                else if (chargeUpTimer > 2) //Give this its own counter
+                else if (chargeUpTimer > 3) //Give this its own counter
                 {
                     sentinelWaitTimer = 0;
                     chargeUpTimer = 0;

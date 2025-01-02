@@ -12,6 +12,7 @@ public class TestSoundSwing : MonoBehaviour
     float factor = 0.08f;
     void Start()
     {
+        PlayMusic.playMusic.StartMusic();
         Chain = GetComponent<Chain>();
         z = 1;
     }

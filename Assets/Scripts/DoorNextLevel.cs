@@ -6,6 +6,7 @@ public class DoorNextLevel : MonoBehaviour
     BoxCollider2D coll;
     Animator animator;
     [SerializeField] bool isDoor;
+    [SerializeField] bool isNoAnimation;
 
     public bool isLevelCleared = true;
     void Start()
@@ -18,12 +19,21 @@ public class DoorNextLevel : MonoBehaviour
     public void OpenNextLevel()
     {
         coll.enabled = true;
+        PlayMusic.playMusic.StopMusic();
     }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && isLevelCleared)
         {
+            if (isNoAnimation)
+            {
+                NextLevel();
+            }
+            else
+            {
                 animator.Play("DoorOpenAnimation");
+            }
+
         }
     }
 
