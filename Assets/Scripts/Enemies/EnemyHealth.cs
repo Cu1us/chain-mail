@@ -42,13 +42,6 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Keypad1))
-        {
-            TakeDamage(1000);
-        }
-    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {

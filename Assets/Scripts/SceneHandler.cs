@@ -12,15 +12,6 @@ public class SceneHandler : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Tab))
-        {
-            //FadeOut();
-        }
-    }
-
     public void FadeOut()
     {
         animator.SetTrigger("FadeOut");
