@@ -19,7 +19,7 @@ public class DoorNextLevel : MonoBehaviour
     public void OpenNextLevel()
     {
         coll.enabled = true;
-        PlayMusic.playMusic.StopMusic();
+        PlayMusic.StopMusic();
     }
     void OnTriggerEnter2D(Collider2D other)
     {

@@ -14,7 +14,7 @@ public class TestSoundSwing : MonoBehaviour
     {
         Chain = GetComponent<Chain>();
         z = 1;
-        PlayMusic.playMusic.StartMusic();
+        PlayMusic.StartMusic();
     }
     void Update()
     {

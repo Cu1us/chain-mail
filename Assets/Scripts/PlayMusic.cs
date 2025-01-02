@@ -35,18 +35,24 @@ public class PlayMusic : MonoBehaviour
         FadeOutMusic();
     }
 
-    public void StartMusic()
+    public static void StartMusic()
     {
-        fadeInMusic = true;
-        fadeOutMusic = false;
-        musicSource.volume = 0;
-        musicSource.Play();
+        if (playMusic != null)
+        {
+            playMusic.fadeInMusic = true;
+            playMusic.fadeOutMusic = false;
+            playMusic.musicSource.volume = 0;
+            playMusic.musicSource.Play();
+        }
     }
 
-    public void StopMusic()
+    public static void StopMusic()
     {
-        fadeInMusic = false;
-        fadeOutMusic = true;
+        if (playMusic != null)
+        {
+            playMusic.fadeInMusic = false;
+            playMusic.fadeOutMusic = true;
+        }
     }
 
     void FadeInMusic()
