@@ -21,13 +21,13 @@ MonoBehaviour:
       - {fileID: 8300000, guid: 3fde1a451e6bbdf49a5a9adc1f6b7491, type: 3}
       - {fileID: 8300000, guid: ae32b377f5e304e2aaa767047a1b76ca, type: 3}
       - {fileID: 8300000, guid: 17b7c5b644ad64b77bdb516119ce302b, type: 3}
-      pitchVariation: 0
+      pitchVariation: 0.2
       volume: 1
   - name: hurtplayer
     data:
       clips:
       - {fileID: 8300000, guid: ba2a35f3c824b4a60b28eba7655d93b4, type: 3}
-      pitchVariation: 0
+      pitchVariation: 0.2
       volume: 1
   - name: Hit
     data:
@@ -35,7 +35,7 @@ MonoBehaviour:
       - {fileID: 8300000, guid: c3910e3d8edc49a469b531a8cedd10d0, type: 3}
       - {fileID: 8300000, guid: ba4a1e523a85ff849a374ee49fef3707, type: 3}
       - {fileID: 8300000, guid: 77ab366fde06da945919cadbe149bbe4, type: 3}
-      pitchVariation: 0
+      pitchVariation: 0.2
       volume: 1
   - name: swordswing
     data:
@@ -81,7 +81,7 @@ MonoBehaviour:
     data:
       clips:
       - {fileID: 8300000, guid: df592002ecdf066408efc5162878bea1, type: 3}
-      pitchVariation: 0
+      pitchVariation: 0.2
       volume: 1
   - name: SwingHitEnemies
     data:
