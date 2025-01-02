@@ -5,6 +5,7 @@ using UnityEngine;
 public class Rock : SwingableObject
 {
     [SerializeField] TrailRenderer trailRenderer;
+    [SerializeField] ParticleSystem smokeTrail;
     [SerializeField] Animator animator;
 
     Vector2 lastPosition;
@@ -12,6 +13,11 @@ public class Rock : SwingableObject
     protected override void Update()
     {
         if (trailRenderer) trailRenderer.emitting = beingGrabbed;
+        if (smokeTrail)
+        {
+            ParticleSystem.EmissionModule emission = smokeTrail.emission;
+            emission.enabled = beingSwapped;
+        }
 
         float moveSpeed = (lastPosition - (Vector2)transform.position).magnitude / Time.deltaTime;
         animator.SetBool("Moving", moveSpeed > 0.5f);
