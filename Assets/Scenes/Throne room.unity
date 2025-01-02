@@ -1525,6 +1525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDoor: 0
+  isNoAnimation: 1
   isLevelCleared: 1
 --- !u!61 &512345214
 BoxCollider2D:
