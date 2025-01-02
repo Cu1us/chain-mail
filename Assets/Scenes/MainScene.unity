@@ -1198,54 +1198,6 @@ Transform:
   - {fileID: 313474434}
   m_Father: {fileID: 1686771663}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &425457473
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 425457475}
-  - component: {fileID: 425457474}
-  m_Layer: 0
-  m_Name: EnemySpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &425457474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 425457473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b69a05de458b8854c9540e84b917bedd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 5725944337764825232, guid: 42e04b74ae149e24c9f052d58486c00b, type: 3}
-  enemy2: {fileID: 569884204690992695, guid: 930f3d25c90184c48849f02c0957ae62, type: 3}
-  spawnEnemiesTimeDelay: 10
-  enemiesToSpawn: 20
---- !u!4 &425457475
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 425457473}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.93, y: 4.88, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &438966367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23865,7 +23817,7 @@ PrefabInstance:
     - target: {fileID: 2850818867633984786, guid: 37b4da7ae600e9d47a7a3fa3924a37b6, type: 3}
       propertyPath: spawner
       value: 
-      objectReference: {fileID: 425457474}
+      objectReference: {fileID: 0}
     - target: {fileID: 7289493923819311215, guid: 37b4da7ae600e9d47a7a3fa3924a37b6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.38
@@ -23916,7 +23868,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 2071531364328826497}
-  - {fileID: 425457475}
   - {fileID: 927977480}
   - {fileID: 1535675774285453409}
   - {fileID: 2124084315}
