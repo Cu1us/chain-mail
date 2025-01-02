@@ -205,18 +205,21 @@ public class EnemyMovement : MonoBehaviour
     public void StateChange(EnemyState _state)
     {
         stateTimer = 0;
-        state = _state;
+        //state = _state;
         activeMaxVelocity = maxVelocity;
         isAttackState = true;
         accell = 10;
 
-        if (state == EnemyState.DEAD)
+        if (_state == EnemyState.DEAD)
         {
+            state = _state;
             stateTimer = -100;
             isAttackState = false;
             activeMaxVelocity = 0;
+            agent.speed = 0;
+            return;
         }
-        if (state == EnemyState.FALLING)
+        if (_state == EnemyState.FALLING)
         {
             stateTimer = -100;
             rb.gravityScale = 5;
@@ -245,21 +248,26 @@ public class EnemyMovement : MonoBehaviour
 
 
 
-        switch (state)
+        switch (_state)
         {
             case EnemyState.STUCK:
+
+                state = _state;
                 isAttackState = false;
                 activeMaxVelocity = 0;
                 break;
             case EnemyState.KEEPDISTANCE:
+                state = _state;
                 stateTimer = stateChangeCooldown - 2;
                 keepDistanceDistance = Random.Range(7, 12);
                 break;
             case EnemyState.MOVECLOSETOATTACK:
+                state = _state;
                 activeMaxVelocity = 20;
                 accell = 20;
                 break;
             case EnemyState.FLANK:
+                state = _state;
                 if (Random.Range(0, 2) == 0)
                 {
                     flankDir = FlankDir.LEFT;
@@ -272,6 +280,7 @@ public class EnemyMovement : MonoBehaviour
                 nextState = EnemyState.MOVECLOSETOATTACK;
                 break;
             case EnemyState.INTERCEPT:
+                state = _state;
                 stateTimer = -2;
                 break;
             case EnemyState.ARCHER:
