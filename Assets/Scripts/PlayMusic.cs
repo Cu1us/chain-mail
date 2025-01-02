@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayMusic : MonoBehaviour
 {
-    private static PlayMusic instance;
+    public static PlayMusic playMusic;
 
     [SerializeField] float maxVolume;
     [SerializeField] float fadeInSpeed;
+    [SerializeField] float fadeOutspeed;
     [SerializeField] AudioSource musicSource;
 
     bool fadeInMusic;
@@ -15,13 +16,13 @@ public class PlayMusic : MonoBehaviour
 
     void Awake()
     {
-        if (instance != null && instance != this)
+        if (playMusic != null && playMusic != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            playMusic = this;
             DontDestroyOnLoad(gameObject);
         }
 
@@ -31,13 +32,21 @@ public class PlayMusic : MonoBehaviour
     void Update()
     {
         FadeInMusic();
+        FadeOutMusic();
     }
 
-    void StartMusic()
+    public void StartMusic()
     {
         fadeInMusic = true;
+        fadeOutMusic = false;
         musicSource.volume = 0;
         musicSource.Play();
+    }
+
+    public void StopMusic()
+    {
+        fadeInMusic = false;
+        fadeOutMusic = true;
     }
 
     void FadeInMusic()
@@ -57,7 +66,7 @@ public class PlayMusic : MonoBehaviour
         {
             if (maxVolume >= 0)
             {
-                musicSource.volume -= Time.deltaTime * fadeInSpeed;
+                musicSource.volume -= Time.deltaTime * fadeOutspeed;
             }
         }
     }
