@@ -103,7 +103,7 @@ public class EndlessWaveSpawner : MonoBehaviour
     }
     void AddWaveCost()
     {
-        WaveCost += 1000;
+        WaveCost += 800;
     }
    void SpawnPosition()
     {
