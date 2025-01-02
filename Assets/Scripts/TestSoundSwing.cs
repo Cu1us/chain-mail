@@ -12,20 +12,20 @@ public class TestSoundSwing : MonoBehaviour
     float factor = 0.08f;
     void Start()
     {
-        PlayMusic.playMusic.StartMusic();
         Chain = GetComponent<Chain>();
         z = 1;
+        PlayMusic.playMusic.StartMusic();
     }
     void Update()
     {
         timer += Time.deltaTime;
-        if(Chain.rotationalVelocity != 0)
+        if (Chain.rotationalVelocity != 0)
         {
-             z +=Math.Abs( Chain.rotationalVelocity / Chain.currentChainLength * factor * Time.deltaTime);
+            z += Math.Abs(Chain.rotationalVelocity / Chain.currentChainLength * factor * Time.deltaTime);
         }
         timer += Time.deltaTime;
 
-        if(z > 10 && timer > 0.7)
+        if (z > 10 && timer > 0.7)
         {
             z = 0;
             timer = 0;
